@@ -23,7 +23,7 @@ wmname LG3D &
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # wallpaper
-feh --bg-fill /home/justice-reaper/Wallpapers/wallpaper.jpg &
+feh --bg-fill ~/Wallpapers/wallpaper.jpg &
 
 # bright
 brillo_actual=$(cat /sys/class/backlight/amdgpu_bl0/brightness)
