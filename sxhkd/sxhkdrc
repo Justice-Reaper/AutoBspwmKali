@@ -4,7 +4,7 @@
 
 # increase volume
 super + F7
-        /home/justice-reaper/.config/polybar/scripts/increase_volume.sh
+        ~/.config/polybar/scripts/increase_volume.sh
 
 # decrease volume
 super + F6
@@ -16,11 +16,11 @@ super + F5
 
 # increase bright
 super + F3
-	/home/justice-reaper/.config/polybar/scripts/increase_bright.sh
+	~/.config/polybar/scripts/increase_bright.sh
 
 # decrease bright
 super + F2
-        /home/justice-reaper/.config/polybar/scripts/decrease_bright.sh
+        ~/.config/polybar/scripts/decrease_bright.sh
 
 # terminal emulator
 super + Return
@@ -28,7 +28,7 @@ super + Return
 
 # rofi
 super + shift + d
-	/home/justice-reaper/.config/rofi/launcher/launcher.sh
+	~/.config/rofi/launcher/launcher.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -142,7 +142,7 @@ super + {Left,Down,Up,Right}
 
 # custom resize
 shift + alt + super + {Left,Down,Up,Right}
-	/home/justice-reaper/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
+	~/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
 # firefox
 super + shift + f
