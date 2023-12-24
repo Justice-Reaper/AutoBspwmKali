@@ -1,26 +1,55 @@
 sudo apt update
 sudo apt -y full-upgrade -y
-[ -f /var/run/reboot-required ] && sudo reboot -f
-sudo apt install -y nvidia-detect
-sudo apt install -y nvidia-driver nvidia-cuda-toolkit
-sudo reboot -f
-nvidia-detect
-sudo apt install neofetch -y
-echo "root:root" | sudo chpasswd
-sudo apt update && sudo apt install btrfs-progs snapper snapper-gui grub-btrfs -y
-sudo cp /usr/share/snapper/config-templates/default /etc/snapper/configs/home
-sudo sed -i 's/^SNAPPER_CONFIGS=\"\"/SNAPPER_CONFIGS=\"home\"/' /etc/default/snapper
-sudo cp /usr/share/snapper/config-templates/default /etc/snapper/configs/varlog
-sudo sed -i 's/^SNAPPER_CONFIGS=\"\"/SNAPPER_CONFIGS=\"varlog\"/' /etc/default/snapper
-sudo cp /usr/share/snapper/config-templates/default /etc/snapper/configs/srv
-sudo sed -i 's/^SNAPPER_CONFIGS=\"\"/SNAPPER_CONFIGS=\"srv\"/' /etc/default/snapper
-sudo cp /usr/share/snapper/config-templates/default /etc/snapper/configs/tmp
-sudo sed -i 's/^SNAPPER_CONFIGS=\"\"/SNAPPER_CONFIGS=\"tmp\"/' /etc/default/snapper
-sudo cp /usr/share/snapper/config-templates/default /etc/snapper/configs/usrlocal
-sudo sed -i 's/^SNAPPER_CONFIGS=\"\"/SNAPPER_CONFIGS=\"usrlocal\"/' /etc/default/snapper
-sudo cp /usr/share/snapper/config-templates/default /etc/snapper/configs/root
-sudo sed -i 's/^SNAPPER_CONFIGS=\"\"/SNAPPER_CONFIGS=\"root\"/' /etc/default/snapper
-sudo sed -i '/# PRUNENAMES=/ a PRUNENAMES = ".snapshots"' /etc/updatedb.conf
-sudo sed -i 's/^#user-authority-in-system-dir=false/user-authority-in-system-dir=true/' /etc/lightdm/lightdm.conf
-sudo reboot
-sudo reboot
+cd ~/Downloads
+git clone https://github.com/Justice-Reaper/AutoBSPWM
+cd /AutoBSPWM
+sudo apt install bspwm -y
+sudo apt install sxhkd -y
+cp -r sxhkd ~/.config
+cp -r bspwm ~/.config 
+cd ~/.config/bspwm 
+chmod +x bspwmrc  
+cd ~/.config/bspwm/scripts 
+chmod +x * 
+sudo apt install polybar -y
+cd ~/Downloads/AutoBSPWM
+cp -r polybar ~/.config
+cd ~/.config/polybar/scripts 
+chmod +x *
+sudo apt install kitty  -y 
+cd ~/Downloads/AutoBSPWM
+cp -r kitty ~/.config  
+sudo apt install rofi -y  
+cp -r rofi ~/.config  
+cd ~/.config/rofi  
+cd launcher  
+chmod +x launcher.sh 
+cd ../powermenu 
+chmod +x powermenu.sh 
+sudo apt install betterlockscreen -y  
+sudo apt install bat lsd fzf -y
+sudo apt install flameshot -y
+sudo apt install picom -y  
+cd ~/Downloads/AutoBSPWM
+sudo cp -r zsh-sudo /usr/share
+cp -r picom ~/.config
+cp -r Wallpapers ~/
+sudo cp -r fonts /usr/local/share/
+sudo apt install zsh -y
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+sudo su
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+exit
+mv p10k.zsh .p10k.zsh   
+mv zshrc .zshrc 
+cp .p10k.zsh ~/
+cp .zshrc ~/ 
+sudo su 
+cp p10k.zsh_root /root
+cp .zshrc /root
+cd /root
+mv p10k.zsh_root .p10k.zsh
+exit
+sudo ln -s -f ~/.zshrc /root/.zshrc   
