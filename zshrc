@@ -288,7 +288,7 @@ fi
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
-source /home/justice-reaper/powerlevel10k/powerlevel10k.zsh-theme
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -300,14 +300,14 @@ function mkt(){
 }
 
 function cleartarget(){
-    echo '' > /home/justice-reaper/.config/bin/target
+    echo '' > ~/.config/bin/target
 }
 
 function settarget(){
     if [ $# -eq 1 ]; then
-        echo $1 > /home/justice-reaper/.config/bin/target
+        echo $1 > ~/.config/bin/target
     elif [ $# -eq 2 ]; then
-        echo $1 $2 > /home/justice-reaper/.config/bin/target
+        echo $1 $2 > ~/.config/bin/target
     else
         echo "settarget [IP] [NAME] | settarget [IP]"
     fi
