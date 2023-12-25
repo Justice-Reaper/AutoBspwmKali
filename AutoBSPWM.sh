@@ -41,6 +41,7 @@ cd ~/Downloads/AutoBSPWM
 sudo cp -r zsh-sudo /usr/share
 cp -r picom ~/.config
 cp -r Wallpapers ~/
+betterlockscreen -u ~/Wallpapers
 sudo cp -r fonts /usr/local/share/
 sudo apt install zsh -y
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
