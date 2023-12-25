@@ -1,8 +1,8 @@
+cd ..
+v AutoBSPWM ~/Downloads 
+cd ~/Downloads/AutoBSPWM
 sudo apt update
 sudo apt -y full-upgrade -y
-cd ~/Downloads
-git clone https://github.com/Justice-Reaper/AutoBSPWM
-cd /AutoBSPWM
 sudo apt install bspwm -y
 sudo apt install sxhkd -y
 cp -r sxhkd ~/.config
