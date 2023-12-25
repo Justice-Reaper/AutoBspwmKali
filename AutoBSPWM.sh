@@ -1,5 +1,5 @@
 cd ..
-v AutoBSPWM ~/Downloads 
+mv AutoBSPWM ~/Downloads 
 cd ~/Downloads/AutoBSPWM
 sudo apt update
 sudo apt -y full-upgrade -y
