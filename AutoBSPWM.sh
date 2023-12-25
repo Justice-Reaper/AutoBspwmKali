@@ -6,6 +6,7 @@ sudo apt -y full-upgrade -y
 mkdir ~/.config/bin     
 touch ~/.config/bin/target
 sudo apt install brightnessctl -y   
+sudo apt install feh -y
 sudo apt install wmname -y
 sudo apt install xclip -y
 sudo apt install bspwm -y
