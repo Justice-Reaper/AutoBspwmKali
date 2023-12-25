@@ -3,6 +3,10 @@ mv AutoBSPWM ~/Downloads
 cd ~/Downloads/AutoBSPWM
 sudo apt update
 sudo apt -y full-upgrade -y
+mkdir ~/.config/bin     
+touch ~/.config/bin/target
+sudo apt install brightnessctl -y   
+sudo apt install xclip -y
 sudo apt install bspwm -y
 sudo apt install sxhkd -y
 cp -r sxhkd ~/.config
