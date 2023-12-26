@@ -1,49 +1,79 @@
+#!/bin/bash
+
+# MOVEMOS EL AUTOBSPWM A DOWLOADS
+
 cd ..
 mv AutoBSPWM ~/Downloads 
 cd ~/Downloads/AutoBSPWM
-sudo apt update
-sudo apt -y full-upgrade -y
+
+# ACTUALIZAMOS Y UPGRADEAMOS EL SISTEMA
+
+# Función para realizar el full-upgrade
+realizar_full_upgrade() {
+    sudo apt update && sudo apt full-upgrade -y
+    echo "Full-upgrade completado."
+}
+
+# Función para realizar solo la actualización
+realizar_actualizacion() {
+    sudo apt update
+    echo "Actualización completada."
+}
+
+# Bucle para pedir la entrada del usuario
+while true; do
+    # Solicitar confirmación al usuario
+    read -p "¿Deseas realizar un full-upgrade en el sistema? (Sí/no): " respuesta
+
+    # Convertir la respuesta a minúsculas para facilitar la comparación
+    respuesta=$(echo "$respuesta" | tr '[:upper:]' '[:lower:]')
+
+    # Verificar la respuesta
+    if [ "$respuesta" = "sí" ] || [ "$respuesta" = "yes" ]; then
+        realizar_full_upgrade
+        break
+    elif [ "$respuesta" = "no" ]; then
+        realizar_actualizacion
+        break
+    else
+        echo "Respuesta no válida. Por favor, responde 'Sí' o 'No'."
+    fi
+done
+
+# INSTALAMOS LAS DEPENDENCIAS NECESARIAS
+
+sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
+
 mkdir ~/.config/bin     
 touch ~/.config/bin/target
-sudo apt install imagemagick -y
-sudo apt install brightnessctl -y   
-sudo apt install feh -y
-sudo apt install wmname -y
-sudo apt install xclip -y
-sudo apt install bspwm -y
-sudo apt install sxhkd -y
+
 cp -r sxhkd ~/.config
 cp -r bspwm ~/.config 
 cd ~/.config/bspwm 
 chmod +x bspwmrc  
 cd ~/.config/bspwm/scripts 
 chmod +x * 
-sudo apt install polybar -y
 cd ~/Downloads/AutoBSPWM
 cp -r polybar ~/.config
 cd ~/.config/polybar/scripts 
 chmod +x *
-sudo apt install kitty  -y 
+
 cd ~/Downloads/AutoBSPWM
 cp -r kitty ~/.config  
-sudo apt install rofi -y  
 cp -r rofi ~/.config  
 cd ~/.config/rofi  
 cd launcher  
 chmod +x launcher.sh 
 cd ../powermenu 
 chmod +x powermenu.sh 
-sudo apt install betterlockscreen -y  
-sudo apt install bat lsd fzf -y
-sudo apt install flameshot -y
-sudo apt install picom -y  
+
 cd ~/Downloads/AutoBSPWM
 sudo cp -r zsh-sudo /usr/share
 cp -r picom ~/.config
 cp -r Wallpapers ~/
 betterlockscreen -u ~/Wallpapers
 sudo cp -r fonts /usr/local/share/
-sudo apt install zsh -y
+
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 sudo su
