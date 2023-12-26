@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# COMPROBACIÓN DE USUARIO
+if [ "$EUID" -eq 0 ]; then
+    echo "Por favor, no ejecutes este script como root."
+    echo "Ejecución correcta: sudo ./AutoBSPWM.sh"
+    exit 1
+fi
+
 # OBTENEMOS EL DIRECTORIO ACTUAL
 directorio_instalacion=$(pwd)
 
