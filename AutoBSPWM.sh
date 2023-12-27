@@ -77,7 +77,7 @@ done
 directorio_instalacion=$(pwd)
 
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/*
+sed -i -r "s/user_replace/$input_username/g" $directorio_instalacion/*
 
 # CONFIGURANDO FONTS
 sudo cp -r fonts /usr/local/share
