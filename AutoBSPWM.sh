@@ -13,7 +13,7 @@ while true; do
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
-        sudo apt update &>/dev/null
+        sudo apt update
         echo -e "\e[32m[*]\e[0m Operación 'apt update' completada con éxito.\n"
         break
     elif [ "$respuesta_update" = "no" ] || [ "$respuesta_update" = "n" ]; then
@@ -30,11 +30,11 @@ while true; do
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_upgrade" = "si" ] || [ "$respuesta_upgrade" = "s" ]; then
-        sudo apt full-upgrade -y &>/dev/null
-        echo -e "\e[32m[*]\e[0m Operación 'full-upgrade' completada con éxito.\n"
+        sudo apt update
+        echo -e "\e[32m[*]\e[0m Operación 'apt full-upgrade' completada con éxito.\n"
         break
     elif [ "$respuesta_upgrade" = "no" ] || [ "$respuesta_upgrade" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Operación 'full-upgrade' cancelada.\n"
+        echo -e "\e[31m[*]\e[0m Operación 'apt full-upgrade' cancelada.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -43,7 +43,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y  &>/dev/null
+sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
