@@ -64,6 +64,7 @@ while true; do
                 echo -e "\n"
                 break 2
             elif [ "$confirmation" = "no" ] || [ "$confirmation" = "n" ]; then
+                echo -e "\n"
                 break 
             else
                 echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
