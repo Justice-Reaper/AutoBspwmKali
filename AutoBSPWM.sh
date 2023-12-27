@@ -77,12 +77,15 @@ done
 directorio_instalacion=$(pwd)
 
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
-sed -i -r "s/user_replace/$input_username/g" polybar/*
-sed -i -r "s/user_replace/$input_username/g" bspwm/*
-sed -i -r "s/user_replace/$input_username/g" sxhkd/*
-sed -i -r "s/user_replace/$input_username/g" p10k.zsh_root
-sed -i -r "s/user_replace/$input_username/g" p10k.zsh
-sed -i -r "s/user_replace/$input_username/g" zshrc
+
+sed -i "s/user_replace/$input_username/g" polybar/*
+sed -i "s/user_replace/$input_username/g" polybar/scripts/*
+sed -i "s/user_replace/$input_username/g" bspwm/*
+sed -i "s/user_replace/$input_username/g" bspwm/scripts*
+sed -i "s/user_replace/$input_username/g" sxhkd/*
+sed -i "s/user_replace/$input_username/g" p10k.zsh_root
+sed -i "s/user_replace/$input_username/g" p10k.zsh
+sed -i "s/user_replace/$input_username/g" zshrc
 
 # CONFIGURANDO FONTS
 sudo cp -r fonts /usr/local/share
