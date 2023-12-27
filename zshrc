@@ -300,14 +300,14 @@ function mkt(){
 }
 
 function cleartarget(){
-    echo '' > ~/.config/bin/target
+    echo '' > /home/user_replace/.config/bin/target
 }
 
 function settarget(){
     if [ $# -eq 1 ]; then
-        echo $1 > ~/.config/bin/target
+        echo $1 > /home/user_replace/.config/bin/target
     elif [ $# -eq 2 ]; then
-        echo $1 $2 > ~/.config/bin/target
+        echo $1 $2 > /home/user_replace/.config/bin/target
     else
         echo "settarget [IP] [NAME] | settarget [IP]"
     fi
