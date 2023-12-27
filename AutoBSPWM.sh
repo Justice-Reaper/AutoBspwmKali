@@ -1,11 +1,19 @@
 #!/bin/bash
 
-# OBTENEMOS EL NOMBRE DEL SCRIPT
-nombre_script=$(basename "$0")
-
 # COMPROBACIÓN DE USUARIO
 if [ "$(id -u)" != "0" ]; then
     echo "Por favor, ejecuta este script con sudo."
+    exit 1
+fi
+
+# OBTENCIÓN DEL NOMBRE DE USUARIO
+echo "Este script configurará el sistema en base al usuario proporcionado y al usuario root."
+read -p "Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios: " input_username
+
+if id "$input_username" &>/dev/null; then
+    echo "El usuario $input_username es válido."
+else
+    echo "El usuario $input_username no es válido o no existe."
     exit 1
 fi
 
