@@ -153,6 +153,24 @@ cd /home/$input_username/.config/bspwm
 chmod +x bspwmrc  
 cd /home/$input_username/.config/bspwm/scripts 
 chmod +x * 
+
+while true; do
+    echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO):"
+    read -p "[*] Respuesta: " respuesta_clipboard
+    respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
+        echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> /home/$input_username/.config/bspwm/bspwmrc
+        echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
+        break
+    elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
 cd "$directorio_instalacion"
 
 # CONFIGURANDO ROFI
