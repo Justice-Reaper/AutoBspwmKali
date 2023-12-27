@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# OBTENEMOS EL NOMBRE DEL SCRIPT
+nombre_script=$(basename "$0")
+
 # COMPROBACIÓN DE USUARIO
-if [ "$EUID" -eq 0 ]; then
-    echo "Por favor, no ejecutes este script como root."
-    echo "Ejecución correcta: sudo ./AutoBSPWM.sh"
+if [ "$(id -u)" != "0" ]; then
+    echo "Por favor, ejecuta este script con sudo."
     exit 1
 fi
 
@@ -20,7 +22,7 @@ while true; do
     read -p "¿Deseas realizar un 'apt update' en el sistema? (SI/NO): " respuesta_update
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$respuesta_update" = "sí" ]; then
+    if [ "$respuesta_update" = "si" ]; then
         sudo apt update
         echo "'apt update' completado."
         break
@@ -36,7 +38,7 @@ while true; do
     read -p "¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO): " respuesta_upgrade
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$respuesta_upgrade" = "sí" ]; then
+    if [ "$respuesta_upgrade" = "si" ]; then
         realizar_full_upgrade
         break
     elif [ "$respuesta_upgrade" = "no" ]; then
