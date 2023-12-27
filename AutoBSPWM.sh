@@ -29,7 +29,7 @@ while true; do
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
-        sudo apt update
+        sudo apt update &>/dev/null
         echo -e "\e[32m[*]\e[0m Operación 'apt update' completada con éxito.\n"
         break
     elif [ "$respuesta_update" = "no" ] || [ "$respuesta_update" = "n" ]; then
@@ -46,7 +46,7 @@ while true; do
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_upgrade" = "si" ] || [ "$respuesta_upgrade" = "s" ]; then
-        sudo apt update
+        sudo apt full-upgrade -y &>/dev/null
         echo -e "\e[32m[*]\e[0m Operación 'apt full-upgrade' completada con éxito.\n"
         break
     elif [ "$respuesta_upgrade" = "no" ] || [ "$respuesta_upgrade" = "n" ]; then
@@ -67,7 +67,7 @@ sudo apt autoremove -y &>/dev/null
 
 # ELIMINAMOS LOS ARCHIVOS DE CACHÉ
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
-sudo apt clean
+sudo apt clean 
 
 # OBTENEMOS EL USUARIO
 echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
@@ -76,7 +76,7 @@ while true; do
     echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:"
     read -p "[*] Respuesta: " input_username
 
-    if id "$input_username" &&>/dev/null; then
+    if id "$input_username" &>/dev/null; then
         echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
         
         while true; do
