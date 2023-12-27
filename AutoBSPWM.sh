@@ -45,6 +45,14 @@ done
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y  &>/dev/null
 
+# ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
+echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
+sudo apt autoremove
+
+# ELIMINAMOS LOS ARCHIVOS DE CACHÉ
+echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
+sudo apt clean
+
 # OBTENEMOS EL USUARIO
 echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
 
@@ -170,11 +178,3 @@ mv p10k.zsh_root .p10k.zsh
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
 sudo ln -s -f /home/$input_username/.zshrc /root/.zshrc
-
-# ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
-echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
-sudo apt autoremove
-
-# ELIMINAMOS LOS ARCHIVOS DE CACHÉ
-echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
-sudo apt clean
