@@ -61,6 +61,10 @@ done
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
+# INSTALAMOS VSCODE
+wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null
+sudo apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null
+
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
 sudo apt autoremove -y &>/dev/null
