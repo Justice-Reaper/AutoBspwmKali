@@ -8,7 +8,8 @@ fi
 
 # ACTUALIZAMOS Y UPGRADEAMOS EL SISTEMA
 while true; do
-    read -p "¿Deseas realizar un 'apt update' en el sistema? (SI/NO): " respuesta_update
+    echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO):"
+    read -p respuesta_update
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
