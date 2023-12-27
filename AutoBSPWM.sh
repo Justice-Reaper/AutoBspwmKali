@@ -159,7 +159,7 @@ cp .zshrc /home/$input_username
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario root ...\n"
 sudo su
-rm -rf ~/powerlevel10k &>/dev/null
+rm -rf /root/powerlevel10k &>/dev/null
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
 cp p10k.zsh_root /root 
