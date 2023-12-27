@@ -47,7 +47,7 @@ sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar 
 
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
-sudo apt autoremove
+sudo apt autoremove -y
 
 # ELIMINAMOS LOS ARCHIVOS DE CACHÉ
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
