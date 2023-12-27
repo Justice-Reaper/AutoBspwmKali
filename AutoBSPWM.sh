@@ -69,10 +69,10 @@ while true; do
             confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
 
             if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
-                echo -e "\n"
+                echo ""
                 break 2
             elif [ "$confirmation" = "no" ] || [ "$confirmation" = "n" ]; then
-                echo -e "\n"
+                echo ""
                 break 
             else
                 echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -156,7 +156,7 @@ cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario $input_username ...\n"
-rm -rf ~/powerlevel10k
+rm -rf ~/powerlevel10k &>/dev/null
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
 mv zshrc .zshrc &>/dev/null
@@ -166,10 +166,9 @@ cp .zshrc /home/$input_username
 
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario root ...\n"
-sudo su
-rm -rf /root/powerlevel10k &>/dev/null
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
+sudo rm -rf /root/powerlevel10k &>/dev/null
+sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k &>/dev/null
+sudo sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" &>/dev/null
 cp p10k.zsh_root /root 
 cp .zshrc /root
 cd /root
