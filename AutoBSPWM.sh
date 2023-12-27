@@ -6,20 +6,6 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-# OBTENCIÓN DEL NOMBRE DE USUARIO
-echo "Este script configurará el sistema en base al usuario proporcionado y al usuario root."
-read -p "Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios: " input_username
-
-if id "$input_username" &>/dev/null; then
-    echo "El usuario $input_username es válido."
-else
-    echo "El usuario $input_username no es válido o no existe."
-    exit 1
-fi
-
-# OBTENEMOS EL DIRECTORIO ACTUAL
-directorio_instalacion=$(pwd)
-
 # ACTUALIZAMOS Y UPGRADEAMOS EL SISTEMA
 realizar_full_upgrade() {
     sudo apt update && sudo apt full-upgrade -y
@@ -59,6 +45,39 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
+
+# OBTENEMOS EL USUARIO
+echo "Este script configurará el sistema en base al usuario proporcionado y al usuario root."
+
+main_loop: while true; do
+    read -p "Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios: " input_username
+
+    if id "$input_username" &>/dev/null; then
+        echo "El usuario $input_username es válido."
+
+        while true; do
+            read -p "¿Es $input_username el nombre de usuario correcto? (SI/NO): " confirmation
+            confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$confirmation" = "si" ]; then
+                break 2
+            elif [ "$confirmation" = "no" ]; then
+                break 
+            else
+                echo "Respuesta no válida. Por favor, responde 'SI' o 'NO'."
+            fi
+        done
+
+    else
+        echo "El usuario $input_username no es válido o no existe."
+    fi
+done
+
+# OBTENEMOS EL DIRECTORIO ACTUAL
+directorio_instalacion=$(pwd)
+
+# SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/*
 
 # CONFIGURANDO FONTS
 sudo cp -r fonts /usr/local/share
