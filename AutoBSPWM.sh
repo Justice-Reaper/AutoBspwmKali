@@ -193,3 +193,6 @@ mv p10k.zsh_root .p10k.zsh
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
 sudo ln -s -f /home/$input_username/.zshrc /root/.zshrc
+
+# ENTORNO BSPWM CONFIGURADO CON ÉXITO
+echo -e "\e[32m[*]\e[0m ¡Entorno bspwm configurado con éxito!\n"
