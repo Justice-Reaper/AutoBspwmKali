@@ -9,7 +9,7 @@ fi
 # ACTUALIZAMOS Y UPGRADEAMOS EL SISTEMA
 while true; do
     echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO):"
-    read -p respuesta_update
+    read -p "Respuesta: " respuesta_update
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
@@ -26,7 +26,7 @@ done
 
 while true; do
     echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO):"
-    read -p respuesta_upgrade
+    read -p "Respuesta: " respuesta_upgrade
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_upgrade" = "si" ]; then
@@ -50,14 +50,14 @@ echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario p
 
 while true; do
     echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:"
-    read -p input_username
+    read -p "Respuesta: " input_username
 
     if id "$input_username" &>/dev/null; then
         echo -e "\e[32m[*]\e[0m El usuario $input_username es válido."
         
         while true; do
             echo -e "\e[33m[*]\e[0m ¿Es $input_username el nombre de usuario correcto? (SI/NO):"
-            read -p confirmation
+            read -p "Respuesta: " confirmation
             confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
 
             if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
