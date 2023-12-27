@@ -83,34 +83,34 @@ sed -i "s/user_replace/$input_username/g" $directorio_instalacion/*
 sudo cp -r fonts /usr/local/share
 
 # CONFIGURANDO WALLPAPERS
-cp -r Wallpapers ~/
+cp -r Wallpapers /home/$input_username
 
 # CONFIGURANDO BETTERLOCKSCREEN
-betterlockscreen -u ~/Wallpapers
+betterlockscreen -u /home/$input_username/Wallpapers
 
 # CONFIGURANDO SXHKD
-cp -r sxhkd ~/.config
+cp -r sxhkd /home/$input_username/.config
 
 # CONFIGURANDO KITTY
-cp -r kitty ~/.config  
+cp -r kitty /home/$input_username/.config
 
 # CONFIGURANDO PICOM
-cp -r picom ~/.config
+cp -r picom /home/$input_username/.config
 
 # CONFIGURANDO PLUGIN SUDO ZSH
 sudo cp -r zsh-sudo /usr/share
 
 # CONFIGURANDO BSPWM
-cp -r bspwm ~/.config 
-cd ~/.config/bspwm 
+cp -r bspwm /home/$input_username/.config
+cd /home/$input_username/.config/bspwm 
 chmod +x bspwmrc  
-cd ~/.config/bspwm/scripts 
+cd /home/$input_username/.config/bspwm/scripts 
 chmod +x * 
 cd "$directorio_instalacion"
 
 # CONFIGURANDO ROFI
-cp -r rofi ~/.config  
-cd ~/.config/rofi  
+cp -r rofi /home/$input_username/.config 
+cd /home/$input_username/.config/rofi  
 cd launcher  
 chmod +x launcher.sh 
 cd ../powermenu 
@@ -118,11 +118,11 @@ chmod +x powermenu.sh
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POLYBAR
-cp -r polybar ~/.config
-cd ~/.config/polybar/scripts 
+cp -r polybar /home/$input_username/.config
+cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
-mkdir ~/.config/bin     
-touch ~/.config/bin/target
+mkdir /home/$input_username/.config/bin     
+touch /home/$input_username/.config/bin/target
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
@@ -130,8 +130,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 mv zshrc .zshrc 
 mv p10k.zsh .p10k.zsh   
-cp .p10k.zsh ~/
-cp .zshrc ~/ 
+cp .p10k.zsh /home/$input_username
+cp .zshrc /home/$input_username
 
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 sudo su
@@ -143,7 +143,7 @@ cd /root
 mv p10k.zsh_root .p10k.zsh
 
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
-sudo ln -s -f ~/.zshrc /root/.zshrc
+sudo ln -s -f /home/$input_username/.zshrc /root/.zshrc
 
 # ELIMINAMOS EL DIRECTORIO DE INSTALACIÓN
 sudo rm -rf "$directorio_instalacion"
