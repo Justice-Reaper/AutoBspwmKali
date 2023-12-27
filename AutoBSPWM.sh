@@ -114,7 +114,6 @@ cp p10k.zsh_root /root
 cp .zshrc /root
 cd /root
 mv p10k.zsh_root .p10k.zsh
-exit
 
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
 sudo ln -s -f ~/.zshrc /root/.zshrc
