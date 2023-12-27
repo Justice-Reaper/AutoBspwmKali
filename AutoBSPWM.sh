@@ -43,11 +43,11 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
+sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y >/dev/null
 
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
-sudo apt autoremove -y &>/dev/null
+sudo apt autoremove -y >/dev/null
 
 # ELIMINAMOS LOS ARCHIVOS DE CACHÉ
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
@@ -89,14 +89,14 @@ directorio_instalacion=$(pwd)
 
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
 echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/* &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/* &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/* &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts* &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/* &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh_root &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/* >/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/* >/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/* >/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts* >/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/* >/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh_root >/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh >/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc >/dev/null
 
 # CONFIGURANDO FONTS
 echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
@@ -108,7 +108,7 @@ cp -r Wallpapers /home/$input_username
 
 # CONFIGURANDO BETTERLOCKSCREEN
 echo -e "\e[32m[*]\e[0m Configurando betterlockscreen ...\n"
-betterlockscreen -u /home/$input_username/Wallpapers &>/dev/null
+betterlockscreen -u /home/$input_username/Wallpapers >/dev/null
 
 # CONFIGURANDO SXHKD
 echo -e "\e[32m[*]\e[0m Configurando sxhkd ...\n"
@@ -150,25 +150,25 @@ echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
 cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
-mkdir /home/$input_username/.config/bin &>/dev/null
-touch /home/$input_username/.config/bin/target &>/dev/null
+mkdir /home/$input_username/.config/bin >/dev/null
+touch /home/$input_username/.config/bin/target >/dev/null
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario $input_username ...\n"
-rm -rf ~/powerlevel10k &>/dev/null
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
-mv zshrc .zshrc &>/dev/null
-mv p10k.zsh .p10k.zsh &>/dev/null
+rm -rf ~/powerlevel10k >/dev/null
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k >/dev/null
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc >/dev/null
+mv zshrc .zshrc >/dev/null
+mv p10k.zsh .p10k.zsh >/dev/null
 cp .p10k.zsh /home/$input_username
 cp .zshrc /home/$input_username
 
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario root ...\n"
-sudo rm -rf /root/powerlevel10k &>/dev/null
-sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k &>/dev/null
-sudo sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" &>/dev/null
+sudo rm -rf /root/powerlevel10k >/dev/null
+sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k >/dev/null
+sudo sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" >/dev/null
 cp p10k.zsh_root /root 
 cp .zshrc /root
 cd /root
