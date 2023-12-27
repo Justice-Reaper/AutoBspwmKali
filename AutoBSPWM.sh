@@ -299,22 +299,3 @@ sudo apt clean
 
 # ELIMINAMOS EL DIRECTORIO DE INSTALACIÓN
 sudo rm -rf "$directorio_instalacion"
-
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
-cp p10k.zsh_root /root
-cp .zshrc /root
-cd /root
-mv p10k.zsh_root .p10k.zsh
-
-# CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
-sudo ln -s -f /home/$input_username/.zshrc /root/.zshrc
-
-# ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
-sudo apt autoremove
-
-# ELIMINAMOS LOS ARCHIVOS DE CACHÉ
-sudo apt clean
-
-# ELIMINAMOS EL DIRECTORIO DE INSTALACIÓN
-sudo rm -rf "$directorio_instalacion"
