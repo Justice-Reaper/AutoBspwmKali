@@ -49,7 +49,7 @@ sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar 
 # OBTENEMOS EL USUARIO
 echo "Este script configurará el sistema en base al usuario proporcionado y al usuario root."
 
-main_loop: while true; do
+while true; do
     read -p "Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios: " input_username
 
     if id "$input_username" &>/dev/null; then
