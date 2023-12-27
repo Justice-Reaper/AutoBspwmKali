@@ -46,14 +46,14 @@ echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y  &>/dev/null
 
 # OBTENEMOS EL USUARIO
-echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root."
+echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
 
 while true; do
     echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:"
     read -p "Respuesta: " input_username
 
     if id "$input_username" &>/dev/null; then
-        echo -e "\e[32m[*]\e[0m El usuario $input_username es válido."
+        echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
         
         while true; do
             echo -e "\e[33m[*]\e[0m ¿Es $input_username el nombre de usuario correcto? (SI/NO):"
@@ -149,8 +149,8 @@ echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario $input_username .
 rm -r ~/powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
-mv zshrc .zshrc 
-mv p10k.zsh .p10k.zsh   
+mv zshrc .zshrc &>/dev/null
+mv p10k.zsh .p10k.zsh &>/dev/null
 cp .p10k.zsh /home/$input_username
 cp .zshrc /home/$input_username
 
