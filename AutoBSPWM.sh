@@ -29,11 +29,11 @@ while true; do
     read -p "Respuesta: " respuesta_upgrade
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$respuesta_upgrade" = "si" ]; then
+    if [ "$respuesta_upgrade" = "si" ] || [ "$respuesta_upgrade" = "s" ]; then
         sudo apt full-upgrade -y &>/dev/null
         echo -e "\e[32m[*]\e[0m Operación 'full-upgrade' completada con éxito.\n"
         break
-    elif [ "$respuesta_upgrade" = "no" ]; then
+    elif [ "$respuesta_upgrade" = "no" ] || [ "$respuesta_upgrade" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Operación 'full-upgrade' cancelada.\n"
         break
     else
