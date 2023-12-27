@@ -137,6 +137,7 @@ cd "$directorio_instalacion"
 rm -r /home/$input_username/powerlevel10k
 rm -r /home/$input_username/.zshrc
 rm -r /home/$input_username/.p10k.zsh
+sleep 1
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 mv zshrc .zshrc 
@@ -149,6 +150,7 @@ sudo su
 rm -r /root/powerlevel10k
 rm -r /root/.zshrc
 rm -r /root/.p10k.zsh
+sleep 1
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 cp p10k.zsh_root /root
