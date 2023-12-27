@@ -32,7 +32,6 @@ if [ "$brillo_actual" = "12" ]; then
     echo '0' > /sys/class/backlight/amdgpu_bl0/brightness && brightnessctl -q s 1 && brightnessctl -q s 0
 fi
 
-
 # polybar
 killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
