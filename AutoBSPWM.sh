@@ -7,17 +7,12 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # ACTUALIZAMOS Y UPGRADEAMOS EL SISTEMA
-realizar_full_upgrade() {
-    sudo apt update && sudo apt full-upgrade -y
-    echo "Full-upgrade completado."
-}
-
 while true; do
     read -p "¿Deseas realizar un 'apt update' en el sistema? (SI/NO): " respuesta_update
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_update" = "si" ]; then
-        sudo apt update
+        sudo apt update &>/dev/null
         echo "'apt update' completado."
         break
     elif [ "$respuesta_update" = "no" ]; then
@@ -33,7 +28,8 @@ while true; do
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_upgrade" = "si" ]; then
-        realizar_full_upgrade
+        sudo apt full-upgrade -y &>/dev/null
+        echo "Full-upgrade completado."
         break
     elif [ "$respuesta_upgrade" = "no" ]; then
         echo "Operación 'full-upgrade' cancelada."
@@ -44,7 +40,7 @@ while true; do
 done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
-sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
+sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y  &>/dev/null
 
 # OBTENEMOS EL USUARIO
 echo "Este script configurará el sistema en base al usuario proporcionado y al usuario root."
@@ -77,24 +73,23 @@ done
 directorio_instalacion=$(pwd)
 
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
-
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/*
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/*
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/*
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts*
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/*
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh_root
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/* &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/* &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/* &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts* &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/* &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh_root &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &>/dev/null
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/null
 
 # CONFIGURANDO FONTS
-sudo cp -r fonts /usr/local/share
+sudo cp -r fonts /usr/local/share 
 
 # CONFIGURANDO WALLPAPERS
 cp -r Wallpapers /home/$input_username
 
 # CONFIGURANDO BETTERLOCKSCREEN
-betterlockscreen -u /home/$input_username/Wallpapers
+betterlockscreen -u /home/$input_username/Wallpapers &>/dev/null
 
 # CONFIGURANDO SXHKD
 cp -r sxhkd /home/$input_username/.config
@@ -129,14 +124,14 @@ cd "$directorio_instalacion"
 cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
-mkdir /home/$input_username/.config/bin     
-touch /home/$input_username/.config/bin/target
+mkdir /home/$input_username/.config/bin &>/dev/null
+touch /home/$input_username/.config/bin/target &>/dev/null
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
 rm -r ~/powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
 mv zshrc .zshrc 
 mv p10k.zsh .p10k.zsh   
 cp .p10k.zsh /home/$input_username
@@ -145,8 +140,8 @@ cp .zshrc /home/$input_username
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 sudo su
 rm -r ~/powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
 cp p10k.zsh_root /root
 cp .zshrc /root
 cd /root
