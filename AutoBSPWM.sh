@@ -78,14 +78,14 @@ directorio_instalacion=$(pwd)
 
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
 
-sed -i "s/user_replace/$input_username/g" polybar/*
-sed -i "s/user_replace/$input_username/g" polybar/scripts/*
-sed -i "s/user_replace/$input_username/g" bspwm/*
-sed -i "s/user_replace/$input_username/g" bspwm/scripts*
-sed -i "s/user_replace/$input_username/g" sxhkd/*
-sed -i "s/user_replace/$input_username/g" p10k.zsh_root
-sed -i "s/user_replace/$input_username/g" p10k.zsh
-sed -i "s/user_replace/$input_username/g" zshrc
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/*
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/*
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/*
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts*
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/*
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh_root
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc
 
 # CONFIGURANDO FONTS
 sudo cp -r fonts /usr/local/share
@@ -134,6 +134,9 @@ touch /home/$input_username/.config/bin/target
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
+rm -r /home/$input_username/powerlevel10k
+rm -r /home/$input_username/.zshrc
+rm -r /home/$input_username/.p10k.zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 mv zshrc .zshrc 
@@ -143,6 +146,9 @@ cp .zshrc /home/$input_username
 
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 sudo su
+rm -r /root/powerlevel10k
+rm -r /root/.zshrc
+rm -r /root/.p10k.zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 cp p10k.zsh_root /root
