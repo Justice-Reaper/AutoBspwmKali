@@ -26,9 +26,13 @@ super + F2
 super + Return
 	kitty
 
-# rofi
+# rofi launcher
 super + shift + d
 	/home/user_replace/.config/rofi/launcher/launcher.sh
+
+# rofi powermenu
+super + shift + d
+	/home/user_replace/.config/rofi/powermenu/powermenu.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
