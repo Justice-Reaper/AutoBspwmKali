@@ -1,15 +1,14 @@
 # AutoBSPWM
-Simplifica la configuración de BSPWM con scripts y herramientas predefinidas para una experiencia optimizada. Instalación fácil y gestión eficiente de ventanas y atajos. ¡Potencia tu entorno BSPWM en segundos!
-
-Se ha testeado este script en ParrotOS, Kali y Ubuntu.
-Funciona para todos los sistemas operativos basados en Debian.
+Este AutoBSPWM ha sido creado por investigación propia utilizando como base el curso de personalización de linux de la academia de Hack4u https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/.
+Este script ha sido testeado en kali linux, se desconoce si puede acarrear problemas en otros sistemas operativos.
+Si tienes alguna duda o deseas que implemente alguna nueva funcionalidad no dudes en consultarme.
 
 # Instalación
 ```
-git clone https://github.com/Justice-Reaper/AutoBSPWM.git
-cd AutoBSPWM/
-chmod +x AutoBSPWM.sh
-./AutoBSPWM.sh
+git clone https://github.com/Justice-Reaper/AutoBSPWM.git  
+cd AutoBSPWM/  
+chmod +x AutoBSPWM.sh  
+./AutoBSPWM.sh  
 ```
 ## Vista general
 ![BSPWM](/Preview/image_1.png "autoBSPWM by justice-reaper")
@@ -98,7 +97,6 @@ chmod +x AutoBSPWM.sh
 <kbd>Settarget</kbd>: Mediante esta función en la zsh seteamos el target en la polybar.  
 <kbd>Cleartarget</kbd>: Mediante esta función en la zsh limpiamos el target de la polybar.  
 <kbd>Mkt</kbd>: Se crean varios directorios de trabajo.  
-
 
 ## Créditos
 - Autor: justice-reaper
