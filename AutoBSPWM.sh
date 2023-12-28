@@ -22,6 +22,39 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+# OBTENEMOS EL DIRECTORIO ACTUAL
+directorio_instalacion=$(pwd)
+
+# OBTENEMOS EL USUARIO
+echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
+
+while true; do
+    echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:"
+    read -p "[*] Respuesta: " input_username
+
+    if id "$input_username" &>/dev/null; then
+        echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
+        
+        while true; do
+            echo -e "\e[33m[*]\e[0m ¿Es $input_username el nombre de usuario correcto? (SI/NO):"
+            read -p "[*] Respuesta: " confirmation
+            confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
+                echo ""
+                break 2
+            elif [ "$confirmation" = "no" ] || [ "$confirmation" = "n" ]; then
+                echo ""
+                break 
+            else
+                echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            fi
+        done
+    else
+        echo -e "\e[31m[*]\e[0m El usuario $input_username no es válido o no existe.\n"
+    fi
+done
+
 # ACTUALIZAMOS Y UPGRADEAMOS EL SISTEMA
 while true; do
     echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO):"
@@ -61,9 +94,27 @@ done
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
-# INSTALAMOS VSCODE
-wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null
-sudo apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null
+# EDITOR DE CÓDIGO
+while true; do
+    echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE):"
+    read -p "[*] Respuesta: " code_editor
+    code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$code_editor" = "nvim" ]; then
+        echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
+        mkdir /home/$input_username/.config/nvim &>/dev/null
+        sudo apt intall nvim -y &>/dev/null
+        git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 &>/dev/null
+        break
+    elif [ "$code_editor" = "vscode" ]; then
+        echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
+        wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null
+        sudo apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
 
 # DRIVERS PROPIETARIOS NVIDIA
 while true; do
@@ -91,39 +142,8 @@ sudo apt autoremove -y &>/dev/null
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 sudo apt clean 
 
-# OBTENEMOS EL USUARIO
-echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
 
-while true; do
-    echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:"
-    read -p "[*] Respuesta: " input_username
 
-    if id "$input_username" &>/dev/null; then
-        echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
-        
-        while true; do
-            echo -e "\e[33m[*]\e[0m ¿Es $input_username el nombre de usuario correcto? (SI/NO):"
-            read -p "[*] Respuesta: " confirmation
-            confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
-
-            if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
-                echo ""
-                break 2
-            elif [ "$confirmation" = "no" ] || [ "$confirmation" = "n" ]; then
-                echo ""
-                break 
-            else
-                echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-            fi
-        done
-    else
-        echo -e "\e[31m[*]\e[0m El usuario $input_username no es válido o no existe.\n"
-
-    fi
-done
-
-# OBTENEMOS EL DIRECTORIO ACTUAL
-directorio_instalacion=$(pwd)
 
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
 echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
