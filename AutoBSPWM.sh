@@ -102,9 +102,11 @@ while true; do
 
     if [ "$code_editor" = "nvim" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
-        mkdir /home/$input_username/.config/nvim &>/dev/null
         sudo apt install nvim -y &>/dev/null
+        mkdir /home/$input_username/.config/nvim &>/dev/null
+        mkdir /root/.config/nvim &>/dev/null
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null
+        git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
@@ -256,6 +258,9 @@ mv p10k.zsh_root .p10k.zsh
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
 sudo ln -s -f /home/$input_username/.zshrc /root/.zshrc
+
+# LE ASIGNAMOS EL PROPIETARIO CORRECTO A LOS ARCHIVOS
+sudo chown -R $input_username:$input_username /home/$input_username
 
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
 echo -e "\e[32m[*]\e[0m ¡Entorno bspwm configurado con éxito!\n"
