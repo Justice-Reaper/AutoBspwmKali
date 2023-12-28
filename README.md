@@ -23,7 +23,7 @@ chmod +x AutoBSPWM.sh
 - **sxhkd**: "Demonio" que escucha los eventos del teclado y ejecuta comandos.
 - **wmname**: Utilidad para cambiar el nombre de la ventana del gestor de ventanas.
 - **polybar**: Herramienta para crear barras de estado personalizadas.
-- **betterlockscreen: Permite personalizar y bloquear la pantalla con fondos de pantalla y efectos personalizados.
+- **betterlockscreen**: Permite personalizar y bloquear la pantalla con fondos de pantalla y efectos personalizados.
 - **bat**: Clon mejorado de cat con resaltado de sintaxis y otras características.
 - **lsd**: Reemplazo moderno del comando ls con mejoras visuales y de usabilidad.
 - **fzf**: Buscador difuso de línea de comandos de propósito general.
@@ -43,11 +43,11 @@ chmod +x AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Moverse por las ventanas en la workspace actual.  
 <kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Cambiar el workspace.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el Rofi. <kbd>Esc</kbd> para salir.  
-<kbd>Windows</kbd> + <kbd>F7</kbd> : Subir el volumen.
-<kbd>Windows</kbd> + <kbd>F6</kbd> : Bajar el volumen.
-<kbd>Windows</kbd> + <kbd>F3</kbd> : Subir el brillo.
-<kbd>Windows</kbd> + <kbd>F2</kbd> : Bajar el brillo.
-<kbd>Windows</kbd> + <kbd>Esc</kbd> : Reiniciar la configuración del sxhkd.
+<kbd>Windows</kbd> + <kbd>F7</kbd> : Subir el volumen.    
+<kbd>Windows</kbd> + <kbd>F6</kbd> : Bajar el volumen.    
+<kbd>Windows</kbd> + <kbd>F3</kbd> : Subir el brillo.    
+<kbd>Windows</kbd> + <kbd>F2</kbd> : Bajar el brillo.    
+<kbd>Windows</kbd> + <kbd>Esc</kbd> : Reiniciar la configuración del sxhkd.    
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reiniciar la configuración del bspwm.
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Desplazar ventana a otro espacio del workspace.
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Abrir el firefox.
