@@ -12,7 +12,7 @@ chmod +x AutoBSPWM.sh
 ```
 
 ## Vista general
-![BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
+![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
 
 ## Utilidades:
 - **imagemagick**:  Suite de software para crear, editar o convertir imágenes desde la línea de comandos.
