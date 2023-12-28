@@ -42,7 +42,8 @@ chmod +x AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> : Cerrar sesión.  
 <kbd>Windows</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Moverse por las ventanas en la workspace actual.  
 <kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Cambiar el workspace.  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el Rofi. <kbd>Esc</kbd> para salir.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el Rofi. 
+<kbd>Esc</kbd> Salir del rofi.  
 <kbd>Windows</kbd> + <kbd>F7</kbd> : Subir el volumen.    
 <kbd>Windows</kbd> + <kbd>F6</kbd> : Bajar el volumen.    
 <kbd>Windows</kbd> + <kbd>F3</kbd> : Subir el brillo.    
