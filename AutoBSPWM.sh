@@ -137,10 +137,10 @@ sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &>/de
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/null
 
 # SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
-adapter=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==1 {print $2}' | tr -d '[:space:]')
-battery=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==2 {print $2}' | tr -d '[:space:]')
-sed -i "s/adapter_replace/$adapter/g" "$directorio_instalacion/polybar/config.ini" &>/dev/null
-sed -i "s/battery_replace/$battery/g" "$directorio_instalacion/polybar/config.ini" &>/dev/null
+battery="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | tail -n 1)"
+adapter="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | head -n 1)"
+sed -i "s/battery_replace/$battery/g" "$directorio_instalacion/polybar/config.ini"
+sed -i "s/adapter_replace/$adapter/g" "$directorio_instalacion/polybar/config.ini"
 
 # CONFIGURANDO FONTS
 echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
