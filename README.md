@@ -4,15 +4,12 @@ Ha sido testeado en kali linux, se desconoce si puede acarrear problemas en otro
 Si tienes alguna duda o deseas que implemente alguna nueva funcionalidad no dudes en consultarme.  
 
 # Instalación
-```
+``
 git clone https://github.com/Justice-Reaper/AutoBSPWM.git  
 cd AutoBSPWM/  
 chmod +x AutoBSPWM.sh  
 ./AutoBSPWM.sh  
-```
-`git clone https://github.com/Justice-Reaper/AutoBSPWM.git  && cd AutoBSPWM/ && chmod +x AutoBSPWM.sh && ./AutoBSPWM.sh`
-
-
+``
 
 ## Vista general
 ![BSPWM](/Preview/image_1.png "autoBSPWM by justice-reaper")
