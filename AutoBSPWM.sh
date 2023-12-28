@@ -136,6 +136,12 @@ sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh_root 
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &>/dev/null
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/null
 
+# SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
+adapter=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==1 {print $2}')
+battery=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==2 {print $2}')
+sed -i "s/adapter_replace/$adapter/g" $directorio_instalacion/polybar/config.ini &>/dev/null
+sed -i "s/battery_replace/$battery/g" $directorio_instalacion/polybar/config.ini &>/dev/null
+
 # CONFIGURANDO FONTS
 echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
 sudo cp -r fonts /usr/local/share 
@@ -208,10 +214,6 @@ cd /home/$input_username/.config/polybar/scripts
 chmod +x *
 mkdir /home/$input_username/.config/bin &>/dev/null
 touch /home/$input_username/.config/bin/target &>/dev/null
-adapter=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==1 {print $2}')
-battery=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==2 {print $2}')
-sed -i "s/adapter_replace/$adapter/g" /home/$input_username/.config/polybar/config.ini &>/dev/null
-sed -i "s/battery_replace/$battery/g" /home/$input_username/.config/polybar/config.ini &>/dev/null
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
