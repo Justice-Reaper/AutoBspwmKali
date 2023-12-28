@@ -237,9 +237,9 @@ cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario $input_username ...\n"
-rm -rf ~/powerlevel10k &>/dev/null
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k &>/dev/null
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc &>/dev/null
+rm -rf /home/$input_username/powerlevel10k &>/dev/null
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k &>/dev/null
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>/home/$input_username/.zshrc &>/dev/null
 mv zshrc .zshrc &>/dev/null
 mv p10k.zsh .p10k.zsh &>/dev/null
 cp .p10k.zsh /home/$input_username
