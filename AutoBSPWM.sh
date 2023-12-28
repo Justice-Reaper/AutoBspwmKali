@@ -65,6 +65,24 @@ sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar 
 wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null
 sudo apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null
 
+# DRIVERS PROPIETARIOS NVIDIA
+while true; do
+    echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO):"
+    read -p "[*] Respuesta: " drivers_nvidia
+    drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
+        sudo apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null
+        echo -e "\e[32m[*]\e[0m Los drivers propietarios de nvidia han sido instalados con éxito.\n"
+        break
+    elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
 sudo apt autoremove -y &>/dev/null
