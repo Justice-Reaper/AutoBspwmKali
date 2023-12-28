@@ -104,7 +104,7 @@ while true; do
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
         mkdir /home/$input_username/.config/nvim &>/dev/null
         sudo apt install nvim -y &>/dev/null
-        sudo git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 &>/dev/null
+        git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
