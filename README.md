@@ -102,4 +102,4 @@ chmod +x AutoBSPWM.sh
 ## Créditos
 - Autor: justice-reaper
 - Inspirado en el entorno mostrado en la academia de hack4u de s4vitar
-- Para los keybinding me he inspirado en el autoBSPWM de yorkox0 https://github.com/yorkox0/autoBspwm/tree/main
+- Para los keybindings me he inspirado en el autoBSPWM de yorkox0 https://github.com/yorkox0/autoBspwm/tree/main
