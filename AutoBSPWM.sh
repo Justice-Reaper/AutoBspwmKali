@@ -139,8 +139,8 @@ sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/n
 # SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
 adapter=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==1 {print $2}')
 battery=$(ls -1 /sys/class/power_supply/ | awk -F'power_supply/' 'NR==2 {print $2}')
-sed -i "s/adapter_replace/$adapter/g" $directorio_instalacion/polybar/config.ini &>/dev/null
-sed -i "s/battery_replace/$battery/g" $directorio_instalacion/polybar/config.ini &>/dev/null
+sed -i "s/adapter_replace/$adapter/g" $directorio_instalacion/polybar/* &>/dev/null
+sed -i "s/battery_replace/$battery/g" $directorio_instalacion/polybar/* &>/dev/null
 
 # CONFIGURANDO FONTS
 echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
