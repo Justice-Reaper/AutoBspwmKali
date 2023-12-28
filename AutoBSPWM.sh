@@ -102,7 +102,7 @@ while true; do
 
     if [ "$code_editor" = "nvim" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
-        sudo apt install nvim -y &>/dev/null
+        sudo apt install neovim -y &>/dev/null
         mkdir /home/$input_username/.config/nvim &>/dev/null
         mkdir /root/.config/nvim &>/dev/null
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null
