@@ -35,53 +35,72 @@ chmod +x AutoBSPWM.sh
 - **VSCode**: Editor de código fuente altamente personalizable desarrollado por Microsoft.
 - **nvim**: Editor de texto extremadamente configurable y poderoso, una versión mejorada del clásico Vim.
 
-## Shortcuts (atajos de teclado)
-<kbd>Windows</kbd> + <kbd>Enter</kbd> : Abrir la consola (kitty-terminal).  
+## Shortcuts de Ventanas
+<kbd>Windows</kbd> + <kbd>S</kbd>: Crear ventanas flotantes.  
+<kbd>Windows</kbd> + <kbd>Right click</kbd>: Resizear ventanas flotantes.  
+<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resizear ventanas.  
+<kbd>Windows</kbd> + <kbd>Left click</kbd>: Mover ventanas flotantes.  
+<kbd>Windows</kbd> + <kbd>T</kbd> : Cambiar la ventana actual a modo "terminal" (normal). Nos sirve cuando la ventana está en modo pantalla completa o flotante.    
+<kbd>Windows</kbd> + <kbd>M</kbd> : Cambiar la ventana actual a modo "completo" (no ocupa la polybar). Presione la mismas teclas para volver a modo "terminal" (normal).    
+<kbd>Windows</kbd> + <kbd>F</kbd> : Cambiar la ventana actual a modo pantalla completa (ocupa todo incluyendo la polybar). 
 <kbd>Windows</kbd> + <kbd>W</kbd> : Cerrar la ventana actual.  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reiniciar la configuración del bspwm.  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> : Cerrar sesión.  
 <kbd>Windows</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Moverse por las ventanas en la workspace actual.  
-<kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Cambiar el workspace.  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el Rofi. 
-<kbd>Esc</kbd> Salir del rofi.  
-<kbd>Windows</kbd> + <kbd>F7</kbd> : Subir el volumen.    
-<kbd>Windows</kbd> + <kbd>F6</kbd> : Bajar el volumen.    
-<kbd>Windows</kbd> + <kbd>F3</kbd> : Subir el brillo.    
-<kbd>Windows</kbd> + <kbd>F2</kbd> : Bajar el brillo.    
+
+## Shortcuts de Workspaces
+<kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Cambiar de workspace.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Desplazar ventana a otro espacio del workspace.  
+
+## Shortcuts de Bspwm y Sxhkd
 <kbd>Windows</kbd> + <kbd>Esc</kbd> : Reiniciar la configuración del sxhkd.    
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reiniciar la configuración del bspwm.
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Desplazar ventana a otro espacio del workspace.
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Abrir el firefox.
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Abrir el burpsuite.
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> : Abrir el editor de código.
-<kbd>Impr Pa</kbd> : Hacer captura de pantalla.
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Preselectores en la consola (kitty-terminal).
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(Space)</kbd>: Cancelar preselección (kitty-terminal).
-<kbd>Windows</kbd> + <kbd>S</kbd>: Crear ventanas flotantes.
-<kbd>Windows</kbd> + <kbd>Right click</kbd>: Resizear ventanas flotantes.
-<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resizear ventanas flotantes.
-<kbd>Windows</kbd> + <kbd>Left click</kbd>: Mover ventanas flotantes.
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reiniciar la configuración del bspwm.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> : Cerrar sesión de bspwm.  
 
+## Shortcuts de Volumen y Brillo
+<kbd>Windows</kbd> + <kbd>F7</kbd> : Subir el volumen.  
+<kbd>Windows</kbd> + <kbd>F6</kbd> : Bajar el volumen.  
+<kbd>Windows</kbd> + <kbd>F3</kbd> : Subir el brillo.  
+<kbd>Windows</kbd> + <kbd>F2</kbd> : Bajar el brillo.  
 
+## Shortcuts de Aplicaciones
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Abrir el firefox.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Abrir el burpsuite.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> : Abrir el editor de código. 
+<kbd>Impr Pa</kbd> : Hacer captura de pantalla. 
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el rofi launcher.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Abrir el rofi powermenu.  
+<kbd>Esc</kbd> Salir del rofi.  
 
+## Shortcuts de la Kitty
+<kbd>Windows</kbd> + <kbd>Enter</kbd> : Abrir la consola (kitty-terminal).  
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Preselectores en la kitty.  
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd>: Controlar el ratio de los preselectores en la kitty.  
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(Space)</kbd>: Cancelar preselección (kitty-terminal). 
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>: Abrir subterminal dentro de la kitty.  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>: Crear tab en la kitty.  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Desplazarse por los tabs de la kitty.  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>: Cambiar el nombre de los tabs de la kitty.  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>: Activar resize de la kitty.  
+<kbd>Resize kitty activado</kbd> + <kbd>W</kbd>: Aumentar el ancho de la kitty.  
+<kbd>Resize kitty activado</kbd> + <kbd>N</kbd>: Disminuir el ancho de la kitty.  
+<kbd>Resize kitty activado</kbd> + <kbd>T</kbd>: Aumentar la altura de la kitty.  
+<kbd>Resize kitty activado</kbd> + <kbd>S</kbd>: Disminuir la altura de la kitty.   
+<kbd>Resize kitty activado</kbd>+ <kbd>Ctrl</kbd> + <kbd>W</kbd>: Aumentar el ancho de la kitty el doble.  
+<kbd>Resize kitty activado</kbd>+ <kbd>Ctrl</kbd> + <kbd>N</kbd>: Disminuir el ancho de la kitty el doble.  
+<kbd>Resize kitty activado</kbd>+ <kbd>Ctrl</kbd> + <kbd>T</kbd>: Aumentar la altura de la kitty el doble.  
+<kbd>Resize kitty activado</kbd> + <kbd>Ctrl</kbd> + <kbd>S</kbd>: Disminuir la altura de la kitty el doble.  
+<kbd>Resize kitty activado</kbd> + <kbd>Esc</kbd>: Salir del modo resize de la kitty.  
+<kbd>Ctrl</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Desplazarse por las subterminales de la kitty.  
 
+## Shortcuts de la Zsh
+<kbd>Ctrl</kbd> + <kbd>R</kbd>: Mediante fzf nos autocompleta los archivos/directorios.  
+<kbd>Ctrl</kbd> + <kbd>R</kbd>: Mediante fzf podemos ejecutar comandos del histórico de la zsh.  
+<kbd>Esc</kbd> + <kbd>Esc</kbd>: Se activa el plugin sudo-zsh y nos añade sudo al principio del comando en la kitty.  
+<kbd>Settarget</kbd>: Mediante esta función en la zsh seteamos el target en la polybar.  
+<kbd>Cleartarget</kbd>: Mediante esta función en la zsh limpiamos el target de la polybar.  
+<kbd>Mkt</kbd>: Se crean varios directorios de trabajo.  
 
-
-
-
-
-
-
-<kbd>Windows</kbd> + <kbd>T</kbd> : Cambiar la ventana actual a modo "terminal" (normal). Nos sirve cuando la ventana está en modo pantalla completa o flotante.  
-<kbd>Windows</kbd> + <kbd>M</kbd> : Cambiar la ventana actual a modo "completo" (no ocupa la polybar). Presione la mismas teclas para volver a modo "terminal" (normal).  
-<kbd>Windows</kbd> + <kbd>F</kbd> : Cambiar la ventana actual a modo pantalla completa (ocupa todo incluyendo la polybar).  
-<kbd>Windows</kbd> + <kbd>S</kbd> : Cambiar la ventana actual a modo "flotante".  
-<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Mover la ventana actual a otro workspace.  
-<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Cambiar el tamaño de la ventana actual (solo funciona si está en modo terminal o flotante).  
-<kbd>Windows</kbd> + <kbd>Ctrl</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Cambiar la posición de la ventana actual (solo funciona en modo flotante).  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Abrir Google Chrome (es necesario instalarlo primero).  
-<kbd>Windows</kbd> + <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Mostrar una preselección para luego abrir una ventana (una terminal, Google Chrome, un archivo, etc.). <kbd>Windows</kbd> + <kbd>Ctrl</kbd> + <kbd>Space</kbd> para deshacer la preselección.  
 
 ## Créditos
 - Autor: justice-reaper
 - Inspirado en el entorno mostrado en la academia de hack4u de s4vitar
+- Para los keybinding me he inspirado en el autoBSPWM de yorkox0 https://github.com/yorkox0/autoBspwm/tree/main
