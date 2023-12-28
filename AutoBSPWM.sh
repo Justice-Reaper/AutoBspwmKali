@@ -142,9 +142,6 @@ sudo apt autoremove -y &>/dev/null
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 sudo apt clean 
 
-
-
-
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
 echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/* &>/dev/null
