@@ -29,17 +29,14 @@ directorio_instalacion=$(pwd)
 echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
 
 while true; do
-    echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:"
-    read -p "[*] Respuesta: " input_username
-
+    read -p "$(echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:" )" input_username
     if id "$input_username" &>/dev/null; then
         echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
         
         while true; do
-            echo -e "\e[33m[*]\e[0m ¿Es $input_username el nombre de usuario correcto? (SI/NO):"
-            read -p "[*] Respuesta: " confirmation
+            read -p "$(echo -e "\e[33m[*]\e[0m ¿Es $input_username el nombre de usuario correcto? (SI/NO): ")" confirmation
             confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
-
+            
             if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
                 echo ""
                 break 2
@@ -55,15 +52,14 @@ while true; do
     fi
 done
 
-# ACTUALIZAMOS Y UPGRADEAMOS EL SISTEMA
+# ACTUALIZAMOS EL SISTEMA
 while true; do
-    echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO):"
-    read -p "[*] Respuesta: " respuesta_update
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO): ")" respuesta_update
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
-        sudo apt update &>/dev/null
         echo -e "\e[32m[*]\e[0m Operación 'apt update' completada con éxito.\n"
+        apt update &>/dev/null
         break
     elif [ "$respuesta_update" = "no" ] || [ "$respuesta_update" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Operación 'apt update' cancelada.\n"
@@ -73,14 +69,14 @@ while true; do
     fi
 done
 
+# UPGRADEAMOS EL SISTEMA
 while true; do
-    echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO):"
-    read -p "[*] Respuesta: " respuesta_upgrade
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO): ")" respuesta_upgrade
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_upgrade" = "si" ] || [ "$respuesta_upgrade" = "s" ]; then
-        sudo apt full-upgrade -y &>/dev/null
         echo -e "\e[32m[*]\e[0m Operación 'apt full-upgrade' completada con éxito.\n"
+        apt full-upgrade -y &>/dev/null
         break
     elif [ "$respuesta_upgrade" = "no" ] || [ "$respuesta_upgrade" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Operación 'apt full-upgrade' cancelada.\n"
@@ -92,26 +88,27 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-sudo apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
+apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
 # EDITOR DE CÓDIGO
 while true; do
-    echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE):"
-    read -p "[*] Respuesta: " code_editor
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE): ")" code_editor
     code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
 
     if [ "$code_editor" = "nvim" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
-        sudo apt install neovim -y &>/dev/null
+        apt install npm -y &>/dev/null
+        rm -rf mkdir /home/$input_username/.config/nvim &>/dev/null
         mkdir /home/$input_username/.config/nvim &>/dev/null
-        mkdir /root/.config/nvim &>/dev/null
+        rm -rf /root/.config/nvim
+        mkdir -p /root/.config/nvim &>/dev/null
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null
         git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
         wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null
-        sudo apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null
+        apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -120,13 +117,12 @@ done
 
 # DRIVERS PROPIETARIOS NVIDIA
 while true; do
-    echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO):"
-    read -p "[*] Respuesta: " drivers_nvidia
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
     drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
 
     if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
-        sudo apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null
         echo -e "\e[32m[*]\e[0m Los drivers propietarios de nvidia han sido instalados con éxito.\n"
+        apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null
         break
     elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
@@ -135,14 +131,6 @@ while true; do
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
     fi
 done
-
-# ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
-echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
-sudo apt autoremove -y &>/dev/null
-
-# ELIMINAMOS LOS ARCHIVOS DE CACHÉ
-echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
-sudo apt clean 
 
 # SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
 echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
@@ -163,7 +151,7 @@ sed -i "s/adapter_replace/$adapter/g" "$directorio_instalacion/polybar/config.in
 
 # CONFIGURANDO FONTS
 echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
-sudo cp -r fonts /usr/local/share 
+cp -r fonts /usr/local/share 
 
 # CONFIGURANDO WALLPAPERS
 echo -e "\e[32m[*]\e[0m Configurando wallpapers ...\n"
@@ -187,7 +175,7 @@ cp -r picom /home/$input_username/.config
 
 # CONFIGURANDO PLUGIN SUDO ZSH
 echo -e "\e[32m[*]\e[0m Configurando plugin zsh-sudo ...\n"
-sudo cp -r zsh-sudo /usr/share
+cp -r zsh-sudo /usr/share
 
 # CONFIGURANDO BSPWM
 echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
@@ -196,15 +184,16 @@ cd /home/$input_username/.config/bspwm
 chmod +x bspwmrc  
 cd /home/$input_username/.config/bspwm/scripts 
 chmod +x * 
+cd "$directorio_instalacion"
 
+# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
 while true; do
-    echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO):"
-    read -p "[*] Respuesta: " respuesta_clipboard
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
     respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
-        echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> /home/$input_username/.config/bspwm/bspwmrc
         echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
+        echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> /home/$input_username/.config/bspwm/bspwmrc
         break
     elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
         echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
@@ -213,8 +202,6 @@ while true; do
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
     fi
 done
-
-cd "$directorio_instalacion"
 
 # CONFIGURANDO ROFI
 echo -e "\e[32m[*]\e[0m Configurando rofi ...\n"
@@ -247,9 +234,9 @@ cp .zshrc /home/$input_username
 
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario root ...\n"
-sudo rm -rf /root/powerlevel10k &>/dev/null
-sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k &>/dev/null
-sudo sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" &>/dev/null
+rm -rf /root/powerlevel10k &>/dev/null
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k &>/dev/null
+sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" &>/dev/null
 cp p10k.zsh_root /root 
 cp .zshrc /root
 cd /root
@@ -257,10 +244,19 @@ mv p10k.zsh_root .p10k.zsh
 
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
-sudo ln -s -f /home/$input_username/.zshrc /root/.zshrc
+ln -s -f /home/$input_username/.zshrc /root/.zshrc
 
 # LE ASIGNAMOS EL PROPIETARIO CORRECTO A LOS ARCHIVOS
-sudo chown -R $input_username:$input_username /home/$input_username
+echo -e "\e[32m[*]\e[0m Asignando el propietario correcto a los archivos de configuración ...\n"
+chown -R $input_username:$input_username /home/$input_username
+
+# ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
+echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
+apt autoremove -y &>/dev/null
+
+# ELIMINAMOS LOS ARCHIVOS DE CACHÉ
+echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
+apt clean 
 
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
 echo -e "\e[32m[*]\e[0m ¡Entorno bspwm configurado con éxito!\n"
