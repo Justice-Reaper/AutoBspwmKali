@@ -81,6 +81,7 @@ chmod +x AutoBSPWM.sh
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Desplazarse por los tabs de la kitty.  
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd>: Cambiar el nombre de los tabs de la kitty.  
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>: Activar resize de la kitty.  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>: Hacer zoom a un subterminal de la kitty.  
 <kbd>Resize kitty activado</kbd> + <kbd>W</kbd>: Aumentar el ancho de la kitty.  
 <kbd>Resize kitty activado</kbd> + <kbd>N</kbd>: Disminuir el ancho de la kitty.  
 <kbd>Resize kitty activado</kbd> + <kbd>T</kbd>: Aumentar la altura de la kitty.  
