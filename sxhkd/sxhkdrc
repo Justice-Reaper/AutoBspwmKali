@@ -163,3 +163,7 @@ Print
 # vscode
 super + shift + e
 	code
+
+# thunar
+super + shift + g
+        thunar
