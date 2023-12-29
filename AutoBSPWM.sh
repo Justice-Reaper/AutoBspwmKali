@@ -97,6 +97,14 @@ while true; do
 
     if [ "$code_editor" = "nvim" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
+        api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
+        download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
+        wget $download_url
+        rm -rf /opt/*neovim*
+        mv nvim-linux64.tar.gz /opt
+        tar xzf /opt/nvim-linux64.tar.gz
+        rm -f /opt/nvim-linux64.tar.gz
+      
         apt install npm -y &>/dev/null
         rm -rf mkdir /home/$input_username/.config/nvim &>/dev/null
         mkdir /home/$input_username/.config/nvim &>/dev/null
