@@ -92,6 +92,10 @@ chmod +x AutoBSPWM.sh
 <kbd>Resize kitty activado</kbd> + <kbd>Ctrl</kbd> + <kbd>S</kbd>: Disminuir la altura de la kitty el doble.  
 <kbd>Resize kitty activado</kbd> + <kbd>Esc</kbd>: Salir del modo resize de la kitty.  
 <kbd>Ctrl</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Desplazarse por las subterminales de la kitty.  
+<kbd>F1</kbd>: Copiar contenido en la primera clipboard de la kitty.  
+<kbd>F2</kbd>: Pegar contenido de la primera clipboard de la kitty.  
+<kbd>F3</kbd>: Copiar contenido en la segunda clipboard de la kitty.  
+<kbd>F4</kbd>: Pegar contenido de la segunda clipboard de la kitty.  
 
 ## Shortcuts de la Zsh
 <kbd>Ctrl</kbd> + <kbd>R</kbd>: Mediante fzf nos autocompleta los archivos/directorios.  
