@@ -69,6 +69,7 @@ chmod +x AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el rofi launcher.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Abrir el rofi powermenu.  
 <kbd>Esc</kbd> Salir del rofi.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Abrir el gestor de archivos thunar.  
 
 ## Shortcuts de la Kitty
 <kbd>Windows</kbd> + <kbd>Enter</kbd> : Abrir la consola (kitty-terminal).  
