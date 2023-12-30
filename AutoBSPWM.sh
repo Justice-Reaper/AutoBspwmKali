@@ -110,7 +110,9 @@ while true; do
     code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
 
     if [ "$code_editor" = "nvim" ]; then
-        echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
+        # INSTALANDO NVIM
+        echo -e "\e[32m[*]\e[0m Se ha instalado neovim correctamente.\n"
+        apt install npm -y &>/dev/null
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
         wget $download_url &>/dev/null
@@ -118,11 +120,17 @@ while true; do
         mv nvim-linux64.tar.gz /opt &>/dev/null
         tar xf /opt/nvim-linux64.tar.gz &>/dev/null
         rm -f /opt/nvim-linux64.tar.gz &>/dev/null
-        apt install npm -y &>/dev/null
+
+        # INSTALANDO NVCHAD
+        echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente.\n"
         mkdir /home/$input_username/.config/nvim &>/dev/null
         mkdir /root/.config/nvim &>/dev/null
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null
         git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null
+
+        # CREANDO LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE NVIM DEL USUARIO ELEGIDO Y DE ROOT
+        echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ...\n"
+        ln -s -f /home/$input_username/.config/nvim /root/.config/nvim 
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
@@ -191,8 +199,7 @@ cp -r kitty /root/.config
 
 # CREAMOS UN LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE LA KITTY DEL USUARIO ELEGIDO Y LOS DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en kitty.conf y kitty.color ...\n"
-ln -s -f /home/$input_username/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
-ln -s -f /home/$input_username/.config/kitty/color.ini /root/.config/kitty/color.ini
+ln -s -f /home/$input_username/.config/kitty /root/.config/kitty
 
 # CONFIGURANDO PICOM
 echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
