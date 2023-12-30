@@ -90,6 +90,20 @@ done
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
+# ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
+rm -rf /root/.config/kitty
+rm -rf /root/.config/nvim
+rm -rf /home/$input_username/.config/kitty
+rm -rf /home/$input_username/.config/polybar
+rm -rf /home/$input_username/.config/picom
+rm -rf /home/$input_username/.config/bspwm
+rm -rf /home/$input_username/.config/nvim
+rm -rf /home/$input_username/.config/sxhkd
+
+# CREAMOS NUEVAS CONFIGURACIONES
+mkdir /root/.config
+mkdir /home/$input_username/.config
+
 # EDITOR DE CÓDIGO
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE): ")" code_editor
@@ -176,6 +190,9 @@ cp -r sxhkd /home/$input_username/.config
 # CONFIGURANDO KITTY
 echo -e "\e[32m[*]\e[0m Configurando kitty ...\n"
 cp -r kitty /home/$input_username/.config
+cp -r kitty /root/.config
+ln -s -f /home/$input_username/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
+ln -s -f /home/$input_username/.config/kitty/color.ini /root/.config/kitty/color.ini
 
 # CONFIGURANDO PICOM
 echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
