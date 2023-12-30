@@ -1,7 +1,7 @@
 # AutoBSPWM
-Este script AutoBSPWM ha sido creado por investigación propia utilizando como base el curso de personalización de linux de la academia de Hack4u https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/  
-Ha sido testeado en kali linux, se desconoce si puede acarrear problemas en otros sistemas operativos  
-Si tienes alguna duda o deseas que implemente alguna nueva funcionalidad no dudes en consultarme  
+- Este script AutoBSPWM ha sido creado por investigación propia utilizando como base el curso de personalización de linux de la academia de Hack4u https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/.  
+- Ha sido testeado en kali linux, se desconoce si puede acarrear problemas en otros sistemas operativos.  
+- Si tienes alguna duda o deseas que implemente alguna nueva funcionalidad no dudes en consultarme.  
 
 # Instalación
 ```
@@ -15,7 +15,7 @@ chmod +x AutoBSPWM.sh
 ![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
 
 ## Aclaraciones:
-- Cada vez que se desee actualizar cualquiera de los componentes del entorno puedes ejecutar el script y se eliminarán los componentes antiguos y se instalarán los componentes actualizados
+- Cada vez que se desee actualizar cualquiera de los componentes del entorno puedes ejecutar el script y se eliminarán los componentes antiguos y se instalarán los componentes actualizados.
 
 ## Utilidades:
 - **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos.
