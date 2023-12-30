@@ -97,6 +97,7 @@ rm -rf /root/.zshrc &>/dev/null
 rm -rf /root/.p10k.zsh &>/dev/null
 rm -rf /root/.config/kitty &>/dev/null
 rm -rf /root/.config/nvim &>/dev/null
+rm -rf /opt/*nvim* &>/dev/null 
 rm -rf /home/$input_username/.config/kitty &>/dev/null
 rm -rf /home/$input_username/.config/polybar &>/dev/null
 rm -rf /home/$input_username/.config/picom &>/dev/null
@@ -117,13 +118,12 @@ while true; do
         # INSTALANDO NVIM
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim correctamente."
         apt install npm -y &>/dev/null 
-        rm -rf /opt/*nvim* &>/dev/null 
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
         wget $download_url &>/dev/null 
         mv nvim-linux64.tar.gz /opt &>/dev/null 
         tar xf /opt/nvim-linux64.tar.gz &>/dev/null 
-        rm -f /opt/nvim-linux64.tar.gz &>/dev/null 
+        rm -f /opt/*nvim* &>/dev/null 
 
         # INSTALANDO NVCHAD
         echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente."
