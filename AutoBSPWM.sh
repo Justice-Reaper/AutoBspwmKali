@@ -91,18 +91,18 @@ echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
-rm -rf /root/.config/kitty
-rm -rf /root/.config/nvim
-rm -rf /home/$input_username/.config/kitty
-rm -rf /home/$input_username/.config/polybar
-rm -rf /home/$input_username/.config/picom
-rm -rf /home/$input_username/.config/bspwm
-rm -rf /home/$input_username/.config/nvim
-rm -rf /home/$input_username/.config/sxhkd
+rm -rf /root/.config/kitty &>/dev/null
+rm -rf /root/.config/nvim &>/dev/null
+rm -rf /home/$input_username/.config/kitty &>/dev/null
+rm -rf /home/$input_username/.config/polybar &>/dev/null
+rm -rf /home/$input_username/.config/picom &>/dev/null
+rm -rf /home/$input_username/.config/bspwm &>/dev/null
+rm -rf /home/$input_username/.config/nvim &>/dev/null
+rm -rf /home/$input_username/.config/sxhkd &>/dev/null
 
 # CREAMOS NUEVAS CONFIGURACIONES
-mkdir /root/.config
-mkdir /home/$input_username/.config
+mkdir /root/.config &>/dev/null
+mkdir /home/$input_username/.config &>/dev/null
 
 # EDITOR DE CÓDIGO
 while true; do
@@ -113,17 +113,14 @@ while true; do
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim modificado con nvchad correctamente.\n"
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
-        wget $download_url
-        rm -rf /opt/*neovim*
-        mv nvim-linux64.tar.gz /opt
-        tar xzf /opt/nvim-linux64.tar.gz
-        rm -f /opt/nvim-linux64.tar.gz
-      
+        wget $download_url &>/dev/null
+        rm -rf /opt/*neovim*  &>/dev/null
+        mv nvim-linux64.tar.gz /opt &>/dev/null
+        tar xf /opt/nvim-linux64.tar.gz &>/dev/null
+        rm -f /opt/nvim-linux64.tar.gz &>/dev/null
         apt install npm -y &>/dev/null
-        rm -rf mkdir /home/$input_username/.config/nvim &>/dev/null
         mkdir /home/$input_username/.config/nvim &>/dev/null
-        rm -rf /root/.config/nvim
-        mkdir -p /root/.config/nvim &>/dev/null
+        mkdir /root/.config/nvim &>/dev/null
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null
         git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null
         break
