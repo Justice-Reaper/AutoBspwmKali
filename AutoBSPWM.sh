@@ -32,7 +32,7 @@ while true; do
 
     if [ "$respuesta_mode" = "si" ] || [ "$respuesta_mode" = "s" ]; then
         echo -e "\e[33m[*]\e[0m Se mostrarán a continuación el output de los comandos ejecutados.\n"
-        $output=""
+        output=""
         break
     elif [ "$respuesta_mode" = "no" ] || [ "$respuesta_mode" = "n" ]; then
         echo -e "\e[31m[*]\e[0m No se mostrará el output de los comandos ejecutados.\n"
