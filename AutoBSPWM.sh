@@ -151,7 +151,7 @@ while true; do
     fi
 done
 
-# SUSTITUIMOS USER_REPLACE POR NUESTRO USUARIO
+# SUSTITUIMOS USER_REPLACE POR EL USUARIO ELEGIDO
 echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/* &>/dev/null
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/* &>/dev/null
@@ -188,6 +188,9 @@ cp -r sxhkd /home/$input_username/.config
 echo -e "\e[32m[*]\e[0m Configurando kitty ...\n"
 cp -r kitty /home/$input_username/.config
 cp -r kitty /root/.config
+
+# CREAMOS UN LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE LA KITTY DEL USUARIO ELEGIDO Y LOS DE ROOT
+echo -e "\e[32m[*]\e[0m Creando link simbólico en kitty.conf y kitty.color ...\n"
 ln -s -f /home/$input_username/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
 ln -s -f /home/$input_username/.config/kitty/color.ini /root/.config/kitty/color.ini
 
@@ -207,23 +210,6 @@ chmod +x bspwmrc
 cd /home/$input_username/.config/bspwm/scripts 
 chmod +x * 
 cd "$directorio_instalacion"
-
-# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
-    respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
-        echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> /home/$input_username/.config/bspwm/bspwmrc
-        break
-    elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
-done
 
 # CONFIGURANDO ROFI
 echo -e "\e[32m[*]\e[0m Configurando rofi ...\n"
@@ -264,13 +250,30 @@ cp .zshrc /root
 cd /root
 mv p10k.zsh_root .p10k.zsh
 
-# CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DE NUESTRO USUARIO Y LA ZSHRC DE ROOT
+# CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DEL USUARIO ELEGIDO Y LA ZSHRC DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
 ln -s -f /home/$input_username/.zshrc /root/.zshrc
 
 # LE ASIGNAMOS EL PROPIETARIO CORRECTO A LOS ARCHIVOS
 echo -e "\e[32m[*]\e[0m Asignando el propietario correcto a los archivos de configuración ...\n"
 chown -R $input_username:$input_username /home/$input_username
+
+# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
+    respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
+        echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> /home/$input_username/.config/bspwm/bspwmrc
+        break
+    elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
 
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
