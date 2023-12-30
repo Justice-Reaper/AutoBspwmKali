@@ -124,7 +124,6 @@ while true; do
         mv nvim-linux64.tar.gz /opt &>/dev/null 
         tar xf /opt/nvim-linux64.tar.gz &>/dev/null 
         rm -f /opt/nvim-linux64.tar.gz &>/dev/null 
-        rm -r /opt/*nvim* &>/dev/null 
 
         # INSTALANDO NVCHAD
         echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente."
