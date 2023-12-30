@@ -23,7 +23,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # SALIDA DE COMANDOS
-output = "&>/dev/null"
+output="&>/dev/null"
 
 # MODO DEV
 while true; do
