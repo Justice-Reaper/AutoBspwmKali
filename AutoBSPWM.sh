@@ -172,7 +172,6 @@ sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/script
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/* &>/dev/null
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts* &>/dev/null
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/* &>/dev/null
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh_root &>/dev/null
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &>/dev/null
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/null
 
