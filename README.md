@@ -17,7 +17,7 @@ chmod +x AutoBSPWM.sh
 ## Aclaraciones:
 - Cada vez que se desee actualizar cualquiera de los componentes del entorno puedes ejecutar el script y se eliminarán los componentes antiguos y se instalarán los componentes actualizados.
 
-## Utilidades:
+## Componentes:
 - **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos.
 - **brightnessctl**: Herramienta para controlar el brillo de la pantalla desde la línea de comandos.
 - **feh**: Visor de imágenes ligero, configurable y versátil.
@@ -37,7 +37,8 @@ chmod +x AutoBSPWM.sh
 - **zsh**: Shell de Unix interactiva y potente.
 - **VSCode**: Editor de código fuente altamente personalizable desarrollado por Microsoft.
 - **nvim**: Editor de texto extremadamente configurable y poderoso, una versión mejorada del clásico Vim.
-- **npm**: Administrador de paquetes que simplifica la gestión de dependencias y módulos en proyectos.  
+- **npm**: Administrador de paquetes que simplifica la gestión de dependencias y módulos en proyectos.
+- **nvchad**: Un conjunto de configuraciones y complementos preconfigurados para Neovim, que mejora la experiencia de uso de este potente editor de texto.
 
 ## Shortcuts de Ventanas
 <kbd>Windows</kbd> + <kbd>S</kbd>: Crear ventanas flotantes.  
