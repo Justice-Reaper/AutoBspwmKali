@@ -80,7 +80,7 @@ chmod +x AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Enter</kbd> : Abrir la consola (kitty-terminal).  
 <kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Preselectores en la kitty.  
 <kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd>: Controlar el ratio de los preselectores en la kitty.  
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(Space)</kbd>: Cancelar preselección (kitty-terminal). 
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(Space)</kbd>: Cancelar preselección (kitty-terminal).   
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>: Abrir subterminal dentro de la kitty.    
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>: Crear tab en la kitty.  
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Desplazarse por los tabs de la kitty.  
