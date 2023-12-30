@@ -31,7 +31,7 @@ while true; do
     respuesta_mode=$(echo "$respuesta_mode" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_mode" = "si" ] || [ "$respuesta_mode" = "s" ]; then
-        echo -e "\e[33m[*]\e[0m Se mostrarán a continuación el output de los comandos ejecutados.\n"
+        echo -e "\e[32m[*]\e[0m Se mostrarán a continuación el output de los comandos ejecutados.\n"
         output=""
         break
     elif [ "$respuesta_mode" = "no" ] || [ "$respuesta_mode" = "n" ]; then
