@@ -58,7 +58,7 @@ while true; do
     respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Operación 'apt update' completada con éxito.\n"
+        echo -e "\e[32m[*]\e[0m Ejecutando 'apt update' ...\n"
         apt update &>/dev/null
         break
     elif [ "$respuesta_update" = "no" ] || [ "$respuesta_update" = "n" ]; then
@@ -75,7 +75,7 @@ while true; do
     respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_upgrade" = "si" ] || [ "$respuesta_upgrade" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Operación 'apt full-upgrade' completada con éxito.\n"
+        echo -e "\e[32m[*]\e[0m Ejecutando 'apt full-upgrade' ...\n"
         apt full-upgrade -y &>/dev/null
         break
     elif [ "$respuesta_upgrade" = "no" ] || [ "$respuesta_upgrade" = "n" ]; then
@@ -116,7 +116,7 @@ while true; do
 
     if [ "$code_editor" = "nvim" ]; then
         # INSTALANDO NVIM
-        echo -e "\e[32m[*]\e[0m Se ha instalado neovim correctamente."
+        echo -e "\e[32m[*]\e[0m Instalando neovim ..."
         apt install npm -y &>/dev/null 
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
@@ -126,7 +126,7 @@ while true; do
         chown -R root:root /opt/nvim-linux64
 
         # INSTALANDO NVCHAD
-        echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente."
+        echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
         mkdir /home/$input_username/.config/nvim &>/dev/null 
         mkdir /root/.config/nvim &>/dev/null 
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null 
@@ -146,7 +146,7 @@ while true; do
         sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/.zshrc &>/dev/null 
         break
     elif [ "$code_editor" = "vscode" ]; then
-        echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
+        echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
         wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null 
         apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null 
         break
@@ -161,7 +161,7 @@ while true; do
     drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
 
     if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Los drivers propietarios de nvidia han sido instalados con éxito.\n"
+        echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
         apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null 
         break
     elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
@@ -304,5 +304,8 @@ apt autoremove -y &>/dev/null
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 apt clean 
 
+# REFRESCAMOS EL ENTORNO BSPWM
+/home/$input_username/.config/bspwm/bspwmrc &>/dev/null 
+
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
-echo -e "\e[32m[*]\e[0m ¡Entorno bspwm configurado con éxito!\n"
+echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!)\n"
