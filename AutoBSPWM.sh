@@ -115,6 +115,10 @@ echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 execute_command apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
 
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
+execute_command rm -rf /home/$input_username/.zshrc 
+execute_command rm -rf /home/$input_username/.p10k.zsh
+execute_command rm -rf /root/.zshrc 
+execute_command rm -rf /root/.p10k.zsh
 execute_command rm -rf /root/.config/kitty 
 execute_command rm -rf /root/.config/nvim 
 execute_command rm -rf /home/$input_username/.config/kitty 
