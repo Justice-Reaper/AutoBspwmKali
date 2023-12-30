@@ -121,9 +121,10 @@ while true; do
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
         wget $download_url &>/dev/null 
-        mv nvim-linux64.tar.gz /opt &>/dev/null 
-        tar xf /opt/nvim-linux64.tar.gz &>/dev/null 
+        tar -xf nvim-linux64.tar.gz &>/dev/null 
+        mv nvim-linux64 /opt &>/dev/null 
         rm -f /opt/*nvim* &>/dev/null 
+        chown -R root:root /opt/nvim-linux64
 
         # INSTALANDO NVCHAD
         echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente."
