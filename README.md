@@ -34,6 +34,7 @@ chmod +x AutoBSPWM.sh
 - **zsh**: Shell de Unix interactiva y potente.
 - **VSCode**: Editor de código fuente altamente personalizable desarrollado por Microsoft.
 - **nvim**: Editor de texto extremadamente configurable y poderoso, una versión mejorada del clásico Vim.
+- **npm**: Administrador de paquetes que simplifica la gestión de dependencias y módulos en proyectos.  
 
 ## Shortcuts de Ventanas
 <kbd>Windows</kbd> + <kbd>S</kbd>: Crear ventanas flotantes.  
