@@ -35,7 +35,7 @@ chmod +x AutoBSPWM.sh
 - **rofi**: Selector de ventana y lanzador de aplicaciones.
 - **kitty**: Emulador de terminal altamente configurable y de alto rendimiento.
 - **zsh**: Shell de Unix interactiva y potente.
-- **VSCode**: Editor de código fuente altamente personalizable desarrollado por Microsoft.
+- **vscode**: Editor de código fuente altamente personalizable desarrollado por Microsoft.
 - **nvim**: Editor de texto extremadamente configurable y poderoso, una versión mejorada del clásico Vim.
 - **npm**: Administrador de paquetes que simplifica la gestión de dependencias y módulos en proyectos.
 - **nvchad**: Un conjunto de configuraciones y complementos preconfigurados para Neovim, que mejora la experiencia de uso de este potente editor de texto.
