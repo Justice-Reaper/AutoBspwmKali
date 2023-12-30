@@ -141,10 +141,10 @@ while true; do
         # INSTALANDO NVIM
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim correctamente."
         execute_command apt install npm -y 
+        execute_command rm -rf /opt/*neovim*  
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
         execute_command  wget $download_url
-        execute_command rm -rf /opt/*neovim*  
         execute_command mv nvim-linux64.tar.gz /opt 
         execute_command tar xf /opt/nvim-linux64.tar.gz 
         execute_command rm -f /opt/nvim-linux64.tar.gz 
