@@ -133,7 +133,7 @@ while true; do
         ln -s -f /home/$input_username/.config/nvim /root/.config/nvim 
 
         # INSERTAMOS EL ALIAS DE NVIM EN LA ZSHRC
-        echo -e "\e[32m[*]\e[0m Insertando alias de nvim en la zshrc ..."
+        echo -e "\e[32m[*]\e[0m Insertando alias de nvim en la zshrc ...\n"
         sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/zshrc &>/dev/null
         sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/zshrc &>/dev/null
         sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc &>/dev/null
