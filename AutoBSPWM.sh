@@ -134,9 +134,12 @@ while true; do
 
         # INSERTAMOS EL ALIAS DE NVIM EN LA ZSHRC
         echo -e "\e[32m[*]\e[0m Insertando alias de nvim en la zshrc ..."
-        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/zshrc
-        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/zshrc
-        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc
+        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/zshrc &>/dev/null
+        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/zshrc &>/dev/null
+        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc &>/dev/null
+        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/.zshrc &>/dev/null
+        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/.zshrc &>/dev/null
+        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/.zshrc &>/dev/null
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
