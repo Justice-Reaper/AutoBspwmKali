@@ -123,7 +123,6 @@ while true; do
         wget $download_url &>/dev/null 
         tar -xf nvim-linux64.tar.gz &>/dev/null 
         mv nvim-linux64 /opt &>/dev/null 
-        rm -f /opt/*nvim* &>/dev/null 
         chown -R root:root /opt/nvim-linux64
 
         # INSTALANDO NVCHAD
