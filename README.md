@@ -14,6 +14,9 @@ chmod +x AutoBSPWM.sh
 ## Vista general
 ![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
 
+## Aclaraciones:
+- Cada vez que se desee actualizar cualquiera de los componentes del entorno puedes ejecutar el script y se eliminarán los componentes antiguos y se instalarán los componentes actualizados
+
 ## Utilidades:
 - **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos.
 - **brightnessctl**: Herramienta para controlar el brillo de la pantalla desde la línea de comandos.
@@ -99,6 +102,18 @@ chmod +x AutoBSPWM.sh
 <kbd>F4</kbd>: Pegar contenido de la segunda clipboard de la kitty.  
 
 ## Shortcuts de la Zsh
+<kbd>Ctrl</kbd> + <kbd>U</kbd>: Eliminar toda la línea.  
+<kbd>Alt</kbd> + <kbd>Supr</kbd>: Eliminar una palabra.  
+<kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Desplazarse entre palabras.  
+<kbd>Supr</kbd>: Eliminar la letra a la derecha del cursor.  
+<kbd>Backspace</kbd>: Eliminar la letra a la izquierda del cursor.  
+<kbd>Alt</kbd> + <kbd>Supr</kbd>: Eliminar la palabra a la derecha del cursor.  
+<kbd>Alt</kbd> + <kbd>Backspace</kbd>: Eliminar la palabra la izquierda del cursor.  
+<kbd>Home</kbd>: Desplazamiento al inicio de la línea.    
+<kbd>End</kbd>: Desplazamiento al final de la línea.    
+<kbd>Shift</kbd> + <kbd>Tab</kbd>: Deshacer la última acción.  
+<kbd>Page Up</kbd>: Desplazarse hacia arriba en modo paginate.  
+<kbd>Page Down</kbd>: Desplazarse hacia abajo en modo paginate.  
 <kbd>Ctrl</kbd> + <kbd>R</kbd>: Mediante fzf nos autocompleta los archivos/directorios.  
 <kbd>Ctrl</kbd> + <kbd>R</kbd>: Mediante fzf podemos ejecutar comandos del histórico de la zsh.  
 <kbd>Esc</kbd> + <kbd>Esc</kbd>: Se activa el plugin sudo-zsh y nos añade sudo al principio del comando en la kitty.  
@@ -107,5 +122,5 @@ chmod +x AutoBSPWM.sh
 <kbd>Mkt</kbd>: Se crean varios directorios de trabajo.  
 
 ## Créditos
-- Autor: justice-reaper
-- Inspirado en el entorno mostrado en la academia de hack4u de s4vitar
+- Autor: Justice-Reaper
+- Inspiración: Entorno mostrado en la academia de hack4u de s4vitar
