@@ -88,10 +88,10 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &&>/dev/null
+apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
-rm -rf /home/$input_username/.zshrc &&&>/dev/null &>/dev/null
+rm -rf /home/$input_username/.zshrc &>/dev/null &>/dev/null
 rm -rf /home/$input_username/.p10k.zsh &>/dev/null
 rm -rf /root/.zshrc &>/dev/null
 rm -rf /root/.p10k.zsh &>/dev/null
@@ -116,40 +116,40 @@ while true; do
     if [ "$code_editor" = "nvim" ]; then
         # INSTALANDO NVIM
         echo -e "\e[32m[*]\e[0m Se ha instalado neovim correctamente."
-        apt install npm -y &&>/dev/null 
-        rm -rf /opt/*nvim* &&>/dev/null 
+        apt install npm -y &>/dev/null 
+        rm -rf /opt/*nvim* &>/dev/null 
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
-        wget $download_url &&>/dev/null 
-        mv nvim-linux64.tar.gz /opt &&>/dev/null 
-        tar xf /opt/nvim-linux64.tar.gz &&>/dev/null 
-        rm -f /opt/nvim-linux64.tar.gz &&>/dev/null 
-        rm -r /opt/*nvim* &&>/dev/null 
+        wget $download_url &>/dev/null 
+        mv nvim-linux64.tar.gz /opt &>/dev/null 
+        tar xf /opt/nvim-linux64.tar.gz &>/dev/null 
+        rm -f /opt/nvim-linux64.tar.gz &>/dev/null 
+        rm -r /opt/*nvim* &>/dev/null 
 
         # INSTALANDO NVCHAD
         echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente."
-        mkdir /home/$input_username/.config/nvim &&>/dev/null 
-        mkdir /root/.config/nvim &&>/dev/null 
-        git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &&>/dev/null 
-        git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &&>/dev/null 
+        mkdir /home/$input_username/.config/nvim &>/dev/null 
+        mkdir /root/.config/nvim &>/dev/null 
+        git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null 
+        git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null 
 
         # CREANDO LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE NVIM DEL USUARIO ELEGIDO Y DE ROOT
         echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
-        ln -s -f /home/$input_username/.config/nvim /root/.config/nvim &&>/dev/null 
+        ln -s -f /home/$input_username/.config/nvim /root/.config/nvim &>/dev/null 
 
         # INSERTAMOS EL ALIAS DE NVIM EN LA ZSHRC
         echo -e "\e[32m[*]\e[0m Insertando alias de nvim en la zshrc ...\n"
-        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/zshrc &&>/dev/null 
-        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/zshrc &&>/dev/null 
-        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc &&>/dev/null 
-        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/.zshrc &&>/dev/null 
-        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/.zshrc &&>/dev/null 
-        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/.zshrc &&>/dev/null 
+        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/zshrc &>/dev/null 
+        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/zshrc &>/dev/null 
+        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc &>/dev/null 
+        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/.zshrc &>/dev/null 
+        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/.zshrc &>/dev/null 
+        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/.zshrc &>/dev/null 
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
-        wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &&>/dev/null 
-        apt install ./code_1.85.1-1702462158_amd64.deb &&>/dev/null 
+        wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null 
+        apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null 
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -163,7 +163,7 @@ while true; do
 
     if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Los drivers propietarios de nvidia han sido instalados con éxito.\n"
-        apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &&>/dev/null 
+        apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null 
         break
     elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
@@ -175,19 +175,19 @@ done
 
 # SUSTITUIMOS USER_REPLACE POR EL USUARIO ELEGIDO
 echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/* &&>/dev/null 
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/* &&>/dev/null 
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/* &&>/dev/null 
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts* &&>/dev/null 
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/* &&>/dev/null 
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &&>/dev/null 
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &&>/dev/null 
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/* &>/dev/null 
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/* &>/dev/null 
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/* &>/dev/null 
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts* &>/dev/null 
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/* &>/dev/null 
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &>/dev/null 
+sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/null 
 
 # SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
 battery="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | tail -n 1)"
 adapter="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | head -n 1)"
-sed -i "s/battery_replace/$battery/g" "$directorio_instalacion/polybar/config.ini" &&>/dev/null 
-sed -i "s/adapter_replace/$adapter/g" "$directorio_instalacion/polybar/config.ini" &&>/dev/null 
+sed -i "s/battery_replace/$battery/g" "$directorio_instalacion/polybar/config.ini" &>/dev/null 
+sed -i "s/adapter_replace/$adapter/g" "$directorio_instalacion/polybar/config.ini" &>/dev/null 
 
 # CONFIGURANDO FONTS
 echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
@@ -199,7 +199,7 @@ cp -r Wallpapers /home/$input_username
 
 # CONFIGURANDO BETTERLOCKSCREEN
 echo -e "\e[32m[*]\e[0m Configurando betterlockscreen ...\n"
-betterlockscreen -u /home/$input_username/Wallpapers &&>/dev/null 
+betterlockscreen -u /home/$input_username/Wallpapers &>/dev/null 
 
 # CONFIGURANDO SXHKD
 echo -e "\e[32m[*]\e[0m Configurando sxhkd ...\n"
@@ -246,25 +246,25 @@ echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
 cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
-mkdir /home/$input_username/.config/bin &&>/dev/null 
-touch /home/$input_username/.config/bin/target &&>/dev/null 
+mkdir /home/$input_username/.config/bin &>/dev/null 
+touch /home/$input_username/.config/bin/target &>/dev/null 
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario $input_username ...\n"
-rm -rf /home/$input_username/powerlevel10k &&>/dev/null 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k &&>/dev/null 
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>/home/$input_username/.zshrc &&>/dev/null 
-mv zshrc .zshrc &&>/dev/null 
-mv p10k.zsh .p10k.zsh &&>/dev/null 
+rm -rf /home/$input_username/powerlevel10k &>/dev/null 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k &>/dev/null 
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>/home/$input_username/.zshrc &>/dev/null 
+mv zshrc .zshrc &>/dev/null 
+mv p10k.zsh .p10k.zsh &>/dev/null 
 cp .p10k.zsh /home/$input_username
 cp .zshrc /home/$input_username
 
 # CONFIGURANDO POWERLEVEL10K DE ROOT
 echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario root ...\n"
-rm -rf /root/powerlevel10k &&>/dev/null 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k &&>/dev/null 
-sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" &&>/dev/null 
+rm -rf /root/powerlevel10k &>/dev/null 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k &>/dev/null 
+sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" &>/dev/null 
 cp .p10k.zsh /root 
 cp .zshrc /root
 
@@ -299,7 +299,7 @@ done
 
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
-apt autoremove -y &&>/dev/null 
+apt autoremove -y &>/dev/null 
 
 # ELIMINAMOS LOS ARCHIVOS DE CACHÉ
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
