@@ -131,6 +131,11 @@ while true; do
         # CREANDO LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE NVIM DEL USUARIO ELEGIDO Y DE ROOT
         echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ...\n"
         ln -s -f /home/$input_username/.config/nvim /root/.config/nvim 
+
+        # INSERTAMOS EL ALIAS DE NVIM EN LA ZSHRC
+        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" ~/.zshrc
+        sed -i "/alias icat='kitty +kitten icat'/a # nvim" ~/.zshrc
+        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' ~/.zshrc
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
