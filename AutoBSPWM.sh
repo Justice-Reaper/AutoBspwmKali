@@ -252,14 +252,16 @@ echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario root ...\n"
 rm -rf /root/powerlevel10k &>/dev/null
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k &>/dev/null
 sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc" &>/dev/null
-cp p10k.zsh_root /root 
+cp .p10k.zsh /root 
 cp .zshrc /root
-cd /root
-mv p10k.zsh_root .p10k.zsh
 
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DEL USUARIO ELEGIDO Y LA ZSHRC DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
 ln -s -f /home/$input_username/.zshrc /root/.zshrc
+
+# CREAMOS UN LINK SIMBÓLICO ENTRE LA P10K DEL USUARIO ELEGIDO Y EL P10K DE ROOT
+echo -e "\e[32m[*]\e[0m Creando link simbólico en el archivo p10k.zsh ...\n"
+ln -s -f /home/$input_username/.p10k.zsh /root/.p10k.zsh
 
 # LE ASIGNAMOS EL PROPIETARIO CORRECTO A LOS ARCHIVOS
 echo -e "\e[32m[*]\e[0m Asignando el propietario correcto a los archivos de configuración ...\n"
