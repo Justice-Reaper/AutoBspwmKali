@@ -111,7 +111,7 @@ while true; do
 
     if [ "$code_editor" = "nvim" ]; then
         # INSTALANDO NVIM
-        echo -e "\e[32m[*]\e[0m Se ha instalado neovim correctamente.\n"
+        echo -e "\e[32m[*]\e[0m Se ha instalado neovim correctamente."
         apt install npm -y &>/dev/null
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
         download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
@@ -122,20 +122,21 @@ while true; do
         rm -f /opt/nvim-linux64.tar.gz &>/dev/null
 
         # INSTALANDO NVCHAD
-        echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente.\n"
+        echo -e "\e[32m[*]\e[0m Se ha instalado nvchad correctamente."
         mkdir /home/$input_username/.config/nvim &>/dev/null
         mkdir /root/.config/nvim &>/dev/null
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null
         git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null
 
         # CREANDO LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE NVIM DEL USUARIO ELEGIDO Y DE ROOT
-        echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ...\n"
+        echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
         ln -s -f /home/$input_username/.config/nvim /root/.config/nvim 
 
         # INSERTAMOS EL ALIAS DE NVIM EN LA ZSHRC
-        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" ~/.zshrc
-        sed -i "/alias icat='kitty +kitten icat'/a # nvim" ~/.zshrc
-        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' ~/.zshrc
+        echo -e "\e[32m[*]\e[0m Insertando alias de nvim en la zshrc ..."
+        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/zshrc
+        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/zshrc
+        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Se ha instalado vscode correctamente.\n"
