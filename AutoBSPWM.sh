@@ -29,7 +29,7 @@ directorio_instalacion=$(pwd)
 echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
 
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios:" )" input_username
+    read -p "$(echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios: ")" input_username
     if id "$input_username" &>/dev/null; then
         echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
         
