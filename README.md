@@ -15,7 +15,7 @@ chmod +x AutoBSPWM.sh
 ![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
 
 ## Utilidades:
-- **imagemagick**:  Suite de software para crear, editar o convertir imágenes desde la línea de comandos.
+- **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos.
 - **brightnessctl**: Herramienta para controlar el brillo de la pantalla desde la línea de comandos.
 - **feh**: Visor de imágenes ligero, configurable y versátil.
 - **xclip**: Utilidad para manejar el portapapeles en entornos de línea de comandos.
@@ -109,4 +109,3 @@ chmod +x AutoBSPWM.sh
 ## Créditos
 - Autor: justice-reaper
 - Inspirado en el entorno mostrado en la academia de hack4u de s4vitar
-- Para los keybindings me he inspirado en el autoBSPWM de yorkox0 https://github.com/yorkox0/autoBspwm/tree/main
