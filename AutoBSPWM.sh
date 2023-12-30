@@ -305,6 +305,7 @@ echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 apt clean 
 
 # REFRESCAMOS EL ENTORNO BSPWM
+killall -q picom
 /home/$input_username/.config/bspwm/bspwmrc &>/dev/null 
 
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
