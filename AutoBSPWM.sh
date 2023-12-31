@@ -90,6 +90,62 @@ done
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
 
+# DRIVERS PROPIETARIOS NVIDIA
+install_nvidia_drivers(){
+    while true; do
+          read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
+          drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
+      
+          if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
+              echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
+              apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null 
+              break
+          elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
+              echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
+              break
+          else
+              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+          fi
+      done
+}
+
+# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
+activar_clipboard_bidireccional(){
+      while true; do
+          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
+          respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
+      
+          if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
+              echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
+              echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> $directorio_instalacion/bspwm/bspwmrc
+              break
+          elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
+              echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
+              break
+          else
+              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+          fi
+      done
+}
+
+# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
+    respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m El sistema será configurado para una máquina virtual.\n"
+        activar_clipboard_bidireccional
+        break
+    elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
+        echo -e "\e[32m[*]\e[0m El sistema será configurado para uso nativo.\n"
+        install_nvidia_drivers
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
 rm -rf /home/$input_username/.zshrc &>/dev/null &>/dev/null
 rm -rf /home/$input_username/.p10k.zsh &>/dev/null
@@ -149,23 +205,6 @@ while true; do
         echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
         wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null 
         apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null 
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
-done
-
-# DRIVERS PROPIETARIOS NVIDIA
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando kali linux en nativo y deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
-    drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
-        apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null 
-        break
-    elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -302,23 +341,6 @@ ln -s -f /home/$input_username/.p10k.zsh /root/.p10k.zsh
 echo -e "\e[32m[*]\e[0m Asignando el propietario correcto a los archivos de configuración ...\n"
 chown -R $input_username:$input_username /home/$input_username
 
-# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
-    respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
-        echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> /home/$input_username/.config/bspwm/bspwmrc
-        break
-    elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
-done
-
 # ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
 echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
 apt autoremove -y &>/dev/null 
@@ -330,21 +352,8 @@ apt clean
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
 echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!\n"
 
-# REINICIO DE BSPWM
-while true; do
-    echo -e "\e[32m[*]\e[0m Se requiere volver a iniciar sesión para que cargue correctamente\n"
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Desea hacerlo ahora? (SI/NO): ")" reboot_bspwm
-    reboot_bspwm=$(echo "$reboot_bspwm" | tr '[:upper:]' '[:lower:]')
+# ADVERTENCIA
+echo -e "\e[33m[*]\e[0m Si no ha realizado una instalación limpia es posible que tenga que iniciar sesión nuevamente para que se apliquen los cambios correctamente.\n"
 
-    if [ "$reboot_bspwm" = "si" ] || [ "$reboot_bspwm" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Reiniciando entorno bspwm ...\n"
-        bspc -quit
-        break
-    elif [ "$reboot_bspwm" = "no" ] || [ "$reboot_bspwm" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m No se reiniciará el entorno bspwm.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
-done
+
 
