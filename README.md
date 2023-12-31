@@ -1,6 +1,6 @@
 # AutoBSPWM
 - Este script AutoBSPWM ha sido creado por investigación propia utilizando como base el curso de personalización de linux de la academia de Hack4u https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/.  
-- Ha sido testeado en kali linux nativo, se desconoce si puede acarrear problemas en otros sistemas operativos.  
+- Ha sido testeado en kali linux nativo, se desconoce si puede acarrear problemas en otros sistemas operativos o en máquinas virtuales.  
 - Si tienes alguna duda o deseas que implemente alguna nueva funcionalidad no dudes en consultarme.  
 
 # Instalación
