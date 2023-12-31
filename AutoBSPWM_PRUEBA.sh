@@ -49,9 +49,6 @@ execute_command() {
     fi
 }
 
-# Llamar a la función con el comando como argumento
-mostrar_si_cumple_condicion "ls -l"  # Ejemplo de comando
-
 # OBTENEMOS EL DIRECTORIO ACTUAL
 directorio_instalacion=$(pwd)
 
