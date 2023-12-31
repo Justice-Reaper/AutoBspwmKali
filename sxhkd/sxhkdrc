@@ -160,10 +160,6 @@ super + shift + b
 Print
 	flameshot gui
 
-# vscode
-super + shift + e
-	code
-
 # thunar
 super + shift + g
         thunar
