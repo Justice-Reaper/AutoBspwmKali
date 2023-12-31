@@ -327,9 +327,24 @@ apt autoremove -y &>/dev/null
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 apt clean 
 
-# REFRESCAMOS EL ENTORNO BSPWM
-killall -q picom
-/home/$input_username/.config/bspwm/bspwmrc &>/dev/null 
-
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
-echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!)\n"
+echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!\n"
+
+# REINICIO DE BSPWM
+while true; do
+    echo -e "\e[32m[*]\e[0m Se requiere volver a iniciar sesión para que cargue correctamente\n"
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Desea hacerlo ahora? (SI/NO): ")" reboot_bspwm
+    reboot_bspwm=$(echo "$reboot_bspwm" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$reboot_bspwm" = "si" ] || [ "$reboot_bspwm" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m Reiniciando entorno bspwm ...\n"
+        bspc -quit
+        break
+    elif [ "$reboot_bspwm" = "no" ] || [ "$reboot_bspwm" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m No se reiniciará el entorno bspwm.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
