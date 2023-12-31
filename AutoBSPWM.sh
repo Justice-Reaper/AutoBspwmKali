@@ -117,7 +117,7 @@ activar_clipboard_bidireccional(){
       
           if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
               echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
-              echo -e '\n#clipboard bidireccional\nvmware-user-suid-wrapper &' >> $directorio_instalacion/bspwm/bspwmrc
+              echo -e '\n# clipboard bidireccional\nvmware-user-suid-wrapper &' >> $directorio_instalacion/bspwm/bspwmrc
               break
           elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
               echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
@@ -200,12 +200,17 @@ while true; do
         sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc &>/dev/null 
         sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/.zshrc &>/dev/null 
         sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/.zshrc &>/dev/null 
-        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/.zshrc &>/dev/null 
+        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/.zshrc &>/dev/null
+
+        # INSERTAMOS EN EL SXHKDRC LOS SHORTCUS DE NVIM
+        echo -e "\e[32m[*]\e[0m Insertando shortcuts de nvim en el sxhkdrc ...\n"
+        echo -e '\n# nvim\nsuper + shift + e\n\tnvim' >> $directorio_instalacion/sxhkd/sxhkdrc   
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
         wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null 
         apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null 
+        echo -e '\n# vscode\nsuper + shift + e\n\tcode' >> $directorio_instalacion/sxhkd/sxhkdrc   
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
