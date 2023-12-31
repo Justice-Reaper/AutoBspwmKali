@@ -22,6 +22,36 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+# MODO DEVELOPER
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres ver el output de los comandos (dev mode)? (SI/NO): ")" dev_mode
+    dev_mode=$(echo "$dev_mode" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$dev_mode" = "si" ] || [ "$dev_mode" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m El modo developer ha sido activado, se verá el output de los comandos ejecutados.\n"
+        apt update &>/dev/null
+        break
+    elif [ "$dev_mode" = "no" ] || [ "$dev_mode" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m El modo developer no ha sido activado, no se verá el output de los comandos ejecutados.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
+# CONTROLAMOS EL OUTPUT DE LOS COMANDOS
+execute_command() {
+    comando="$1"
+    output=$(eval "$comando")
+
+     if [ "$dev_mode" = "si" ] || [ "$dev_mode" = "s" ]; then
+        echo "$output" 
+    fi
+}
+
+# Llamar a la función con el comando como argumento
+mostrar_si_cumple_condicion "ls -l"  # Ejemplo de comando
+
 # OBTENEMOS EL DIRECTORIO ACTUAL
 directorio_instalacion=$(pwd)
 
@@ -31,6 +61,7 @@ echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario p
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios: ")" input_username
     if id "$input_username" &>/dev/null; then
+        execute_command id "$input_username"
         echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
         
         while true; do
@@ -59,7 +90,7 @@ while true; do
 
     if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Ejecutando 'apt update' ...\n"
-        apt update &>/dev/null
+        execute_command apt update
         break
     elif [ "$respuesta_update" = "no" ] || [ "$respuesta_update" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Operación 'apt update' cancelada.\n"
@@ -76,7 +107,7 @@ while true; do
 
     if [ "$respuesta_upgrade" = "si" ] || [ "$respuesta_upgrade" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Ejecutando 'apt full-upgrade' ...\n"
-        apt full-upgrade -y &>/dev/null
+        execute_command apt full-upgrade -y
         break
     elif [ "$respuesta_upgrade" = "no" ] || [ "$respuesta_upgrade" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Operación 'apt full-upgrade' cancelada.\n"
@@ -88,7 +119,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y &>/dev/null
+execute_command apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
 
 # DRIVERS PROPIETARIOS NVIDIA
 install_nvidia_drivers(){
@@ -98,7 +129,7 @@ install_nvidia_drivers(){
       
           if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
               echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
-              apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y &>/dev/null 
+              execute_command apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
               break
           elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
               echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
@@ -117,7 +148,7 @@ activar_clipboard_bidireccional(){
       
           if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
               echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
-              echo -e '\n# clipboard bidireccional\nvmware-user-suid-wrapper &' >> $directorio_instalacion/bspwm/bspwmrc
+              execute_command echo -e '\n# clipboard bidireccional\nvmware-user-suid-wrapper &' >> $directorio_instalacion/bspwm/bspwmrc
               break
           elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
               echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
@@ -135,7 +166,7 @@ while true; do
 
     if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
         echo -e "\e[32m[*]\e[0m El sistema será configurado para una máquina virtual.\n"
-        sed -i '/backend = "glx";/d' $directorio_instalacion/picom/picom.conf
+        execute_command sed -i '/backend = "glx";/d' $directorio_instalacion/picom/picom.conf
         activar_clipboard_bidireccional
         break
     elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
@@ -148,23 +179,23 @@ while true; do
 done
 
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
-rm -rf /home/$input_username/.zshrc &>/dev/null &>/dev/null
-rm -rf /home/$input_username/.p10k.zsh &>/dev/null
-rm -rf /root/.zshrc &>/dev/null
-rm -rf /root/.p10k.zsh &>/dev/null
-rm -rf /root/.config/kitty &>/dev/null
-rm -rf /root/.config/nvim &>/dev/null
-rm -rf /opt/*nvim* &>/dev/null 
-rm -rf /home/$input_username/.config/kitty &>/dev/null
-rm -rf /home/$input_username/.config/polybar &>/dev/null
-rm -rf /home/$input_username/.config/picom &>/dev/null
-rm -rf /home/$input_username/.config/bspwm &>/dev/null
-rm -rf /home/$input_username/.config/nvim &>/dev/null
-rm -rf /home/$input_username/.config/sxhkd &>/dev/null
+execute_command rm -rf /home/$input_username/.zshrc
+execute_command rm -rf /home/$input_username/.p10k.zsh
+execute_command rm -rf /root/.zshrc
+execute_command rm -rf /root/.p10k.zsh
+execute_command rm -rf /root/.config/kitty
+execute_command rm -rf /root/.config/nvim
+execute_command rm -rf /opt/*nvim*
+execute_command rm -rf /home/$input_username/.config/kitty
+execute_command rm -rf /home/$input_username/.config/polybar
+execute_command rm -rf /home/$input_username/.config/picom
+execute_command rm -rf /home/$input_username/.config/bspwm
+execute_command rm -rf /home/$input_username/.config/nvim
+execute_command rm -rf /home/$input_username/.config/sxhkd
 
 # CREAMOS NUEVAS CONFIGURACIONES
-mkdir /root/.config &>/dev/null
-mkdir /home/$input_username/.config &>/dev/null
+execute_command mkdir /root/.config
+execute_command mkdir /home/$input_username/.config
 
 # EDITOR DE CÓDIGO
 while true; do
