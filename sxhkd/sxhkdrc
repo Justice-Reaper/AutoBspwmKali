@@ -31,7 +31,7 @@ super + shift + d
 	/home/user_replace/.config/rofi/launcher/launcher.sh
 
 # rofi powermenu
-super + shift + d
+super + shift + p
 	/home/user_replace/.config/rofi/powermenu/powermenu.sh
 
 # make sxhkd reload its configuration files:
