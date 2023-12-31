@@ -29,7 +29,6 @@ while true; do
 
     if [ "$dev_mode" = "si" ] || [ "$dev_mode" = "s" ]; then
         echo -e "\e[32m[*]\e[0m El modo developer ha sido activado, se verá el output de los comandos ejecutados.\n"
-        apt update &>/dev/null
         break
     elif [ "$dev_mode" = "no" ] || [ "$dev_mode" = "n" ]; then
         echo -e "\e[31m[*]\e[0m El modo developer no ha sido activado, no se verá el output de los comandos ejecutados.\n"
