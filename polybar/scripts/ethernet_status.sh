@@ -1,13 +1,13 @@
 #!/bin/sh
 
-IFACE_ETH0=$(ip addr show eth0 | grep "state UP" -A2 | awk '/inet / {print $2}' | cut -d'/' -f1)
-IFACE_WLAN0=$(ip addr show wlan0 | grep "state UP" -A2 | awk '/inet / {print $2}' | cut -d'/' -f1)
+IFACE_ETHERNET=$(ip addr show ethernet_replace | grep "state UP" -A2 | awk '/inet / {print $2}' | cut -d'/' -f1)
+IFACE_WIFI=$(ip addr show wifi_replace | grep "state UP" -A2 | awk '/inet / {print $2}' | cut -d'/' -f1)
 
-if [ -n "$IFACE_ETH0" ]; then
-    IP_ADDRESS="$IFACE_ETH0"
+if [ -n "$IFACE_ETHERNET" ]; then
+    IP_ADDRESS="$IFACE_ETHERNET"
     ICON="%{F#70A5EB}󰈀"  # Icono para eth0
-elif [ -n "$IFACE_WLAN0" ]; then
-    IP_ADDRESS="$IFACE_WLAN0"
+elif [ -n "$IFACE_WIFI" ]; then
+    IP_ADDRESS="$IFACE_WIFI"
     ICON="%{F#70A5EB}󰤢"  # Icono para wlan0
 else
     IP_ADDRESS="Disconnected"
