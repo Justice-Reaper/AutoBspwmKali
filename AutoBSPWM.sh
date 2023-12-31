@@ -135,6 +135,7 @@ while true; do
 
     if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
         echo -e "\e[32m[*]\e[0m El sistema será configurado para una máquina virtual.\n"
+        sed -i '/backend = "glx";/d' $directorio_instalacion/picom/picom.conf
         activar_clipboard_bidireccional
         break
     elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
