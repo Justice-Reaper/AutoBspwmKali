@@ -182,6 +182,29 @@ sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/* &>/dev
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh &>/dev/null 
 sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc &>/dev/null 
 
+# OBTENEMOS LAS INTERFACES DE RED
+interfaces=$(ip -o link show | awk -F': ' '{print $2}')
+
+wifi_interface=""
+for interface in $interfaces; do
+    if [[ $interface == *"wl"* ]]; then
+        wifi_interface=$interface
+        break
+    fi
+done
+
+ethernet_interface=""
+for interface in $interfaces; do
+    if [[ $interface == *"en"* || $interface == *"eth"* ]]; then
+        ethernet_interface=$interface
+        break
+    fi
+done
+
+# SUSTITUIMOS LAS INTERFACES DE RED EN LOS SCRIPTS DE LA POLYBAR
+sed -i "s/ethernet_replace/$ethernet_interface/g" "$directorio_instalacion/polybar/scripts/*" &>/dev/null 
+sed -i "s/wifi_replace/$wifi_interface/g" "$directorio_instalacion/polybar/scripts/*" &>/dev/null 
+
 # SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
 battery="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | tail -n 1)"
 adapter="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | head -n 1)"
