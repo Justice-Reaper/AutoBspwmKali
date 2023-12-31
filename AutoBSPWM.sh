@@ -202,8 +202,8 @@ for interface in $interfaces; do
 done
 
 # SUSTITUIMOS LAS INTERFACES DE RED EN LOS SCRIPTS DE LA POLYBAR
-sed -i "s/ethernet_replace/$ethernet_interface/g" "$directorio_instalacion/polybar/scripts/*" &>/dev/null 
-sed -i "s/wifi_replace/$wifi_interface/g" "$directorio_instalacion/polybar/scripts/*" &>/dev/null 
+sed -i "s/ethernet_replace/$ethernet_interface/g" $directorio_instalacion/polybar/scripts/* &>/dev/null 
+sed -i "s/wifi_replace/$wifi_interface/g" $directorio_instalacion/polybar/scripts/* &>/dev/null 
 
 # SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
 battery="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | tail -n 1)"
