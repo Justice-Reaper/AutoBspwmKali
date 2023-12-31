@@ -357,9 +357,3 @@ apt clean
 
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
 echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!\n"
-
-# ADVERTENCIA
-echo -e "\e[33m[*]\e[0m Si no ha realizado una instalación limpia es posible que tenga que iniciar sesión nuevamente para que se apliquen los cambios correctamente.\n"
-
-
-
