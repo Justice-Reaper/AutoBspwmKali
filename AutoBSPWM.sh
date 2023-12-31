@@ -157,7 +157,7 @@ done
 
 # DRIVERS PROPIETARIOS NVIDIA
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando kali linux en nativo y instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando kali linux en nativo y deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
     drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
 
     if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
