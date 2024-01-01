@@ -142,7 +142,7 @@ configuacion_portatil_sobremesa(){
               sed -i '/\[module\/backlight\]/,$d' $directorio_instalacion/polybar/config.ini 
               sed -i 's/battery //' $directorio_instalacion/polybar/config.ini 
               break
-          elif [ "$respuesta_laptop" = "no" ] || [ "$respuesta_laptop" = "n" ]; then
+          elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
               echo -e "\e[31m[*]\e[0m Configurando el sistema para un portátil ...\n"
               break
           else
