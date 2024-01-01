@@ -131,17 +131,17 @@ activar_clipboard_bidireccional(){
 # CONFIGURACIÓN PORTÁTIL O SOBREMESA
 configuacion_portatil_sobremesa(){
       while true; do
-          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un portátil? (SI/NO): ")" respuesta_laptop
-          respuesta_laptop=$(echo "$respuesta_laptop" | tr '[:upper:]' '[:lower:]')
+          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
+          respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
       
-          if [ "$respuesta_laptop" = "si" ] || [ "$respuesta_laptop" = "s" ]; then
-              echo -e "\e[31m[*]\e[0m Configurando el sistema para un portátil ...\n"
-              break
-          elif [ "$respuesta_laptop" = "no" ] || [ "$respuesta_laptop" = "n" ]; then
+          if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
               echo -e "\e[31m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
               echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
               sed -i '153,189d' $directorio_instalacion/polybar/config.ini &>/dev/null
               sed -i 's/battery //' $directorio_instalacion/polybar/config.ini &>/dev/null
+              break
+          elif [ "$respuesta_laptop" = "no" ] || [ "$respuesta_laptop" = "n" ]; then
+              echo -e "\e[31m[*]\e[0m Configurando el sistema para un portátil ...\n"
               break
           else
               echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
