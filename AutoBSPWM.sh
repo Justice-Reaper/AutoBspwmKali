@@ -137,7 +137,8 @@ configuacion_portatil_sobremesa(){
           if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
               echo -e "\e[31m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
               echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-              sed -i '153,189d' $directorio_instalacion/polybar/config.ini &>/dev/null
+              sed -i '/\[module\/backlight\]/{x;d;};x' $directorio_instalacion/polybar/config.ini &>/dev/null
+              sed -i '/\[module\/backlight\]/,$d' $directorio_instalacion/polybar/config.ini &>/dev/null
               sed -i 's/battery //' $directorio_instalacion/polybar/config.ini &>/dev/null
               break
           elif [ "$respuesta_laptop" = "no" ] || [ "$respuesta_laptop" = "n" ]; then
@@ -159,7 +160,8 @@ while true; do
         echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
         sed -i '/backend = "glx";/d' $directorio_instalacion/picom/picom.conf &>/dev/null
         echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-        sed -i '153,211d' $directorio_instalacion/polybar/config.ini &>/dev/null
+        sed -i '/\[module\/battery\]/{x;d;};x' $directorio_instalacion/polybar/config.ini &>/dev/null
+        sed -i '/\[module\/battery\]/,$d' $directorio_instalacion/polybar/config.ini &>/dev/null
         sed -i 's/battery //' $directorio_instalacion/polybar/config.ini &>/dev/null
         sed -i 's/backlight //' $directorio_instalacion/polybar/config.ini &>/dev/null
         rm -f $directorio_instalacion/polybar/scripts/increase_bright.sh &>/dev/null
@@ -199,6 +201,7 @@ mkdir /home/$input_username/.config &>/dev/null
 
 # EDITOR DE CÓDIGO
 while true; do
+    numero_lineas=$(wc -l < $directorio_instalacion/sxhkd/sxhkdrc)
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE): ")" code_editor
     code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
 
@@ -222,15 +225,15 @@ while true; do
         ln -s -f /home/$input_username/.config/nvim /root/.config/nvim &>/dev/null 
 
         echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '170,173d' $directorio_instalacion/sxhkd/sxhkdrc &>/dev/null
+        sed -i -e :a -e '$d;N;2,4ba' -e 'P;D' $directorio_instalacion/sxhkd/sxhkdrc &>/dev/null
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
         wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null 
         apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null 
         
-        sed -i '166,169d' $directorio_instalacion/sxhkd/sxhkdrc &>/dev/null
-        sed -i '270,272d' $directorio_instalacion/zshrc &>/dev/null
+        sed -i '/# neovim/,+3d' $directorio_instalacion/sxhkd/sxhkdrc &>/dev/null
+        sed -i '/# nvim/,+2d' $directorio_instalacion/zshrc &>/dev/null
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM' o 'VSCODE'.\n"
