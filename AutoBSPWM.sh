@@ -136,14 +136,14 @@ configuacion_portatil_sobremesa(){
           respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
       
           if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
-              echo -e "\e[31m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
+              echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
               echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
               sed -i '/\[module\/backlight\]/{x;d;};x' $directorio_instalacion/polybar/config.ini 
               sed -i '/\[module\/backlight\]/,$d' $directorio_instalacion/polybar/config.ini 
               sed -i 's/battery //' $directorio_instalacion/polybar/config.ini 
               break
           elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
-              echo -e "\e[31m[*]\e[0m Configurando el sistema para un portátil ...\n"
+              echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
               break
           else
               echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
