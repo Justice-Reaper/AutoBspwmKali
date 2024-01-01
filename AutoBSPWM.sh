@@ -128,18 +128,49 @@ activar_clipboard_bidireccional(){
       done
 }
 
+# CONFIGURACIÓN PORTÁTIL O SOBREMESA
+configuacion_portatil_sobremesa(){
+      while true; do
+          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un portátil? (SI/NO): ")" respuesta_laptop
+          respuesta_laptop=$(echo "$respuesta_laptop" | tr '[:upper:]' '[:lower:]')
+      
+          if [ "$respuesta_laptop" = "si" ] || [ "$respuesta_laptop" = "s" ]; then
+              echo -e "\e[31m[*]\e[0m Configurando el sistema para un portátil ...\n"
+              break
+          elif [ "$respuesta_laptop" = "no" ] || [ "$respuesta_laptop" = "n" ]; then
+              echo -e "\e[31m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
+              echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+              sed -i '153,189d' $directorio_instalacion/polybar/config.ini &>/dev/null
+              sed -i 's/battery //' $directorio_instalacion/polybar/config.ini &>/dev/null
+              break
+          else
+              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+          fi
+      done
+}
+
 # ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
     respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
 
     if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m El sistema será configurado para una máquina virtual.\n"
-        sed -i '/backend = "glx";/d' $directorio_instalacion/picom/picom.conf
+        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
+        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
+        sed -i '/backend = "glx";/d' $directorio_instalacion/picom/picom.conf &>/dev/null
+        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+        sed -i '153,211d' $directorio_instalacion/polybar/config.ini &>/dev/null
+        sed -i 's/battery //' $directorio_instalacion/polybar/config.ini &>/dev/null
+        sed -i 's/backlight //' $directorio_instalacion/polybar/config.ini &>/dev/null
+        rm -f $directorio_instalacion/polybar/scripts/increase_bright.sh &>/dev/null
+        rm -r $directorio_instalacion/polybar/scripts/decrease_bright.sh &>/dev/null
+        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+        sed -i '16,23d' $directorio_instalacion/sxhkd/sxhkdrc &>/dev/null
         activar_clipboard_bidireccional
         break
     elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
-        echo -e "\e[32m[*]\e[0m El sistema será configurado para uso nativo.\n"
+        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
+        configuacion_portatil_torre
         install_nvidia_drivers
         break
     else
@@ -148,7 +179,7 @@ while true; do
 done
 
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
-rm -rf /home/$input_username/.zshrc &>/dev/null &>/dev/null
+rm -rf /home/$input_username/.zshrc &>/dev/null
 rm -rf /home/$input_username/.p10k.zsh &>/dev/null
 rm -rf /root/.zshrc &>/dev/null
 rm -rf /root/.p10k.zsh &>/dev/null
@@ -172,7 +203,6 @@ while true; do
     code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
 
     if [ "$code_editor" = "nvim" ]; then
-        # INSTALANDO NVIM
         echo -e "\e[32m[*]\e[0m Instalando neovim ..."
         apt install npm -y &>/dev/null 
         api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
@@ -182,38 +212,28 @@ while true; do
         mv nvim-linux64 /opt &>/dev/null 
         chown -R root:root /opt/nvim-linux64
 
-        # INSTALANDO NVCHAD
         echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
         mkdir /home/$input_username/.config/nvim &>/dev/null 
         mkdir /root/.config/nvim &>/dev/null 
         git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1 &>/dev/null 
         git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1 &>/dev/null 
 
-        # CREANDO LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE NVIM DEL USUARIO ELEGIDO Y DE ROOT
         echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
         ln -s -f /home/$input_username/.config/nvim /root/.config/nvim &>/dev/null 
 
-        # INSERTAMOS EL ALIAS DE NVIM EN LA ZSHRC
-        echo -e "\e[32m[*]\e[0m Insertando alias de nvim en la zshrc ...\n"
-        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/zshrc &>/dev/null 
-        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/zshrc &>/dev/null 
-        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/zshrc &>/dev/null 
-        sed -i "/alias icat='kitty +kitten icat'/a alias nvim='\/opt\/nvim-linux64\/bin\/nvim'" $directorio_instalacion/.zshrc &>/dev/null 
-        sed -i "/alias icat='kitty +kitten icat'/a # nvim" $directorio_instalacion/.zshrc &>/dev/null 
-        sed -i '/alias icat='\''kitty +kitten icat'\''/{G;}' $directorio_instalacion/.zshrc &>/dev/null
-
-        # INSERTAMOS EN EL SXHKDRC LOS SHORTCUS DE NVIM
-        echo -e "\e[32m[*]\e[0m Insertando shortcuts de nvim en el sxhkdrc ...\n"
-        echo -e '\n# nvim\nsuper + shift + e\n\tnvim' >> $directorio_instalacion/sxhkd/sxhkdrc   
+        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+        sed -i '170,173d' $directorio_instalacion/sxhkd/sxhkdrc &>/dev/null
         break
     elif [ "$code_editor" = "vscode" ]; then
         echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
         wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb &>/dev/null 
         apt install ./code_1.85.1-1702462158_amd64.deb &>/dev/null 
-        echo -e '\n# vscode\nsuper + shift + e\n\tcode' >> $directorio_instalacion/sxhkd/sxhkdrc   
+        
+        sed -i '166,169d' $directorio_instalacion/sxhkd/sxhkdrc &>/dev/null
+        sed -i '270,272d' $directorio_instalacion/zshrc &>/dev/null
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM' o 'VSCODE'.\n"
     fi
 done
 
