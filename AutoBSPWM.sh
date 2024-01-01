@@ -170,7 +170,7 @@ while true; do
         break
     elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
         echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
-        configuacion_portatil_torre
+        configuacion_portatil_sobremesa
         install_nvidia_drivers
         break
     else
