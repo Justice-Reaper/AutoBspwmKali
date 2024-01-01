@@ -168,7 +168,7 @@ while true; do
         rm -f $directorio_instalacion/polybar/scripts/increase_bright.sh 
         rm -r $directorio_instalacion/polybar/scripts/decrease_bright.sh 
         echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '16,23d' $directorio_instalacion/sxhkd/sxhkdrc 
+        sed -i '/# increase bright/,+7d' sxhkdrc $directorio_instalacion/sxhkd/sxhkdrc 
         activar_clipboard_bidireccional
         break
     elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
