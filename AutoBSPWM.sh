@@ -381,3 +381,4 @@ apt clean
 
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
 echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!\n"
+echo -e "\e[32m[*]\e[0m Se recomienda volver a iniciar sesión para que la configuración cargue correctamente\n"
