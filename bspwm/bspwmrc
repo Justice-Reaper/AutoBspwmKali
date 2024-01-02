@@ -18,6 +18,9 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
+# bidirectional clipboard
+vmware-user-suid-wrapper &
+
 # fix java error
 wmname LG3D &
 export _JAVA_AWT_WM_NONREPARENTING=1
