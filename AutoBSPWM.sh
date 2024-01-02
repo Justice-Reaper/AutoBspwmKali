@@ -309,9 +309,6 @@ while true; do
         echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
         wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb  
         apt install ./code_1.85.1-1702462158_amd64.deb  
-        
-        sed -i '/# neovim/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc 
-        sed -i '/# nvim/,+2d' /home/$input_username/.zshrc 
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM' o 'VSCODE'.\n"
