@@ -164,10 +164,6 @@ Print
 super + shift + g
         thunar
 
-# neovim
-super + shift + e
-	nvim
-
 # vscode
 super + shift + e
 	code
