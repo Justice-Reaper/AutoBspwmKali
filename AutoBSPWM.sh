@@ -91,97 +91,8 @@ done
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
 
-# DRIVERS PROPIETARIOS NVIDIA
-install_nvidia_drivers(){
-    while true; do
-          read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
-          drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
-      
-          if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
-              echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
-              apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
-              break
-          elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
-              echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
-              break
-          else
-              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-          fi
-      done
-}
-
-# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
-activar_clipboard_bidireccional(){
-      while true; do
-          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
-          respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
-      
-          if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
-              echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
-              echo -e '\n# clipboard bidireccional\nvmware-user-suid-wrapper &' >> $directorio_instalacion/bspwm/bspwmrc
-              break
-          elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
-              echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
-              break
-          else
-              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-          fi
-      done
-}
-
-# CONFIGURACIÓN PORTÁTIL O SOBREMESA
-configuacion_portatil_sobremesa(){
-      while true; do
-          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
-          respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
-      
-          if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
-              echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
-              echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-              sed -i '/\[module\/backlight\]/{x;d;};x' $directorio_instalacion/polybar/config.ini 
-              sed -i '/\[module\/backlight\]/,$d' $directorio_instalacion/polybar/config.ini 
-              sed -i 's/battery //' $directorio_instalacion/polybar/config.ini 
-              break
-          elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
-              echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
-              break
-          else
-              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-          fi
-      done
-}
-
-# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
-    respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
-        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
-        sed -i '/backend = "glx";/d' $directorio_instalacion/picom/picom.conf 
-        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-        sed -i '/\[module\/battery\]/{x;d;};x' $directorio_instalacion/polybar/config.ini 
-        sed -i '/\[module\/battery\]/,$d' $directorio_instalacion/polybar/config.ini 
-        sed -i 's/battery //' $directorio_instalacion/polybar/config.ini 
-        sed -i 's/backlight //' $directorio_instalacion/polybar/config.ini 
-        rm -f $directorio_instalacion/polybar/scripts/increase_bright.sh 
-        rm -r $directorio_instalacion/polybar/scripts/decrease_bright.sh 
-        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '/# increase bright/,+7d' sxhkdrc $directorio_instalacion/sxhkd/sxhkdrc 
-        activar_clipboard_bidireccional
-        break
-    elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
-        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
-        configuacion_portatil_sobremesa
-        install_nvidia_drivers
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
-done
-
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
+echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
 rm -rf /home/$input_username/.zshrc 
 rm -rf /home/$input_username/.p10k.zsh 
 rm -rf /root/.zshrc 
@@ -197,89 +108,9 @@ rm -rf /home/$input_username/.config/nvim
 rm -rf /home/$input_username/.config/sxhkd 
 
 # CREAMOS NUEVAS CONFIGURACIONES
+echo -e "\e[32m[*]\e[0m Creando nuevas configuraciones ...\n"
 mkdir /root/.config 
 mkdir /home/$input_username/.config 
-
-# EDITOR DE CÓDIGO
-while true; do
-    numero_lineas=$(wc -l < $directorio_instalacion/sxhkd/sxhkdrc)
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE): ")" code_editor
-    code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$code_editor" = "nvim" ]; then
-        echo -e "\e[32m[*]\e[0m Instalando neovim ..."
-        apt install npm -y  
-        api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
-        download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
-        wget $download_url  
-        tar -xf nvim-linux64.tar.gz  
-        mv nvim-linux64 /opt  
-        chown -R root:root /opt/nvim-linux64
-
-        echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
-        mkdir /home/$input_username/.config/nvim  
-        mkdir /root/.config/nvim  
-        git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1  
-        git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1  
-
-        echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
-        ln -s -f /home/$input_username/.config/nvim /root/.config/nvim  
-
-        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '/# vscode/{x;d;};x' $directorio_instalacion/sxhkd/sxhkdrc
-        sed -i '/# vscode/,+2d' $directorio_instalacion/sxhkd/sxhkdrc 
-        break
-    elif [ "$code_editor" = "vscode" ]; then
-        echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
-        wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb  
-        apt install ./code_1.85.1-1702462158_amd64.deb  
-        
-        sed -i '/# neovim/,+3d' $directorio_instalacion/sxhkd/sxhkdrc 
-        sed -i '/# nvim/,+2d' $directorio_instalacion/zshrc 
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM' o 'VSCODE'.\n"
-    fi
-done
-
-# SUSTITUIMOS USER_REPLACE POR EL USUARIO ELEGIDO
-echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/*  
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/polybar/scripts/*  
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/*  
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/bspwm/scripts*  
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/sxhkd/*  
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/p10k.zsh  
-sed -i "s/user_replace/$input_username/g" $directorio_instalacion/zshrc  
-
-# OBTENEMOS LAS INTERFACES DE RED
-interfaces=$(ip -o link show | awk -F': ' '{print $2}')
-
-wifi_interface=""
-for interface in $interfaces; do
-    if [[ $interface == *"wl"* ]]; then
-        wifi_interface=$interface
-        break
-    fi
-done
-
-ethernet_interface=""
-for interface in $interfaces; do
-    if [[ $interface == *"en"* || $interface == *"eth"* ]]; then
-        ethernet_interface=$interface
-        break
-    fi
-done
-
-# SUSTITUIMOS LAS INTERFACES DE RED EN LOS SCRIPTS DE LA POLYBAR
-sed -i "s/ethernet_replace/$ethernet_interface/g" $directorio_instalacion/polybar/scripts/*  
-sed -i "s/wifi_replace/$wifi_interface/g" $directorio_instalacion/polybar/scripts/*  
-
-# SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
-battery="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | tail -n 1)"
-adapter="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | head -n 1)"
-sed -i "s/battery_replace/$battery/g" "$directorio_instalacion/polybar/config.ini"  
-sed -i "s/adapter_replace/$adapter/g" "$directorio_instalacion/polybar/config.ini"  
 
 # CONFIGURANDO FONTS
 echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
@@ -301,10 +132,6 @@ cp -r sxhkd /home/$input_username/.config
 echo -e "\e[32m[*]\e[0m Configurando kitty ...\n"
 cp -r kitty /home/$input_username/.config
 cp -r kitty /root/.config
-
-# CREAMOS UN LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE LA KITTY DEL USUARIO ELEGIDO Y LOS DE ROOT
-echo -e "\e[32m[*]\e[0m Creando link simbólico en kitty.conf y kitty.color ...\n"
-ln -s -f /home/$input_username/.config/kitty /root/.config/kitty
 
 # CONFIGURANDO PICOM
 echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
@@ -359,6 +186,180 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerleve
 sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc"  
 cp .p10k.zsh /root 
 cp .zshrc /root
+
+# DRIVERS PROPIETARIOS NVIDIA
+install_nvidia_drivers(){
+    while true; do
+          read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
+          drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
+      
+          if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
+              echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
+              apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
+              break
+          elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
+              echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
+              break
+          else
+              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+          fi
+      done
+}
+
+# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
+activar_clipboard_bidireccional(){
+      while true; do
+          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
+          respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
+      
+          if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
+              echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
+              break
+          elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
+              echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
+              sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
+              break
+          else
+              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+          fi
+      done
+}
+
+# CONFIGURACIÓN PORTÁTIL O SOBREMESA
+configuacion_portatil_sobremesa(){
+      while true; do
+          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
+          respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
+      
+          if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
+              echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
+              echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+              sed -i '/\[module\/backlight\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+              sed -i '/\[module\/backlight\]/,$d' /home/$input_username/.config/polybar/config.ini 
+              sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
+              break
+          elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
+              echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
+              break
+          else
+              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+          fi
+      done
+}
+
+# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
+    respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
+        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
+        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf 
+        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+        sed -i '/\[module\/battery\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+        sed -i '/\[module\/battery\]/,$d' /home/$input_username/.config/polybar/config.ini 
+        sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
+        sed -i 's/backlight //' /home/$input_username/.config/polybar/config.ini 
+        rm -f /home/$input_username/.config/polybar/scripts/increase_bright.sh 
+        rm -r /home/$input_username/.config/polybar/scripts/decrease_bright.sh 
+        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+        sed -i '/# increase bright/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        activar_clipboard_bidireccional
+        break
+    elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
+        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
+        configuacion_portatil_sobremesa
+        install_nvidia_drivers
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
+# EDITOR DE CÓDIGO
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE): ")" code_editor
+    code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$code_editor" = "nvim" ]; then
+        echo -e "\e[32m[*]\e[0m Instalando neovim ..."
+        apt install npm -y  
+        api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
+        download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
+        wget $download_url  
+        tar -xf nvim-linux64.tar.gz  
+        mv nvim-linux64 /opt  
+        chown -R root:root /opt/nvim-linux64
+
+        echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
+        mkdir /home/$input_username/.config/nvim  
+        mkdir /root/.config/nvim  
+        git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1  
+        git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1  
+
+        echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
+        ln -s -f /home/$input_username/.config/nvim /root/.config/nvim  
+
+        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+        sed -i '/# vscode/{x;d;};x' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/# vscode/,+2d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        break
+    elif [ "$code_editor" = "vscode" ]; then
+        echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
+        wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb  
+        apt install ./code_1.85.1-1702462158_amd64.deb  
+        
+        sed -i '/# neovim/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        sed -i '/# nvim/,+2d' /home/$input_username/.zshrc 
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM' o 'VSCODE'.\n"
+    fi
+done
+
+# SUSTITUIMOS USER_REPLACE POR EL USUARIO ELEGIDO
+echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/*  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/scripts/*  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/*  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/scripts*  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/*  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.p10k.zsh  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.zshrc  
+
+# OBTENEMOS LAS INTERFACES DE RED
+interfaces=$(ip -o link show | awk -F': ' '{print $2}')
+
+wifi_interface=""
+for interface in $interfaces; do
+    if [[ $interface == *"wl"* ]]; then
+        wifi_interface=$interface
+        break
+    fi
+done
+
+ethernet_interface=""
+for interface in $interfaces; do
+    if [[ $interface == *"en"* || $interface == *"eth"* ]]; then
+        ethernet_interface=$interface
+        break
+    fi
+done
+
+# SUSTITUIMOS LAS INTERFACES DE RED EN LOS SCRIPTS DE LA POLYBAR
+sed -i "s/ethernet_replace/$ethernet_interface/g" /home/$input_username/.config/polybar/scripts/*  
+sed -i "s/wifi_replace/$wifi_interface/g" /home/$input_username/.config/polybar/scripts/*  
+
+# SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
+battery="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | tail -n 1)"
+adapter="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | head -n 1)"
+sed -i "s/battery_replace/$battery/g" "/home/$input_username/.config/polybar/config.ini"  
+sed -i "s/adapter_replace/$adapter/g" "/home/$input_username/.config/polybar/config.ini"  
+
+# CREAMOS UN LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE LA KITTY DEL USUARIO ELEGIDO Y LOS DE ROOT
+echo -e "\e[32m[*]\e[0m Creando link simbólico en kitty.conf y kitty.color ...\n"
+ln -s -f /home/$input_username/.config/kitty /root/.config/kitty
 
 # CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DEL USUARIO ELEGIDO Y LA ZSHRC DE ROOT
 echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
