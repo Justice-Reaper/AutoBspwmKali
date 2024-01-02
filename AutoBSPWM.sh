@@ -257,8 +257,8 @@ while true; do
         echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
         sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf 
         echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-        sed -i '/\[module\/battery\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-        sed -i '/\[module\/battery\]/,$d' /home/$input_username/.config/polybar/config.ini 
+        sed -i '/\[module\/backlight\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+        sed -i '/\[module\/backlight\]/,$d' /home/$input_username/.config/polybar/config.ini 
         sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
         sed -i 's/backlight //' /home/$input_username/.config/polybar/config.ini 
         rm -f /home/$input_username/.config/polybar/scripts/increase_bright.sh 
