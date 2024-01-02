@@ -93,10 +93,10 @@ apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar bette
 
 # ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
-rm -rf /home/$input_username/.zshrc 
-rm -rf /home/$input_username/.p10k.zsh 
-rm -rf /root/.zshrc 
-rm -rf /root/.p10k.zsh 
+rm -f /home/$input_username/.zshrc 
+rm -f /home/$input_username/.p10k.zsh 
+rm -f /root/.zshrc 
+rm -f /root/.p10k.zsh 
 rm -rf /root/.config/kitty 
 rm -rf /root/.config/nvim 
 rm -rf /opt/*nvim*  
