@@ -230,7 +230,7 @@ configuacion_portatil_sobremesa(){
       while true; do
           read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
           respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
-      
+          sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
           if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
               echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
               echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
