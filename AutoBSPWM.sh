@@ -226,7 +226,7 @@ while true; do
         ln -s -f /home/$input_username/.config/nvim /root/.config/nvim  
 
         echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '/# vscode/{x;d;};x' $directorio_instalacion/polybar/config.ini 
+        sed -i '/# vscode/{x;d;};x' $directorio_instalacion/sxhkd/sxhkdrc
         sed -i '/# vscode/,+2d' $directorio_instalacion/sxhkd/sxhkdrc 
         break
     elif [ "$code_editor" = "vscode" ]; then
