@@ -234,8 +234,8 @@ configuacion_portatil_sobremesa(){
           if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
               echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
               echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-              sed -i '/\[module\/backlight\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-              sed -i '/\[module\/backlight\]/,$d' /home/$input_username/.config/polybar/config.ini 
+              sed -i '/\[module\/battery\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+              sed -i '/\[module\/battery\]/,$d' /home/$input_username/.config/polybar/config.ini 
               sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
               break
           elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
