@@ -269,7 +269,7 @@ alias ls='lsd --group-dirs=first'
 alias icat='kitty +kitten icat'
 
 # nvim
-alias icat='/opt/nvim-linux64/bin/nvim'
+alias nvim='/opt/nvim-linux64/bin/nvim'
 
 # fzf
 source /usr/share/doc/fzf/examples/completion.zsh
