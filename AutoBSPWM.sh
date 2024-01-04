@@ -360,8 +360,8 @@ sed -i "s/ethernet_replace/$ethernet_interface/g" /home/$input_username/.config/
 sed -i "s/wifi_replace/$wifi_interface/g" /home/$input_username/.config/polybar/scripts/*  
 
 # SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
-battery="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | tail -n 1)"
-adapter="$(ls -1 /sys/class/power_supply/ | cut -d'/' -f8- | head -n 1)"
+battery="$(ls -1 /sys/class/power_supply | grep "BA" | cut -d'/' -f8-)"
+adapter="$(ls -1 /sys/class/power_supply | grep "AC" | cut -d'/' -f8-)"
 sed -i "s/battery_replace/$battery/g" "/home/$input_username/.config/polybar/config.ini"  
 sed -i "s/adapter_replace/$adapter/g" "/home/$input_username/.config/polybar/config.ini"  
 
