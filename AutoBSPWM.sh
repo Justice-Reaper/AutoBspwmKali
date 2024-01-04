@@ -106,6 +106,7 @@ rm -rf /home/$input_username/.config/picom
 rm -rf /home/$input_username/.config/bspwm 
 rm -rf /home/$input_username/.config/nvim 
 rm -rf /home/$input_username/.config/sxhkd 
+rm -rf /usr/local/share/fonts
 
 # CREAMOS NUEVAS CONFIGURACIONES
 echo -e "\e[32m[*]\e[0m Creando nuevas configuraciones ...\n"
