@@ -91,7 +91,7 @@ done
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
 apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
 
-# ELIMINAMOS LAS ANTIGUAS CONFIGURACIONES
+# ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
 rm -f /home/$input_username/.zshrc 
 rm -f /home/$input_username/.p10k.zsh 
@@ -106,6 +106,9 @@ rm -rf /home/$input_username/.config/picom
 rm -rf /home/$input_username/.config/bspwm 
 rm -rf /home/$input_username/.config/nvim 
 rm -rf /home/$input_username/.config/sxhkd 
+
+# ELIMINAMOS LAS FUENTES ANTIGUAS
+echo -e "\e[32m[*]\e[0m Eliminando fuentes antiguas ...\n"
 rm -rf /usr/local/share/fonts
 
 # CREAMOS NUEVAS CONFIGURACIONES
@@ -278,41 +281,52 @@ while true; do
     fi
 done
 
+instalacion_nvim(){
+    echo -e "\e[32m[*]\e[0m Instalando neovim ..."
+    apt install npm -y  
+    api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
+    download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
+    wget $download_url  
+    tar -xf nvim-linux64.tar.gz  
+    mv nvim-linux64 /opt  
+    chown -R root:root /opt/nvim-linux64
+
+    echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
+    mkdir /home/$input_username/.config/nvim  
+    mkdir /root/.config/nvim  
+    git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1  
+    git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1  
+
+    echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
+    ln -s -f /home/$input_username/.config/nvim /root/.config/nvim  
+}
+
+instalacion_vscode(){
+    echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
+    wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb  
+    apt install ./code_1.85.1-1702462158_amd64.deb  
+}
+
 # EDITOR DE CÓDIGO
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE): ")" code_editor
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE/AMBOS): ")" code_editor
     code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
 
     if [ "$code_editor" = "nvim" ]; then
-        echo -e "\e[32m[*]\e[0m Instalando neovim ..."
-        apt install npm -y  
-        api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
-        download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
-        wget $download_url  
-        tar -xf nvim-linux64.tar.gz  
-        mv nvim-linux64 /opt  
-        chown -R root:root /opt/nvim-linux64
-
-        echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
-        mkdir /home/$input_username/.config/nvim  
-        mkdir /root/.config/nvim  
-        git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1  
-        git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1  
-
-        echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
-        ln -s -f /home/$input_username/.config/nvim /root/.config/nvim  
-
+        instalacion_nvim
         echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
         sed -i '/# vscode/{x;d;};x' /home/$input_username/.config/sxhkd/sxhkdrc
         sed -i '/# vscode/,+2d' /home/$input_username/.config/sxhkd/sxhkdrc 
         break
     elif [ "$code_editor" = "vscode" ]; then
-        echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
-        wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb  
-        apt install ./code_1.85.1-1702462158_amd64.deb  
+        instalacion_vscode
+        break
+    elif [ "$code_editor" = "ambos" ]; then
+        instalacion_nvim
+        instalacion_vscode
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM' o 'VSCODE'.\n"
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM', 'VSCODE' o 'AMBOS'.\n"
     fi
 done
 
