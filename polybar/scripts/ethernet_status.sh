@@ -9,9 +9,11 @@ for interface in $interfaces; do
     if echo "$interface" | grep -q "wl"; then
         ip_address=$(ip addr show $interface | awk '/inet / {print $2}' | cut -d'/' -f1)
         icon="%{F#70A5EB}󰈀"
+        break
     elif echo "$interface" | grep -q "en\|eth"; then
         ip_address=$(ip addr show $interface | awk '/inet / {print $2}' | cut -d'/' -f1)
         icon="%{F#70A5EB}󰤢"
+        break
     else
         ip_address="Disconnected"
         icon="%{F#70A5EB}󱘖"
