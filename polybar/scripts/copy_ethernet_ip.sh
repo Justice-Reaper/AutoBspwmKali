@@ -19,12 +19,12 @@ done
 ip_address=""
 icon=""
 
-if [ -n "$ethernet_interface" ]; then
-    ip_address=$(ip addr show $ethernet_interface | awk '/inet / {print $2}' | cut -d'/' -f1)
-fi
-
 if [ -n "$wifi_interface" ]; then
     ip_address=$(ip addr show $wifi_interface | awk '/inet / {print $2}' | cut -d'/' -f1)
+fi
+
+if [ -n "$ethernet_interface" ]; then
+    ip_address=$(ip addr show $ethernet_interface | awk '/inet / {print $2}' | cut -d'/' -f1)
 fi
 
 echo -n "$ip_address" | xclip -sel clip
