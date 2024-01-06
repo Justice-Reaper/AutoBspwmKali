@@ -22,12 +22,14 @@ icon=""
 if [ -n "$ethernet_interface" ]; then
     ip_address=$(ip addr show $ethernet_interface | awk '/inet / {print $2}' | cut -d'/' -f1)
     icon="%{F#70A5EB}󰈀"
+fi
 
-elif [ -n "$wifi_interface" ]; then
+if [ -n "$wifi_interface" ]; then
     ip_address=$(ip addr show $wifi_interface | awk '/inet / {print $2}' | cut -d'/' -f1)
     icon="%{F#70A5EB}󰤢"
+fi
 
-else
+if [ -z "$wifi_interface" ] && [ -z "$ethernet_interface" ]; then
     ip_address="Disconnected"
     icon="%{F#70A5EB}󱘖"
 fi
