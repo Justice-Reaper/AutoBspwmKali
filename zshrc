@@ -309,7 +309,7 @@ function cleartarget(){
 function settarget(){
     ip_regex='^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
     if [ $# -eq 1 ] && [[ $1 =~ $ip_regex ]]; then
-        echo $1 > /home/justice-reaper/.config/bin/target
+        echo $1 > /home/user_replace/.config/bin/target
     else
         echo "settarget [IP]"
     fi
