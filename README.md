@@ -102,6 +102,7 @@ chmod +x AutoBSPWM.sh
 <kbd>F4</kbd>: Pegar contenido de la segunda clipboard de la kitty.  
 
 ## Shortcuts de la Zsh
+<kbd>Alt</kbd> + <kbd>.</kbd>: Insertar el argumento del comando anterior.  
 <kbd>Ctrl</kbd> + <kbd>U</kbd>: Eliminar toda la línea.  
 <kbd>Alt</kbd> + <kbd>Supr</kbd>: Eliminar una palabra.  
 <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Desplazarse entre palabras.  
