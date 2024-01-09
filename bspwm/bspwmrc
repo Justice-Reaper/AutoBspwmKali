@@ -32,15 +32,15 @@ feh --bg-fill /home/user_replace/Wallpapers/wallpaper.jpg &
 brillo_actual=$(cat /sys/class/backlight/amdgpu_bl0/brightness)
 
 if [ "$brillo_actual" = "12" ]; then
-    echo '0' > /sys/class/backlight/amdgpu_bl0/brightness && brightnessctl -q s 1 && brightnessctl -q s 0
+    echo '0' > /sys/class/backlight/*/brightness && brightnessctl -q s 1 && brightnessctl -q s 0
 fi
 
 # polybar
 killall -q polybar
-while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+sleep 1
 polybar &
 
 # picom
 killall -q picom
-while pgrep -u $UID -x picom >/dev/null; do sleep 1; done
+sleep 1
 picom &
