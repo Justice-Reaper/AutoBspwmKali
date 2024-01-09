@@ -257,7 +257,7 @@ while true; do
     if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
         echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
-        sed -i '/# bright/,+7d' /home/$input_username/.config/bspwm/bspwmrc
+        sed -i '/# bright/,+6d' /home/$input_username/.config/bspwm/bspwmrc
         echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
         sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf 
         echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
