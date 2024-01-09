@@ -302,6 +302,10 @@ function mkt(){
         mkdir {nmap,content,exploits,scripts}
 }
 
+function clearhistory(){
+    echo '' > ~/.zsh_history
+}
+
 function cleartarget(){
     echo '' > /home/user_replace/.config/bin/target
 }
