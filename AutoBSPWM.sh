@@ -89,7 +89,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick brightnessctl feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
+apt install imagemagick feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
 
 # ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
@@ -230,7 +230,7 @@ configuacion_portatil_sobremesa(){
       while true; do
           read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
           respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
-          sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
+
           if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
               echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
               echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
@@ -245,6 +245,8 @@ configuacion_portatil_sobremesa(){
               echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
           fi
       done
+      sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc
+      sudo apt install brightnessctl -y
 }
 
 # ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
@@ -254,6 +256,8 @@ while true; do
 
     if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
+        echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
+        sed -i '/# bright/,+7d' /home/$input_username/.config/bspwm/bspwmrc
         echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
         sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf 
         echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
