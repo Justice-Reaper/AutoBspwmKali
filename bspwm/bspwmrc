@@ -29,10 +29,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 feh --bg-fill /home/user_replace/Wallpapers/wallpaper.jpg &
 
 # bright
-brillo_actual=$(cat /sys/class/backlight/amdgpu_bl0/brightness)
+brillo_actual=$(cat /sys/class/backlight/*/brightness)
 
 if [ "$brillo_actual" = "12" ]; then
-    echo '0' > /sys/class/backlight/*/brightness && brightnessctl -q s 1 && brightnessctl -q s 0
+    echo '0' > /sys/class/backlight/*/brightness
 fi
 
 # polybar
