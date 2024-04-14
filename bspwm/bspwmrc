@@ -37,10 +37,8 @@ fi
 
 # polybar
 killall -q polybar
-sleep 1
-polybar &
+sleep 1 && polybar &
 
 # picom
 killall -q picom
-sleep 1
-picom &
+sleep 1 && picom --config /home/user_replace/.config/picom/picom.conf &
