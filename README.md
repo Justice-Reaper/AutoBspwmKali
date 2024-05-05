@@ -10,7 +10,7 @@
 git clone https://github.com/Justice-Reaper/AutoBSPWM.git  
 cd AutoBSPWM/  
 chmod +x AutoBSPWM.sh  
-./AutoBSPWM.sh  
+sudo ./AutoBSPWM.sh  
 ```
 
 ## Vista general
