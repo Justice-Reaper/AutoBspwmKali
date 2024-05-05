@@ -368,7 +368,7 @@ apt autoremove -y
 
 # ELIMINAMOS LOS ARCHIVOS DE CACHÉ
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
-apt clean 
+apt clean -y
 
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
 echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!\n"
