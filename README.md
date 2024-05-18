@@ -39,6 +39,11 @@ sudo ./AutoBSPWM.sh
 - **npm**: Administrador de paquetes que simplifica la gestión de dependencias y módulos en proyectos.
 - **nvchad**: Un conjunto de configuraciones y complementos preconfigurados para Neovim, que mejora la experiencia de uso de este potente editor de texto.
 
+## Shortcuts IP's
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F1</kbd> : Copiar dirección ip del equipo local.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F2</kbd> : Copiar dirección ip de la vpn.  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F3</kbd> : Copiar dirección ip del target.  
+
 ## Shortcuts de Ventanas
 <kbd>Windows</kbd> + <kbd>S</kbd>: Crear ventanas flotantes.  
 <kbd>Windows</kbd> + <kbd>Right click</kbd>: Resizear ventanas flotantes.  
