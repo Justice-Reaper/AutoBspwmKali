@@ -169,13 +169,13 @@ super + shift + e
 	code
 
 # copy local ip address
-super + F1
+super + shift + F1
         /home/user_replace/.config/polybar/scripts/copy_ethernet_ip.sh
 
 # copy vpn ip address
-super + F2
+super + shift + F2
         /home/user_replace/.config/polybar/scripts/copy_vpn_ip.sh     
 
 # copy target ip address
-super + F3
+super + shift + F3
         /home/user_replace/.config/polybar/scripts/copy_target_ip.sh
