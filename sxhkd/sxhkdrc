@@ -167,3 +167,15 @@ super + shift + g
 # vscode
 super + shift + e
 	code
+
+# copy local ip address
+super + F1
+        /home/user_replace/.config/polybar/scripts/copy_ethernet_ip.sh
+
+# copy vpn ip address
+super + F2
+        /home/user_replace/.config/polybar/scripts/copy_vpn_ip.sh     
+
+# copy target ip address
+super + F3
+        /home/user_replace/.config/polybar/scripts/copy_target_ip.sh
