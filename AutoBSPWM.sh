@@ -309,8 +309,10 @@ instalacion_nvim(){
 
 instalacion_vscode(){
     echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
-    wget  https://vscode.download.prss.microsoft.com/dbazure/download/stable/0ee08df0cf4527e40edc9aa28f4b5bd38bbff2b2/code_1.85.1-1702462158_amd64.deb  
-    apt install ./code_1.85.1-1702462158_amd64.deb  
+    LATEST_RELEASE=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+    DOWNLOAD_URL="https://update.code.visualstudio.com/$LATEST_RELEASE/linux-deb-x64/stable"
+    wget -O vscode-latest.deb $DOWNLOAD_URL
+    apt install ./vscode-latest.deb  
 }
 
 # EDITOR DE CÓDIGO
