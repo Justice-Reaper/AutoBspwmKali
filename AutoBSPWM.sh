@@ -294,8 +294,8 @@ instalacion_nvim(){
     echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
     mkdir /home/$input_username/.config/nvim  
     mkdir /root/.config/nvim  
-    git clone https://github.com/NvChad/NvChad /home/$input_username/.config/nvim --depth 1  
-    git clone https://github.com/NvChad/NvChad /root/.config/nvim --depth 1  
+    git clone https://github.com/NvChad/starter /home/$input_username/.config/nvim  
+    git clone https://github.com/NvChad/starter /root/.config/nvim
 
     echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
     ln -s -f /home/$input_username/.config/nvim /root/.config/nvim  
