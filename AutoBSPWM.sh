@@ -117,9 +117,8 @@ echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
 mkdir fonts
 LATEST_RELEASE=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/$LATEST_RELEASE/Hack.zip
-mv Hack.zip fonts/
-unzip $(pwd)/fonts/Hack.zip
-rm $(pwd)/fonts/Hack.zip
+unzip -o Hack.zip
+mv *.ttf fonts/
 cp -r fonts /usr/local/share 
 
 # CONFIGURANDO WALLPAPERS
