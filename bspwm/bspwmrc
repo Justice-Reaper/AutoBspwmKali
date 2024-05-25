@@ -47,4 +47,4 @@ if pgrep -x "picom" > /dev/null
 then
     killall -q picom && sleep 1
 fi
-picom --config /home/user_replace/.config/picom/picom.conf &
+picom --config /home/user_replace/.config/picom/picom.conf --daemon &
