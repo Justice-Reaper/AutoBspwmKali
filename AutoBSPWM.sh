@@ -317,26 +317,73 @@ instalacion_vscode(){
     apt install ./vscode-latest.deb  
 }
 
-# EDITOR DE CÓDIGO
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Qué editor de código deseas utilizar? (NVIM/VSCODE/AMBOS): ")" code_editor
-    code_editor=$(echo "$code_editor" | tr '[:upper:]' '[:lower:]')
+instalacion_toolbox_jetbrains(){
+   echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
+   URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
+   latest_info=$(curl -s $URL)
+   download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
+   wget -O jetbrains-toolbox.tar.gz $download_link
+   tar -xzf jetbrains-toolbox.tar.gz
+   cd $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/")
+   mkdir jetbrains-toolbox
+   mv jetbrains-toolbox /jetbrains-toolbox
+   mv jetbrains-toolbox /opt
+   cd ..   
+}
 
-    if [ "$code_editor" = "nvim" ]; then
+# NVIM
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar NVIM? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
         instalacion_nvim
-        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Nvim no ha sido instalado.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
+# VSCODE
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar VSCODE? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        instalacion_vscode
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Vscode no ha sido instalado.\n"
         sed -i '/# vscode/{x;d;};x' /home/$input_username/.config/sxhkd/sxhkdrc
         sed -i '/# vscode/,+2d' /home/$input_username/.config/sxhkd/sxhkdrc 
         break
-    elif [ "$code_editor" = "vscode" ]; then
-        instalacion_vscode
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
+# TOOLBOX JETBRAINS
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar TOOLBOX JETBRAINS? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        instalacion_toolbox_jetbrains
         break
-    elif [ "$code_editor" = "ambos" ]; then
-        instalacion_nvim
-        instalacion_vscode
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        sed -i '/# toolbox jetbrains/{x;d;x;d}' "/home/$input_username/.zshrc"
+        sed -i '/# toolbox jetbrains/{N;d;}' "/home/$input_username/.zshrc"
+        sed -i '/# toolbox jetbrains/d' "/home/$input_username/.zshrc"
+        sed -i '/# toolbox jetbrains/{x;d;x;d}' "/home/root/.zshrc"
+        sed -i '/# toolbox jetbrains/{N;d;}' "/home/root/.zshrc"
+        sed -i '/# toolbox jetbrains/d' "/home/root/.zshrc"
+        echo -e "\e[31m[*]\e[0m Toolbox jetbrains no ha sido instalada.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'NVIM', 'VSCODE' o 'AMBOS'.\n"
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
     fi
 done
 
