@@ -264,7 +264,10 @@ while true; do
         echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
         sed -i '/# bright/,+6d' /home/$input_username/.config/bspwm/bspwmrc
         echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
-        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf 
+        sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
+        sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
+        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
+        sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
         echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
         sed -i '/\[module\/backlight\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
         sed -i '/\[module\/backlight\]/,$d' /home/$input_username/.config/polybar/config.ini 
