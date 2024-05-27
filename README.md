@@ -74,7 +74,7 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Abrir Pycharm.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Abrir el firefox.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Abrir el burpsuite.  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> : Abrir el editor de código.   
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> : Abrir el vscode.   
 <kbd>Impr Pa</kbd> : Hacer captura de pantalla.   
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el rofi launcher.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Abrir el rofi powermenu.  
