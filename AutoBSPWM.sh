@@ -324,8 +324,8 @@ instalacion_toolbox_jetbrains(){
    download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
    wget -O jetbrains-toolbox.tar.gz $download_link
    tar -xzf jetbrains-toolbox.tar.gz
-   rm jetbrains-toolbox.tar.gz
-   cp -r jetbrains* /opt
+   mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") toolbox-jetbrains
+   cp -r toolbox-jetbrains /opt
 }
 
 # NVIM
