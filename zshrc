@@ -272,7 +272,7 @@ alias icat='kitty +kitten icat'
 alias nvim='/opt/nvim-linux64/bin/nvim'
 
 # toolbox jetbrains
-alias toolbox-jetbrains='/opt/toolbox-jetbrains/toolbox-jetbrains'
+alias toolbox-jetbrains='/opt/toolbox-jetbrains/jetbrains-toolbox'
 
 # fzf
 source /usr/share/doc/fzf/examples/completion.zsh
