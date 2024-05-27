@@ -274,6 +274,9 @@ alias nvim='/opt/nvim-linux64/bin/nvim'
 # toolbox jetbrains
 alias toolbox-jetbrains='/opt/toolbox-jetbrains/jetbrains-toolbox'
 
+# pycharm
+alias pycharm='/home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm-community/bin/pycharm.sh'
+
 # fzf
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
