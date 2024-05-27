@@ -338,6 +338,10 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Nvim no ha sido instalado.\n"
+        sed -i '/# nvim/{x;d;};x' /home/$input_username/.zshrc
+        sed -i '/# nvim/,+1d' /home/$input_username/.zshrc
+        sed -i '/# nvim/{x;d;};x' /root/.zshrc
+        sed -i '/# nvim/,+1d' /root/.zshrc
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
