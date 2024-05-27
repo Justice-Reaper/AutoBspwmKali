@@ -371,12 +371,19 @@ while true; do
         instalacion_toolbox_jetbrains
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        sed -i '/# toolbox jetbrains/{x;d;x;d}' "/home/$input_username/.zshrc"
-        sed -i '/# toolbox jetbrains/{N;d;}' "/home/$input_username/.zshrc"
-        sed -i '/# toolbox jetbrains/d' "/home/$input_username/.zshrc"
-        sed -i '/# toolbox jetbrains/{x;d;x;d}' "/home/root/.zshrc"
-        sed -i '/# toolbox jetbrains/{N;d;}' "/home/root/.zshrc"
-        sed -i '/# toolbox jetbrains/d' "/home/root/.zshrc"
+        sed -i '/# toolbox jetbrains/{x;d;};x' /home/$input_username/.zshrc
+        sed -i '/# toolbox jetbrains/,+1d' /home/$input_username/.zshrc
+        sed -i '/# toolbox jetbrains/{x;d;};x' /root/.zshrc
+        sed -i '/# toolbox jetbrains/,+1d' /root/.zshrc
+        
+        sed -i '/# pycharm/{x;d;};x' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/# pycharm/,+2d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        
+        sed -i '/# pycharm/{x;d;};x' /home/$input_username/.zshrc
+        sed -i '/# pycharm/,+1d' /home/$input_username/.zshrc
+        
+        sed -i '/# pycharm/{x;d;};x' /root/.zshrc
+        sed -i '/# pycharm/,+1d' /root/.zshrc
         echo -e "\e[31m[*]\e[0m Toolbox jetbrains no ha sido instalada.\n"
         break
     else
