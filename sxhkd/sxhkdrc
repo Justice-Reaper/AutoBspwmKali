@@ -169,7 +169,7 @@ super + shift + g
         thunar
 
 # vscode
-super + shift + e
+super + shift + v
 	code
 
 # copy local ip address
