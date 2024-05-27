@@ -98,13 +98,10 @@ rm -f /home/$input_username/.p10k.zsh
 rm -f /root/.zshrc 
 rm -f /root/.p10k.zsh 
 rm -rf /root/.config/kitty 
-rm -rf /root/.config/nvim 
-rm -rf /opt/*nvim*  
 rm -rf /home/$input_username/.config/kitty 
 rm -rf /home/$input_username/.config/polybar 
 rm -rf /home/$input_username/.config/picom 
 rm -rf /home/$input_username/.config/bspwm 
-rm -rf /home/$input_username/.config/nvim 
 rm -rf /home/$input_username/.config/sxhkd 
 
 # CREAMOS NUEVAS CONFIGURACIONES
@@ -291,6 +288,9 @@ done
 
 instalacion_nvim(){
     echo -e "\e[32m[*]\e[0m Instalando neovim ..."
+    rm -rf /root/.config/nvim 
+    rm -rf /opt/*nvim*  
+    rm -rf /home/$input_username/.config/nvim 
     apt install npm -y  
     api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
     download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
