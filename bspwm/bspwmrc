@@ -26,7 +26,7 @@ wmname LG3D &
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # wallpaper
-feh --bg-fill /home/user_replace/Wallpapers/wallpaper.png &
+feh --bg-fill /home/user_replace/Wallpapers/wallpaper.jpg &
 
 # bright
 brillo_actual=$(cat /sys/class/backlight/*/brightness)
