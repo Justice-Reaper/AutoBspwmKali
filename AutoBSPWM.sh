@@ -338,10 +338,8 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Nvim no ha sido instalado.\n"
-        sed -i '/# nvim/{x;d;};x' /home/$input_username/.zshrc
-        sed -i '/# nvim/,+1d' /home/$input_username/.zshrc
-        sed -i '/# nvim/{x;d;};x' /root/.zshrc
-        sed -i '/# nvim/,+1d' /root/.zshrc
+        sed -i '/# nvim/,+2d' /home/$input_username/.zshrc
+        sed -i '/# nvim/,+2d' /root/.zshrc
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -358,8 +356,7 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Vscode no ha sido instalado.\n"
-        sed -i '/# vscode/{x;d;};x' /home/$input_username/.config/sxhkd/sxhkdrc
-        sed -i '/# vscode/,+2d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        sed -i '/# vscode/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -375,19 +372,11 @@ while true; do
         instalacion_toolbox_jetbrains
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        sed -i '/# toolbox jetbrains/{x;d;};x' /home/$input_username/.zshrc
-        sed -i '/# toolbox jetbrains/,+1d' /home/$input_username/.zshrc
-        sed -i '/# toolbox jetbrains/{x;d;};x' /root/.zshrc
-        sed -i '/# toolbox jetbrains/,+1d' /root/.zshrc
-        
-        sed -i '/# pycharm/{x;d;};x' /home/$input_username/.config/sxhkd/sxhkdrc
-        sed -i '/# pycharm/,+2d' /home/$input_username/.config/sxhkd/sxhkdrc 
-        
-        sed -i '/# pycharm/{x;d;};x' /home/$input_username/.zshrc
-        sed -i '/# pycharm/,+1d' /home/$input_username/.zshrc
-        
-        sed -i '/# pycharm/{x;d;};x' /root/.zshrc
-        sed -i '/# pycharm/,+1d' /root/.zshrc
+        sed -i '/# toolbox jetbrains/,+2d' /home/$input_username/.zshrc
+        sed -i '/# toolbox jetbrains/,+2d' /root/.zshrc
+        sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
+        sed -i '/# pycharm/,+2d' /root/.zshrc
         echo -e "\e[31m[*]\e[0m Toolbox jetbrains no ha sido instalada.\n"
         break
     else
