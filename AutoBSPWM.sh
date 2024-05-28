@@ -124,7 +124,7 @@ cp -r Wallpapers /home/$input_username
 
 # CONFIGURANDO BETTERLOCKSCREEN
 echo -e "\e[32m[*]\e[0m Configurando betterlockscreen ...\n"
-betterlockscreen -u /home/$input_username/Wallpapers/wallpaper.png
+betterlockscreen -u /home/$input_username/Wallpapers/wallpaper.png 
 
 # CONFIGURANDO SXHKD
 echo -e "\e[32m[*]\e[0m Configurando sxhkd ...\n"
