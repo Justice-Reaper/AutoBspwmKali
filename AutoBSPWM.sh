@@ -319,6 +319,7 @@ instalacion_vscode(){
 
 instalacion_toolbox_jetbrains(){
    echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
+   sudo apt install jq -y
    URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
    latest_info=$(curl -s $URL)
    download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
