@@ -334,7 +334,7 @@ instalacion_postman(){
    wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
    mkdir /opt/Postman
    tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-   echo '[Desktop Entry]<br>Encoding=UTF-8<br>Name=Postman<br>Exec=/opt/Postman/app/Postman %U<br>Icon=/opt/Postman/app/resources/app/assets/icon.png<br>Terminal=false<br>Type=A' > /home/$input_username/.local/share/applications/Postman.desktop
+   echo '[Desktop Entry]<br>Encoding=UTF-8<br>Name=Postman<br>Exec=/opt/Postman/app/Postman %U<br>Icon=/opt/Postman/app/resources/app/assets/icon.png<br>Terminal=false<br>Type=Application<br>Categories=Development;' > /home/$input_username/.local/share/applications/Postman.desktop
 }
 
 # POSTMAN
