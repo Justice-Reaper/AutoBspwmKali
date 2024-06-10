@@ -160,6 +160,10 @@ super + shift + s
 super + shift + b
 	burpsuite
 
+# postman
+super + shift + a
+        postman
+
 # flameshot
 Print
 	flameshot gui
