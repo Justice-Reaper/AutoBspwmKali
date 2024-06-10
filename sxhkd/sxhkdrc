@@ -162,7 +162,7 @@ super + shift + b
 
 # postman
 super + shift + a
-        postman
+        /snap/bin/postman
 
 # flameshot
 Print
