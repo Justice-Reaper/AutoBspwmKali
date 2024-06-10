@@ -329,6 +329,31 @@ instalacion_toolbox_jetbrains(){
    cp -r toolbox-jetbrains /opt
 }
 
+instalacion_postman(){
+   echo -e "\e[32m[*]\e[0m Instalando postman ..."
+   sudo apt install snapd -y
+   sudo systemctl enable snapd
+   sudo systemctl start snapd
+   sudo systemctl status snapd
+   sudo snap install core -y
+}
+
+# POSTMAN
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar POSTMAN? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        instalacion_postman
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Postman no ha sido instalado.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
 # NVIM
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar NVIM? (SI/NO): ")" response
