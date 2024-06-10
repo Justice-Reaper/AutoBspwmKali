@@ -280,6 +280,9 @@ alias toolbox-jetbrains='/opt/toolbox-jetbrains/jetbrains-toolbox'
 # pycharm
 alias pycharm='/home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm-community/bin/pycharm.sh'
 
+# postman
+alias postman='/opt/Postman/Postman'
+
 # fzf
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
