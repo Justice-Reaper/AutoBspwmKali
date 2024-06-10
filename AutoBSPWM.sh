@@ -331,11 +331,10 @@ instalacion_toolbox_jetbrains(){
 
 instalacion_postman(){
    echo -e "\e[32m[*]\e[0m Instalando postman ..."
-   sudo apt install snapd -y
-   sudo systemctl enable snapd
-   sudo systemctl start snapd
-   sudo systemctl status snapd
-   sudo snap install core -y
+   wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
+   mkdir /opt/Postman
+   tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
+   echo '[Desktop Entry]<br>Encoding=UTF-8<br>Name=Postman<br>Exec=/opt/Postman/app/Postman %U<br>Icon=/opt/Postman/app/resources/app/assets/icon.png<br>Terminal=false<br>Type=A' > ~/.local/share/applications/Postman.desktop
 }
 
 # POSTMAN
@@ -349,6 +348,8 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Postman no ha sido instalado.\n"
         sed -i '/# postman/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/# postman/,+2d' /home/$input_username/.zshrc
+        sed -i '/# postman/,+2d' /root/.zshrc
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
