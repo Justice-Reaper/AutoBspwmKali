@@ -348,8 +348,6 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Postman no ha sido instalado.\n"
-        sed -i '/# postman/,+2d' /home/$input_username/.zshrc
-        sed -i '/# postman/,+2d' /root/.zshrc
         sed -i '/# postman/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
