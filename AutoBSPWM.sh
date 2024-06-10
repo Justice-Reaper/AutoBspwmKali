@@ -350,6 +350,7 @@ while true; do
         echo -e "\e[31m[*]\e[0m Postman no ha sido instalado.\n"
         sed -i '/# postman/,+2d' /home/$input_username/.zshrc
         sed -i '/# postman/,+2d' /root/.zshrc
+        sed -i '/# postman/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -368,7 +369,6 @@ while true; do
         echo -e "\e[31m[*]\e[0m Nvim no ha sido instalado.\n"
         sed -i '/# nvim/,+2d' /home/$input_username/.zshrc
         sed -i '/# nvim/,+2d' /root/.zshrc
-        sed -i '/# postman/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
