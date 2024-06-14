@@ -71,6 +71,7 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>F2</kbd> : Bajar el brillo.  
 
 ## Shortcuts de Aplicaciones
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Abrir Postman.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Abrir Pycharm.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Abrir el firefox.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Abrir el burpsuite.  
