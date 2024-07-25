@@ -356,7 +356,6 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Chrome no ha sido instalado.\n"
-        sed -i '/# chrome/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
