@@ -74,7 +74,6 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Abrir Postman.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Abrir Pycharm.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Abrir el firefox.  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> : Abrir el google chrome.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Abrir el burpsuite.  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> : Abrir el vscode.   
 <kbd>Impr Pa</kbd> : Hacer captura de pantalla.   
