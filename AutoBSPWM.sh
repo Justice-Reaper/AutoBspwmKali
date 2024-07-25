@@ -247,7 +247,7 @@ configuacion_portatil_sobremesa(){
           fi
       done
       sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc
-      sudo apt install brightnessctl -y
+      apt install brightnessctl -y
 }
 
 # ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
@@ -318,7 +318,7 @@ instalacion_vscode(){
 
 instalacion_toolbox_jetbrains(){
    echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
-   sudo apt install jq -y
+   apt install jq -y
    URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
    latest_info=$(curl -s $URL)
    download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
@@ -341,6 +341,7 @@ instalacion_postman(){
 
 instalacion_chrome(){
    echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
+   apt-get install -y libu2f-udev
    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb
    dpkg -i https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 }
