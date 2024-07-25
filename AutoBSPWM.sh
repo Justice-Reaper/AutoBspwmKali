@@ -339,6 +339,29 @@ instalacion_postman(){
    chmod +x /home/$input_username/.local/share/applications/Postman.desktop
 }
 
+instalacion_chrome(){
+   echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
+   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb
+   dpkg -i https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+}
+
+# CHROME
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar GOOGLE CHROME? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        instalacion_chrome
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Chrome no ha sido instalado.\n"
+        sed -i '/# chrome/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
 # POSTMAN
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar POSTMAN? (SI/NO): ")" response
