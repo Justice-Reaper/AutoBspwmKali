@@ -152,10 +152,6 @@ super + alt + {Left,Down,Up,Right}
 super + shift + f
 	firefox
 
-# chrome
-super + shift + c
-	google-chrome
-
 # pycharm
 super + shift + s
         /home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm-community/bin/pycharm.sh 2>/dev/null
