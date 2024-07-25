@@ -342,7 +342,7 @@ instalacion_postman(){
 instalacion_chrome(){
    echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
    apt-get install -y libu2f-udev
-   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb
+   wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
    dpkg -i https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 }
 
