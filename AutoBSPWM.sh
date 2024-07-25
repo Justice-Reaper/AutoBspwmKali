@@ -343,7 +343,7 @@ instalacion_chrome(){
    echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
    apt-get install -y libu2f-udev
    wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-   dpkg -i https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+   dpkg -i google-chrome-stable_current_amd64.deb
 }
 
 # CHROME
