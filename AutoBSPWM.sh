@@ -319,6 +319,7 @@ instalacion_vscode(){
 instalacion_rpcenumeration(){
     echo -e "\e[32m[*]\e[0m Instalando rpcenumeration ...\n"
     wget https://raw.githubusercontent.com/rubenza02/rpcenumeration/main/rpcenumeration.sh
+    chmod +x rpcenumeration.sh
     mv rpcenumeration.sh rpcenumeration
     mv rpcenumeration /usr/bin
 }
