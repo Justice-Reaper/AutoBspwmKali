@@ -319,8 +319,8 @@ instalacion_vscode(){
 instalacion_rpcenumeration(){
     echo -e "\e[32m[*]\e[0m Instalando rpcenumeration ...\n"
     wget https://raw.githubusercontent.com/rubenza02/rpcenumeration/main/rpcenumeration.sh
-    mv rpcenumeration.sh rpcEnumeration
-    mv rpcEnumeration /usr/bin
+    mv rpcenumeration.sh rpcenumeration
+    mv rpcenumeration /usr/bin
 }
 
 instalacion_toolbox_jetbrains(){
@@ -362,7 +362,7 @@ while true; do
         instalacion_rpcenumeration
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m RpcEnumeration no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m rpcenumeration no ha sido instalado.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
