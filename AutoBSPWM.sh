@@ -316,6 +316,13 @@ instalacion_vscode(){
     apt install ./vscode-latest.deb  
 }
 
+instalacion_rpcenumeration(){
+    echo -e "\e[32m[*]\e[0m Instalando rpcenumeration ...\n"
+    wget https://raw.githubusercontent.com/rubenza02/rpcenumeration/main/rpcenumeration.sh
+    mv rpcenumeration.sh rpcEnumeration
+    mv rpcEnumeration /usr/bin
+}
+
 instalacion_toolbox_jetbrains(){
    echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
    apt install jq -y
@@ -345,6 +352,22 @@ instalacion_chrome(){
    wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
    dpkg -i google-chrome-stable_current_amd64.deb
 }
+
+# RPCENUMERATION
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar RPCENUMERATION? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        instalacion_rpcenumeration
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m RpcEnumeration no ha sido instalado.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
 
 # CHROME
 while true; do
