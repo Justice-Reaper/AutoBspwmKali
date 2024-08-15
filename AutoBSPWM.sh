@@ -369,8 +369,10 @@ instalacion_kerbrute(){
       
        if [ "$response" = "64" ]; then
            instalacion_kerbrute_x64
+           break
        elif [ "$response" = "32" ]; then
            instalacion_kerbrute_x86
+           break
        else
            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde '64' o '32'.\n"
        fi
