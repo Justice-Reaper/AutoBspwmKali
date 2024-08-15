@@ -352,6 +352,19 @@ instalacion_chrome(){
    apt-get install -y libu2f-udev
    wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
    dpkg -i google-chrome-stable_current_amd64.deb
+
+   while true; do
+       read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres sea tu NAVEGADOR principal? (SI/NO): ")" response
+       response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+       if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+           sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/*
+       elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+           echo -e "\e[31m[*]\e[0m Chrome no será su navegador principal.\n"
+       else
+           echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+       fi
+   done
 }
 
 # RPCENUMERATION
