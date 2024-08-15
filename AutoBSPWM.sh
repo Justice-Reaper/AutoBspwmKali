@@ -347,6 +347,7 @@ instalacion_postman(){
 }
 
 instalacion_kerbrute_x86(){
+   echo -e "\e[32m[*]\e[0m Instalando kerbrute ..."
    latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_386")) | .browser_download_url')
    wget $latest_url -O kerbrute_linux_386
    chmod +x kerbrute_linux_386
@@ -355,6 +356,7 @@ instalacion_kerbrute_x86(){
 }
 
 instalacion_kerbrute_x64(){
+   echo -e "\e[32m[*]\e[0m Instalando kerbrute ..."
    latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
    wget $latest_url -O kerbrute_linux_amd64
    chmod +x kerbrute_linux_amd64
