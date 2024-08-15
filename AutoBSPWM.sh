@@ -89,7 +89,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh -y
+apt install imagemagick feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq -y
 
 # ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
@@ -326,7 +326,6 @@ instalacion_rpcenumeration(){
 
 instalacion_toolbox_jetbrains(){
    echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
-   apt install jq -y
    URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
    latest_info=$(curl -s $URL)
    download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
@@ -346,6 +345,53 @@ instalacion_postman(){
    mv Postman.desktop /home/$input_username/.local/share/applications
    chmod +x /home/$input_username/.local/share/applications/Postman.desktop
 }
+
+instalacion_kerbrute_x86(){
+   latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_386")) | .browser_download_url')
+   wget $latest_url -O kerbrute_linux_386
+   chmod +x kerbrute_linux_386
+   mv kerbrute_linux_386 kerbrute
+   mv kerbrute /usr/bin
+}
+
+instalacion_kerbrute_x64(){
+   latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
+   wget $latest_url -O kerbrute_linux_amd64
+   chmod +x kerbrute_linux_amd64
+   mv kerbrute_linux_amd64 kerbrute
+   mv kerbrute /usr/bin
+}
+
+instalacion_kerbrute(){
+   while true; do
+       read -p "$(echo -e "\e[33m[*]\e[0m ¿De cuantos bits es el sistema operativo? (64/32): ")" response
+       response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+       if [ "$response" = "64" ]; then
+           instalacion_kerbrute_x64
+       elif [ "$response" = "32" ]; then
+           instalacion_kerbrute_x86
+       else
+           echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde '64' o '32'.\n"
+       fi
+   done
+}
+
+# KERBRUTE
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar KERBRUTE? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        instalacion_kerbrute
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m kerbrute no ha sido instalado.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
 
 instalacion_chrome(){
    echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
