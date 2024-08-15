@@ -408,6 +408,7 @@ instalacion_chrome(){
        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+           echo -e "\e[32m[*]\e[0m Configurando chrome como su navegador principal ..."
            sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/*
        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
            echo -e "\e[31m[*]\e[0m Chrome no será su navegador principal.\n"
