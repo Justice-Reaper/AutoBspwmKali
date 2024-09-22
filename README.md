@@ -8,7 +8,7 @@
 # Instalación
 ```
 git clone https://github.com/Justice-Reaper/AutoBspwmKali.git    
-cd AutoBSPWM/  
+cd AutoBspwmKali/  
 chmod +x AutoBSPWM.sh  
 sudo ./AutoBSPWM.sh  
 ```
