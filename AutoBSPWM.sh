@@ -397,6 +397,32 @@ while true; do
     fi
 done
 
+instalacion_windapsearch(){
+    echo -e "\e[32m[*]\e[0m Instalando windapsearch ..."
+    latest_url=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
+    wget $latest_url -O windapsearch_linux_amd64
+    chmod +x windapsearch_linux_amd64
+    mv windapsearch_linux_amd64 windapsearch
+    mv windapsearch /usr/bin
+    echo -e "\e[32m[*]\e[0m Windapsearch instalado correctamente."
+}
+
+# WINDAPSEARCH
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar WINDAPSEARCH? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        instalacion_windapsearch
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Windapsearch no ha sido instalado.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
 instalacion_chrome(){
    echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
    apt-get install -y libu2f-udev
