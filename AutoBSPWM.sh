@@ -89,7 +89,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick feh xclip bspwm sxhkd wmname polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq -y
+apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq -y
 
 # ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
@@ -196,7 +196,7 @@ install_nvidia_drivers(){
       
           if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
               echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
-              apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
+              apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit linux-headers-$(uname -r) -y
               break
           elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
               echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
@@ -250,7 +250,7 @@ configuacion_portatil_sobremesa(){
       apt install brightnessctl -y
 }
 
-# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
+# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO (MODIFICAR)
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
     respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
@@ -316,7 +316,7 @@ instalacion_vscode(){
     apt install ./vscode-latest.deb  
 }
 
-instalacion_rpcenumeration(){
+instalacion_rpcenumeration(){ (MODIFICAR)
     echo -e "\e[32m[*]\e[0m Instalando rpcenumeration ...\n"
     wget https://raw.githubusercontent.com/rubenza02/rpcenumeration/main/rpcenumeration.sh
     chmod +x rpcenumeration.sh
@@ -346,39 +346,13 @@ instalacion_postman(){
    chmod +x /home/$input_username/.local/share/applications/Postman.desktop
 }
 
-instalacion_kerbrute_x86(){
-   echo -e "\e[32m[*]\e[0m Instalando kerbrute ..."
-   latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_386")) | .browser_download_url')
-   wget $latest_url -O kerbrute_linux_386
-   chmod +x kerbrute_linux_386
-   mv kerbrute_linux_386 kerbrute
-   mv kerbrute /usr/bin
-}
-
-instalacion_kerbrute_x64(){
+instalacion_kerbrute(){
    echo -e "\e[32m[*]\e[0m Instalando kerbrute ..."
    latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
    wget $latest_url -O kerbrute_linux_amd64
    chmod +x kerbrute_linux_amd64
    mv kerbrute_linux_amd64 kerbrute
    mv kerbrute /usr/bin
-}
-
-instalacion_kerbrute(){
-   while true; do
-       read -p "$(echo -e "\e[33m[*]\e[0m ¿De cuantos bits es el sistema operativo? (64/32): ")" response
-       response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-      
-       if [ "$response" = "64" ]; then
-           instalacion_kerbrute_x64
-           break
-       elif [ "$response" = "32" ]; then
-           instalacion_kerbrute_x86
-           break
-       else
-           echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde '64' o '32'.\n"
-       fi
-   done
 }
 
 # KERBRUTE
@@ -446,7 +420,7 @@ instalacion_chrome(){
    done
 }
 
-# RPCENUMERATION
+# RPCENUMERATION (MODIFICAR)
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar RPCENUMERATION? (SI/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
