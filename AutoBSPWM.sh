@@ -188,102 +188,65 @@ sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc"
 cp .p10k.zsh /root 
 cp .zshrc /root
 
-# DRIVERS PROPIETARIOS NVIDIA
-install_nvidia_drivers(){
+# FUNCIONES DE INSTALACIÓN Y CONFIGURACIÓN
+instalacion_drivers_nvidia(){
     while true; do
-          read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
-          drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
+        drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
       
-          if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
-              echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
-              apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit linux-headers-$(uname -r) -y
-              break
-          elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
-              echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
-              break
-          else
-              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-          fi
-      done
+        if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
+            echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
+            apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit linux-headers-$(uname -r) -y
+            break
+        elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
+    done
 }
 
-# ACTIVACIÓN CLIPBOARD BIDIRECCIONL
 activar_clipboard_bidireccional(){
-      while true; do
-          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
-          respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
+        respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
       
-          if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
-              echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
-              break
-          elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
-              echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
-              sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
-              break
-          else
-              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-          fi
-      done
+        if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
+            echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
+            break
+        elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
+            sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
+    done
 }
 
-# CONFIGURACIÓN PORTÁTIL O SOBREMESA
 configuacion_portatil_sobremesa(){
-      while true; do
-          read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
-          respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
+        respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
 
-          if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
-              echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
-              echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-              sed -i '/\[module\/battery\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-              sed -i '/\[module\/battery\]/,$d' /home/$input_username/.config/polybar/config.ini 
-              sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
-              break
-          elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
-              echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
-              break
-          else
-              echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-          fi
+        if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
+            echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+            sed -i '/\[module\/battery\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+            sed -i '/\[module\/battery\]/,$d' /home/$input_username/.config/polybar/config.ini 
+            sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
+            break
+        elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
       done
-      sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc
-      apt install brightnessctl -y
+    sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc
+    apt install brightnessctl -y
 }
-
-# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO (MODIFICAR)
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
-    respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
-        echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
-        sed -i '/# bright/,+6d' /home/$input_username/.config/bspwm/bspwmrc
-        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
-        sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
-        sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
-        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
-        sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
-        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-        sed -i '/\[module\/backlight\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-        sed -i '/\[module\/backlight\]/,$d' /home/$input_username/.config/polybar/config.ini 
-        sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
-        sed -i 's/backlight //' /home/$input_username/.config/polybar/config.ini 
-        rm -f /home/$input_username/.config/polybar/scripts/increase_bright.sh 
-        rm -r /home/$input_username/.config/polybar/scripts/decrease_bright.sh 
-        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '/# increase bright/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
-        activar_clipboard_bidireccional
-        break
-    elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
-        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
-        configuacion_portatil_sobremesa
-        install_nvidia_drivers
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
-done
 
 instalacion_nvim(){
     echo -e "\e[32m[*]\e[0m Instalando neovim ..."
@@ -325,35 +288,103 @@ instalacion_rpcenumeration(){ (MODIFICAR)
 }
 
 instalacion_toolbox_jetbrains(){
-   echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
-   URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
-   latest_info=$(curl -s $URL)
-   download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
-   wget -O jetbrains-toolbox.tar.gz $download_link
-   tar -xzf jetbrains-toolbox.tar.gz
-   mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") toolbox-jetbrains
-   cp -r toolbox-jetbrains /opt
-   sed -i '/# End of file/i * hard nofile 1048576\n' /etc/security/limits.conf
-   sed -i '1i fs.file-max=10485760\n' /etc/sysctl.conf
+    echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
+    URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
+    latest_info=$(curl -s $URL)
+    download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
+    wget -O jetbrains-toolbox.tar.gz $download_link
+    tar -xzf jetbrains-toolbox.tar.gz
+    mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") toolbox-jetbrains
+    cp -r toolbox-jetbrains /opt
+    sed -i '/# End of file/i * hard nofile 1048576\n' /etc/security/limits.conf
+    sed -i '1i fs.file-max=10485760\n' /etc/sysctl.conf
 }
 
 instalacion_postman(){
-   echo -e "\e[32m[*]\e[0m Instalando postman ..."
-   wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
-   mkdir /opt/Postman
-   tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-   mv Postman.desktop /home/$input_username/.local/share/applications
-   chmod +x /home/$input_username/.local/share/applications/Postman.desktop
+    echo -e "\e[32m[*]\e[0m Instalando postman ..."
+    wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
+    mkdir /opt/Postman
+    tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
+    mv Postman.desktop /home/$input_username/.local/share/applications
+    chmod +x /home/$input_username/.local/share/applications/Postman.desktop
 }
 
 instalacion_kerbrute(){
-   echo -e "\e[32m[*]\e[0m Instalando kerbrute ..."
-   latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
-   wget $latest_url -O kerbrute_linux_amd64
-   chmod +x kerbrute_linux_amd64
-   mv kerbrute_linux_amd64 kerbrute
-   mv kerbrute /usr/bin
+    echo -e "\e[32m[*]\e[0m Instalando kerbrute ..."
+    latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
+    wget $latest_url -O kerbrute_linux_amd64
+    chmod +x kerbrute_linux_amd64
+    mv kerbrute_linux_amd64 kerbrute
+    mv kerbrute /usr/bin
 }
+
+instalacion_windapsearch(){
+    echo -e "\e[32m[*]\e[0m Instalando windapsearch ..."
+    latest_url=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
+    wget $latest_url -O windapsearch_linux_amd64
+    chmod +x windapsearch_linux_amd64
+    mv windapsearch_linux_amd64 windapsearch
+    mv windapsearch /usr/bin
+    echo -e "\e[32m[*]\e[0m Windapsearch instalado correctamente."
+}
+
+instalacion_chrome(){
+    echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
+    apt-get install -y libu2f-udev
+    wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    dpkg -i google-chrome-stable_current_amd64.deb
+
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres sea tu NAVEGADOR principal? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando chrome como su navegador principal ..."
+            sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/*
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m Chrome no será su navegador principal.\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
+    done
+}
+
+# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO (MODIFICAR)
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
+    respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
+        echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
+        sed -i '/# bright/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
+        sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
+        sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
+        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
+        sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
+        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+        sed -i '/\[module\/backlight\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+        sed -i '/\[module\/backlight\]/,$d' /home/$input_username/.config/polybar/config.ini 
+        sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
+        sed -i 's/backlight //' /home/$input_username/.config/polybar/config.ini 
+        rm -f /home/$input_username/.config/polybar/scripts/increase_bright.sh 
+        rm -r /home/$input_username/.config/polybar/scripts/decrease_bright.sh 
+        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+        sed -i '/# increase bright/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        activar_clipboard_bidireccional
+        break
+    elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
+        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
+        configuacion_portatil_sobremesa
+        instalacion_drivers_nvidia
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
 
 # KERBRUTE
 while true; do
@@ -371,16 +402,6 @@ while true; do
     fi
 done
 
-instalacion_windapsearch(){
-    echo -e "\e[32m[*]\e[0m Instalando windapsearch ..."
-    latest_url=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
-    wget $latest_url -O windapsearch_linux_amd64
-    chmod +x windapsearch_linux_amd64
-    mv windapsearch_linux_amd64 windapsearch
-    mv windapsearch /usr/bin
-    echo -e "\e[32m[*]\e[0m Windapsearch instalado correctamente."
-}
-
 # WINDAPSEARCH
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar WINDAPSEARCH? (SI/NO): ")" response
@@ -396,29 +417,6 @@ while true; do
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
     fi
 done
-
-instalacion_chrome(){
-   echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
-   apt-get install -y libu2f-udev
-   wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-   dpkg -i google-chrome-stable_current_amd64.deb
-
-   while true; do
-       read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres sea tu NAVEGADOR principal? (SI/NO): ")" response
-       response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-      
-       if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-           echo -e "\e[32m[*]\e[0m Configurando chrome como su navegador principal ..."
-           sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/*
-           break
-       elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-           echo -e "\e[31m[*]\e[0m Chrome no será su navegador principal.\n"
-           break
-       else
-           echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-       fi
-   done
-}
 
 # RPCENUMERATION (MODIFICAR)
 while true; do
