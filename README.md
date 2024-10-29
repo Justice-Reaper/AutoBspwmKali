@@ -130,5 +130,5 @@ sudo ./AutoBSPWM.sh
 <kbd>Mkt</kbd>: Se crean varios directorios de trabajo  
 
 ## Créditos
-- Autor: Justice-Reaper
-- Inspiración: Entorno mostrado en la academia de hack4u de s4vitar
+Autor: Justice-Reaper
+Inspiración: Entorno mostrado en la academia de hack4u de s4vitar
