@@ -131,5 +131,4 @@ sudo ./AutoBSPWM.sh
 
 ## Créditos
 Autor: Justice-Reaper  
-
 Inspiración: Entorno mostrado en la academia de hack4u de s4vitar
