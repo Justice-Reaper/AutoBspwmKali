@@ -305,9 +305,7 @@ instalacion_postman(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-    #mv Postman.desktop /home/$input_username/.local/share/applications
     mv Postman.desktop /usr/share/applications
-    # chmod +x /home/$input_username/.local/share/applications/Postman.desktop
 }
 
 instalacion_kerbrute(){
