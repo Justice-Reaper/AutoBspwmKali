@@ -31,7 +31,7 @@ run_cmd() {
 	if [[ $1 == '--shutdown' ]]; then
 		systemctl poweroff
 	elif [[ $1 == '--reboot' ]]; then
-			systemctl reboot
+		systemctl reboot
 	elif [[ $1 == '--suspend' ]]; then
 		systemctl suspend
 	elif [[ $1 == '--logout' ]]; then
