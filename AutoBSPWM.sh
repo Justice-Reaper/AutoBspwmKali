@@ -420,7 +420,7 @@ done
 
 # RPCENUM
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar rpcEnum? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar RPCENUM? (SI/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
     if [ "$response" = "si" ] || [ "$response" = "s" ]; then
