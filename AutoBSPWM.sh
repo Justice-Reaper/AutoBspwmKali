@@ -279,8 +279,8 @@ instalacion_vscode(){
     apt install ./vscode-latest.deb  
 }
 
-instalacion_rpcenumeration(){
-    echo -e "\e[32m[*]\e[0m Instalando rpcenumeration ...\n"
+instalacion_rpcEnum(){
+    echo -e "\e[32m[*]\e[0m Instalando rpcEnum ...\n"
     wget https://github.com/Justice-Reaper/rpcEnum/blob/main/rpceEnum.sh
     chmod +x rpceEnum.sh
     mv rpceEnum.sh rpceEnum
@@ -420,14 +420,14 @@ done
 
 # RPCENUM
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar RPCENUMERATION? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar rpcEnum? (SI/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
     if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_rpcenumeration
+        instalacion_rpcEnum
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m rpcenumeration no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m rpcEnum no ha sido instalado.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
