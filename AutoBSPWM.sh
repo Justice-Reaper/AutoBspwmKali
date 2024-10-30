@@ -279,12 +279,12 @@ instalacion_vscode(){
     apt install ./vscode-latest.deb  
 }
 
-instalacion_rpcenumeration(){ (MODIFICAR)
+instalacion_rpcenumeration(){
     echo -e "\e[32m[*]\e[0m Instalando rpcenumeration ...\n"
-    wget https://raw.githubusercontent.com/rubenza02/rpcenumeration/main/rpcenumeration.sh
-    chmod +x rpcenumeration.sh
-    mv rpcenumeration.sh rpcenumeration
-    mv rpcenumeration /usr/bin
+    wget https://github.com/Justice-Reaper/rpcEnum/blob/main/rpceEnum.sh
+    chmod +x rpceEnum.sh
+    mv rpceEnum.sh rpceEnum
+    mv rpceEnum /usr/bin
 }
 
 instalacion_toolbox_jetbrains(){
@@ -418,7 +418,7 @@ while true; do
     fi
 done
 
-# RPCENUMERATION (MODIFICAR)
+# RPCENUM
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar RPCENUMERATION? (SI/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
