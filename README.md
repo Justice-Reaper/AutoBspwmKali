@@ -1,8 +1,12 @@
 # AutoBSPWM
-- Este script AutoBSPWM ha sido creado por investigación propia utilizando como base el curso de personalización de linux de la academia de Hack4u https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/  
+- Este script AutoBSPWM ha sido creado por investigación propia utilizando como base el curso de personalización de linux de la academia de Hack4u https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/
+  
 - Este script AutoBSPWM ha sido sido testeado en kali linux nativo y máquina virtual, se desconoce si puede acarrear problemas en otros sistemas operativos que no sean kali linux
-- Opciones de instalación: Equipo de escritorio, máquina virtual y nativo
+  
+- Opciones de instalación: Equipo de escritorio nativo, portátil nativo y máquina virtual
+  
 - Cada vez que se desee actualizar cualquiera de los componentes del entorno puedes ejecutar el script y se eliminarán los componentes antiguos y se instalarán los componentes actualizados
+  
 - Si tienes alguna duda o deseas que implemente alguna nueva funcionalidad no dudes en consultarme
 
 # Instalación
