@@ -196,7 +196,8 @@ instalacion_drivers_nvidia(){
       
         if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
             echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
-            apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit linux-headers-$(uname -r) -y
+            apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
+            apt install $(apt-cache pkgnames | grep -E '^linux-headers-[0-9]+\.[0-9]+\.[0-9]+-amd64$' | sort -V | tail -n 1) -y
             break
         elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
