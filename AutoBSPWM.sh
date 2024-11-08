@@ -282,10 +282,10 @@ instalacion_vscode(){
 
 instalacion_rpcEnum(){
     echo -e "\e[32m[*]\e[0m Instalando rpcEnum ...\n"
-    wget https://github.com/Justice-Reaper/rpcEnum/blob/main/rpceEnum.sh
-    chmod +x rpceEnum.sh
-    mv rpceEnum.sh rpceEnum
-    mv rpceEnum /usr/bin
+    wget https://github.com/Justice-Reaper/rpcEnum/blob/main/rpcEnum.sh
+    chmod +x rpcEnum.sh
+    mv rpcEnum.sh rpcEnum
+    mv rpcEnum /usr/bin
 }
 
 instalacion_toolbox_jetbrains(){
