@@ -282,7 +282,7 @@ instalacion_vscode(){
 
 instalacion_rpcEnum(){
     echo -e "\e[32m[*]\e[0m Instalando rpcEnum ...\n"
-    wget https://github.com/Justice-Reaper/rpcEnum/blob/main/rpcEnum.sh
+    wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh
     chmod +x rpcEnum.sh
     mv rpcEnum.sh rpcEnum
     mv rpcEnum /usr/bin
