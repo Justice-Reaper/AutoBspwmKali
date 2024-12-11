@@ -89,7 +89,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils -y
+apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils obsidian -y
 
 # ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
@@ -238,7 +238,7 @@ configuracion_touchpad() {
             if [[ -n "$touchpad" ]]; then
                 id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
                 sed -i '/# fix java error/i # touchpad' /home/$input_username/.config/bspwm/bspwmrc
-                sed -i "/# fix java error/i xinput enable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i "/# fix java error/i xinput disable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
             else
                 echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
