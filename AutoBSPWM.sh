@@ -372,6 +372,7 @@ while true; do
         sed -i 's/backlight //' /home/$input_username/.config/polybar/config.ini 
         rm -f /home/$input_username/.config/polybar/scripts/increase_bright.sh 
         rm -r /home/$input_username/.config/polybar/scripts/decrease_bright.sh 
+        sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf     
         echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
         sed -i '/# increase bright/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
         activar_clipboard_bidireccional
