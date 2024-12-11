@@ -72,7 +72,7 @@ inputbar {
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         "pc";
+    str:                         " ";
     padding:                     10px 17px;
     border-radius:               10px;
     background-color:            @urgent;
