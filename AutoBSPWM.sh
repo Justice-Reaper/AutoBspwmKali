@@ -89,7 +89,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq -y
+apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar xinput betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq -y
 
 # ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
@@ -233,7 +233,6 @@ configuracion_touchpad() {
 
         if [ "$respuesta_touchpad" = "si" ] || [ "$respuesta_touchpad" = "s" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el touchpad ...\n"
-            apt install xinput -y
             touchpad=$(xinput list | grep -i touchpad)
             if [[ -n "$touchpad" ]]; then
                 id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
