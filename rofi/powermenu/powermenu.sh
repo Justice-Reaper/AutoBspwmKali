@@ -5,7 +5,7 @@ dir="$HOME/.config/rofi/powermenu"
 theme='style'
 
 # CMDs
-host=`hostname`
+host="kali-linux"
 
 # Options
 shutdown=' Shutdown'
