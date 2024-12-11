@@ -362,7 +362,7 @@ instalacion_windapsearch(){
 
 instalacion_chrome(){
     echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
-    apt-get install -y libu2f-udev
+    apt install -y libu2f-udev
     wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     dpkg -i google-chrome-stable_current_amd64.deb
 
@@ -372,7 +372,7 @@ instalacion_chrome(){
       
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
             echo -e "\e[32m[*]\e[0m Configurando chrome como su navegador principal ..."
-            sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/*
+            sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Chrome no será su navegador principal.\n"
@@ -382,6 +382,82 @@ instalacion_chrome(){
         fi
     done
 }
+
+customizacion_grub_default(){
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Tienes un dualboot o más de un sistema instalado? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando la variable GRUB_DEFAULT ..."
+            sed -i '/^GRUB_DEFAULT=[^ ]*/s/^/#/' /etc/default/grub 
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m GRUB_DEFAULT no será modificado.\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
+    done
+}
+
+customizacion_grub_timeout(){
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Introduce el número de segundos que se mostrará grub (si introduces -1 no dejará de mostrarse hasta que lo selecciones manualmente): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [[ "$response" =~ ^-?[0-9]+$ ]]; then
+            echo -e "\e[32m[*]\e[0m Configurando la variable GRUB_TIMEOUT ..."
+            sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=$response/" /etc/default/grub 
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, introduce un número válido. Ejemplo: -1, 5, 15.\n"
+        fi
+    done
+}
+
+customizacion_grub_theme(){
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres usar el grub clásico, en blanco y negro? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando el grub clásico ..."
+            sed -i '/^GRUB_DISTRIBUTOR=[^ ]*/s/^/#/' /etc/default/grub 
+            sed -i '/^#GRUB_TERMINAL=console/s/^#//' /etc/default/grub
+            line=$(grep -n "set menu_color_normal" /boot/grub/grub.cfg | cut -d: -f1)
+            line=$((line - 1))
+            file=$(sed -n "${line}s/.*BEGIN\(.*\)###.*/\1/p" /boot/grub/grub.cfg)
+            sed -i 's/menu_color_normal=cyan\/blue/menu_color_normal=white\/black/' $file
+            sed -i 's/menu_color_highlight=white\/blue/menu_color_highlight=black\/light-gray/' $file
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m El tema de grub no será modificado.\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
+    done
+}
+
+# CUSTOMIZACIÓN GRUB
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas customizar grub? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+   if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        customizacion_grub_default
+        customizacion_grub_timeout
+        customizacion_grub_theme
+        update-grub
+        break
+   elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Grub no será modificado.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
 
 # ELECCIÓN KDE O XFCE
 while true; do
