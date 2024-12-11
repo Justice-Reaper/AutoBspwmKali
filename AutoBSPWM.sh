@@ -227,29 +227,32 @@ activar_clipboard_bidireccional(){
 }
 
 configuracion_touchpad() {
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" respuesta_touchpad
-    respuesta_touchpad=$(echo "$respuesta_touchpad" | tr '[:upper:]' '[:lower:]')
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" respuesta_touchpad
+        respuesta_touchpad=$(echo "$respuesta_touchpad" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$respuesta_touchpad" = "si" ] || [ "$respuesta_touchpad" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Configurando el touchpad ...\n"
-        touchpad=$(xinput list | grep -i touchpad)
-        if [[ -n "$touchpad" ]]; then
-            id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
-            sed -i '/# fix java error/i # touchpad' /home/$input_username/.config/bspwm/bspwmrc
-            sed -i "/# fix java error/i xinput enable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
-            sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
+        if [ "$respuesta_touchpad" = "si" ] || [ "$respuesta_touchpad" = "s" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando el touchpad ...\n"
+            apt install xinput -y
+            touchpad=$(xinput list | grep -i touchpad)
+            if [[ -n "$touchpad" ]]; then
+                id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
+                sed -i '/# fix java error/i # touchpad' /home/$input_username/.config/bspwm/bspwmrc
+                sed -i "/# fix java error/i xinput enable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
+            else
+                echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
+            break
+            fi
+        elif [ "$respuesta_touchpad" = "no" ] || [ "$respuesta_touchpad" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m El touchpad no ha sido desactivado.\n"
+            sed -i '/# fix java error/ {x;d}; x' /home/$input_username/.config/bspwm/bspwmrc
+            sed -i '/# touchpad/{N;d}' /home/$input_username/.config/bspwm/bspwmrc
+            break
         else
-            echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
-        break
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
         fi
-    elif [ "$respuesta_touchpad" = "no" ] || [ "$respuesta_touchpad" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m El touchpad no ha sido desactivado.\n"
-        sed -i '/# fix java error/ {x;d}; x' /home/$input_username/.config/bspwm/bspwmrc
-        sed -i '/# touchpad/{N;d}' /home/$input_username/.config/bspwm/bspwmrc
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
+    done
 }
 
 configuacion_portatil_sobremesa(){
@@ -268,7 +271,6 @@ configuacion_portatil_sobremesa(){
             break
         elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
-            apt install xinput -y
             configuracion_touchpad
             break
         else
