@@ -140,7 +140,7 @@ cp -r zsh-sudo /usr/share
 
 # CONFIGURANDO BETTERLOCKSCREEN
 echo -e "\e[32m[*]\e[0m Configurando betterlockscreen ...\n"
-betterlockscreen -u /home/$input_username/Wallpapers
+su $input_username -c "betterlockscreen -u /home/$input_username/Wallpapers/wallpaper.jpg"
 
 # CONFIGURANDO BSPWM
 echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
