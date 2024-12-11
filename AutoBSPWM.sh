@@ -383,24 +383,6 @@ instalacion_chrome(){
     done
 }
 
-customizacion_grub_default(){
-    while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Tienes un dualboot o más de un sistema instalado? (SI/NO): ")" response
-        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-      
-        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando la variable GRUB_DEFAULT ..."
-            sed -i '/^GRUB_DEFAULT=[^ ]*/s/^/#/' /etc/default/grub 
-            break
-        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[31m[*]\e[0m GRUB_DEFAULT no será modificado.\n"
-            break
-        else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-        fi
-    done
-}
-
 customizacion_grub_timeout(){
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Introduce el número de segundos que se mostrará grub (si introduces -1 no dejará de mostrarse hasta que lo selecciones manualmente): ")" response
@@ -446,7 +428,6 @@ while true; do
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        customizacion_grub_default
         customizacion_grub_timeout
         customizacion_grub_theme
         update-grub
