@@ -343,13 +343,13 @@ function extractPorts(){
 }
 
 function enableTouchpad(){
-    touchpad_line=$(xinput list | grep -i touchpad)
-    id_touchpad=$(echo "$touchpad_line" | awk -F'id=' '{print $2}' | awk '{print $1}')
+    touchpad=$(xinput list | grep -i touchpad)
+    id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
     xinput enable $id_touchpad
 }
 
 function disableTouchpad(){
-    touchpad_line=$(xinput list | grep -i touchpad)
-    id_touchpad=$(echo "$touchpad_line" | awk -F'id=' '{print $2}' | awk '{print $1}')
+    touchpad=$(xinput list | grep -i touchpad)
+    id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
     xinput disable $id_touchpad
 }
