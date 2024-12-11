@@ -3,7 +3,7 @@
   
 - Este script AutoBSPWM ha sido sido testeado en kali linux nativo y máquina virtual, se desconoce si puede acarrear problemas en otros sistemas operativos que no sean kali linux
 
-- Este entorno bspwm utiliza características del entorno XFCE, como pulseaudio o thunar, puedes instalarlas por tu cuenta o instalar directamente XFCE
+- Este entorno bspwm puede ser configurado para el entorno de escritorio KDE (dolphin) o XFCE (thunar)
 
 - Opciones de instalación: Equipo de escritorio nativo, portátil nativo y máquina virtual
   
@@ -86,7 +86,7 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Abrir el rofi launcher  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Abrir el rofi powermenu  
 <kbd>Esc</kbd> Salir del rofi  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Abrir el gestor de archivos thunar  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Abrir el gestor de archivos thunar/dolphin  
 
 ## Shortcuts de la Kitty
 <kbd>Windows</kbd> + <kbd>Enter</kbd> : Abrir la consola (kitty-terminal)  
