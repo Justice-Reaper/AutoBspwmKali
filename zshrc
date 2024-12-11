@@ -341,3 +341,15 @@ function extractPorts(){
     echo -e "[*] Ports copied to clipboard\n"  >> extractPorts.tmp
     cat extractPorts.tmp; rm extractPorts.tmp
 }
+
+function enableTouchpad(){
+    touchpad_line=$(xinput list | grep -i touchpad)
+    id_touchpad=$(echo "$touchpad_line" | awk -F'id=' '{print $2}' | awk '{print $1}')
+    xinput enable $id_touchpad
+}
+
+function disableTouchpad(){
+    touchpad_line=$(xinput list | grep -i touchpad)
+    id_touchpad=$(echo "$touchpad_line" | awk -F'id=' '{print $2}' | awk '{print $1}')
+    xinput disable $id_touchpad
+}
