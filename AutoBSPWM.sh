@@ -226,6 +226,32 @@ activar_clipboard_bidireccional(){
     done
 }
 
+configuracion_touchpad() {
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" respuesta_touchpad
+    respuesta_touchpad=$(echo "$respuesta_touchpad" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$respuesta_touchpad" = "si" ] || [ "$respuesta_touchpad" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m Configurando el touchpad ...\n"
+        touchpad=$(xinput list | grep -i touchpad)
+        if [[ -n "$touchpad" ]]; then
+            id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
+            sed -i '/# fix java error/i # touchpad' /home/$input_username/.config/bspwm/bspwmrc
+            sed -i "/# fix java error/i xinput enable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
+            sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
+        else
+            echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
+        break
+        fi
+    elif [ "$respuesta_touchpad" = "no" ] || [ "$respuesta_touchpad" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m El touchpad no ha sido desactivado.\n"
+        sed -i '/# fix java error/ {x;d}; x' /home/$input_username/.config/bspwm/bspwmrc
+        sed -i '/# touchpad/{N;d}' /home/$input_username/.config/bspwm/bspwmrc
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+}
+
 configuacion_portatil_sobremesa(){
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
@@ -237,9 +263,13 @@ configuacion_portatil_sobremesa(){
             sed -i '/\[module\/battery\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
             sed -i '/\[module\/battery\]/,$d' /home/$input_username/.config/polybar/config.ini 
             sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
+            sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
+            sed -i '/function enableTouchpad(){/,+10d' /home/$input_username/.zshrc 
             break
         elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
+            apt install xinput -y
+            configuracion_touchpad
             break
         else
             echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
