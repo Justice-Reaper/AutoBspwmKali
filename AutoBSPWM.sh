@@ -388,11 +388,11 @@ while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una KDE o XFCE? (KDE/XFCE): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "KDE" ] || [ "$response" = "kde" ]; then
+    if [ "$response" = "kde" ]; then
         echo -e "\e[32m[*]\e[0m Configurando kde ..."
         sed -i 's/thunar/dolphin/g' /home/$input_username/.config/sxhkd/sxhkdrc
         break
-    elif [ "$response" = "XFCE" ] || [ "$response" = "xfce" ]; then
+    elif [ "$response" = "xfce" ]; then
         echo -e "\e[32m[*]\e[0m Configurando xfce ..."
         break
     else
