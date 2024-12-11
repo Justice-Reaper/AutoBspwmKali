@@ -274,8 +274,8 @@ alias icat='kitty +kitten icat'
 # nvim
 alias nvim='/opt/nvim-linux64/bin/nvim'
 
-# toolbox jetbrains
-alias toolbox-jetbrains='/opt/toolbox-jetbrains/jetbrains-toolbox'
+# jetbrains toolbox
+alias jetbrains-toolbox='/opt/jetbrains-toolbox/jetbrains-toolbox'
 
 # pycharm
 alias pycharm='/home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm-community/bin/pycharm.sh'
