@@ -320,15 +320,15 @@ instalacion_rpcEnum(){
     mv rpcEnum /usr/bin
 }
 
-instalacion_toolbox_jetbrains(){
-    echo -e "\e[32m[*]\e[0m Instalando toolbox jetbrains ..."
+instalacion_jetbrains_toolbox(){
+    echo -e "\e[32m[*]\e[0m Instalando jetbrains toolbox ..."
     URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
     latest_info=$(curl -s $URL)
     download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
     wget -O jetbrains-toolbox.tar.gz $download_link
     tar -xzf jetbrains-toolbox.tar.gz
-    mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") toolbox-jetbrains
-    cp -r toolbox-jetbrains /opt
+    mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") jetbrains-toolbox
+    cp -r jetbrains-toolbox /opt
     sed -i '/# End of file/i * hard nofile 1048576\n' /etc/security/limits.conf
     sed -i '1i fs.file-max=10485760\n' /etc/sysctl.conf
 }
@@ -537,21 +537,21 @@ while true; do
     fi
 done
 
-# TOOLBOX JETBRAINS
+# JETBRAINS TOOLBOX
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar TOOLBOX JETBRAINS? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar JETBRAINS TOOLBOX? (SI/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
     if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_toolbox_jetbrains
+        instalacion_jetbrains_toolbox
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        sed -i '/# toolbox jetbrains/,+2d' /home/$input_username/.zshrc
-        sed -i '/# toolbox jetbrains/,+2d' /root/.zshrc
+        sed -i '/# jetbrains toolbox/,+2d' /home/$input_username/.zshrc
+        sed -i '/# jetbrains toolbox/,+2d' /root/.zshrc
         sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
         sed -i '/# pycharm/,+2d' /root/.zshrc
-        echo -e "\e[31m[*]\e[0m Toolbox jetbrains no ha sido instalada.\n"
+        echo -e "\e[31m[*]\e[0m Jetbrains toolbox no ha sido instalada.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
