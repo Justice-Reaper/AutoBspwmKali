@@ -55,14 +55,14 @@ done
 
 # ACTUALIZAMOS EL SISTEMA
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO): ")" respuesta_update
-    respuesta_update=$(echo "$respuesta_update" | tr '[:upper:]' '[:lower:]')
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$respuesta_update" = "si" ] || [ "$respuesta_update" = "s" ]; then
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Ejecutando 'apt update' ...\n"
         apt update 
         break
-    elif [ "$respuesta_update" = "no" ] || [ "$respuesta_update" = "n" ]; then
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Operación 'apt update' cancelada.\n"
         break
     else
@@ -72,14 +72,14 @@ done
 
 # UPGRADEAMOS EL SISTEMA
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO): ")" respuesta_upgrade
-    respuesta_upgrade=$(echo "$respuesta_upgrade" | tr '[:upper:]' '[:lower:]')
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$respuesta_upgrade" = "si" ] || [ "$respuesta_upgrade" = "s" ]; then
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Ejecutando 'apt full-upgrade' ...\n"
         apt full-upgrade -y 
         break
-    elif [ "$respuesta_upgrade" = "no" ] || [ "$respuesta_upgrade" = "n" ]; then
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Operación 'apt full-upgrade' cancelada.\n"
         break
     else
@@ -210,13 +210,13 @@ instalacion_drivers_nvidia(){
 
 activar_clipboard_bidireccional(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" respuesta_clipboard
-        respuesta_clipboard=$(echo "$respuesta_clipboard" | tr '[:upper:]' '[:lower:]')
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
-        if [ "$respuesta_clipboard" = "si" ] || [ "$respuesta_clipboard" = "s" ]; then
+        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
             echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
             break
-        elif [ "$respuesta_clipboard" = "no" ] || [ "$respuesta_clipboard" = "n" ]; then
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
             sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
             break
@@ -228,10 +228,10 @@ activar_clipboard_bidireccional(){
 
 configuracion_touchpad() {
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" respuesta_touchpad
-        respuesta_touchpad=$(echo "$respuesta_touchpad" | tr '[:upper:]' '[:lower:]')
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-        if [ "$respuesta_touchpad" = "si" ] || [ "$respuesta_touchpad" = "s" ]; then
+        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el touchpad ...\n"
             apt install xinput -y
             touchpad=$(xinput list | grep -i touchpad)
@@ -244,7 +244,7 @@ configuracion_touchpad() {
                 echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
             fi
             break
-        elif [ "$respuesta_touchpad" = "no" ] || [ "$respuesta_touchpad" = "n" ]; then
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m El touchpad no ha sido desactivado.\n"
             sed -i '/# fix java error/ {x;d}; x' /home/$input_username/.config/bspwm/bspwmrc
             sed -i '/# touchpad/{N;d}' /home/$input_username/.config/bspwm/bspwmrc
@@ -257,10 +257,10 @@ configuracion_touchpad() {
 
 configuacion_portatil_sobremesa(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" respuesta_sobremesa
-        respuesta_sobremesa=$(echo "$respuesta_sobremesa" | tr '[:upper:]' '[:lower:]')
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-        if [ "$respuesta_sobremesa" = "si" ] || [ "$respuesta_sobremesa" = "s" ]; then
+        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
             echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
             sed -i '/\[module\/battery\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
@@ -269,7 +269,7 @@ configuacion_portatil_sobremesa(){
             sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
             sed -i '/function enableTouchpad(){/,+10d' /home/$input_username/.zshrc 
             break
-        elif [ "$respuesta_sobremesa" = "no" ] || [ "$respuesta_sobremesa" = "n" ]; then
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
             configuracion_touchpad
             break
@@ -383,12 +383,29 @@ instalacion_chrome(){
     done
 }
 
+# ELECCIÓN KDE O XFCE
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una KDE o XFCE? (KDE/XFCE): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "KDE" ] || [ "$response" = "kde" ]; then
+        echo -e "\e[32m[*]\e[0m Configurando kde ..."
+        sed -i 's/thunar/dolphin/g' /home/$input_username/.config/sxhkd/sxhkdrc
+        break
+    elif [ "$response" = "XFCE" ] || [ "$response" = "xfce" ]; then
+        echo -e "\e[32m[*]\e[0m Configurando xfce ..."
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'KDE' o 'XFCE'.\n"
+    fi
+done
+
 # ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO (MODIFICAR)
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" respuesta_virtual_machine
-    respuesta_virtual_machine=$(echo "$respuesta_virtual_machine" | tr '[:upper:]' '[:lower:]')
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$respuesta_virtual_machine" = "si" ] || [ "$respuesta_virtual_machine" = "s" ]; then
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
         echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
         sed -i '/# bright/,+6d' /home/$input_username/.config/bspwm/bspwmrc
@@ -409,7 +426,7 @@ while true; do
         sed -i '/# increase bright/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
         activar_clipboard_bidireccional
         break
-    elif [ "$respuesta_virtual_machine" = "no" ] || [ "$respuesta_virtual_machine" = "n" ]; then
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
         configuacion_portatil_sobremesa
         instalacion_drivers_nvidia
@@ -560,11 +577,10 @@ done
 
 # SUSTITUIMOS USER_REPLACE POR EL USUARIO ELEGIDO
 echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
-sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/*  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/config.ini
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/scripts/*  
-sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/*  
-sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/scripts*  
-sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/*  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/bspwmrc  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/sxhkdrc
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.p10k.zsh  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.zshrc  
 
