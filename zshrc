@@ -314,20 +314,24 @@ function mkt(){
         mkdir {nmap,content,exploits,scripts}
 }
 
-function clearhistory(){
+function clearHistory(){
     echo '' > ~/.zsh_history
 }
 
-function cleartarget(){
+function removeHistory(){
+    rm ~/.zsh_history
+}
+
+function clearTarget(){
     echo '' > /home/user_replace/.config/bin/target
 }
 
-function settarget(){
+function setTarget(){
     ip_regex='^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
     if [ $# -eq 1 ] && [[ $1 =~ $ip_regex ]]; then
         echo $1 > /home/user_replace/.config/bin/target
     else
-        echo "settarget [IP]"
+        echo "setTarget [IP]"
     fi
 }
 
