@@ -172,6 +172,10 @@ Print
 super + shift + g
         thunar
 
+# obsidian
+super + shift + o
+        obsidian
+
 # vscode
 super + shift + v
 	code
