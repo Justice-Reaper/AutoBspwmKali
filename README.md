@@ -24,6 +24,7 @@ sudo ./AutoBSPWM.sh
 
 ## Componentes:
 - **obsidian**: Herramienta ligera para la toma de notas basada en Markdown
+- **seclists**: Colección de diccionarios para pentesting
 - **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos
 - **rpcEnum**: Herramienta para enumerar servicios MSRPC
 - **postman**: Herramienta colaborativa para desarrollar, probar y documentar APIs, con potentes herramientas de enumeración y depuración
