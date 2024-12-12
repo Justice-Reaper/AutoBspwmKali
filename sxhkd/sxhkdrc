@@ -16,11 +16,11 @@ super + F5
 
 # increase bright
 super + F3
-	/home/user_replace/.config/polybar/scripts/increase_bright.sh
+	/home/user_replace/.config/polybar/scripts/increase_brightness.sh
 
 # decrease bright
 super + F2
-        /home/user_replace/.config/polybar/scripts/decrease_bright.sh
+        /home/user_replace/.config/polybar/scripts/decrease_brightness.sh
 
 # terminal emulator
 super + Return
