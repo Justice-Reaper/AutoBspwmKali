@@ -1,32 +1,25 @@
 #!/bin/bash
 
-# Script para mostrar el nivel de brillo en Polybar
+label="%{F#E784A7}󰃠"
+bar_width=10
+bar_fill="━"
+bar_empty="━"
+color_fill="#E784A7"
+color_empty="#DEE1E6"
 
-# Configuración de colores y símbolos
-LABEL="%{F#E784A7}󰃠%{F-}"
-BAR_WIDTH=10
-BAR_FILL="━"
-BAR_EMPTY="━"
-COLOR_FILL="#E784A7"
-COLOR_EMPTY="#DEE1E6"
+brightness=$(cat /sys/class/backlight/*/brightness)
+max_brightness=$(cat /sys/class/backlight/*/max_brightness)
 
-# Obtener nivel de brillo actual (reemplazar por el comando adecuado para tu sistema)
-BRIGHTNESS=$(cat /sys/class/backlight/*/brightness)
-MAX_BRIGHTNESS=$(cat /sys/class/backlight/*/max_brightness)
+percent=$(( brightness * 100 / max_brightness ))
 
-# Calcular el porcentaje de brillo
-PERCENT=$(( BRIGHTNESS * 100 / MAX_BRIGHTNESS ))
-
-# Generar la barra de brillo
-FILLED=$(( BAR_WIDTH * PERCENT / 100 ))
-EMPTY=$(( BAR_WIDTH - FILLED ))
-BAR=""
-for ((i = 0; i < FILLED; i++)); do
-  BAR+="%{F$COLOR_FILL}$BAR_FILL%{F-}"
+filled=$(( bar_width * percent / 100 ))
+empty=$(( bar_width - filled ))
+bar=""
+for ((i = 0; i < filled; i++)); do
+  bar+="%{F$color_fill}$bar_fill"
 done
-for ((i = 0; i < EMPTY; i++)); do
-  BAR+="%{F$COLOR_EMPTY}$BAR_EMPTY%{F-}"
+for ((i = 0; i < empty; i++)); do
+  bar+="%{F$color_empty}$bar_empty"
 done
 
-# Mostrar el resultado
-echo -e "$LABEL $BAR"
+echo -e "$label $bar"
