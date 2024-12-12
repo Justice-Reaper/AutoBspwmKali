@@ -182,7 +182,7 @@ super + shift + v
 
 # copy local ip address
 super + shift + F1
-        /home/user_replace/.config/polybar/scripts/copy_ethernet_ip.sh
+        /home/user_replace/.config/polybar/scripts/copy_local_ip.sh
 
 # copy vpn ip address
 super + shift + F2
