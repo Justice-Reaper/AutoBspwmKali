@@ -14,11 +14,11 @@ super + F6
 super + F5
 	pactl set-sink-mute 0 toggle
 
-# increase bright
+# increase brightness
 super + F3
 	/home/user_replace/.config/polybar/scripts/increase_brightness.sh
 
-# decrease bright
+# decrease brightness
 super + F2
         /home/user_replace/.config/polybar/scripts/decrease_brightness.sh
 
