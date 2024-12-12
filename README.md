@@ -78,6 +78,7 @@ sudo ./AutoBSPWM.sh
 
 ## Shortcuts de Aplicaciones
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Abrir Postman  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> : Abrir Obsidian  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Abrir Pycharm  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Abrir el firefox/chrome  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Abrir el burpsuite  
