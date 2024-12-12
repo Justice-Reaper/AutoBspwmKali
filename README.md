@@ -23,6 +23,7 @@ sudo ./AutoBSPWM.sh
 ![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
 
 ## Componentes:
+- **obsidian**: Herramienta ligera para la toma de notas basada en Markdown
 - **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos
 - **rpcEnum**: Herramienta para enumerar servicios MSRPC
 - **postman**: Herramienta colaborativa para desarrollar, probar y documentar APIs, con potentes herramientas de enumeración y depuración
