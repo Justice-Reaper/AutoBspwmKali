@@ -310,8 +310,12 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # functions
 
-function mkt(){
-        mkdir {nmap,content,exploits,scripts}
+function mkt() {
+    if [ -n "$1" ]; then
+        mkdir -p "$1"/{nmap,content,exploits,scripts}
+    else
+        echo "mkt [FOLDER]"
+    fi
 }
 
 function clearHistory(){
