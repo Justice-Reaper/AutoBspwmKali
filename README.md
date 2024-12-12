@@ -24,6 +24,11 @@ sudo ./AutoBSPWM.sh
 
 ## Componentes:
 - **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos
+- **rpcEnum**: Herramienta para enumerar servicios MSRPC
+- **postman**: Herramienta colaborativa para desarrollar, probar y documentar APIs, con potentes herramientas de enumeración y depuración
+- **jetbrains tools**: Conjunto de herramientas de desarrollo integradas para diferentes lenguajes de programación
+- **kerbrute**: Herramienta de fuerza bruta para enumerar usuarios válidos mediante kerberos
+- **windapsearch**: Herramienta ligera para enumerar datos en servidores LDAP
 - **brightnessctl**: Herramienta para controlar el brillo de la pantalla desde la línea de comandos
 - **feh**: Visor de imágenes ligero, configurable y versátil
 - **xclip**: Utilidad para manejar el portapapeles en entornos de línea de comandos
