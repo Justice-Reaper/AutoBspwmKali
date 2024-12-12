@@ -28,10 +28,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # wallpaper
 feh --bg-fill /home/user_replace/Wallpapers/wallpaper.jpg &
 
-# bright
-brillo_actual=$(cat /sys/class/backlight/*/brightness)
+# brightness
+brightness=$(cat /sys/class/backlight/*/brightness)
 
-if [ "$brillo_actual" = "12" ]; then
+if [ "$brightness" = "12" ]; then
     echo '0' > /sys/class/backlight/*/brightness
 fi
 
