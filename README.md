@@ -23,6 +23,8 @@ sudo ./AutoBSPWM.sh
 ![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
 
 ## Componentes:
+- **bloodhound**: Herramienta para mapear relaciones y privilegios en Active Directory
+- **neo4j**: Base de datos de grafos que almacena y consulta datos mediante nodos, relaciones y propiedades
 - **obsidian**: Herramienta ligera para la toma de notas basada en Markdown
 - **seclists**: Colección de diccionarios para pentesting
 - **imagemagick**: Suite de software para crear, editar o convertir imágenes desde la línea de comandos
