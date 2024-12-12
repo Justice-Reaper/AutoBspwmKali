@@ -139,9 +139,14 @@ sudo ./AutoBSPWM.sh
 <kbd>Ctrl</kbd> + <kbd>R</kbd>: Mediante fzf nos autocompleta los archivos/directorios  
 <kbd>Ctrl</kbd> + <kbd>R</kbd>: Mediante fzf podemos ejecutar comandos del histórico de la zsh  
 <kbd>Esc</kbd> + <kbd>Esc</kbd>: Se activa el plugin sudo-zsh y nos añade sudo al principio del comando en la kitty  
-<kbd>Settarget</kbd>: Mediante esta función en la zsh seteamos el target en la polybar  
-<kbd>Cleartarget</kbd>: Mediante esta función en la zsh limpiamos el target de la polybar  
-<kbd>Mkt</kbd>: Se crean varios directorios de trabajo  
+<kbd>setTarget</kbd>: Mediante esta función en la zsh seteamos el target en la polybar  
+<kbd>clearTarget</kbd>: Mediante esta función en la zsh limpiamos el target de la polybar  
+<kbd>mkt</kbd>: Se crea una carpeta y dentro de ella varios directorios de trabajo  
+<kbd>clearHistory</kbd>: Limpiar el historial de la zsh
+<kbd>removeHistory</kbd>: Eliminar el historial de la zsh
+<kbd>extractPorts</kbd>: Extrae los puertos de un archivo con formato -oG de nmap y los copia en la clipboard
+<kbd>enableTouchpad</kbd>: Habilitamos el touchpad del portátil
+<kbd>disableTouchpad</kbd>: Deshabilitamos el touchpad del portátil
 
 ## Créditos
 Autor: Justice-Reaper  
