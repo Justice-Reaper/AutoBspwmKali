@@ -22,4 +22,4 @@ if [ -z "$ip_address_ethernet" ] && [ -z "$ip_address_wifi" ]; then
     icon="%{F#70A5EB}󱘖"
 fi
 
-echo "$icon %{F#DEE1E6}$ip_address%{u-}"
+echo "$icon %{F#DEE1E6}$ip_address"
