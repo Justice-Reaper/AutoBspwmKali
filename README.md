@@ -142,11 +142,11 @@ sudo ./AutoBSPWM.sh
 <kbd>setTarget</kbd>: Mediante esta función en la zsh seteamos el target en la polybar  
 <kbd>clearTarget</kbd>: Mediante esta función en la zsh limpiamos el target de la polybar  
 <kbd>mkt</kbd>: Se crea una carpeta y dentro de ella varios directorios de trabajo  
-<kbd>clearHistory</kbd>: Limpiar el historial de la zsh
-<kbd>removeHistory</kbd>: Eliminar el historial de la zsh
-<kbd>extractPorts</kbd>: Extrae los puertos de un archivo con formato -oG de nmap y los copia en la clipboard
-<kbd>enableTouchpad</kbd>: Habilitamos el touchpad del portátil
-<kbd>disableTouchpad</kbd>: Deshabilitamos el touchpad del portátil
+<kbd>clearHistory</kbd>: Limpiar el historial de la zsh  
+<kbd>removeHistory</kbd>: Eliminar el historial de la zsh  
+<kbd>extractPorts</kbd>: Extrae los puertos de un archivo con formato -oG de nmap y los copia en la clipboard  
+<kbd>enableTouchpad</kbd>: Habilitamos el touchpad del portátil  
+<kbd>disableTouchpad</kbd>: Deshabilitamos el touchpad del portátil  
 
 ## Créditos
 Autor: Justice-Reaper  
