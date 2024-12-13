@@ -208,36 +208,12 @@ instalacion_drivers_nvidia(){
     done
 }
 
-confirmar_tecla(){
-    while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿La tecla que has elegido es la correcta? (SI/NO): ")" response
-        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-      
-        if [ "$response" = "si" ] || [ "$response" = "s" ] || [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo "$response"
-            break
-        else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-        fi
-    done
-}
-
 configuracion_tecla_fn(){
     while true; do
-        echo -e "\e[33m[*]\e[0m Pon el puntero del ratón encima de la ventana blanca e introduce una combinación de teclas para $1: "
-
-        xev | while read line; do
-            content=$(echo "$line" | grep 'keysym' | grep -oP '\(.*\)' | sed 's/[()]//g')
-            if [[ "$content" == *","* ]]; then
-                key=$(echo "$content" | awk -F, '{print $2}' | xargs)
-                echo "$key"
-                confirmation=$(confirmar_tecla)
-                if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
-                    echo "$key" >> /tmp/keys
-                    break
-                fi
-            fi
-        done
+        echo -e "\e[33m[*]\e[0m Aparecerá un output así (keysym 0x1008ff13, XF86AudioRaiseVolume) cuando introduzcas una combinación de teclas. Debes introducir el tercer parámetro, en este caso es XF86AudioRaiseVolume"
+        read -p "$(echo -e "\e[33m[*]\e[0m Pon el puntero del ratón encima de la ventana blanca e introduce el parámetro que te aprece en la consola $1: ")" response
+        kitty --detach bash -c "xev | grep 'keysym'; exec bash"
+        echo "$response" >> /tmp/keys
         break
     done
 }
