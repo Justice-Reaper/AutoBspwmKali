@@ -89,7 +89,7 @@ done
 
 # INSTALAMOS LAS DEPENDENCIAS NECESARIAS
 echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
-apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils seclists bloodhound neo4j -y
+apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils seclists bloodhound neo4j x11-utils moreutils -y
 
 # ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
 echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
@@ -191,16 +191,75 @@ cp .zshrc /root
 # FUNCIONES DE INSTALACIÓN Y CONFIGURACIÓN
 instalacion_drivers_nvidia(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los drivers propietarios de nvidia? (SI/NO): ")" drivers_nvidia
-        drivers_nvidia=$(echo "$drivers_nvidia" | tr '[:upper:]' '[:lower:]')
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los DRIVERS PROPIETARIOS de NVIDIA? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
-        if [ "$drivers_nvidia" = "si" ] || [ "$drivers_nvidia" = "s" ]; then
+        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
             echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
             apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
             apt install $(apt-cache pkgnames | grep -E '^linux-headers-[0-9]+\.[0-9]+\.[0-9]+-amd64$' | sort -V | tail -n 1) -y
             break
-        elif [ "$drivers_nvidia" = "no" ] || [ "$drivers_nvidia" = "n" ]; then
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
+    done
+}
+
+confirmar_tecla(){
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿La TECLA que has elegido es la CORRECTA? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "si" ] || [ "$response" = "s" ] || [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo "$response"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        fi
+    done
+}
+
+configuracion_tecla_fn(){
+    while true; do
+        echo -e "\e[33m[*]\e[0m Pon el puntero del ratón encima de la ventana blanca e introduce una combinación de teclas para $1: "
+
+        xev | while read line; do
+            content=$(echo "$line" | grep 'keysym' | grep -oP '\(.*\)' | sed 's/[()]//g')
+            if [[ "$content" == *","* ]]; then
+                key=$(echo "$content" | awk -F, '{print $2}' | xargs)
+                echo "$key"
+                confirmation=$(confirmar_tecla)
+                if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
+                    echo "$key" >> /tmp/keys
+                    break
+                fi
+            fi
+        done
+        break
+    done
+}
+
+añadir_shortcuts_sxhkdrc(){
+}
+
+configuracion_shortcuts(){
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres usar la tecla FN o la tecla WINDOWS para los shorcuts de teclado (se utilizará para SUBIR/BAJAR el VOLUMEN/BRILLO y para el MUTEAR el SONIDO)? (FN/WINDOWS): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "windows" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando tecla windows ...\n"
+            break
+        elif [ "$response" = "fn" ]; then
+            echo -e "\e[32m[*]\e[0m Configurando tecla fn ...\n"
+            configuracion_tecla_fn "subir el brillo"
+            configuracion_tecla_fn "bajar el brillo"
+            configuracion_tecla_fn "subir el volumen"
+            configuracion_tecla_fn "bajar el volumen"
+            configuracion_tecla_fn "mutear y desmutear el audio"
             break
         else
             echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -210,7 +269,7 @@ instalacion_drivers_nvidia(){
 
 activar_clipboard_bidireccional(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VmWare y deseas activar la clipboard bidireccional? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VMWARE y deseas ACTIVAR la CLIPBOARD BIDIRECCIONAL? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
@@ -228,7 +287,7 @@ activar_clipboard_bidireccional(){
 
 configuracion_touchpad() {
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas DESACTIVAR el TOUCHPAD por defecto? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
@@ -257,7 +316,7 @@ configuracion_touchpad() {
 
 configuacion_portatil_sobremesa(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un EQUIPO de SOBREMESA? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
@@ -487,6 +546,7 @@ while true; do
         echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
         configuacion_portatil_sobremesa
         instalacion_drivers_nvidia
+        configuracion_shortcuts
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
