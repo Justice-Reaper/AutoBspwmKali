@@ -210,7 +210,7 @@ instalacion_drivers_nvidia(){
 
 confirmar_tecla(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿La TECLA que has elegido es la CORRECTA? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿La tecla que has elegido es la correcta? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [ "$response" = "si" ] || [ "$response" = "s" ] || [ "$response" = "no" ] || [ "$response" = "n" ]; then
@@ -242,7 +242,11 @@ configuracion_tecla_fn(){
     done
 }
 
-añadir_shortcuts_sxhkdrc(){
+sustituir_shortcut_sxhkdrc(){
+    awk '!seen[$0]++' /tmp/keys | sponge /tmp/keys
+    while IFS= read -r line; do
+        sed -i "s/$1/$line/" /home/$input_username/.config/sxhkd/sxhkdrc
+    done < /tmp/keys
 }
 
 configuracion_shortcuts(){
@@ -255,11 +259,16 @@ configuracion_shortcuts(){
             break
         elif [ "$response" = "fn" ]; then
             echo -e "\e[32m[*]\e[0m Configurando tecla fn ...\n"
-            configuracion_tecla_fn "subir el brillo"
-            configuracion_tecla_fn "bajar el brillo"
             configuracion_tecla_fn "subir el volumen"
+            sustituir_shortcut_sxhkdrc "super + F7"
             configuracion_tecla_fn "bajar el volumen"
+            sustituir_shortcut_sxhkdrc "super + F6"
             configuracion_tecla_fn "mutear y desmutear el audio"
+            sustituir_shortcut_sxhkdrc "super + F5"
+            configuracion_tecla_fn "subir el brillo"
+            sustituir_shortcut_sxhkdrc "super + F3"
+            configuracion_tecla_fn "bajar el brillo"
+            sustituir_shortcut_sxhkdrc "super + F2"
             break
         else
             echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -269,7 +278,7 @@ configuracion_shortcuts(){
 
 activar_clipboard_bidireccional(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando VMWARE y deseas ACTIVAR la CLIPBOARD BIDIRECCIONAL? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando vmware y deseas activar la clipboard bidireccional? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
@@ -287,7 +296,7 @@ activar_clipboard_bidireccional(){
 
 configuracion_touchpad() {
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas DESACTIVAR el TOUCHPAD por defecto? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
@@ -316,7 +325,7 @@ configuracion_touchpad() {
 
 configuacion_portatil_sobremesa(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un EQUIPO de SOBREMESA? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
