@@ -466,6 +466,61 @@ customizacion_grub_theme(){
     done
 }
 
+advertencia(){
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Si estás en un sistema operativo nativo, debes reiniciar y ejecutar el script nuevamente desde bspwm para que funcione todo correctamente. ¿Deseas reiniciar? (SI/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+       if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+           reboot
+           break
+       elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+           echo -e "\e[31m[*]\e[0m No se efectuará el reinicio, si has hecho una instalación limpia, acabas de actualizar los paquetes y estás en un equipo portátil, puede que no se detecte el touchpad (reiniciar si desea desactivarlo por defecto). Si no estás en un entorno BSPWM, no podrás configurar la tecla FN en vez de la tecla WINDOWS en los atajos de teclado.\n"
+           break
+       else
+           echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+       fi
+    done
+}
+
+# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
+        echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
+        sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
+        sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
+        sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
+        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
+        sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
+        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+        sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+        sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
+        sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
+        sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
+        rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
+        rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
+        sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf     
+        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+        sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        activar_clipboard_bidireccional
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
+        advertencia
+        configuacion_portatil_sobremesa
+        instalacion_drivers_nvidia
+        configuracion_shortcuts
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+    fi
+done
+
 # CUSTOMIZACIÓN GRUB
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas customizar grub? (SI/NO): ")" response
@@ -498,43 +553,6 @@ while true; do
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'KDE' o 'XFCE'.\n"
-    fi
-done
-
-# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO (MODIFICAR)
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
-        echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
-        sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
-        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
-        sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
-        sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
-        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
-        sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
-        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-        sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-        sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
-        sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
-        sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
-        rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
-        rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
-        sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf     
-        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
-        activar_clipboard_bidireccional
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
-        configuacion_portatil_sobremesa
-        instalacion_drivers_nvidia
-        configuracion_shortcuts
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
     fi
 done
 
