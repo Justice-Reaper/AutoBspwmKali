@@ -210,7 +210,6 @@ instalacion_drivers_nvidia(){
 
 configuracion_tecla_fn(){
     while true; do
-        kitty --detach bash -c "xev | grep 'keysym'; exec bash"
         read -p "$(echo -e "\e[33m[*]\e[0m Aparecerá un output así (keysym 0x1008ff13, XF86AudioRaiseVolume) cuando introduzcas una combinación de teclas. Debes introducir el tercer parámetro, en este caso es XF86AudioRaiseVolume\n
         Pon el puntero del ratón encima de la ventana blanca e introduce el parámetro que te aprece en la consola para $1: ")" response
         echo "$response" >> /tmp/keys
@@ -236,6 +235,7 @@ configuracion_shortcuts(){
             break
         elif [ "$response" = "fn" ]; then
             echo -e "\e[32m[*]\e[0m Configurando tecla fn ...\n"
+            kitty --detach bash -c "xev | grep 'keysym'; exec bash"
             configuracion_tecla_fn "subir el volumen"
             sustituir_shortcut_sxhkdrc "super + F7"
             configuracion_tecla_fn "bajar el volumen"
