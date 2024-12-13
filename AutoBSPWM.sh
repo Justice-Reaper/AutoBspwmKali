@@ -121,6 +121,10 @@ cp -r fonts /usr/local/share
 echo -e "\e[32m[*]\e[0m Configurando wallpapers ...\n"
 cp -r Wallpapers /home/$input_username
 
+# CONFIGURANDO BETTERLOCKSCREEN
+echo -e "\e[32m[*]\e[0m Configurando betterlockscreen ...\n"
+su $input_username -c "betterlockscreen -u /home/$input_username/Wallpapers/wallpaper.jpg"
+
 # CONFIGURANDO SXHKD
 echo -e "\e[32m[*]\e[0m Configurando sxhkd ...\n"
 cp -r sxhkd /home/$input_username/.config
@@ -137,10 +141,6 @@ cp -r picom /home/$input_username/.config
 # CONFIGURANDO PLUGIN SUDO ZSH
 echo -e "\e[32m[*]\e[0m Configurando plugin zsh-sudo ...\n"
 cp -r zsh-sudo /usr/share
-
-# CONFIGURANDO BETTERLOCKSCREEN
-echo -e "\e[32m[*]\e[0m Configurando betterlockscreen ...\n"
-su $input_username -c "betterlockscreen -u /home/$input_username/Wallpapers/wallpaper.jpg"
 
 # CONFIGURANDO BSPWM
 echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
