@@ -247,6 +247,7 @@ sustituir_shortcut_sxhkdrc(){
     while IFS= read -r line; do
         sed -i "s/$1/$line/" /home/$input_username/.config/sxhkd/sxhkdrc
     done < /tmp/keys
+    rm /tmp/keys
 }
 
 configuracion_shortcuts(){
