@@ -282,7 +282,10 @@ configuracion_touchpad() {
             if [[ -n "$touchpad" ]]; then
                 id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
                 sed -i '/# fix java error/i # touchpad' /home/$input_username/.config/bspwm/bspwmrc
-                sed -i "/# fix java error/i xinput disable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i "/# fix java error/i touchpad=\$(cat /home/$input_username/.config/bin/touchpad)" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i '/# fix java error/i if [ "$touchpad" = "Enabled" ]; then' /home/$input_username/.config/bspwm/bspwmrc
+                sed -i "/# fix java error/i\    xinput disable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i '/# fix java error/i fi' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
             else
                 echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
