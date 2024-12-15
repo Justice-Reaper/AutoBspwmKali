@@ -352,14 +352,14 @@ function extractPorts(){
 
 function enableTouchpad(){
     touchpad=$(xinput list | grep -i touchpad)
-    id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
+    touchpad_id=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
     echo 'Enabled' > /home/user_replace/.config/bin/touchpad
-    xinput enable $id_touchpad
+    xinput enable $touchpad_id
 }
 
 function disableTouchpad(){
     touchpad=$(xinput list | grep -i touchpad)
-    id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
+    touchpad_id=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
     echo 'Disabled' > /home/user_replace/.config/bin/touchpad
-    xinput disable $id_touchpad
+    xinput disable $touchpad_id
 }
