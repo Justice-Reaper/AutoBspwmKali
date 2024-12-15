@@ -315,6 +315,7 @@ configuacion_portatil_sobremesa(){
             sed -i 's/battery_notification //' /home/$input_username/.config/polybar/config.ini 
             rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
             rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
+            rm -r /home/$input_username/.config/polybar/scripts/brightness_control.sh
 
             echo -e "\e[32m[*]\e[0m Configurando zsh ...\n"
             sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
@@ -534,6 +535,7 @@ while true; do
         sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
         rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
         rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
+        rm -r /home/$input_username/.config/polybar/scripts/brightness_control.sh
         echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
         sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
         activar_clipboard_bidireccional
