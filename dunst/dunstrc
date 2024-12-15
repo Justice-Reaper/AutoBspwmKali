@@ -233,7 +233,7 @@
     max_icon_size = 32
 
     # Paths to default icons (only necessary when not using recursive icon lookup)
-    icon_path = /home/justice-reaper/.config/dunst/icons
+    icon_path = /home/user_replace/.config/dunst/icons
 
     ### History ###
 
