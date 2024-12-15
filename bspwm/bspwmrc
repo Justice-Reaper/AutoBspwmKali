@@ -28,6 +28,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # wallpaper
 feh --bg-fill /home/user_replace/Wallpapers/wallpaper.jpg &
 
+# dunst
+dunst &
+
 # brightness
 brightness=$(cat /sys/class/backlight/*/brightness)
 
@@ -48,6 +51,3 @@ then
     killall -q picom && sleep 1
 fi
 picom --config /home/user_replace/.config/picom/picom.conf --daemon &
-
-# dunst
-dunst &
