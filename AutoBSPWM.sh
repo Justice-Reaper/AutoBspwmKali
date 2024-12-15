@@ -293,8 +293,7 @@ configuracion_touchpad() {
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m El touchpad no ha sido desactivado.\n"
-            sed -i '/# fix java error/ {x;d}; x' /home/$input_username/.config/bspwm/bspwmrc
-            sed -i '/# touchpad/{N;d}' /home/$input_username/.config/bspwm/bspwmrc
+            sed -i '/# touchpad/,+5d' /home/$input_username/.config/bspwm/bspwmrc
             break
         else
             echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
@@ -309,28 +308,7 @@ configuacion_portatil_sobremesa(){
 
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
-            
-            echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-            sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-            sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
-            sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
-            sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
-            sed -i 's/battery_notification //' /home/$input_username/.config/polybar/config.ini 
-            rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
-            rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
-            rm -r /home/$input_username/.config/polybar/scripts/brightness_control.sh
-
-            echo -e "\e[32m[*]\e[0m Configurando zsh ...\n"
-            sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
-            sed -i '/function enableTouchpad(){/,+10d' /home/$input_username/.zshrc 
-
-            echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
-            sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
-            sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
-
-            echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-            sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
-
+            eliminar_configuracion_portatil
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
@@ -519,6 +497,29 @@ advertencia(){
     done
 }
 
+eliminar_configuracion_portatil(){
+    echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+    sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
+    sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
+    sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
+    sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
+    sed -i 's/battery_notification //' /home/$input_username/.config/polybar/config.ini 
+    rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
+    rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
+    rm -r /home/$input_username/.config/polybar/scripts/brightness_control.sh
+
+    echo -e "\e[32m[*]\e[0m Configurando zsh ...\n"
+    sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
+    sed -i '/function enableTouchpad(){/,+12d' /home/$input_username/.zshrc 
+
+    echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
+    sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
+    sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+
+    echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+    sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
+}
+
 # ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" response
@@ -526,27 +527,14 @@ while true; do
 
     if [ "$response" = "si" ] || [ "$response" = "s" ]; then
         echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
-        echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
-        sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
-        
         echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
         sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
-        sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf     
-        
-        echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
-        sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-        sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
-        sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
-        sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
-        rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
-        rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
-        rm -r /home/$input_username/.config/polybar/scripts/brightness_control.sh
-        
-        echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-        sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
+        sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
+
+        eliminar_configuracion_portatil
         activar_clipboard_bidireccional
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
