@@ -322,7 +322,8 @@ configuacion_portatil_sobremesa(){
 
             echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
             sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
-            
+            sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
