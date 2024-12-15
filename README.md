@@ -23,6 +23,7 @@ sudo ./AutoBSPWM.sh
 ![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
 
 ## Componentes:
+- **dunst**: Demonio de notificaciones que informará del estado de la batería (cargando, carga completa y batería baja)
 - **bloodhound**: Herramienta para mapear relaciones y privilegios en Active Directory
 - **neo4j**: Base de datos de grafos que almacena y consulta datos mediante nodos, relaciones y propiedades
 - **obsidian**: Herramienta ligera para la toma de notas basada en Markdown
