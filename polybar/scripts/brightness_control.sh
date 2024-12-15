@@ -15,9 +15,11 @@ percent=$(( brightness * 100 / max_brightness ))
 filled=$(( bar_width * percent / 100 ))
 empty=$(( bar_width - filled ))
 bar=""
+
 for ((i = 0; i < filled; i++)); do
   bar+="%{F$color_fill}$bar_fill"
 done
+
 for ((i = 0; i < empty; i++)); do
   bar+="%{F$color_empty}$bar_empty"
 done
