@@ -325,6 +325,9 @@ configuacion_portatil_sobremesa(){
             sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
             sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
+            echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+            sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
+
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
@@ -522,12 +525,14 @@ while true; do
         echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
         echo -e "\e[32m[*]\e[0m Configurando bspwmrc ...\n"
         sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+        
         echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
         sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf     
+        
         echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
         sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
         sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
@@ -536,6 +541,7 @@ while true; do
         rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
         rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
         rm -r /home/$input_username/.config/polybar/scripts/brightness_control.sh
+        
         echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
         sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
         activar_clipboard_bidireccional
