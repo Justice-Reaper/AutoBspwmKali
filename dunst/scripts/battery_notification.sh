@@ -11,7 +11,7 @@ battery_charging_file=/home/user_replace/.config/bin/battery_charging
 battery_warning_file=/home/user_replace/.config/bin/battery_warning
 battery_fully_charged_file=/home/user_replace/.config/bin/battery_fully_charged
 
-if [ "$battery_level" -le "$warning_level" ] && [ "$(cat $battery_warning_file)" != "True" ]; then
+if [ "$battery_level" -le "$warning_level" ] && [ "$(cat $battery_warning_file)" != "True" ] && [ "$battery_charging" -eq 0 ]; then
     notify-send "Low Battery" "${battery_level}% of battery remaining" -u critical -i "battery-alert" -r 9991
     echo 'True' > "$battery_warning_file"
     echo 'False' > "$battery_charging_file"
