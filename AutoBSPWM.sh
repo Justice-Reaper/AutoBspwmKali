@@ -288,6 +288,7 @@ configuracion_touchpad() {
                 sed -i '/# fix java error/i fi' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
                 touch /home/$input_username/.config/bin/touchpad
+                echo 'Enabled' > /home/$input_username/.config/bin/touchpad
             else
                 echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
             fi
