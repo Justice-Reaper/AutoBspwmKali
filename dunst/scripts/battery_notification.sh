@@ -6,10 +6,10 @@ battery_charging=$(acpi -b | grep "$battery" | grep -c "Charging")
 battery_discharging=$(acpi -b | grep "$battery" | grep -c "Discharging")
 battery_level=$(acpi -b | grep "$battery" | grep -P -o '[0-9]+(?=%)')
 
-battery_discharging_file=/home/justice-reaper/.config/bin/battery_discharging
-battery_charging_file=/home/justice-reaper/.config/bin/battery_charging
-battery_warning_file=/home/justice-reaper/.config/bin/battery_warning
-battery_fully_charged_file=/home/justice-reaper/.config/bin/battery_fully_charged
+battery_discharging_file=/home/user_replace/.config/bin/battery_discharging
+battery_charging_file=/home/user_replace/.config/bin/battery_charging
+battery_warning_file=/home/user_replace/.config/bin/battery_warning
+battery_fully_charged_file=/home/user_replace/.config/bin/battery_fully_charged
 
 if [ "$battery_level" -le "$warning_level" ] && [ "$(cat $battery_warning_file)" != "True" ]; then
     notify-send "Low Battery" "${battery_level}% of battery remaining" -u critical -i "battery-alert" -r 9991
