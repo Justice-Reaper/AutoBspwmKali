@@ -282,9 +282,11 @@ configuracion_touchpad() {
             if [[ -n "$touchpad" ]]; then
                 id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
                 sed -i '/# fix java error/i # touchpad' /home/$input_username/.config/bspwm/bspwmrc
-                sed -i "/# fix java error/i touchpad=\$(cat /home/$input_username/.config/bin/touchpad)" /home/$input_username/.config/bspwm/bspwmrc
-                sed -i '/# fix java error/i if [ "$touchpad" = "Enabled" ]; then' /home/$input_username/.config/bspwm/bspwmrc
-                sed -i "/# fix java error/i\    xinput disable $id_touchpad" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i "/# fix java error/i\touchpad=\$(xinput list | grep -i touchpad)" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i "/# fix java error/i touchpad_file=\$(cat /home/$input_username/.config/bin/touchpad)" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i "/# fix java error/i\touchpad_id=\$(echo \"\$touchpad\" | awk -F'id=' '{print \$2}' | awk '{print \$1}')" /home/$input_username/.config/bspwm/bspwmrc
+                sed -i '/# fix java error/i if [ "$touchpad_file" = "Enabled" ]; then' /home/$input_username/.config/bspwm/bspwmrc
+                sed -i '/# fix java error/i\    xinput disable $touchpad_id' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i fi' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
                 touch /home/$input_username/.config/bin/touchpad
@@ -295,7 +297,7 @@ configuracion_touchpad() {
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m El touchpad no ha sido desactivado.\n"
-            sed -i '/# touchpad/,+5d' /home/$input_username/.config/bspwm/bspwmrc
+            sed -i '/# touchpad/,+7d' /home/$input_username/.config/bspwm/bspwmrc
             break
         else
             echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
