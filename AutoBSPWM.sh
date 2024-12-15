@@ -341,6 +341,10 @@ instalacion_dunst(){
     echo -e "\e[32m[*]\e[0m Configurando dunst ...\n"
     apt install acpi dunst -y
     rm -rf /home/$input_username/.config/dunst
+    touch /home/$input_username/.config/bin/battery_discharging  
+    touch /home/$input_username/.config/bin/battery_charging
+    touch /home/$input_username/.config/bin/battery_warning
+    touch /home/$input_username/.config/bin/target/battery_fully_charged  
     cp -r dunst /home/$input_username/.config
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/dunstrc
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
