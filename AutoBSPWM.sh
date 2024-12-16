@@ -210,7 +210,7 @@ instalacion_drivers_nvidia(){
 
 configuracion_tecla_fn(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Aparecerá un output así (keysym 0x1008ff13, XF86AudioRaiseVolume) cuando introduzcas una combinación de teclas. Debes introducir el tercer parámetro, en este caso es XF86AudioRaiseVolume. Pon el puntero del ratón encima de la ventana blanca e introduce el parámetro que te aprece en la consola para $1: ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Pon el puntero del ratón encima de la ventana blanca e introduce el parámetro que te aprece en la consola para $1: ")" response
         echo "$response" >> /tmp/keys
         break
     done
@@ -234,6 +234,7 @@ configuracion_shortcuts(){
             break
         elif [ "$response" = "fn" ]; then
             echo -e "\e[32m[*]\e[0m Configurando tecla fn ...\n"
+            echo -e "\e[33m[*]\e[0m Aparecerá un output así (keysym 0x1008ff13, XF86AudioRaiseVolume) cuando introduzcas una combinación de teclas. Debes introducir el tercer parámetro, en este caso es XF86AudioRaiseVolume"
             kitty --detach bash -c "xev | grep 'keysym'; exec bash"
             configuracion_tecla_fn "subir el volumen"
             sustituir_shortcut_sxhkdrc "super + F7"
@@ -245,6 +246,7 @@ configuracion_shortcuts(){
             sustituir_shortcut_sxhkdrc "super + F3"
             configuracion_tecla_fn "bajar el brillo"
             sustituir_shortcut_sxhkdrc "super + F2"
+            echo -e "\e[33m[*]\e[0m Ya puedes cerrar la ventana blanca y la consola en la que se muestra el output ...\n"
             break
         else
             echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
