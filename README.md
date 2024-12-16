@@ -15,7 +15,7 @@
 
 # Donaciones
 
-¿Quieres apoyarme a seguir mejorando este proyecto? Puedes ayudarme con una pequeña donación, pulsando en este botón
+¿Quieres ayudarme a seguir mejorando este proyecto? Puedes apoyarme con una pequeña donación pulsando en este botón
 
 [![Gracias por tu apoyo !!!](https://img.buymeacoffee.com/button-api/?text=Gracias%20por%20tu%20apoyo%20!!!&emoji=💻&slug=justiceReaper&button_colour=5F7FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00)](https://www.buymeacoffee.com/justiceReaper)
 
