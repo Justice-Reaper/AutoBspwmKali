@@ -318,6 +318,7 @@ configuacion_portatil_sobremesa(){
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
+            configuracion_shortcuts
             configuracion_touchpad
             instalacion_dunst
             break
@@ -554,7 +555,6 @@ while true; do
         advertencia
         configuacion_portatil_sobremesa
         instalacion_drivers_nvidia
-        configuracion_shortcuts
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
