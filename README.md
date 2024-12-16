@@ -1,9 +1,11 @@
 # AutoBSPWM
 - Este script AutoBSPWM ha sido creado por investigación propia utilizando como base el curso de personalización de linux de la academia de Hack4u https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/
   
-- Este script AutoBSPWM ha sido sido testeado en kali linux nativo y máquina virtual, se desconoce si puede acarrear problemas en otros sistemas operativos que no sean kali linux
+- Este script AutoBSPWM ha sido sido testeado en kali linux nativo y máquina virtual
 
-- Este entorno bspwm puede ser configurado para el entorno de escritorio XFCE
+- Con el sistema nativo dispondremos de sonido al insertar y extraer dispositivos usb, así como controladores para el brillo, batería y sonido
+
+- Este entorno bspwm está diseñado para funcionar con el entorno de escritorio XFCE
 
 - Opciones de instalación: Equipo de escritorio nativo, portátil nativo y máquina virtual
   
