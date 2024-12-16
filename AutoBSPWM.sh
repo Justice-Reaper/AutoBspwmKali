@@ -551,6 +551,7 @@ while true; do
         cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
         cp 99-usb-sound.rules /etc/udev/rules.d
+        chmod +x /home/$input_username/.config/sound/scripts/*
 
         advertencia
         configuacion_portatil_sobremesa
