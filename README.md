@@ -3,7 +3,7 @@
   
 - Este script AutoBSPWM ha sido sido testeado en kali linux nativo y máquina virtual
 
-- Con el sistema nativo dispondremos de sonido al insertar y extraer dispositivos usb, así como controladores para el brillo, batería y sonido
+- Con el sistema nativo dispondremos de sonido al insertar y extraer dispositivos usb, así como controladores para el brillo y sonido. Para la batería dispondremos de notificaciones personalizadas de carga completa, batería baja y sobre el estado de carga
 
 - Este entorno bspwm está diseñado para funcionar con el entorno de escritorio XFCE
 
