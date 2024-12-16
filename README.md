@@ -17,7 +17,7 @@
 
 ¿Quieres ayudarme a seguir mejorando este proyecto? Puedes apoyarme con una pequeña donación pulsando en este botón
 
-[![Gracias por el apoyo !!! ☕](https://img.buymeacoffee.com/button-api/?text=Gracias%20por%20el%20apoyo%20!!!&emoji=☕&slug=justiceReaper&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00)](https://www.buymeacoffee.com/justiceReaper)
+[![Gracias por tu apoyo !!! ☕](https://img.buymeacoffee.com/button-api/?text=Gracias%20por%20tu%20apoyo%20!!!&emoji=☕&slug=justiceReaper&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00)](https://www.buymeacoffee.com/justiceReaper)
 
 # Instalación
 ```
