@@ -543,6 +543,12 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
+
+        sed -i "s/user_replace/$input_username/g" sound/scripts/*   
+        cp -r sound /home/$input_username/.config
+        sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
+        cp 99-usb-sound.rules /etc/udev/rules.d
+
         advertencia
         configuacion_portatil_sobremesa
         instalacion_drivers_nvidia
@@ -568,23 +574,6 @@ while true; do
         break
     else
         echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
-    fi
-done
-
-# ELECCIÓN KDE O XFCE
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una KDE o XFCE? (KDE/XFCE): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "kde" ]; then
-        echo -e "\e[32m[*]\e[0m Configurando kde ..."
-        sed -i 's/thunar/dolphin/g' /home/$input_username/.config/sxhkd/sxhkdrc
-        break
-    elif [ "$response" = "xfce" ]; then
-        echo -e "\e[32m[*]\e[0m Configurando xfce ..."
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'KDE' o 'XFCE'.\n"
     fi
 done
 
