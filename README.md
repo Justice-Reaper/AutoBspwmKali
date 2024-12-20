@@ -28,7 +28,7 @@ sudo ./AutoBSPWM.sh
 ```
 
 ## Vista general
-![Preview Entorno BSPWM](/Preview/image.png "autoBSPWM by justice-reaper")
+![Preview Entorno BSPWM](/Preview/preview.png "autoBSPWM by justice-reaper")
 
 ## Componentes:
 - **dunst**: Demonio de notificaciones que informará del estado de la batería (cargando, carga completa y batería baja)
