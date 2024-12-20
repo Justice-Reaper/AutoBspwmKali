@@ -1,12 +1,12 @@
 #!/bin/bash
 
-colour_temperature_kelvin_file=/home/justice-reaper/.config/bin/colour_temperature_kelvin
+colour_temperature_kelvin_file=/home/user_replace/.config/bin/colour_temperature_kelvin
 colour_temperature_kelvin=$(cat $colour_temperature_kelvin_file)
 
-colour_temperature_percentage_file=/home/justice-reaper/.config/bin/colour_temperature_percentage
+colour_temperature_percentage_file=/home/user_replace/.config/bin/colour_temperature_percentage
 colour_temperature_percentage=$(cat $colour_temperature_percentage_file)
 
-redshift_status_file=/home/justice-reaper/.config/bin/redshift_status
+redshift_status_file=/home/user_replace/.config/bin/redshift_status
 redshift_status=$(cat $redshift_status_file)
 
 calculate_percentage() {
