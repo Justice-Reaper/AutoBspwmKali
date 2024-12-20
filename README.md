@@ -31,6 +31,7 @@ sudo ./AutoBSPWM.sh
 ![Preview Entorno BSPWM](/Preview/preview.png "autoBSPWM by justice-reaper")
 
 ## Componentes:
+- **redshift**: Herramienta para ajustar la temperatura del color de la pantalla 
 - **dunst**: Demonio de notificaciones que informará del estado de la batería (cargando, carga completa y batería baja)
 - **bloodhound**: Herramienta para mapear relaciones y privilegios en Active Directory
 - **neo4j**: Base de datos de grafos que almacena y consulta datos mediante nodos, relaciones y propiedades
