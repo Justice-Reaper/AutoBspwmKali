@@ -168,6 +168,12 @@ cd /home/$input_username/.config/polybar/scripts
 chmod +x *
 mkdir /home/$input_username/.config/bin  
 touch /home/$input_username/.config/bin/target  
+touch /home/$input_username/.config/bin/colour_temperature_kelvin
+touch /home/$input_username/.config/bin/colour_temperature_percentage
+touch /home/$input_username/.config/bin/redshift_status
+echo 'Off' > /home/$input_username/.config/bin/redshift_status
+echo '25' > /home/$input_username/.config/bin/colour_temperature_percentage
+echo '7000' > /home/$input_username/.config/bin/colour_temperature_kelvin
 cd "$directorio_instalacion"
 
 # CONFIGURANDO POWERLEVEL10K
@@ -511,9 +517,11 @@ eliminar_configuracion_portatil(){
     sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
     sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
     sed -i 's/battery_notification //' /home/$input_username/.config/polybar/config.ini 
+    sed -i 's/colour_temperature //' /home/$input_username/.config/polybar/config.ini 
     rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm -r /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm -r /home/$input_username/.config/polybar/scripts/brightness_control.sh
+    rm -f /home/$input_username/.config/polybar/scripts/colour_temperature_control.sh
 
     echo -e "\e[32m[*]\e[0m Configurando zsh ...\n"
     sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
