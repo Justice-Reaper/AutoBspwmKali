@@ -338,8 +338,8 @@ instalacion_redshift(){
     touch /home/$input_username/.config/bin/colour_temperature_percentage
     touch /home/$input_username/.config/bin/redshift_status
     echo 'Off' > /home/$input_username/.config/bin/redshift_status
-    echo '25' > /home/$input_username/.config/bin/colour_temperature_percentage
-    echo '7000' > /home/$input_username/.config/bin/colour_temperature_kelvin
+    echo '100' > /home/$input_username/.config/bin/colour_temperature_percentage
+    echo '6500' > /home/$input_username/.config/bin/colour_temperature_kelvin
 }
 
 instalacion_dunst(){
