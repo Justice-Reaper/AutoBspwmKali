@@ -22,7 +22,7 @@ calculate_percentage() {
 }
 
 update_colour_temperature(){
-    if [ $1 -ge 1000 ] && [ $1 -le 25000 ]; then
+    if [ $1 -ge 1000 ] && [ $1 -le 6500 ]; then
         redshift -P -O $1 &> /dev/null
         echo $1 > $colour_temperature_kelvin_file
         echo $2 > $colour_temperature_percentage_file
@@ -42,14 +42,14 @@ case $1 in
   increase)
     if [ "$redshift_status" = "On" ]; then
         percentage=$((colour_temperature_percentage + 5))
-        kelvin=$(calculate_percentage $percentage 1000 25000)
+        kelvin=$(calculate_percentage $percentage 1000 6500)
         update_colour_temperature $kelvin $percentage
     fi
     ;;
   decrease)
     if [ "$redshift_status" = "On" ]; then
         percentage=$((colour_temperature_percentage - 5))
-        kelvin=$(calculate_percentage $percentage 1000 25000)
+        kelvin=$(calculate_percentage $percentage 1000 6500)
         update_colour_temperature $kelvin $percentage
     fi
     ;;
