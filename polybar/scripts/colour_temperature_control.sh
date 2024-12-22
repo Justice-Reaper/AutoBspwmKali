@@ -56,9 +56,9 @@ case $1 in
   temperature)
     if [ "$redshift_status" = "On" ]; then
       redshift -P -O $colour_temperature_kelvin &> /dev/null
-      echo " $colour_temperature_percentage%"
+      echo "%{F#F1CF8A} %{F#DEE1E6}$colour_temperature_percentage%"
     elif [ "$redshift_status" = "Off" ]; then
-      echo " Off"
+      echo "%{F#F1CF8A} %{F#DEE1E6}Off"
     fi
     ;;
 esac
