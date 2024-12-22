@@ -28,7 +28,7 @@ sudo ./AutoBSPWM.sh
 ```
 
 ## Vista general
-![Preview Entorno BSPWM](/Preview/preview.png "autoBSPWM by justice-reaper")
+![Preview Entorno BSPWM](/Preview/preview.png)
 
 ## Componentes:
 - **redshift**: Herramienta para ajustar la temperatura del color de la pantalla 
