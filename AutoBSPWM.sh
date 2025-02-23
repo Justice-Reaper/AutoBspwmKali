@@ -287,7 +287,7 @@ configuracion_touchpad() {
                 sed -i "/# fix java error/i\touchpad=\$(xinput list | grep -i touchpad)" /home/$input_username/.config/bspwm/bspwmrc
                 sed -i "/# fix java error/i touchpad_file=\$(cat /home/$input_username/.config/bin/touchpad)" /home/$input_username/.config/bspwm/bspwmrc
                 sed -i "/# fix java error/i\touchpad_id=\$(echo \"\$touchpad\" | awk -F'id=' '{print \$2}' | awk '{print \$1}')" /home/$input_username/.config/bspwm/bspwmrc
-                sed -i '/# fix java error/i if [ "$touchpad_file" = "Enabled" ]; then' /home/$input_username/.config/bspwm/bspwmrc
+                sed -i '/# fix java error/i if [ "$touchpad_file" = "Disabled" ]; then' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i\    xinput disable $touchpad_id' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i fi' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
