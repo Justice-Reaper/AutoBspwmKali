@@ -561,6 +561,7 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
 
+        sed -i '/backend = "xrender";/d' /home/$input_username/.config/picom/picom.conf
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
