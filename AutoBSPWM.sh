@@ -334,12 +334,12 @@ configuacion_portatil_sobremesa(){
 instalacion_redshift(){
     echo -e "\e[32m[*]\e[0m Configurando redshift ...\n"
     apt install redshift -y
-    touch /home/$input_username/.config/bin/colour_temperature_kelvin
-    touch /home/$input_username/.config/bin/colour_temperature_percentage
+    touch /home/$input_username/.config/bin/color_temperature_kelvin
+    touch /home/$input_username/.config/bin/color_temperature_percentage
     touch /home/$input_username/.config/bin/redshift_status
     echo 'Off' > /home/$input_username/.config/bin/redshift_status
-    echo '100' > /home/$input_username/.config/bin/colour_temperature_percentage
-    echo '6500' > /home/$input_username/.config/bin/colour_temperature_kelvin
+    echo '100' > /home/$input_username/.config/bin/color_temperature_percentage
+    echo '6500' > /home/$input_username/.config/bin/color_temperature_kelvin
 }
 
 instalacion_dunst(){
@@ -523,11 +523,11 @@ eliminar_configuracion_portatil(){
     sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
     sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
     sed -i 's/battery_notification //' /home/$input_username/.config/polybar/config.ini 
-    sed -i 's/colour_temperature //' /home/$input_username/.config/polybar/config.ini 
+    sed -i 's/color_temperature //' /home/$input_username/.config/polybar/config.ini 
     rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
-    rm /home/$input_username/.config/polybar/scripts/colour_temperature_control.sh
+    rm /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
 
     echo -e "\e[32m[*]\e[0m Configurando zsh ...\n"
     sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
