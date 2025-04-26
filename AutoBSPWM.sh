@@ -371,11 +371,12 @@ instalacion_nvim(){
     rm -rf /home/$input_username/.config/nvim 
     apt install npm -y  
     api_url="https://api.github.com/repos/neovim/neovim/releases/latest"
-    download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux64" | cut -d : -f 2,3 | tr -d '," ')
-    wget -O nvim-linux64.tar.gz $download_url  
-    tar -xf nvim-linux64.tar.gz  
-    mv nvim-linux64 /opt  
-    chown -R root:root /opt/nvim-linux64
+    download_url=$(curl -s $api_url | grep "browser_download_url.*nvim-linux-x86_64" | cut -d : -f 2,3 | tr -d '," ')
+    wget -O nvim-linux-x86_64.tar.gz $download_url  
+    tar -xf nvim-linux-x86_64.tar.gz
+    mv nvim-linux-x86_64 nvim
+    mv nvim /opt  
+    chown -R root:root /opt/nvim
 
     echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
     mkdir /home/$input_username/.config/nvim  
@@ -544,7 +545,7 @@ eliminar_configuracion_portatil(){
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-    sed -i '/# increase brightness/,+18d' /home/$input_username/.config/sxhkd/sxhkdrc 
+    sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
 # ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
