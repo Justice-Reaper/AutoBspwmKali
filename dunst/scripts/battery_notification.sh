@@ -18,7 +18,7 @@ if [ "$battery_level" -le "$warning_level" ] && [ "$(cat $battery_warning_file)"
     echo 'False' > "$battery_discharging_file"
     echo 'False' > "$battery_fully_charged_file"
 
-elif [ "$battery_discharging" -eq 1 ] && [ "$(cat $battery_discharging_file)" != "True" ] && [ "$battery_level" -le 99 ]; then
+elif [ "$battery_discharging" -eq 1 ] && [ "$(cat $battery_discharging_file)" != "True" ] && [ "$battery_level" -gt 10 ] && [ "$battery_level" -le 99 ]; then
     echo 'True' > "$battery_discharging_file"
     echo 'False' > "$battery_warning_file"
     echo 'False' > "$battery_fully_charged_file"
