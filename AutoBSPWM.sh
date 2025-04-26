@@ -143,7 +143,7 @@ echo -e "\e[32m[*]\e[0m Configurando plugin zsh-sudo ...\n"
 cp -r zsh-sudo /usr/share
 
 # CONFIGURANDO BSPWM
-echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
+echo -e "\e[32m[*]\e[0m Configurando BSPWM ...\n"
 cp -r bspwm /home/$input_username/.config
 cd /home/$input_username/.config/bspwm 
 chmod +x bspwmrc  
@@ -234,7 +234,7 @@ configuracion_shortcuts(){
             break
         elif [ "$response" = "fn" ]; then
             echo -e "\e[32m[*]\e[0m Configurando tecla fn ...\n"
-            echo -e "\e[33m[*]\e[0m Aparecerá un output así (keysym 0x1008ff13, XF86AudioRaiseVolume) cuando introduzcas una combinación de teclas. Debes introducir el tercer parámetro, en este caso es XF86AudioRaiseVolume"
+            echo -e "\e[33m[*]\e[0m Aparecerá un output así (keysym 0x1008ff13, XF86AudioRaiseVolume) cuando introduzcas una combinación de teclas. Debes introducir el tercer parámetro, en este caso es XF86AudioRaiseVolume. Si estás usando sxhkd debes recargar su configuración, si instalaste BSPWM con este script debes pulsar WINDOWS + ESC o FN + ESC"
             kitty --detach bash -c "xev | grep 'keysym'; exec bash"
             configuracion_tecla_fn "subir el volumen"
             sustituir_shortcut_sxhkdrc "super + F7"
@@ -507,7 +507,7 @@ customizacion_grub_theme(){
 
 advertencia(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Si estás en un sistema operativo nativo, debes reiniciar y ejecutar el script nuevamente desde bspwm para que funcione todo correctamente. ¿Deseas reiniciar? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Si estás en un sistema operativo nativo, debes reiniciar y ejecutar el script nuevamente desde BSPWM para que funcione todo correctamente. ¿Deseas reiniciar? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
@@ -539,7 +539,7 @@ eliminar_configuracion_portatil(){
     sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
     sed -i '/function enableTouchpad(){/,+12d' /home/$input_username/.zshrc 
 
-    echo -e "\e[32m[*]\e[0m Configurando bspwm ...\n"
+    echo -e "\e[32m[*]\e[0m Configurando BSPWM ...\n"
     sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
@@ -797,5 +797,5 @@ echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 apt clean -y
 
 # ENTORNO BSPWM CONFIGURADO CON ÉXITO
-echo -e "\e[32m[*]\e[0m ¡El entorno bspwm ha sido instalado con éxito!\n"
+echo -e "\e[32m[*]\e[0m ¡El entorno BSPWM ha sido instalado con éxito!\n"
 echo -e "\e[32m[*]\e[0m Se recomienda volver a reiniciar/iniciar sesión para que la configuración cargue correctamente\n"
