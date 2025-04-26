@@ -246,6 +246,12 @@ configuracion_shortcuts(){
             sustituir_shortcut_sxhkdrc "super + F3"
             configuracion_tecla_fn "bajar el brillo"
             sustituir_shortcut_sxhkdrc "super + F2"
+            configuracion_tecla_fn "activar/desactivar la temperatura del color"
+            sustituir_shortcut_sxhkdrc "super + F8"
+            configuracion_tecla_fn "subir la temperatura del color"
+            sustituir_shortcut_sxhkdrc "super + F9"
+            configuracion_tecla_fn "bajar la temperatura del color"
+            sustituir_shortcut_sxhkdrc "super + F10"
             echo -e "\e[33m[*]\e[0m Ya puedes cerrar la ventana blanca y la consola en la que se muestra el output ...\n"
             break
         else
