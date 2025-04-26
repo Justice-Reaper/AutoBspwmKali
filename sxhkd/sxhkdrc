@@ -22,6 +22,18 @@ super + F3
 super + F2
         /home/user_replace/.config/polybar/scripts/decrease_brightness.sh
 
+# color temperature on/off
+super + F8
+	/home/justice-reaper/.config/polybar/scripts/colour_temperature_control.sh toggle
+
+# increase color temperature
+super + F9
+	/home/justice-reaper/.config/polybar/scripts/colour_temperature_control.sh increase
+
+# decrease color temperature
+super + F10
+	/home/justice-reaper/.config/polybar/scripts/colour_temperature_control.sh decrease
+
 # terminal emulator
 super + Return
 	kitty
