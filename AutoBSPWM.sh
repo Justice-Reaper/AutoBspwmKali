@@ -371,7 +371,7 @@ instalacion_nvim(){
     rm -rf /home/$input_username/.config/nvim 
     apt install npm -y  
     download_url=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep "browser_download_url.*nvim-linux-x86_64.tar.gz" | cut -d : -f 2,3 | tr -d '," ')
-    wget -O nvim-linux-x86_64.tar.g $download_url
+    wget -O nvim-linux-x86_64.tar.gz $download_url
     tar -xf nvim-linux-x86_64.tar.gz
     mv nvim-linux-x86_64 nvim
     mv nvim /opt  
