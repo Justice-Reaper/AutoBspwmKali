@@ -538,7 +538,7 @@ eliminar_configuracion_portatil(){
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
-    sed -i '/# increase brightness/,+7d' /home/$input_username/.config/sxhkd/sxhkdrc 
+    sed -i '/# increase brightness/,+16d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
 # ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
