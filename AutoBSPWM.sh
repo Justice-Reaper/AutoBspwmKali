@@ -507,7 +507,7 @@ customizacion_grub_theme(){
 
 advertencia(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Si estás en un sistema operativo nativo, debes reiniciar y ejecutar el script nuevamente desde BSPWM para que funcione todo correctamente. ¿Deseas reiniciar? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Si estás ejecutando el script de AutoBSPWM desde un entorno de escritorio distinto a BSPWM debes reiniciar. Si ya estás usando BSPWM no es necesario reiniciar. ¿Deseas reiniciar? (SI/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
