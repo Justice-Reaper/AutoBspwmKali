@@ -24,15 +24,15 @@ super + F2
 
 # color temperature on/off
 super + F8
-	/home/justice-reaper/.config/polybar/scripts/colour_temperature_control.sh toggle
+	/home/justice-reaper/.config/polybar/scripts/color_temperature_control.sh toggle
 
 # increase color temperature
 super + F9
-	/home/justice-reaper/.config/polybar/scripts/colour_temperature_control.sh decrease
+	/home/justice-reaper/.config/polybar/scripts/color_temperature_control.sh decrease
 
 # decrease color temperature
 super + F10
-	/home/justice-reaper/.config/polybar/scripts/colour_temperature_control.sh increase
+	/home/justice-reaper/.config/polybar/scripts/color_temperature_control.sh increase
 
 # terminal emulator
 super + Return
