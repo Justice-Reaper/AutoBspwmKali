@@ -272,7 +272,7 @@ alias ls='lsd --group-dirs=first'
 alias icat='kitty +kitten icat'
 
 # nvim
-alias nvim='/opt/nvim-linux64/bin/nvim'
+alias nvim='/opt/nvim/bin/nvim'
 
 # jetbrains toolbox
 alias jetbrains-toolbox='/opt/jetbrains-toolbox/jetbrains-toolbox'
