@@ -22,8 +22,8 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-# OBTAIN THE INSTALLATION DIRECTORY
-directorio_instalacion=$(pwd)
+# OBTAIN THE INSTALLATION FOLDER
+installation_folderr=$(pwd)
 
 # OBTAIN THE USER
 echo -e "\e[33m[*]\e[0m This script will configure the system based on the provided user and the root user.\n"
@@ -38,7 +38,7 @@ while true; do
             read -p "$(echo -e "\e[33m[*]\e[0m Is $input_username the correct username? (YES/NO): ")" confirmation
             confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
             
-            if [ "$confirmation" = "yes" ] || [ "$confirmation" = "s" ]; then
+            if [ "$confirmation" = "yes" ] || [ "$confirmation" = "y" ]; then
                 echo ""
                 break 2
             elif [ "$confirmation" = "no" ] || [ "$confirmation" = "n" ]; then
@@ -58,7 +58,7 @@ while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to run 'apt update' on the system? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "yes" ] || [ "$response" = "s" ]; then
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
         echo -e "\e[32m[*]\e[0m Running 'apt update' ...\n"
         apt update 
         break
@@ -72,10 +72,10 @@ done
 
 # SYSTEM UPGRADE
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to perform a 'full-upgrade' on the system? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
         echo -e "\e[32m[*]\e[0m Running 'apt full-upgrade' ...\n"
         apt full-upgrade -y 
         break
@@ -139,7 +139,7 @@ echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
 cp -r picom /home/$input_username/.config
 
 # CONFIGURING PLUGIN SUDO ZSH
-echo -e "\e[32m[*]\e[0m Configuring plugin zsh-sudo ...\n"
+echo -e "\e[32m[*]\e[0m configuring zsh-sudo plugin ...\n"
 cp -r zsh-sudo /usr/share
 
 # CONFIGURING BSPWM
@@ -149,7 +149,7 @@ cd /home/$input_username/.config/bspwm
 chmod +x bspwmrc  
 cd /home/$input_username/.config/bspwm/scripts 
 chmod +x * 
-cd "$directorio_instalacion"
+cd "$installation_folderr"
 
 # CONFIGURING ROFI
 echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
@@ -159,7 +159,7 @@ cd launcher
 chmod +x launcher.sh 
 cd ../powermenu 
 chmod +x powermenu.sh
-cd "$directorio_instalacion"
+cd "$installation_folderr"
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
@@ -168,7 +168,7 @@ cd /home/$input_username/.config/polybar/scripts
 chmod +x *
 mkdir /home/$input_username/.config/bin  
 touch /home/$input_username/.config/bin/target  
-cd "$directorio_instalacion"
+cd "$installation_folderr"
 
 # CONFIGURING POWERLEVEL10K
 echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
@@ -194,7 +194,7 @@ nvidia_drivers_installation(){
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install the NVIDIA proprietary drivers? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
-        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Installing the NVIDIA proprietary drivers ...\n"
             apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
             apt install $(apt-cache pkgnames | grep -E '^linux-headers-[0-9]+\.[0-9]+\.[0-9]+-amd64$' | sort -V | tail -n 1) -y
@@ -260,18 +260,16 @@ shortcuts_configuration(){
     done
 }
 
-# TESTING
-
-activar_clipboard_bidireccional(){
+enable_bidirectional_clipboard(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estas usando vmware y deseas activar la clipboard bidireccional? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Are you using VMware and want to enable bidirectional clipboard? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
-        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m La clipboard bidireccional ha sido configurada con éxito.\n"
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m The bidirectional clipboard has been successfully configured.\n"
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[31m[*]\e[0m La clipboard bidireccional no ha sido activada.\n"
+            echo -e "\e[31m[*]\e[0m The bidirectional clipboard has not been enabled.\n"
             sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
             break
         else
@@ -280,13 +278,13 @@ activar_clipboard_bidireccional(){
     done
 }
 
-configuracion_touchpad() {
+touchpad_configuration() {
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas desactivar el touchpad por defecto? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to disable the touchpad by default? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configuring el touchpad ...\n"
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring the touchpad ...\n"
             apt install xinput -y
             touchpad=$(xinput list | grep -i touchpad)
             if [[ -n "$touchpad" ]]; then
@@ -302,11 +300,11 @@ configuracion_touchpad() {
                 touch /home/$input_username/.config/bin/touchpad
                 echo 'Enabled' > /home/$input_username/.config/bin/touchpad
             else
-                echo -e "\e[31m[*]\e[0m No se ha encontrado ningún touchpad.\n"
+                echo -e "\e[31m[*]\e[0m No touchpad was found.\n"
             fi
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[31m[*]\e[0m El touchpad no ha sido desactivado.\n"
+            echo -e "\e[31m[*]\e[0m The touchpad has not been disabled.\n"
             sed -i '/# touchpad/,+7d' /home/$input_username/.config/bspwm/bspwmrc
             break
         else
@@ -315,21 +313,21 @@ configuracion_touchpad() {
     done
 }
 
-configuacion_portatil_sobremesa(){
+laptop_and_desktop_configuration(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando un equipo de sobremesa? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Are you using a desktop computer? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configuring el sistema para un equipo de sobremesa ...\n"
-            eliminar_configuracion_portatil
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring the system for a desktop ...\n"
+            remove_laptop_configuration
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[32m[*]\e[0m Configuring el sistema para un portátil ...\n"
+            echo -e "\e[32m[*]\e[0m Configuring the system for a laptop ...\n"
             shortcuts_configuration
-            configuracion_touchpad
-            instalacion_dunst
-            instalacion_redshift
+            touchpad_configuration
+            dunst_installation
+            redshift_installation
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -339,7 +337,7 @@ configuacion_portatil_sobremesa(){
     apt install brightnessctl -y
 }
 
-instalacion_redshift(){
+redshift_installation(){
     echo -e "\e[32m[*]\e[0m Configuring redshift ...\n"
     apt install redshift -y
     touch /home/$input_username/.config/bin/color_temperature_kelvin
@@ -350,7 +348,7 @@ instalacion_redshift(){
     echo '6500' > /home/$input_username/.config/bin/color_temperature_kelvin
 }
 
-instalacion_dunst(){
+dunst_installation(){
     echo -e "\e[32m[*]\e[0m Configuring dunst ...\n"
     apt install acpi dunst -y
     rm -rf /home/$input_username/.config/dunst
@@ -363,11 +361,11 @@ instalacion_dunst(){
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
     cd /home/$input_username/.config/dunst/scripts 
     chmod +x * 
-    cd "$directorio_instalacion"
+    cd "$installation_folderr"
 }
 
-instalacion_nvim(){
-    echo -e "\e[32m[*]\e[0m Instalando neovim ..."
+nvim_installation(){
+    echo -e "\e[32m[*]\e[0m Installing nvim ..."
     rm -rf /root/.config/nvim 
     rm -rf /opt/*nvim*  
     rm -rf /home/$input_username/.config/nvim 
@@ -379,34 +377,34 @@ instalacion_nvim(){
     mv nvim /opt  
     chown -R root:root /opt/nvim
 
-    echo -e "\e[32m[*]\e[0m Instalando nvchad ..."
+    echo -e "\e[32m[*]\e[0m Installing nvchad ..."
     mkdir /home/$input_username/.config/nvim  
     mkdir /root/.config/nvim  
     git clone https://github.com/NvChad/starter /home/$input_username/.config/nvim  
     git clone https://github.com/NvChad/starter /root/.config/nvim
 
-    echo -e "\e[32m[*]\e[0m Creando link simbólico en los archivos de configuración de nvim ..."
+    echo -e "\e[32m[*]\e[0m Creating symbolic link in nvim configuration files ..."
     ln -s -f /home/$input_username/.config/nvim /root/.config/nvim  
 }
 
-instalacion_vscode(){
-    echo -e "\e[32m[*]\e[0m Instalando vscode ...\n"
+vscode_installation(){
+    echo -e "\e[32m[*]\e[0m Installing vscode ...\n"
     LATEST_RELEASE=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep "tag_name" | cut -d '"' -f 4)
     DOWNLOAD_URL="https://update.code.visualstudio.com/$LATEST_RELEASE/linux-deb-x64/stable"
     wget -O vscode-latest.deb $DOWNLOAD_URL
     apt install ./vscode-latest.deb  
 }
 
-instalacion_rpcEnum(){
-    echo -e "\e[32m[*]\e[0m Instalando rpcEnum ...\n"
+rpcenum_installation(){
+    echo -e "\e[32m[*]\e[0m Installing rpcEnum ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh
     chmod +x rpcEnum.sh
     mv rpcEnum.sh rpcEnum
     mv rpcEnum /usr/bin
 }
 
-instalacion_jetbrains_toolbox(){
-    echo -e "\e[32m[*]\e[0m Instalando jetbrains toolbox ..."
+jetbrains_toolbox_installation(){
+    echo -e "\e[32m[*]\e[0m Installing jetbrains toolbox ..."
     URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
     latest_info=$(curl -s $URL)
     download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
@@ -418,16 +416,16 @@ instalacion_jetbrains_toolbox(){
     sed -i '1i fs.file-max=10485760\n' /etc/sysctl.conf
 }
 
-instalacion_postman(){
-    echo -e "\e[32m[*]\e[0m Instalando postman ..."
+postman_installation(){
+    echo -e "\e[32m[*]\e[0m Installing postman ..."
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/postman
     tar -xzf postman.tar.gz -C /opt/postman --strip-components=1
     mv Postman.desktop /usr/share/applications
 }
 
-instalacion_kerbrute(){
-    echo -e "\e[32m[*]\e[0m Instalando kerbrute ..."
+kerbrute_installation(){
+    echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
     latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
     wget $latest_url -O kerbrute_linux_amd64
     chmod +x kerbrute_linux_amd64
@@ -435,32 +433,32 @@ instalacion_kerbrute(){
     mv kerbrute /usr/bin
 }
 
-instalacion_windapsearch(){
-    echo -e "\e[32m[*]\e[0m Instalando windapsearch ..."
+windapsearch_installation(){
+    echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
     latest_url=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
     wget $latest_url -O windapsearch_linux_amd64
     chmod +x windapsearch_linux_amd64
     mv windapsearch_linux_amd64 windapsearch
     mv windapsearch /usr/bin
-    echo -e "\e[32m[*]\e[0m Windapsearch instalado correctamente."
+    echo -e "\e[32m[*]\e[0m Windapsearch installed successfully."
 }
 
-instalacion_chrome(){
-    echo -e "\e[32m[*]\e[0m Instalando google chrome ..."
+chrome_installation(){
+    echo -e "\e[32m[*]\e[0m Installing google chrome ..."
     apt install -y libu2f-udev
     wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     dpkg -i google-chrome-stable_current_amd64.deb
 
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres sea tu NAVEGADOR principal? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default browser? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
-        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configuring chrome como su navegador principal ..."
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring chrome as your default browser ..."
             sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[31m[*]\e[0m Chrome no será su navegador principal.\n"
+            echo -e "\e[31m[*]\e[0m Chrome won't be your default browser..\n"
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -468,28 +466,28 @@ instalacion_chrome(){
     done
 }
 
-customizacion_grub_timeout(){
+grub_timeout_customization(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Introduce el número de segundos que se mostrará grub (si introduces -1 no dejará de mostrarse hasta que lo selecciones manualmente): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Enter the number of seconds GRUB will be displayed (if you enter -1, it will remain until manually selected): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [[ "$response" =~ ^-?[0-9]+$ ]]; then
-            echo -e "\e[32m[*]\e[0m Configuring la variable GRUB_TIMEOUT ..."
+            echo -e "\e[32m[*]\e[0m Configuring the GRUB_TIMEOUT variable..."
             sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=$response/" /etc/default/grub 
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, introduce un número válido. Ejemplo: -1, 5, 15.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please enter a valid number. Example: -1, 5, 15.\n"
         fi
     done
 }
 
-customizacion_grub_theme(){
+grub_theme_customization(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres usar el grub clásico, en blanco y negro? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to use the classic black and white grub? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
-        if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configuring el grub clásico ..."
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring the classic grub..."
             sed -i '/^GRUB_DISTRIBUTOR=[^ ]*/s/^/#/' /etc/default/grub 
             sed -i '/^#GRUB_TERMINAL=console/s/^#//' /etc/default/grub
             line=$(grep -n "set menu_color_normal" /boot/grub/grub.cfg | cut -d: -f1)
@@ -499,7 +497,7 @@ customizacion_grub_theme(){
             sed -i 's/menu_color_highlight=white\/blue/menu_color_highlight=black\/light-gray/' $file
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[31m[*]\e[0m El tema de grub no será modificado.\n"
+            echo -e "\e[31m[*]\e[0m The grub theme won't be modified.\n"
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -507,16 +505,16 @@ customizacion_grub_theme(){
     done
 }
 
-advertencia(){
+warning(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Si estás ejecutando el script de AutoBSPWM desde un entorno de escritorio distinto a BSPWM debes reiniciar. Si ya estás usando BSPWM no es necesario reiniciar. ¿Deseas reiniciar? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m If you are running the AutoBSPWM script from a desktop environment other than BSPWM, you need to restart. If you are already using BSPWM, no restart is needed. Do you want to restart? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-       if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+       if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
            reboot
            break
        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-           echo -e "\e[31m[*]\e[0m No se efectuará el reinicio, si has hecho una instalación limpia, acabas de actualizar los paquetes y estás en un equipo portátil, puede que no se detecte el touchpad (reiniciar si desea desactivarlo por defecto). Si no estás en un entorno BSPWM, no podrás configurar la tecla FN en vez de la tecla WINDOWS en los atajos de teclado.\n"
+           echo -e "\e[31m[*]\e[0m The restart will not be performed. If you have done a clean installation, just updated the packages, and are on a laptop, the touchpad may not be detected (restart if you want to disable it by default). If you're not in a BSPWM environment, you won't be able to configure the FN key instead of the WINDOWS key in the keyboard shortcuts.\n"
            break
        else
            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -524,7 +522,7 @@ advertencia(){
     done
 }
 
-eliminar_configuracion_portatil(){
+remove_laptop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
     sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
     sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
@@ -549,13 +547,13 @@ eliminar_configuracion_portatil(){
     sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
-# ELECCIÓN MÁQUINA VIRTUAL O SISTEMA NATIVO
+# VIRTUAL MACHINE OR BARE METAL CHOICE
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Estás usando una máquina virtual? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Are you using a virtual machine? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Configuring el sistema para una máquina virtual ...\n"
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        echo -e "\e[32m[*]\e[0m Configuring the system for a virtual machine...\n"
         echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
         sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
@@ -563,11 +561,11 @@ while true; do
         sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
 
-        eliminar_configuracion_portatil
-        activar_clipboard_bidireccional
+        remove_laptop_configuration
+        enable_bidirectional_clipboard
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[32m[*]\e[0m Se está configurando el sistema para un sistema nativo ...\n"
+        echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
 
         sed -i '/backend = "xrender";/d' /home/$input_username/.config/picom/picom.conf
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
@@ -576,8 +574,8 @@ while true; do
         cp 99-usb-sound.rules /etc/udev/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
 
-        advertencia
-        configuacion_portatil_sobremesa
+        warning
+        laptop_and_desktop_configuration
         nvidia_drivers_installation
         break
     else
@@ -585,18 +583,18 @@ while true; do
     fi
 done
 
-# CUSTOMIZACIÓN GRUB
+# GRUB CUSTOMIZATION
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas customizar grub? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to customize grub? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-   if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        customizacion_grub_timeout
-        customizacion_grub_theme
+   if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        grub_timeout_customization
+        grub_theme_customization
         update-grub
         break
    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Grub no será modificado.\n"
+        echo -e "\e[31m[*]\e[0m Grub won't be modified.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -605,14 +603,14 @@ done
 
 # OBSIDIAN
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar OBSIDIAN? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install OBSIDIAN? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
         apt install obsidian -y
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m obsidian no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m obsidian hasn't been installed.\n"
         sed -i '/# obsidian/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
@@ -622,14 +620,14 @@ done
 
 # KERBRUTE
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar KERBRUTE? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install KERBRUTE? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_kerbrute
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        kerbrute_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m kerbrute no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m kerbrute hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -638,14 +636,14 @@ done
 
 # WINDAPSEARCH
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar WINDAPSEARCH? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install WINDAPSEARCH? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_windapsearch
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        windapsearch_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Windapsearch no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m Windapsearch hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -654,14 +652,14 @@ done
 
 # RPCENUM
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar RPCENUM? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install RPCENUM? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_rpcEnum
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        rpcenum_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m rpcEnum no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m rpcEnum hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -670,14 +668,14 @@ done
 
 # CHROME
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar GOOGLE CHROME? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install GOOGLE CHROME? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_chrome
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        chrome_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Chrome no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m Chrome hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -686,14 +684,14 @@ done
 
 # POSTMAN
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar POSTMAN? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install POSTMAN? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_postman
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        postman_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Postman no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m Postman hasn't been installed.\n"
         sed -i '/# postman/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         sed -i '/# postman/,+2d' /home/$input_username/.zshrc
         sed -i '/# postman/,+2d' /root/.zshrc
@@ -705,14 +703,14 @@ done
 
 # NVIM
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar NVIM? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install NVIM? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_nvim
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        nvim_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Nvim no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m Nvim hasn't been installed.\n"
         sed -i '/# nvim/,+2d' /home/$input_username/.zshrc
         sed -i '/# nvim/,+2d' /root/.zshrc
         break
@@ -723,14 +721,14 @@ done
 
 # VSCODE
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar VSCODE? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install VSCODE? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_vscode
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        vscode_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Vscode no ha sido instalado.\n"
+        echo -e "\e[31m[*]\e[0m Vscode hasn't been installed.\n"
         sed -i '/# vscode/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
@@ -740,11 +738,11 @@ done
 
 # JETBRAINS TOOLBOX
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres instalar JETBRAINS TOOLBOX? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install JETBRAINS TOOLBOX? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        instalacion_jetbrains_toolbox
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        jetbrains_toolbox_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         sed -i '/# jetbrains toolbox/,+2d' /home/$input_username/.zshrc
@@ -752,15 +750,15 @@ while true; do
         sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
         sed -i '/# pycharm/,+2d' /root/.zshrc
-        echo -e "\e[31m[*]\e[0m Jetbrains toolbox no ha sido instalada.\n"
+        echo -e "\e[31m[*]\e[0m Jetbrains toolbox hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
-# SUSTITUIMOS USER_REPLACE POR EL USUARIO ELEGIDO
-echo -e "\e[32m[*]\e[0m Configuring ficheros ...\n"
+# REPLACE USER_REPLACE WITH THE SELECTED USER
+echo -e "\e[32m[*]\e[0m Configuring files...\n"
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/config.ini
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/scripts/*  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/bspwmrc  
@@ -768,36 +766,36 @@ sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/sx
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.p10k.zsh  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.zshrc  
 
-# SUSTITUIMOS LA BATERÍA Y EL ADAPTADOR
+# REPLACE THE BATTERY AND POWER ADAPTER
 battery="$(ls -1 /sys/class/power_supply | grep "BA" | cut -d'/' -f8-)"
 adapter="$(ls -1 /sys/class/power_supply | grep "AC" | cut -d'/' -f8-)"
 sed -i "s/battery_replace/$battery/g" "/home/$input_username/.config/polybar/config.ini"  
 sed -i "s/adapter_replace/$adapter/g" "/home/$input_username/.config/polybar/config.ini"  
 
-# CREAMOS UN LINK SIMBÓLICO ENTRE LOS ARCHIVOS DE CONFIGURACIÓN DE LA KITTY DEL USUARIO ELEGIDO Y LOS DE ROOT
-echo -e "\e[32m[*]\e[0m Creando link simbólico en kitty.conf y kitty.color ...\n"
+# CREATE A SYMBOLIC LINK BETWEEN THE CONFIGURATION FILES OF THE CHOSEN USER'S KITTY AND THOSE OF ROOT
+echo -e "\e[32m[*]\e[0m Creating symbolic link in kitty.conf and kitty.color ...\n"
 ln -s -f /home/$input_username/.config/kitty /root/.config/kitty
 
-# CREAMOS UN LINK SIMBÓLICO ENTRE LA ZSHRC DEL USUARIO ELEGIDO Y LA ZSHRC DE ROOT
-echo -e "\e[32m[*]\e[0m Creando link simbólico en la zshrc ...\n"
+# CREATE A SYMBOLIC LINK BETWEEN THE CHOSEN USER'S ZSHRC AND ROOT'S ZSHRC
+echo -e "\e[32m[*]\e[0m Creating symbolic link in the zshrc ...\n"
 ln -s -f /home/$input_username/.zshrc /root/.zshrc
 
-# CREAMOS UN LINK SIMBÓLICO ENTRE LA P10K DEL USUARIO ELEGIDO Y EL P10K DE ROOT
-echo -e "\e[32m[*]\e[0m Creando link simbólico en el archivo p10k.zsh ...\n"
+# CREATE A SYMBOLIC LINK BETWEEN THE CHOSEN USER'S P10K AND ROOT'S P10K
+echo -e "\e[32m[*]\e[0m Creating symbolic link in the p10k.zsh file ...\n"
 ln -s -f /home/$input_username/.p10k.zsh /root/.p10k.zsh
 
-# LE ASIGNAMOS EL PROPIETARIO CORRECTO A LOS ARCHIVOS
-echo -e "\e[32m[*]\e[0m Asignando el propietario correcto a los archivos de configuración ...\n"
+# ASSIGN THE CORRECT OWNER TO THE FILES
+echo -e "\e[32m[*]\e[0m Assigning the correct owner to the configuration files ...\n"
 chown -R $input_username:$input_username /home/$input_username
 
-# ELIMINAMOS LOS PAQUETES QUE NO SON NECESARIOS
-echo -e "\e[32m[*]\e[0m Eliminando paquetes apt innecesarios ...\n"
+# REMOVE UNNECESSARY PACKAGES
+echo -e "\e[32m[*]\e[0m Removing unnecessary apt packages ...\n"
 apt autoremove -y  
 
-# ELIMINAMOS LOS ARCHIVOS DE CACHÉ
+# REMOVE CACHE FILES
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 apt clean -y
 
-# ENTORNO BSPWM CONFIGURADO CON ÉXITO
-echo -e "\e[32m[*]\e[0m ¡El entorno BSPWM ha sido instalado con éxito!\n"
-echo -e "\e[32m[*]\e[0m Se recomienda volver a reiniciar/iniciar sesión para que la configuración cargue correctamente\n"
+# BSPWM ENVIRONMENT CONFIGURED SUCCESSFULLY
+echo -e "\e[32m[*]\e[0m the BSPWM environment has been successfully installed!\n"
+echo -e "\e[32m[*]\e[0m it is recommended to restart/log in again for the configuration to load correctly\n"
