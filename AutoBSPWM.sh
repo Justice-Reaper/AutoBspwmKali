@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# AUTOR
+# AUTHOR
 echo '
 ====================================================================================================================
 
@@ -18,81 +18,81 @@ echo '
 
 # COMPROBACIÓN DE USUARIO
 if [ "$(id -u)" != "0" ]; then
-    echo -e "\e[31m[*]\e[0m Por favor, ejecuta este script con sudo."
+    echo -e "\e[31m[*]\e[0m Please, run this script with sudo."
     exit 1
 fi
 
-# OBTENEMOS EL DIRECTORIO ACTUAL
+# USER VERIFICATION
 directorio_instalacion=$(pwd)
 
-# OBTENEMOS EL USUARIO
-echo -e "\e[33m[*]\e[0m Este script configurará el sistema en base al usuario proporcionado y al usuario root.\n"
+# GETTING THE USER
+echo -e "\e[33m[*]\e[0m This script will configure the system based on the provided user and the root user.\n"
 
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Por favor, introduce el nombre del usuario sobre el cual se aplicarán los cambios: ")" input_username
+    read -p "$(echo -e "\e[33m[*]\e[0m Please enter the name of the user to which the changes will be applied: ")" input_username
     if id "$input_username" &>/dev/null; then
         echo "$(id $input_username)"
-        echo -e "\e[32m[*]\e[0m El usuario $input_username es válido.\n"
+        echo -e "\e[32m[*]\e[0m The user $input_username is valid.\n"
         
         while true; do
-            read -p "$(echo -e "\e[33m[*]\e[0m ¿Es $input_username el nombre de usuario correcto? (SI/NO): ")" confirmation
+            read -p "$(echo -e "\e[33m[*]\e[0m Is $input_username the correct username? (YES/NO): ")" confirmation
             confirmation=$(echo "$confirmation" | tr '[:upper:]' '[:lower:]')
             
-            if [ "$confirmation" = "si" ] || [ "$confirmation" = "s" ]; then
+            if [ "$confirmation" = "yes" ] || [ "$confirmation" = "s" ]; then
                 echo ""
                 break 2
             elif [ "$confirmation" = "no" ] || [ "$confirmation" = "n" ]; then
                 echo ""
                 break 
             else
-                echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+                echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
             fi
         done
     else
-        echo -e "\e[31m[*]\e[0m El usuario $input_username no es válido o no existe.\n"
+        echo -e "\e[31m[*]\e[0m The user $input_username doesn't exist or is not valid.\n"
     fi
 done
 
-# ACTUALIZAMOS EL SISTEMA
+# SYSTEM UPDATE
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'apt update' en el sistema? (SI/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to run 'apt update' on the system? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-    if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Ejecutando 'apt update' ...\n"
+    if [ "$response" = "yes" ] || [ "$response" = "s" ]; then
+        echo -e "\e[32m[*]\e[0m Running 'apt update' ...\n"
         apt update 
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Operación 'apt update' cancelada.\n"
+        echo -e "\e[31m[*]\e[0m 'apt update' canceled.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
-# UPGRADEAMOS EL SISTEMA
+# SYSTEM UPGRADE
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas realizar un 'full-upgrade' en el sistema? (SI/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
     if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Ejecutando 'apt full-upgrade' ...\n"
+        echo -e "\e[32m[*]\e[0m Running 'apt full-upgrade' ...\n"
         apt full-upgrade -y 
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Operación 'apt full-upgrade' cancelada.\n"
+        echo -e "\e[31m[*]\e[0m 'apt full-upgrade' canceled.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
-# INSTALAMOS LAS DEPENDENCIAS NECESARIAS
-echo -e "\e[32m[*]\e[0m Instalando las dependencias necesarias ...\n"
+# INSTALL THE NECESSARY DEPENDENCIES
+echo -e "\e[32m[*]\e[0m Installing the necessary dependencies ...\n"
 apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils seclists bloodhound neo4j x11-utils moreutils -y
 
-# ELIMINAMOS LAS CONFIGURACIONES ANTIGUAS
-echo -e "\e[32m[*]\e[0m Eliminando antiguas configuraciones ...\n"
+# REMOVE OLD CONFIGURATIONS
+echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
 rm -f /home/$input_username/.zshrc 
 rm -f /home/$input_username/.p10k.zsh 
 rm -f /root/.zshrc 
@@ -104,46 +104,46 @@ rm -rf /home/$input_username/.config/picom
 rm -rf /home/$input_username/.config/bspwm 
 rm -rf /home/$input_username/.config/sxhkd 
 
-# CREAMOS NUEVAS CONFIGURACIONES
-echo -e "\e[32m[*]\e[0m Creando nuevas configuraciones ...\n"
+# CREATE NEW CONFIGURATIONS
+echo -e "\e[32m[*]\e[0m Creating new configurations ...\n"
 mkdir /root/.config 
 mkdir /home/$input_username/.config 
 
-# CONFIGURANDO FONTS
-echo -e "\e[32m[*]\e[0m Configurando fonts ...\n"
+# CONFIGURING FONTS
+echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
 LATEST_RELEASE=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
 wget -O Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/$LATEST_RELEASE/Hack.zip
 unzip -o Hack.zip
 mv *.ttf fonts/
 cp -r fonts /usr/local/share 
 
-# CONFIGURANDO WALLPAPERS
-echo -e "\e[32m[*]\e[0m Configurando wallpapers ...\n"
+# CONFIGURING WALLPAPERS
+echo -e "\e[32m[*]\e[0m Configuring wallpapers ...\n"
 cp -r Wallpapers /home/$input_username
 
-# CONFIGURANDO BETTERLOCKSCREEN
-echo -e "\e[32m[*]\e[0m Configurando betterlockscreen ...\n"
+# CONFIGURING BETTERLOCKSCREEN
+echo -e "\e[32m[*]\e[0m Configuring betterlockscreen ...\n"
 su $input_username -c "betterlockscreen -u /home/$input_username/Wallpapers/wallpaper.jpg"
 
-# CONFIGURANDO SXHKD
-echo -e "\e[32m[*]\e[0m Configurando sxhkd ...\n"
+# CONFIGURING SXHKD
+echo -e "\e[32m[*]\e[0m Configuring sxhkd ...\n"
 cp -r sxhkd /home/$input_username/.config
 
-# CONFIGURANDO KITTY
-echo -e "\e[32m[*]\e[0m Configurando kitty ...\n"
+# CONFIGURING KITTY
+echo -e "\e[32m[*]\e[0m Configuring kitty ...\n"
 cp -r kitty /home/$input_username/.config
 cp -r kitty /root/.config
 
-# CONFIGURANDO PICOM
-echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
+# CONFIGURING PICOM
+echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
 cp -r picom /home/$input_username/.config
 
-# CONFIGURANDO PLUGIN SUDO ZSH
-echo -e "\e[32m[*]\e[0m Configurando plugin zsh-sudo ...\n"
+# CONFIGURING PLUGIN SUDO ZSH
+echo -e "\e[32m[*]\e[0m Configuring plugin zsh-sudo ...\n"
 cp -r zsh-sudo /usr/share
 
-# CONFIGURANDO BSPWM
-echo -e "\e[32m[*]\e[0m Configurando BSPWM ...\n"
+# CONFIGURING BSPWM
+echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
 cp -r bspwm /home/$input_username/.config
 cd /home/$input_username/.config/bspwm 
 chmod +x bspwmrc  
@@ -151,8 +151,8 @@ cd /home/$input_username/.config/bspwm/scripts
 chmod +x * 
 cd "$directorio_instalacion"
 
-# CONFIGURANDO ROFI
-echo -e "\e[32m[*]\e[0m Configurando rofi ...\n"
+# CONFIGURING ROFI
+echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
 cp -r rofi /home/$input_username/.config 
 cd /home/$input_username/.config/rofi  
 cd launcher  
@@ -161,8 +161,8 @@ cd ../powermenu
 chmod +x powermenu.sh
 cd "$directorio_instalacion"
 
-# CONFIGURANDO POLYBAR
-echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+# CONFIGURING POLYBAR
+echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
 cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
@@ -170,8 +170,8 @@ mkdir /home/$input_username/.config/bin
 touch /home/$input_username/.config/bin/target  
 cd "$directorio_instalacion"
 
-# CONFIGURANDO POWERLEVEL10K
-echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario $input_username ...\n"
+# CONFIGURING POWERLEVEL10K
+echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
 rm -rf /home/$input_username/powerlevel10k  
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k  
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>/home/$input_username/.zshrc  
@@ -180,43 +180,43 @@ mv p10k.zsh .p10k.zsh
 cp .p10k.zsh /home/$input_username
 cp .zshrc /home/$input_username
 
-# CONFIGURANDO POWERLEVEL10K DE ROOT
-echo -e "\e[32m[*]\e[0m Configurando powerlevel10k del usuario root ...\n"
+# CONFIGURING POWERLEVEL10K FOR ROOT
+echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
 rm -rf /root/powerlevel10k  
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
 sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc"  
 cp .p10k.zsh /root 
 cp .zshrc /root
 
-# FUNCIONES DE INSTALACIÓN Y CONFIGURACIÓN
-instalacion_drivers_nvidia(){
+# INSTALLATION AND CONFIGURATION FUNCTIONS
+nvidia_drivers_installation(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Deseas instalar los DRIVERS PROPIETARIOS de NVIDIA? (SI/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install the NVIDIA proprietary drivers? (YES/NO): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Instalando los drivers propietarios de nvidia ...\n"
+            echo -e "\e[32m[*]\e[0m Installing the NVIDIA proprietary drivers ...\n"
             apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
             apt install $(apt-cache pkgnames | grep -E '^linux-headers-[0-9]+\.[0-9]+\.[0-9]+-amd64$' | sort -V | tail -n 1) -y
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[31m[*]\e[0m Los drivers propietarios de nvidia no han sido instalados.\n"
+            echo -e "\e[31m[*]\e[0m The NVIDIA proprietary drivers haven't been installed.\n"
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
     done
 }
 
-configuracion_tecla_fn(){
+fn_key_configuration(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Pon el puntero del ratón encima de la ventana blanca e introduce el parámetro que te aprece en la consola para $1: ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Place the mouse pointer over the white window and enter the parameter that appears in the console for $1: ")" response
         echo "$response" >> /tmp/keys
         break
     done
 }
 
-sustituir_shortcut_sxhkdrc(){
+replace_shortcut_sxhkdrc(){
     awk '!seen[$0]++' /tmp/keys | sponge /tmp/keys
     while IFS= read -r line; do
         sed -i "s/$1/$line/" /home/$input_username/.config/sxhkd/sxhkdrc
@@ -224,41 +224,43 @@ sustituir_shortcut_sxhkdrc(){
     rm /tmp/keys
 }
 
-configuracion_shortcuts(){
+shortcuts_configuration(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m ¿Quieres usar la tecla FN o la tecla WINDOWS para los shorcuts de teclado (se utilizará para SUBIR/BAJAR el VOLUMEN/BRILLO y para el MUTEAR el SONIDO)? (FN/WINDOWS): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to use the FN key or the WINDOWS key for keyboard shortcuts (it will be used to INCREASE/DECREASE VOLUME/BRIGHTNESS and to MUTE the SOUND)? (FN/WINDOWS): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [ "$response" = "windows" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando tecla windows ...\n"
+            echo -e "\e[32m[*]\e[0m Configuring Windows key ...\n"
             break
         elif [ "$response" = "fn" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando tecla fn ...\n"
-            echo -e "\e[33m[*]\e[0m Aparecerá un output así (keysym 0x1008ff13, XF86AudioRaiseVolume) cuando introduzcas una combinación de teclas. Debes introducir el tercer parámetro, en este caso es XF86AudioRaiseVolume. Si estás usando sxhkd debes recargar su configuración, si instalaste BSPWM con este script debes pulsar WINDOWS + ESC o FN + ESC"
+            echo -e "\e[32m[*]\e[0m Configuring FN key ...\n"
+            echo -e "\e[33m[*]\e[0m An output like this will appear (keysym 0x1008ff13, XF86AudioRaiseVolume) when you enter a key combination. You need to enter the third parameter, in this case, it is XF86AudioRaiseVolume. If you're using sxhkd, you must reload its configuration. If you installed BSPWM with this script, press WINDOWS + ESC or FN + ESC"
             kitty --detach bash -c "xev | grep 'keysym'; exec bash"
-            configuracion_tecla_fn "subir el volumen"
-            sustituir_shortcut_sxhkdrc "super + F7"
-            configuracion_tecla_fn "bajar el volumen"
-            sustituir_shortcut_sxhkdrc "super + F6"
-            configuracion_tecla_fn "mutear y desmutear el audio"
-            sustituir_shortcut_sxhkdrc "super + F5"
-            configuracion_tecla_fn "subir el brillo"
-            sustituir_shortcut_sxhkdrc "super + F3"
-            configuracion_tecla_fn "bajar el brillo"
-            sustituir_shortcut_sxhkdrc "super + F2"
-            configuracion_tecla_fn "activar/desactivar la temperatura del color"
-            sustituir_shortcut_sxhkdrc "super + F8"
-            configuracion_tecla_fn "bajar la temperatura del color"
-            sustituir_shortcut_sxhkdrc "super + F9"
-            configuracion_tecla_fn "subir la temperatura del color"
-            sustituir_shortcut_sxhkdrc "super + F10"
-            echo -e "\e[33m[*]\e[0m Ya puedes cerrar la ventana blanca y la consola en la que se muestra el output ...\n"
+            fn_key_configuration "turn up the volume"
+            replace_shortcut_sxhkdrc "super + F7"
+            fn_key_configuration "turn down the volume"
+            replace_shortcut_sxhkdrc "super + F6"
+            fn_key_configuration "mute and unmute the sound"
+            replace_shortcut_sxhkdrc "super + F5"
+            fn_key_configuration "turn up the brightness"
+            replace_shortcut_sxhkdrc "super + F3"
+            fn_key_configuration "turn down the brightness"
+            replace_shortcut_sxhkdrc "super + F2"
+            fn_key_configuration "turn on/off the color temperature"
+            replace_shortcut_sxhkdrc "super + F8"
+            fn_key_configuration "turn down the color temperature"
+            replace_shortcut_sxhkdrc "super + F9"
+            fn_key_configuration "turn up the color temperature"
+            replace_shortcut_sxhkdrc "super + F10"
+            echo -e "\e[33m[*]\e[0m You can now close the white window and the console where the output is displayed ...\n"
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
     done
 }
+
+# TESTING
 
 activar_clipboard_bidireccional(){
     while true; do
@@ -273,7 +275,7 @@ activar_clipboard_bidireccional(){
             sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc 
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
     done
 }
@@ -284,7 +286,7 @@ configuracion_touchpad() {
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando el touchpad ...\n"
+            echo -e "\e[32m[*]\e[0m Configuring el touchpad ...\n"
             apt install xinput -y
             touchpad=$(xinput list | grep -i touchpad)
             if [[ -n "$touchpad" ]]; then
@@ -308,7 +310,7 @@ configuracion_touchpad() {
             sed -i '/# touchpad/,+7d' /home/$input_username/.config/bspwm/bspwmrc
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
     done
 }
@@ -319,18 +321,18 @@ configuacion_portatil_sobremesa(){
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando el sistema para un equipo de sobremesa ...\n"
+            echo -e "\e[32m[*]\e[0m Configuring el sistema para un equipo de sobremesa ...\n"
             eliminar_configuracion_portatil
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando el sistema para un portátil ...\n"
-            configuracion_shortcuts
+            echo -e "\e[32m[*]\e[0m Configuring el sistema para un portátil ...\n"
+            shortcuts_configuration
             configuracion_touchpad
             instalacion_dunst
             instalacion_redshift
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
       done
     sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc
@@ -338,7 +340,7 @@ configuacion_portatil_sobremesa(){
 }
 
 instalacion_redshift(){
-    echo -e "\e[32m[*]\e[0m Configurando redshift ...\n"
+    echo -e "\e[32m[*]\e[0m Configuring redshift ...\n"
     apt install redshift -y
     touch /home/$input_username/.config/bin/color_temperature_kelvin
     touch /home/$input_username/.config/bin/color_temperature_percentage
@@ -349,7 +351,7 @@ instalacion_redshift(){
 }
 
 instalacion_dunst(){
-    echo -e "\e[32m[*]\e[0m Configurando dunst ...\n"
+    echo -e "\e[32m[*]\e[0m Configuring dunst ...\n"
     apt install acpi dunst -y
     rm -rf /home/$input_username/.config/dunst
     touch /home/$input_username/.config/bin/battery_discharging  
@@ -454,14 +456,14 @@ instalacion_chrome(){
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando chrome como su navegador principal ..."
+            echo -e "\e[32m[*]\e[0m Configuring chrome como su navegador principal ..."
             sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Chrome no será su navegador principal.\n"
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
     done
 }
@@ -472,7 +474,7 @@ customizacion_grub_timeout(){
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [[ "$response" =~ ^-?[0-9]+$ ]]; then
-            echo -e "\e[32m[*]\e[0m Configurando la variable GRUB_TIMEOUT ..."
+            echo -e "\e[32m[*]\e[0m Configuring la variable GRUB_TIMEOUT ..."
             sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=$response/" /etc/default/grub 
             break
         else
@@ -487,7 +489,7 @@ customizacion_grub_theme(){
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
       
         if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-            echo -e "\e[32m[*]\e[0m Configurando el grub clásico ..."
+            echo -e "\e[32m[*]\e[0m Configuring el grub clásico ..."
             sed -i '/^GRUB_DISTRIBUTOR=[^ ]*/s/^/#/' /etc/default/grub 
             sed -i '/^#GRUB_TERMINAL=console/s/^#//' /etc/default/grub
             line=$(grep -n "set menu_color_normal" /boot/grub/grub.cfg | cut -d: -f1)
@@ -500,7 +502,7 @@ customizacion_grub_theme(){
             echo -e "\e[31m[*]\e[0m El tema de grub no será modificado.\n"
             break
         else
-            echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
     done
 }
@@ -517,13 +519,13 @@ advertencia(){
            echo -e "\e[31m[*]\e[0m No se efectuará el reinicio, si has hecho una instalación limpia, acabas de actualizar los paquetes y estás en un equipo portátil, puede que no se detecte el touchpad (reiniciar si desea desactivarlo por defecto). Si no estás en un entorno BSPWM, no podrás configurar la tecla FN en vez de la tecla WINDOWS en los atajos de teclado.\n"
            break
        else
-           echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+           echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
        fi
     done
 }
 
 eliminar_configuracion_portatil(){
-    echo -e "\e[32m[*]\e[0m Configurando polybar ...\n"
+    echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
     sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
     sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
     sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
@@ -535,15 +537,15 @@ eliminar_configuracion_portatil(){
     rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
     rm /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
 
-    echo -e "\e[32m[*]\e[0m Configurando zsh ...\n"
+    echo -e "\e[32m[*]\e[0m Configuring zsh ...\n"
     sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
     sed -i '/function enableTouchpad(){/,+12d' /home/$input_username/.zshrc 
 
-    echo -e "\e[32m[*]\e[0m Configurando BSPWM ...\n"
+    echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
     sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
-    echo -e "\e[32m[*]\e[0m Configurando sxhkdrc ...\n"
+    echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
     sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
@@ -553,8 +555,8 @@ while true; do
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
     if [ "$response" = "si" ] || [ "$response" = "s" ]; then
-        echo -e "\e[32m[*]\e[0m Configurando el sistema para una máquina virtual ...\n"
-        echo -e "\e[32m[*]\e[0m Configurando picom ...\n"
+        echo -e "\e[32m[*]\e[0m Configuring el sistema para una máquina virtual ...\n"
+        echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
         sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
@@ -576,10 +578,10 @@ while true; do
 
         advertencia
         configuacion_portatil_sobremesa
-        instalacion_drivers_nvidia
+        nvidia_drivers_installation
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -597,7 +599,7 @@ while true; do
         echo -e "\e[31m[*]\e[0m Grub no será modificado.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -614,7 +616,7 @@ while true; do
         sed -i '/# obsidian/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -630,7 +632,7 @@ while true; do
         echo -e "\e[31m[*]\e[0m kerbrute no ha sido instalado.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -646,7 +648,7 @@ while true; do
         echo -e "\e[31m[*]\e[0m Windapsearch no ha sido instalado.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -662,7 +664,7 @@ while true; do
         echo -e "\e[31m[*]\e[0m rpcEnum no ha sido instalado.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -678,7 +680,7 @@ while true; do
         echo -e "\e[31m[*]\e[0m Chrome no ha sido instalado.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -697,7 +699,7 @@ while true; do
         sed -i '/# postman/,+2d' /root/.zshrc
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -715,7 +717,7 @@ while true; do
         sed -i '/# nvim/,+2d' /root/.zshrc
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -732,7 +734,7 @@ while true; do
         sed -i '/# vscode/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
@@ -753,12 +755,12 @@ while true; do
         echo -e "\e[31m[*]\e[0m Jetbrains toolbox no ha sido instalada.\n"
         break
     else
-        echo -e "\e[31m[*]\e[0m Respuesta no válida. Por favor, responde 'SI' o 'NO'.\n"
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
 # SUSTITUIMOS USER_REPLACE POR EL USUARIO ELEGIDO
-echo -e "\e[32m[*]\e[0m Configurando ficheros ...\n"
+echo -e "\e[32m[*]\e[0m Configuring ficheros ...\n"
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/config.ini
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/scripts/*  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/bspwmrc  
