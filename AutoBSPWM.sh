@@ -16,16 +16,16 @@ echo '
 ====================================================================================================================
 '
 
-# COMPROBACIÓN DE USUARIO
+# USER VERIFICATION
 if [ "$(id -u)" != "0" ]; then
     echo -e "\e[31m[*]\e[0m Please, run this script with sudo."
     exit 1
 fi
 
-# USER VERIFICATION
+# OBTAIN THE INSTALLATION DIRECTORY
 directorio_instalacion=$(pwd)
 
-# GETTING THE USER
+# OBTAIN THE USER
 echo -e "\e[33m[*]\e[0m This script will configure the system based on the provided user and the root user.\n"
 
 while true; do
