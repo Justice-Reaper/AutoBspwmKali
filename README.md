@@ -88,11 +88,15 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reload bspwm configuration  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> : Log out of bspwm  
 
-## Volume and Brightness Shortcuts
-<kbd>Windows</kbd> + <kbd>F7</kbd> : Turn up the volume    
-<kbd>Windows</kbd> + <kbd>F6</kbd> : Turn down the volume    
-<kbd>Windows</kbd> + <kbd>F3</kbd> : Turn up the brightness    
-<kbd>Windows</kbd> + <kbd>F2</kbd> : Turn down the brightness  
+## Volume, Color Temperature and Brightness Shortcuts
+<kbd>Windows/FN</kbd> + <kbd>F2</kbd> : Turn down the brightness  
+<kbd>Windows/FN</kbd> + <kbd>F3</kbd> : Turn up the brightness  
+<kbd>Windows/FN</kbd> + <kbd>F5</kbd> : Mute and unmute the sound  
+<kbd>Windows/FN</kbd> + <kbd>F6</kbd> : Turn down the volume  
+<kbd>Windows/FN</kbd> + <kbd>F7</kbd> : Turn up the volume    
+<kbd>Windows/FN</kbd> + <kbd>F8</kbd> : Turn on/off the color temperature    
+<kbd>Windows/FN</kbd> + <kbd>F9</kbd> : Turn down the color temperature  
+<kbd>Windows/FN</kbd> + <kbd>F10</kbd> : Turn up the color temperature    
 
 ## Application Shortcuts
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Open Postman    
