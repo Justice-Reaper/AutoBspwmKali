@@ -50,8 +50,8 @@ sudo ./AutoBSPWM.sh
 - **wmname**: Utility to change the window manager's window name  
 - **polybar**: Tool to create customizable status bars  
 - **betterlockscreen**: Lets you lock and customize your screen with wallpapers and visual effects  
-- **bat**: Enhanced `cat` clone with syntax highlighting and other features  
-- **lsd**: Modern replacement for `ls` with improved visuals and usability  
+- **bat**: Enhanced cat clone with syntax highlighting and other features  
+- **lsd**: Modern replacement for ls with improved visuals and usability  
 - **fzf**: General-purpose command-line fuzzy finder  
 - **flameshot**: Screenshot tool with annotation and editing capabilities  
 - **picom**: X11 compositor with visual effects and window transparency  
