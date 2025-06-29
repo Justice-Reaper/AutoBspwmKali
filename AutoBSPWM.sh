@@ -403,6 +403,14 @@ rpcenum_installation(){
     mv rpcEnum /usr/bin
 }
 
+graphql_converter_installation(){
+    echo -e "\e[32m[*]\e[0m Installing graphQLConverter ...\n"
+    wget https://raw.githubusercontent.com/Justice-Reaper/graphQLConverter/refs/heads/main/graphQLConverter.py
+    chmod +x graphQLConverter.py
+    mv graphQLConverter.py graphQLConverter
+    mv graphQLConverter /usr/bin
+}
+
 jetbrains_toolbox_installation(){
     echo -e "\e[32m[*]\e[0m Installing jetbrains toolbox ..."
     URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
@@ -659,6 +667,22 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m rpcEnum hasn't been installed.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
+# GRAPHQL CONVERTER
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install GRAPHQL CONVERTER? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        graphql_converter_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m graphQLConverter hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
