@@ -400,7 +400,7 @@ rpcenum_installation(){
     wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh
     chmod +x rpcEnum.sh
     mv rpcEnum.sh rpcEnum
-    mv rpcEnum /usr/bin
+    mv -f rpcEnum /usr/bin
 }
 
 graphql_converter_installation(){
@@ -408,7 +408,7 @@ graphql_converter_installation(){
     wget https://raw.githubusercontent.com/Justice-Reaper/graphQLConverter/refs/heads/main/graphQLConverter.py
     chmod +x graphQLConverter.py
     mv graphQLConverter.py graphQLConverter
-    mv graphQLConverter /usr/bin
+    mv -f graphQLConverter /usr/bin
 }
 
 jetbrains_toolbox_installation(){
