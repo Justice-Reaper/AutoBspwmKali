@@ -114,7 +114,7 @@ echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
 LATEST_RELEASE=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
 wget -O Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/$LATEST_RELEASE/Hack.zip
 unzip -o Hack.zip
-mv *.ttf fonts/
+mv -f *.ttf fonts/
 cp -r fonts /usr/local/share 
 
 # CONFIGURING WALLPAPERS
@@ -374,7 +374,7 @@ nvim_installation(){
     wget -O nvim-linux-x86_64.tar.gz $download_url
     tar -xf nvim-linux-x86_64.tar.gz
     mv nvim-linux-x86_64 nvim
-    mv nvim /opt  
+    mv -f nvim /opt  
     chown -R root:root /opt/nvim
 
     echo -e "\e[32m[*]\e[0m Installing nvchad ..."
@@ -429,7 +429,7 @@ postman_installation(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/postman
     tar -xzf postman.tar.gz -C /opt/postman --strip-components=1
-    mv Postman.desktop /usr/share/applications
+    mv -f Postman.desktop /usr/share/applications
 }
 
 kerbrute_installation(){
@@ -438,7 +438,7 @@ kerbrute_installation(){
     wget $latest_url -O kerbrute_linux_amd64
     chmod +x kerbrute_linux_amd64
     mv kerbrute_linux_amd64 kerbrute
-    mv kerbrute /usr/bin
+    mv -f kerbrute /usr/bin
 }
 
 windapsearch_installation(){
@@ -447,7 +447,7 @@ windapsearch_installation(){
     wget $latest_url -O windapsearch_linux_amd64
     chmod +x windapsearch_linux_amd64
     mv windapsearch_linux_amd64 windapsearch
-    mv windapsearch /usr/bin
+    mv -f windapsearch /usr/bin
     echo -e "\e[32m[*]\e[0m Windapsearch installed successfully."
 }
 
