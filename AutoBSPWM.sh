@@ -557,7 +557,7 @@ while true; do
         echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
         sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
-        sed -i '/backend = "glx";/d' /home/$input_username/.config/picom/picom.conf
+        sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
 
@@ -566,7 +566,7 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
-        sed -i '/backend = "xrender";/d' /home/$input_username/.config/picom/picom.conf
+        sed -i '/backend = "xrender"/d' /home/$input_username/.config/picom/picom.conf
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
