@@ -395,6 +395,29 @@ vscode_installation(){
     apt install ./vscode-latest.deb  
 }
 
+caido_installation(){
+    echo -e "\e[32m[*]\e[0m Installing caido ..."
+    LATEST_RELEASE=$(curl -s "https://caido.download/releases/latest" | jq -r '.links[] | select(.platform == "linux-x86_64" and .kind == "desktop" and .format == "deb") | .link')
+    wget -O caido-latest.deb $LATEST_RELEASE
+    apt install ./caido-latest.deb  
+
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring caido as your proxy ..."
+            sed -i 's/burpsuite/caido/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m Caido won't be your proxy ...\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
+
 rpcenum_installation(){
     echo -e "\e[32m[*]\e[0m Installing rpcEnum ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh
@@ -455,7 +478,7 @@ chrome_installation(){
     echo -e "\e[32m[*]\e[0m Installing google chrome ..."
     apt install -y libu2f-udev
     wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    dpkg -i google-chrome-stable_current_amd64.deb
+    apt install ./google-chrome-stable_current_amd64.deb
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default browser? (YES/NO): ")" response
@@ -753,6 +776,22 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Vscode hasn't been installed.\n"
         sed -i '/# vscode/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
+# CAIDO
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install CAIDO? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        caido_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Caido hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
