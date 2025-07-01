@@ -37,7 +37,8 @@ sudo ./AutoBSPWM.sh
 - **obsidian**: Lightweight Markdown-based note-taking tool  
 - **seclists**: Collection of wordlists for pentesting  
 - **imagemagick**: Software suite to create, edit, or convert images from the command line  
-- **rpcEnum**: Tool to enumerate MSRPC services  
+- **rpcEnum**: Tool to enumerate MSRPC services
+- **graphQLConverter**: Tool to convert GraphQL JSON to x-www-form-urlencoded format
 - **postman**: Collaborative tool for developing, testing, and documenting APIs, with powerful enumeration and debugging features  
 - **jetbrains tools**: Set of integrated development tools for various programming languages  
 - **kerbrute**: Brute-force tool to enumerate valid users via Kerberos  
@@ -103,7 +104,7 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> : Open Obsidian    
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Open Pycharm    
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Open Firefox/Chrome  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Open Burpsuite  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Open Burpsuite/Caido  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> : Open VSCode  
 <kbd>PrtSc</kbd> : Take a screenshot  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Open Rofi launcher  
