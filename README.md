@@ -27,7 +27,7 @@ sudo ./AutoBSPWM.sh
 ```
 
 ## Overview
-![BSPWM Environment Preview](/Preview/preview.png)
+![BSPWM Environment Preview](/preview/preview.png)
 
 ## Componentes:
 - **redshift**: Tool to adjust the screen’s color temperature  
