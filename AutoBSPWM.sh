@@ -402,7 +402,7 @@ burpsuite_professional_installation(){
     mv -f burpsuite-professional.desktop /usr/share/applications
 
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username..."
-    su $input_username -c "bash -c /opt/Burpsuite-Professional/main/install.sh"
+    su ph4nt0m -c "bash /opt/Burpsuite-Professional/install.sh"
     
     cd "$installation_folder"    
     rm /opt/Burpsuite-Professional/burp_suite.ico
