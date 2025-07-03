@@ -397,10 +397,36 @@ vscode_installation(){
 
 burpsuite_professional_installation(){
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario root..."
+    apt install git axel openjdk-21-jre -y
     rm -rf /opt/*Burpsuite-Professional*  
     cd /opt
-    wget https://raw.githubusercontent.com/xiv3r/Burpsuite-Professional/main/install.sh -O install.sh
-    bash ./install.sh
+
+    git clone https://github.com/xiv3r/Burpsuite-Professional.git 
+    cd Burpsuite-Professional
+
+    version=$(curl -s https://portswigger.net/burp/releases/community/latest -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+    url="https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar"
+    axel "$url" -o "burpsuite_pro_v$version.jar"
+
+    echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$version.jar &" > burpsuitepro
+    chmod +x burpsuitepro
+    cp burpsuitepro /bin/burpsuitepro
+    (./burpsuitepro)
+
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Have you finished configuring burpsuite professional for root (enter YES once you have closed the windows)? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m You must configure burpsuite professional first ...\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username..."
     su $input_username -c "bash /opt/Burpsuite-Professional/install.sh"
     cd "$installation_folder"    
