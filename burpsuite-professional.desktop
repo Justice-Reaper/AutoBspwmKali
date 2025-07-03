@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Burpsuite Professional
+Comment=platform for security testing of web applications
+Exec=/usr/bin/burpsuitepro %U
+Icon=/opt/postman/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+StartupNotify=false
+StartupWMClass=burp-StartBurp
+Categories=kali-web-vulnerability-scanning;kali-reconnaissance;
