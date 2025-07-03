@@ -23,7 +23,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # OBTAIN THE INSTALLATION FOLDER
-installation_folderr=$(pwd)
+installation_folder=$(pwd)
 
 # OBTAIN THE USER
 echo -e "\e[33m[*]\e[0m This script will configure the system based on the provided user and the root user.\n"
@@ -149,7 +149,7 @@ cd /home/$input_username/.config/bspwm
 chmod +x bspwmrc  
 cd /home/$input_username/.config/bspwm/scripts 
 chmod +x * 
-cd "$installation_folderr"
+cd "$installation_folder"
 
 # CONFIGURING ROFI
 echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
@@ -159,7 +159,7 @@ cd launcher
 chmod +x launcher.sh 
 cd ../powermenu 
 chmod +x powermenu.sh
-cd "$installation_folderr"
+cd "$installation_folder"
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
@@ -168,7 +168,7 @@ cd /home/$input_username/.config/polybar/scripts
 chmod +x *
 mkdir /home/$input_username/.config/bin  
 touch /home/$input_username/.config/bin/target  
-cd "$installation_folderr"
+cd "$installation_folder"
 
 # CONFIGURING POWERLEVEL10K
 echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
@@ -361,7 +361,7 @@ dunst_installation(){
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
     cd /home/$input_username/.config/dunst/scripts 
     chmod +x * 
-    cd "$installation_folderr"
+    cd "$installation_folder"
 }
 
 nvim_installation(){
@@ -396,9 +396,15 @@ vscode_installation(){
 }
 
 burpsuite_professional_installation(){
-    echo -e "\e[32m[*]\e[0m Installing burpsuite professional ..."
+    echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario root..."
+    cd /opt
     wget -qO- https://raw.githubusercontent.com/xiv3r/Burpsuite-Professional/main/install.sh | bash
     mv -f burpsuite-professional.desktop /usr/share/applications
+
+    echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username..."
+    su $input_username -c "bash -c /opt/Burpsuite-Professional/main/install.sh"
+    
+    cd "$installation_folder"    
     rm /opt/Burpsuite-Professional/burp_suite.ico
     mv -f icon.png /opt/Burpsuite-Professional
     mv -f icon.ico /opt/Burpsuite-Professional
