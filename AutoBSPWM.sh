@@ -399,6 +399,9 @@ burpsuite_professional_installation(){
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional ..."
     wget -qO- https://raw.githubusercontent.com/xiv3r/Burpsuite-Professional/main/install.sh | bash
     mv -f burpsuite-professional.desktop /usr/share/applications
+    rm /opt/Burpsuite-Professional/burp_suite.ico
+    mv -f icon.png /opt/Burpsuite-Professional
+    mv -f icon.ico /opt/Burpsuite-Professional
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
@@ -829,7 +832,7 @@ while true; do
         burpsuite_professional_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Burpsuite Professional hasn't been installed.\n"
+        echo -e "\e[31m[*]\e[0m Burpsuite professional hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
