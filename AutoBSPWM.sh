@@ -400,13 +400,13 @@ burpsuite_professional_installation(){
     cd /opt
     wget https://raw.githubusercontent.com/xiv3r/Burpsuite-Professional/main/install.sh -O install.sh
     bash ./install.sh
-    mv -f burpsuite-professional.desktop /usr/share/applications
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username..."
     su $input_username -c "bash /opt/Burpsuite-Professional/install.sh"
     cd "$installation_folder"    
     rm /opt/Burpsuite-Professional/burp_suite.ico
-    mv -f icon.png /opt/Burpsuite-Professional
-    mv -f icon.ico /opt/Burpsuite-Professional
+    cp burpsuite-professional.desktop /usr/share/applications
+    cp icon.png /opt/Burpsuite-Professional
+    cp icon.ico /opt/Burpsuite-Professional
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
@@ -482,7 +482,7 @@ postman_installation(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-    mv -f postman.desktop /usr/share/applications
+    cp postman.desktop /usr/share/applications
 }
 
 kerbrute_installation(){
