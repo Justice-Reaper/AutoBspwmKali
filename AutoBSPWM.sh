@@ -452,7 +452,7 @@ postman_installation(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/postman
     tar -xzf postman.tar.gz -C /opt/postman --strip-components=1
-    mv -f Postman.desktop /usr/share/applications
+    mv -f postman.desktop /usr/share/applications
 }
 
 kerbrute_installation(){
