@@ -16,7 +16,7 @@
 # Donations
 Would you like to support the continued development of this project? You can contribute with a small donation by clicking the button below
 
-[![Thanks for all your support !!](https://img.buymeacoffee.com/button-api/?text=Thanks%20for%20all%20your%20support%20!!!&emoji=☕&slug=justiceReaper&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00)](https://www.buymeacoffee.com/justiceReaper)
+[![Thanks for all your support](https://img.buymeacoffee.com/button-api/?text=Thanks%20for%20all%20your%20support&emoji=☕&slug=justiceReaper&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00)](https://www.buymeacoffee.com/justiceReaper)
 
 # Installation
 ```
