@@ -450,8 +450,8 @@ jetbrains_toolbox_installation(){
 postman_installation(){
     echo -e "\e[32m[*]\e[0m Installing postman ..."
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
-    mkdir /opt/postman
-    tar -xzf postman.tar.gz -C /opt/postman --strip-components=1
+    mkdir /opt/Postman
+    tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
     mv -f postman.desktop /usr/share/applications
 }
 
