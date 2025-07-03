@@ -397,6 +397,7 @@ vscode_installation(){
 
 burpsuite_professional_installation(){
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario root..."
+    rm -rf /opt/*Burpsuite-Professional*  
     cd /opt
     wget https://raw.githubusercontent.com/xiv3r/Burpsuite-Professional/main/install.sh -O install.sh
     bash ./install.sh
@@ -466,6 +467,7 @@ graphql_converter_installation(){
 
 jetbrains_toolbox_installation(){
     echo -e "\e[32m[*]\e[0m Installing jetbrains toolbox ..."
+    rm -rf /opt/*jetbrains-toolbox*  
     URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
     latest_info=$(curl -s $URL)
     download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
@@ -479,6 +481,7 @@ jetbrains_toolbox_installation(){
 
 postman_installation(){
     echo -e "\e[32m[*]\e[0m Installing postman ..."
+    rm -rf /opt/*Postman*  
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
