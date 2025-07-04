@@ -865,6 +865,7 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Burpsuite professional hasn't been installed.\n"
+        sed -i '/# burpsuitepro/,+2d' /home/$input_username/.zshrc
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
