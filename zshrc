@@ -283,6 +283,9 @@ alias pycharm='/home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm/bi
 # postman
 alias postman='/opt/Postman/Postman'
 
+# burpsuitepro
+alias burpsuitepro='burpsuitepro 1>/dev/null'
+
 # fzf
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
