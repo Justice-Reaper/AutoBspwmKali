@@ -646,7 +646,6 @@ while true; do
         sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
-        sed -i '/^use-damage = false/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
 
         remove_laptop_configuration
