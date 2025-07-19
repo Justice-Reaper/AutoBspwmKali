@@ -499,8 +499,8 @@ jetbrains_toolbox_installation(){
     tar -xzf jetbrains-toolbox.tar.gz
     mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") jetbrains-toolbox
     cp -r jetbrains-toolbox /opt
-    sed -i '/# End of file/i * hard nofile 1048576\n' /etc/security/limits.conf
-    sed -i '1i fs.file-max=10485760\n' /etc/sysctl.conf
+    #sed -i '/# End of file/i * hard nofile 1048576\n' /etc/security/limits.conf
+    #sed -i '1i fs.file-max=10485760\n' /etc/sysctl.conf
 }
 
 postman_installation(){
