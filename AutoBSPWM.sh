@@ -574,13 +574,9 @@ grub_theme_customization(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the classic grub..."
-            sed -i '/^GRUB_DISTRIBUTOR=[^ ]*/s/^/#/' /etc/default/grub 
             sed -i '/^#GRUB_TERMINAL=console/s/^#//' /etc/default/grub
-            line=$(grep -n "set menu_color_normal" /boot/grub/grub.cfg | cut -d: -f1)
-            line=$((line - 1))
-            file=$(sed -n "${line}s/.*BEGIN\(.*\)###.*/\1/p" /boot/grub/grub.cfg)
-            sed -i 's/menu_color_normal=cyan\/blue/menu_color_normal=white\/black/' $file
-            sed -i 's/menu_color_highlight=white\/blue/menu_color_highlight=black\/light-gray/' $file
+            sudo sed -i -e '$aset menu_color_normal=white/black' -e '$aset menu_color_highlight=black/white' /etc/grub.d/40_custom
+            update-grub
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m The grub theme won't be modified.\n"
