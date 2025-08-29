@@ -575,8 +575,17 @@ grub_theme_customization(){
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the classic grub..."
             sed -i '/^#GRUB_TERMINAL=console/s/^#//' /etc/default/grub
-            sudo sed -i -e '$aset menu_color_normal=white/black' -e '$aset menu_color_highlight=black/white' /etc/grub.d/40_custom
+            
+            if ! grep -q "set menu_color_normal=white/black" /etc/grub.d/40_custom; then
+                sed -i '$a set menu_color_normal=white/black' /etc/grub.d/40_custom
+            fi
+            
+            if ! grep -q "set menu_color_highlight=black/white" /etc/grub.d/40_custom; then
+                sed -i '$a set menu_color_highlight=black/white' /etc/grub.d/40_custom
+            fi
+            
             update-grub
+            
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m The grub theme won't be modified.\n"
