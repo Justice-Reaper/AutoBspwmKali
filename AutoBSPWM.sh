@@ -111,8 +111,8 @@ mkdir /home/$input_username/.config
 
 # CONFIGURING FONTS
 echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
-LATEST_RELEASE=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
-wget -O Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/$LATEST_RELEASE/Hack.zip
+latest_version=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+wget -O Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip
 unzip -o Hack.zip
 mv -f *.ttf fonts/
 cp -r fonts /usr/local/share 
@@ -389,9 +389,8 @@ nvim_installation(){
 
 vscode_installation(){
     echo -e "\e[32m[*]\e[0m Installing vscode ...\n"
-    LATEST_RELEASE=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep "tag_name" | cut -d '"' -f 4)
-    DOWNLOAD_URL="https://update.code.visualstudio.com/$LATEST_RELEASE/linux-deb-x64/stable"
-    wget -O vscode-latest.deb $DOWNLOAD_URL
+    latest_version=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+    wget "https://update.code.visualstudio.com/$latest_version/linux-deb-x64/stable" -O vscode-latest.deb
     apt install ./vscode-latest.deb  
 }
 
@@ -452,8 +451,8 @@ burpsuite_professional_installation(){
 
 caido_installation(){
     echo -e "\e[32m[*]\e[0m Installing caido ..."
-    LATEST_RELEASE=$(curl -s "https://caido.download/releases/latest" | jq -r '.links[] | select(.platform == "linux-x86_64" and .kind == "desktop" and .format == "deb") | .link')
-    wget -O caido-latest.deb $LATEST_RELEASE
+    latest_version=$(curl -s "https://caido.download/releases/latest" | jq -r '.links[] | select(.platform == "linux-x86_64" and .kind == "desktop" and .format == "deb") | .link')
+    wget -O caido-latest.deb $latest_version
     apt install ./caido-latest.deb  
 
     while true; do
@@ -492,10 +491,8 @@ graphql_converter_installation(){
 jetbrains_toolbox_installation(){
     echo -e "\e[32m[*]\e[0m Installing jetbrains toolbox ..."
     rm -rf /opt/*jetbrains-toolbox*  
-    URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
-    latest_info=$(curl -s $URL)
-    download_link=$(echo $latest_info | jq -r '.TBA[0].downloads.linux.link')
-    wget -O jetbrains-toolbox.tar.gz $download_link
+    latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release" | jq -r '.TBA[0].downloads.linux.link)'
+    wget $latest_version -O jetbrains-toolbox.tar.gz
     tar -xzf jetbrains-toolbox.tar.gz
     mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") jetbrains-toolbox
     cp -r jetbrains-toolbox /opt
@@ -510,10 +507,18 @@ postman_installation(){
     cp postman.desktop /usr/share/applications
 }
 
+tor_installation(){
+    echo -e "\e[32m[*]\e[0m Installing tor ..."
+    latest_version=$(curl -s 'https://dist.torproject.org/torbrowser/' | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
+    wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
+    tar -xf tor-browser.tar.xz -C /opt --strip-components=1
+    mv /opt/start-tor-browser.desktop /usr/share/applications
+}
+
 kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
-    latest_url=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
-    wget $latest_url -O kerbrute_linux_amd64
+    latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
+    wget $latest_version -O kerbrute_linux_amd64
     chmod +x kerbrute_linux_amd64
     mv kerbrute_linux_amd64 kerbrute
     mv -f kerbrute /usr/bin
@@ -521,8 +526,8 @@ kerbrute_installation(){
 
 windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
-    latest_url=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
-    wget $latest_url -O windapsearch_linux_amd64
+    latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
+    wget $latest_version -O windapsearch_linux_amd64
     chmod +x windapsearch_linux_amd64
     mv windapsearch_linux_amd64 windapsearch
     mv -f windapsearch /usr/bin
