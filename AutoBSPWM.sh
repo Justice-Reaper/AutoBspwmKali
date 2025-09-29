@@ -30,6 +30,7 @@ read() {
     stty sane
     builtin read "$@"
     stty -echo -icanon time 0 min 0
+    sleep 2
 }
 
 # OBTAIN THE INSTALLATION FOLDER
