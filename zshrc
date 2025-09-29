@@ -28,7 +28,7 @@ for version in /home/user_replace/.local/share/gem/ruby/*/bin; do
     [ -d "$version" ] && PATH="$PATH:$version"
 done
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/user_replace/.local/bin:/home/user_replace/go/bin:/home/user_replace/.local/share/JetBrains/Toolbox/scripts:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/user_replace/.local/bin:/home/user_replace/go/bin:$PATH
 
 # configure key keybindings
 bindkey -e                                        # emacs key bindings
