@@ -518,7 +518,7 @@ postman_installation(){
 
 kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
-    latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_latest_version')
+    latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
     wget $latest_version -O kerbrute_linux_amd64
     chmod +x kerbrute_linux_amd64
     mv kerbrute_linux_amd64 kerbrute
