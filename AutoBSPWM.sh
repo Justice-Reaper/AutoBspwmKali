@@ -491,7 +491,7 @@ graphql_converter_installation(){
 jetbrains_toolbox_installation(){
     echo -e "\e[32m[*]\e[0m Installing jetbrains toolbox ..."
     rm -rf /opt/*jetbrains-toolbox*  
-    latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release" | jq -r '.TBA[0].downloads.linux.link)'
+    latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release" | jq -r '.TBA[0].downloads.linux.link')
     wget $latest_version -O jetbrains-toolbox.tar.gz
     tar -xzf jetbrains-toolbox.tar.gz
     mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") jetbrains-toolbox
