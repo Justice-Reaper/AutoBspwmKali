@@ -546,6 +546,7 @@ tor_installation(){
     mkdir -p /home/$input_username/.local/share/applications
     cp tor-browser.desktop /home/$input_username/.local/share/applications
     chmod 700 /home/$input_username/.local/share/applications/tor-browser.desktop
+    sed -i "s/user_replace/$input_username/g" /home/$input_username/.local/share/applications/tor-browser.desktop
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default browser? (YES/NO): ")" response
