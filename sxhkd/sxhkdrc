@@ -168,9 +168,9 @@ super + shift + f
 super + shift + s
         /home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm-community/bin/pycharm.sh 2>/dev/null
 
-# burpsuite
+# proxy_replace
 super + shift + b
-	burpsuite
+	proxy_replace
 
 # postman
 super + shift + a
