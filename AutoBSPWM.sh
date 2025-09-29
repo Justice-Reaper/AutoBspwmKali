@@ -542,6 +542,7 @@ tor_installation(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring tor as your default browser ..."
+            sed -i 's/# browser_replace/# tor/g' /home/$input_username/.config/sxhkd/sxhkdrc
             sed -i 's/browser_replace/tor-browser/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
