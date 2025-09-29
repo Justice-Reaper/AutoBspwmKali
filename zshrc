@@ -283,7 +283,7 @@ alias nvim='/opt/nvim/bin/nvim'
 alias jetbrains-toolbox='/opt/jetbrains-toolbox/bin/jetbrains-toolbox'
 
 # pycharm
-alias pycharm='/home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm/bin/pycharm.sh'
+alias pycharm='/home/user_replace/.local/share/JetBrains/Toolbox/scripts/pycharm'
 
 # postman
 alias postman='/opt/Postman/Postman'
