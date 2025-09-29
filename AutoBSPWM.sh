@@ -501,7 +501,8 @@ pycharm_community_installation(){
     echo -e "\e[32m[*]\e[0m Installing pycharm community ..."
     rm -rf /opt/Pycharm-Community
     latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"version":"[^"]*"' | head -1 | cut -d'"' -f4)
-    wget $latest_version -O pycharm-community.tar.gz
+    download_url=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"linux":{"link":"[^"]*"' | head -1 | cut -d'"' -f6)    
+    wget $download_url -O pycharm-community.tar.gz
     mkdir /opt/Pycharm-Community
     tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
 }
