@@ -569,8 +569,13 @@ chrome_installation(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring chrome as your default browser ..."
-            sed -i 's/# browser_replace/# chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
-            sed -i 's/browser_replace/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            if grep -q "browser_replace" /home/$input_username/.config/sxhkd/sxhkdrc; then
+                sed -i 's/# browser_replace/# chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+                sed -i 's/browser_replace/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            else
+                sed -i 's/# tor/# chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+                sed -i 's/tor-browser/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            fi
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Chrome won't be your default browser..\n"
