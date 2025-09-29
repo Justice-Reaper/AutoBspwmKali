@@ -547,7 +547,8 @@ tor_installation(){
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Tor won't be your default browser..\n"
             sed -i 's/browser_replace/firefox/g' /home/$input_username/.config/sxhkd/sxhkdrc
-
+            sed -i '/# tor/,+2d' /home/$input_username/.zshrc
+            sed -i '/# tor/,+2d' /root/.zshrc
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
