@@ -160,17 +160,17 @@ super + shift + {Left,Down,Up,Right}
 super + alt + {Left,Down,Up,Right}
 	/home/user_replace/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
-# browser_replace
+# firefox
 super + shift + f
-	browser_replace
+	firefox
 
 # pycharm
 super + shift + s
         /home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm-community/bin/pycharm.sh 2>/dev/null
 
-# proxy_replace
+# burpsuite
 super + shift + b
-	proxy_replace
+	burpsuite
 
 # postman
 super + shift + a
