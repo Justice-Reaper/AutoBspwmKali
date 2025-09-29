@@ -160,9 +160,9 @@ super + shift + {Left,Down,Up,Right}
 super + alt + {Left,Down,Up,Right}
 	/home/user_replace/.config/bspwm/scripts/bspwm_resize {west,south,north,east}
 
-# firefox
+# browser_replace
 super + shift + f
-	firefox
+	browser_replace
 
 # pycharm
 super + shift + s
