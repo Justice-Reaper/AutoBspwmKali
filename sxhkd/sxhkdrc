@@ -166,7 +166,7 @@ super + shift + f
 
 # pycharm
 super + shift + s
-        /home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm-community/bin/pycharm.sh 2>/dev/null
+    pycharm
 
 # burpsuite
 super + shift + b
