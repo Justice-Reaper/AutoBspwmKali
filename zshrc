@@ -287,6 +287,9 @@ alias pycharm='/home/user_replace/.local/share/JetBrains/Toolbox/apps/pycharm/bi
 # postman
 alias postman='/opt/Postman/Postman'
 
+# tor 
+alias tor='/home/user_replace/Browser/start-tor-browser'
+
 # burpsuitepro
 alias burpsuitepro='burpsuitepro 1>/dev/null'
 
