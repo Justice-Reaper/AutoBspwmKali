@@ -505,6 +505,7 @@ jetbrains_toolbox_installation(){
     tar -xzf jetbrains-toolbox.tar.gz
     mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") jetbrains-toolbox
     cp -r jetbrains-toolbox /opt
+    sed -i 's|\(export PATH=.*/home/user_replace/go/bin\):\$PATH|\1:/home/user_replace/.local/share/JetBrains/Toolbox/scripts:\$PATH|' /home/$input_username/.zshrc
 }
 
 postman_installation(){
@@ -939,8 +940,6 @@ while true; do
         sed -i '/# jetbrains toolbox/,+2d' /home/$input_username/.zshrc
         sed -i '/# jetbrains toolbox/,+2d' /root/.zshrc
         sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
-        sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
-        sed -i '/# pycharm/,+2d' /root/.zshrc
         echo -e "\e[31m[*]\e[0m Jetbrains toolbox hasn't been installed.\n"
         break
     else
