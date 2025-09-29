@@ -542,7 +542,8 @@ tor_installation(){
     tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
     rm /home/$input_username/start-tor-browser.desktop
     rm /home/$input_username/Browser/start-tor-browser.desktop
-    cp tor-browser.desktop /home/$input_username/.local/share/applications/
+    mkdir -p /home/$input_username/.local/share/applications
+    cp tor-browser.desktop /home/$input_username/.local/share/applications
     chmod 700 /home/$input_username/.local/share/applications/tor-browser.desktop
 
     while true; do
