@@ -380,7 +380,7 @@ nvim_installation(){
     rm -rf /opt/*nvim*  
     rm -rf /home/$input_username/.config/nvim 
     apt install npm -y  
-    latest_version=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep "browser_latest_version.*nvim-linux-x86_64.tar.gz" | cut -d : -f 2,3 | tr -d '," ')
+    latest_version=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep "browser_download_url.*nvim-linux-x86_64.tar.gz" | cut -d : -f 2,3 | tr -d '," ')
     wget $latest_version -O nvim-linux-x86_64.tar.gz 
     tar -xf nvim-linux-x86_64.tar.gz
     mv nvim-linux-x86_64 nvim
