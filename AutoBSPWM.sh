@@ -22,6 +22,16 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+# OVERRIDE READ SO IT TEMPORARILY ENABLES INPUT ONLY WHEN CALLED
+read() {
+    stty sane
+    builtin read "$@"
+    stty -echo -icanon time 0 min 0
+}
+
+# DISABLE KEYBOARD
+stty -echo -icanon time 0 min 0
+
 # OBTAIN THE INSTALLATION FOLDER
 installation_folder=$(pwd)
 
@@ -112,7 +122,7 @@ mkdir /home/$input_username/.config
 # CONFIGURING FONTS
 echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
 latest_version=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
-wget -O Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip -O Hack.zip 
 unzip -o Hack.zip
 mv -f *.ttf fonts/
 cp -r fonts /usr/local/share 
@@ -370,8 +380,8 @@ nvim_installation(){
     rm -rf /opt/*nvim*  
     rm -rf /home/$input_username/.config/nvim 
     apt install npm -y  
-    download_url=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep "browser_download_url.*nvim-linux-x86_64.tar.gz" | cut -d : -f 2,3 | tr -d '," ')
-    wget -O nvim-linux-x86_64.tar.gz $download_url
+    latest_version=$(curl -s "https://api.github.com/repos/neovim/neovim/releases/latest" | grep "browser_latest_version.*nvim-linux-x86_64.tar.gz" | cut -d : -f 2,3 | tr -d '," ')
+    wget $latest_version -O nvim-linux-x86_64.tar.gz 
     tar -xf nvim-linux-x86_64.tar.gz
     mv nvim-linux-x86_64 nvim
     mv -f nvim /opt  
@@ -394,6 +404,29 @@ vscode_installation(){
     apt install ./vscode-latest.deb  
 }
 
+caido_installation(){
+    echo -e "\e[32m[*]\e[0m Installing caido ..."
+    latest_version=$(curl -s "https://caido.download/releases/latest" | jq -r '.links[] | select(.platform == "linux-x86_64" and .kind == "desktop" and .format == "deb") | .link')
+    wget $latest_version -O caido-latest.deb
+    apt install ./caido-latest.deb  
+
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring caido as your proxy ..."
+            sed -i 's/burpsuite/caido/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m Caido won't be your proxy ...\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
+
 burpsuite_professional_installation(){
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario root..."
     apt install git axel openjdk-21-jre -y
@@ -401,9 +434,8 @@ burpsuite_professional_installation(){
     cd /opt
     git clone https://github.com/xiv3r/Burpsuite-Professional.git 
     cd Burpsuite-Professional
-    version=$(curl -s https://portswigger.net/burp/releases/community/latest -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
-    url="https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar"
-    axel "$url" -o "burpsuite_pro_v$version.jar"
+    latest_version=$(curl -s https://portswigger.net/burp/releases/community/latest -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+    axel "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -o "burpsuite_pro_v$latest_version.jar"
     (java -jar loader.jar) &
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$version.jar &" > burpsuitepro
     chmod +x burpsuitepro
@@ -438,33 +470,10 @@ burpsuite_professional_installation(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring burpsuite professional as your proxy ..."
-            sed -i 's/burpsuite/burpsuitepro/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            sed -i -e 's/burpsuite/burpsuitepro/g' -e 's/caido/burpsuitepro/g' /home/$input_username/.config/sxhkd/sxhkdrc            
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Burpsuite professional won't be your proxy ...\n"
-            break
-        else
-            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-        fi
-    done
-}
-
-caido_installation(){
-    echo -e "\e[32m[*]\e[0m Installing caido ..."
-    latest_version=$(curl -s "https://caido.download/releases/latest" | jq -r '.links[] | select(.platform == "linux-x86_64" and .kind == "desktop" and .format == "deb") | .link')
-    wget -O caido-latest.deb $latest_version
-    apt install ./caido-latest.deb  
-
-    while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
-        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-      
-        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-            echo -e "\e[32m[*]\e[0m Configuring caido as your proxy ..."
-            sed -i 's/burpsuite/caido/g' /home/$input_username/.config/sxhkd/sxhkdrc
-            break
-        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-            echo -e "\e[31m[*]\e[0m Caido won't be your proxy ...\n"
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -509,7 +518,7 @@ postman_installation(){
 
 kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
-    latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
+    latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_latest_version')
     wget $latest_version -O kerbrute_linux_amd64
     chmod +x kerbrute_linux_amd64
     mv kerbrute_linux_amd64 kerbrute
@@ -518,7 +527,7 @@ kerbrute_installation(){
 
 windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
-    latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
+    latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_latest_version')
     wget $latest_version -O windapsearch_linux_amd64
     chmod +x windapsearch_linux_amd64
     mv windapsearch_linux_amd64 windapsearch
@@ -542,12 +551,11 @@ tor_installation(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring tor as your default browser ..."
-            sed -i 's/# browser_replace/# tor/g' /home/$input_username/.config/sxhkd/sxhkdrc
-            sed -i 's/browser_replace/tor-browser/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            sed -i 's/# firefox/# tor/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            sed -i 's/firefox/tor-browser/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Tor won't be your default browser..\n"
-            sed -i 's/browser_replace/firefox/g' /home/$input_username/.config/sxhkd/sxhkdrc
             sed -i '/# tor/,+2d' /home/$input_username/.zshrc
             sed -i '/# tor/,+2d' /root/.zshrc
             break
@@ -560,7 +568,7 @@ tor_installation(){
 chrome_installation(){
     echo -e "\e[32m[*]\e[0m Installing google chrome ..."
     apt install -y libu2f-udev
-    wget -O google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb 
     apt install ./google-chrome-stable_current_amd64.deb
 
     while true; do
@@ -569,17 +577,11 @@ chrome_installation(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring chrome as your default browser ..."
-            if grep -q "browser_replace" /home/$input_username/.config/sxhkd/sxhkdrc; then
-                sed -i 's/# browser_replace/# chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
-                sed -i 's/browser_replace/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
-            else
-                sed -i 's/# tor/# chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
-                sed -i 's/tor-browser/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
-            fi
+            sed -i -e 's/# firefox/# chrome/g' -e 's/# tor/# chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            sed -i -e 's/firefox/google-chrome/g' -e 's/tor-browser/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Chrome won't be your default browser..\n"
-            sed -i 's/browser_replace/firefox/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -988,3 +990,6 @@ apt clean -y
 # BSPWM ENVIRONMENT CONFIGURED SUCCESSFULLY
 echo -e "\e[32m[*]\e[0m the BSPWM environment has been successfully installed!\n"
 echo -e "\e[32m[*]\e[0m it is recommended to restart/log in again for the configuration to load correctly\n"
+
+# ENALBE KEYBOARD
+stty sane
