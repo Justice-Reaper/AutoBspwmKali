@@ -497,14 +497,13 @@ graphql_converter_installation(){
     mv -f graphQLConverter /usr/bin
 }
 
-jetbrains_toolbox_installation(){
-    echo -e "\e[32m[*]\e[0m Installing jetbrains toolbox ..."
-    rm -rf /opt/*jetbrains-toolbox*  
-    latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release" | jq -r '.TBA[0].downloads.linux.link')
-    wget $latest_version -O jetbrains-toolbox.tar.gz
-    tar -xzf jetbrains-toolbox.tar.gz
-    mv $(tar -tf jetbrains-toolbox.tar.gz | head -1 | cut -f1 -d"/") jetbrains-toolbox
-    cp -r jetbrains-toolbox /opt
+pycharm_community_installation(){
+    echo -e "\e[32m[*]\e[0m Installing pycharm community ..."
+    rm -rf /opt/Pycharm-Community
+    latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"version":"[^"]*"' | head -1 | cut -d'"' -f4)
+    wget $latest_version -O pycharm-community.tar.gz
+    mkdir /opt/Pycharm-Community
+    tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
 }
 
 postman_installation(){
@@ -928,20 +927,19 @@ while true; do
     fi
 done
 
-# JETBRAINS TOOLBOX
+# PYCHARM COMMUNITY
 while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install JETBRAINS TOOLBOX? (YES/NO): ")" response
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PYCHARM COMMUNITY? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
     if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        jetbrains_toolbox_installation
+        pycharm_community_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        sed -i '/# jetbrains toolbox/,+2d' /home/$input_username/.zshrc
-        sed -i '/# jetbrains toolbox/,+2d' /root/.zshrc
+        sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
+        sed -i '/# pycharm/,+2d' /root/.zshrc
         sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
-        sed -i 's|:/home/user_replace/.local/share/JetBrains/Toolbox/scripts||g' /hone/$input_username/.zshrc
-        echo -e "\e[31m[*]\e[0m Jetbrains toolbox hasn't been installed.\n"
+        echo -e "\e[31m[*]\e[0m Pycharm community hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
