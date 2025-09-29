@@ -507,14 +507,6 @@ postman_installation(){
     cp postman.desktop /usr/share/applications
 }
 
-tor_installation(){
-    echo -e "\e[32m[*]\e[0m Installing tor ..."
-    latest_version=$(curl -s 'https://dist.torproject.org/torbrowser/' | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
-    wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
-    tar -xf tor-browser.tar.xz -C /opt --strip-components=1
-    mv /opt/start-tor-browser.desktop /usr/share/applications
-}
-
 kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
     latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
@@ -534,6 +526,35 @@ windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Windapsearch installed successfully."
 }
 
+tor_installation(){
+    echo -e "\e[32m[*]\e[0m Installing tor ..."
+    latest_version=$(curl -s 'https://dist.torproject.org/torbrowser/' | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
+    wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
+    tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
+    rm /home/$input_username/start-tor-browser.desktop
+    rm /home/$input_username/Browser/start-tor-browser.desktop
+    cp tor-browser.desktop /home/$input_username/.local/share/applications/
+    chmod 700 /home/$input_username/.local/share/applications/tor-browser.desktop
+
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default browser? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring tor as your default browser ..."
+            sed -i 's/browser_replace/tor-browser/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m Tor won't be your default browser..\n"
+            sed -i 's/browser_replace/firefox/g' /home/$input_username/.config/sxhkd/sxhkdrc
+
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
+
 chrome_installation(){
     echo -e "\e[32m[*]\e[0m Installing google chrome ..."
     apt install -y libu2f-udev
@@ -546,10 +567,12 @@ chrome_installation(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring chrome as your default browser ..."
-            sed -i 's/firefox/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            sed -i 's/# browser_replace/# chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
+            sed -i 's/browser_replace/google-chrome/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Chrome won't be your default browser..\n"
+            sed -i 's/browser_replace/firefox/g' /home/$input_username/.config/sxhkd/sxhkdrc
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -770,6 +793,22 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m graphQLConverter hasn't been installed.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
+# TOR
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install TOR? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        tor_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Tor hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
