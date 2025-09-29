@@ -6,9 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # export path
-for d in /home/user_replace/.local/share/gem/ruby/*/bin; do
-  [ -d "$d" ] && PATH="$PATH:$d"
-done
+ruby_path="/home/user_replace/.local/share/gem/ruby"
+
+if [ -d "$ruby_path" ]; then
+    for version in "$ruby_path"/*/bin; do
+        [ -d "$version" ] && PATH="$PATH:$version"
+    done
+fi
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/user_replace/.local/bin:/home/user_replace/go/bin:$PATH
 
