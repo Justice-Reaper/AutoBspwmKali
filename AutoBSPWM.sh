@@ -537,6 +537,7 @@ windapsearch_installation(){
 
 tor_installation(){
     echo -e "\e[32m[*]\e[0m Installing tor ..."
+    rm -rf /home/$input_username/Browser
     latest_version=$(curl -s 'https://dist.torproject.org/torbrowser/' | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
     wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
     tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
