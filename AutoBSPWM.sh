@@ -400,15 +400,15 @@ nvim_installation(){
 vscode_installation(){
     echo -e "\e[32m[*]\e[0m Installing vscode ...\n"
     latest_version=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep "tag_name" | cut -d '"' -f 4)
-    wget "https://update.code.visualstudio.com/$latest_version/linux-deb-x64/stable" -O vscode-latest.deb
-    apt install ./vscode-latest.deb  
+    wget "https://update.code.visualstudio.com/$latest_version/linux-deb-x64/stable" -O vscode-latest-version.deb
+    apt install ./vscode-latest-version.deb  
 }
 
 caido_installation(){
     echo -e "\e[32m[*]\e[0m Installing caido ..."
     latest_version=$(curl -s "https://caido.download/releases/latest" | jq -r '.links[] | select(.platform == "linux-x86_64" and .kind == "desktop" and .format == "deb") | .link')
-    wget $latest_version -O caido-latest.deb
-    apt install ./caido-latest.deb  
+    wget $latest_version -O caido-latest-version.deb
+    apt install ./caido-latest-version.deb  
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
