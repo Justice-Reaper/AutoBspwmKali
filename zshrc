@@ -5,13 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# export path
-for version in /home/justice-reaper/.local/share/gem/ruby/*/bin; do
-    [ -d "$version" ] && PATH="$PATH:$version"
-done
-
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/user_replace/.local/bin:/home/user_replace/go/bin:$PATH
-
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
@@ -29,6 +22,13 @@ WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
 
 # hide EOL sign ('%')
 PROMPT_EOL_MARK=""
+
+# export path
+for version in /home/justice-reaper/.local/share/gem/ruby/*/bin; do
+    [ -d "$version" ] && PATH="$PATH:$version"
+done
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/user_replace/.local/bin:/home/user_replace/go/bin:$PATH
 
 # configure key keybindings
 bindkey -e                                        # emacs key bindings
