@@ -40,7 +40,7 @@ sudo ./AutoBSPWM.sh
 - **rpcEnum**: Tool to enumerate MSRPC services
 - **graphQLConverter**: Tool to convert GraphQL JSON to x-www-form-urlencoded format
 - **postman**: Collaborative tool for developing, testing, and documenting APIs, with powerful enumeration and debugging features  
-- **jetbrains tools**: Set of integrated development tools for various programming languages  
+- **pycharm**: Python IDE
 - **kerbrute**: Brute-force tool to enumerate valid users via Kerberos  
 - **windapsearch**: Lightweight tool to enumerate data on LDAP servers  
 - **brightnessctl**: Tool to control screen brightness from the command line  
