@@ -279,8 +279,8 @@ alias icat='kitty +kitten icat'
 # nvim
 alias nvim='/opt/nvim/bin/nvim'
 
-# jetbrains toolbox
-alias jetbrains-toolbox='/opt/jetbrains-toolbox/bin/jetbrains-toolbox'
+# pycharm
+alias pycharm='/opt/Pycharm/bin/pycharm'
 
 # postman
 alias postman='/opt/Postman/Postman'
