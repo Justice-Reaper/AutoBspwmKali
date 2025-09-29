@@ -1,3 +1,6 @@
+# Prevent errors if a glob doesn't match any files
+setopt nullglob
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,13 +9,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # export path
-ruby_path="/home/user_replace/.local/share/gem/ruby"
-
-if [ -d "$ruby_path" ]; then
-    for version in "$ruby_path"/*/bin; do
-        [ -d "$version" ] && PATH="$PATH:$version"
-    done
-fi
+for version in /home/justice-reaper/.local/share/gem/ruby/*/bin; do
+    [ -d "$version" ] && PATH="$PATH:$version"
+done
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/user_replace/.local/bin:/home/user_replace/go/bin:$PATH
 
