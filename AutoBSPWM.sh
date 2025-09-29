@@ -527,7 +527,7 @@ kerbrute_installation(){
 
 windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
-    latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_latest_version')
+    latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
     wget $latest_version -O windapsearch_linux_amd64
     chmod +x windapsearch_linux_amd64
     mv windapsearch_linux_amd64 windapsearch
