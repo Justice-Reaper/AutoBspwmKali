@@ -280,7 +280,7 @@ alias icat='kitty +kitten icat'
 alias nvim='/opt/nvim/bin/nvim'
 
 # pycharm
-alias pycharm='/opt/Pycharm/bin/pycharm'
+alias pycharm='/opt/Pycharm-Community/bin/pycharm'
 
 # postman
 alias postman='/opt/Postman/Postman'
