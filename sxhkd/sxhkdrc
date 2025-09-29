@@ -166,7 +166,7 @@ super + shift + f
 
 # pycharm
 super + shift + s
-    pycharm
+    /opt/Pycharm-Community/bin/pycharm
 
 # burpsuite
 super + shift + b
