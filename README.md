@@ -103,7 +103,7 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Open Postman    
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> : Open Obsidian    
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Open Pycharm    
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Open Firefox/Chrome  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Open Firefox/Chrome/Tor  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Open Burpsuite/Caido/Burpsuite Professional  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> : Open VSCode  
 <kbd>PrtSc</kbd> : Take a screenshot  
