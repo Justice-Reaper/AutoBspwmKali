@@ -22,15 +22,15 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
+# DISABLE KEYBOARD
+stty -echo -icanon time 0 min 0
+
 # OVERRIDE READ SO IT TEMPORARILY ENABLES INPUT ONLY WHEN CALLED
 read() {
     stty sane
     builtin read "$@"
     stty -echo -icanon time 0 min 0
 }
-
-# DISABLE KEYBOARD
-stty -echo -icanon time 0 min 0
 
 # OBTAIN THE INSTALLATION FOLDER
 installation_folder=$(pwd)
