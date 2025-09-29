@@ -27,10 +27,10 @@ stty -echo -icanon time 0 min 0
 
 # OVERRIDE READ SO IT TEMPORARILY ENABLES INPUT ONLY WHEN CALLED
 read() {
+    sleep 2
     stty sane
     builtin read "$@"
     stty -echo -icanon time 0 min 0
-    sleep 2
 }
 
 # OBTAIN THE INSTALLATION FOLDER
