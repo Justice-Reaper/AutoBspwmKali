@@ -569,7 +569,6 @@ tor_installation(){
 
 chrome_installation(){
     echo -e "\e[32m[*]\e[0m Installing google chrome ..."
-    apt install -y libu2f-udev
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb 
     apt install ./google-chrome-stable_current_amd64.deb
 
