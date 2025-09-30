@@ -173,6 +173,7 @@ cd "$installation_folder"
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
+sed -i "s/user_replace/$input_username/g" bin/*
 chmod +x bin/*
 cp -r bin /usr
 cp -r polybar /home/$input_username/.config
