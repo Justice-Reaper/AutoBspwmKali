@@ -173,6 +173,8 @@ cd "$installation_folder"
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
+chmod 755 bin/*
+cp -r bin /usr
 cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
