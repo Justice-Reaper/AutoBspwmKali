@@ -438,9 +438,9 @@ burpsuite_professional_installation(){
     git clone https://github.com/xiv3r/Burpsuite-Professional.git 
     cd Burpsuite-Professional
     latest_version=$(curl -s https://portswigger.net/burp/releases/community/latest -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
-    axel "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -o "burpsuite_pro_$latest_version.jar"
+    axel "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -o "burpsuite_pro_v$latest_version.jar"
     (java -jar loader.jar) &
-    echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_$latest_version.jar &" > burpsuitepro
+    echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
     chmod +x burpsuitepro
     cp burpsuitepro /bin/burpsuitepro
     (./burpsuitepro)
