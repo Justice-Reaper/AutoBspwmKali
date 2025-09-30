@@ -460,7 +460,8 @@ burpsuite_professional_installation(){
     done
 
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username..."
-    su $input_username -c "bash /opt/Burpsuite-Professional/install.sh"
+    (java -jar loader.jar) &
+    su $input_username -c "bash ./burpsuitepro"
     cd "$installation_folder"    
     rm /opt/Burpsuite-Professional/burp_suite.ico
     cp burpsuite-professional.desktop /usr/share/applications
