@@ -317,57 +317,10 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # functions
-
-function mkt() {
-    if [ -n "$1" ]; then
-        mkdir -p "$1"/{nmap,content,exploits,scripts}
-    else
-        echo "mkt [FOLDER]"
-    fi
-}
-
 function clearHistory(){
     echo '' > ~/.zsh_history
 }
 
 function removeHistory(){
     rm ~/.zsh_history
-}
-
-function clearTarget(){
-    echo '' > /home/user_replace/.config/bin/target
-}
-
-function setTarget(){
-    ip_regex='^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
-    if [ $# -eq 1 ] && [[ $1 =~ $ip_regex ]]; then
-        echo $1 > /home/user_replace/.config/bin/target
-    else
-        echo "setTarget [IP]"
-    fi
-}
-
-function extractPorts(){
-    ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
-    ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
-    echo -e "\n[*] Extracting information...\n" > extractPorts.tmp
-    echo -e "\t[*] IP Address: $ip_address"  >> extractPorts.tmp
-    echo -e "\t[*] Open ports: $ports\n"  >> extractPorts.tmp
-    echo $ports | tr -d '\n' | xclip -sel clip
-    echo -e "[*] Ports copied to clipboard\n"  >> extractPorts.tmp
-    cat extractPorts.tmp; rm extractPorts.tmp
-}
-
-function enableTouchpad(){
-    touchpad=$(xinput list | grep -i touchpad)
-    touchpad_id=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
-    echo 'Enabled' > /home/user_replace/.config/bin/touchpad
-    xinput enable $touchpad_id
-}
-
-function disableTouchpad(){
-    touchpad=$(xinput list | grep -i touchpad)
-    touchpad_id=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
-    echo 'Disabled' > /home/user_replace/.config/bin/touchpad
-    xinput disable $touchpad_id
 }
