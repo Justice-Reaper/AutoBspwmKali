@@ -695,11 +695,14 @@ while true; do
         sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
         sed -i "s/user_replace/$input_username/g" bin/*
-        chmod +x bin/*
         cp bin/clearTarget /usr/bin
         cp bin/setTarget /usr/bin
         cp bin/extractPorts /usr/bin
-         cp bin/mkt /usr/bin
+        cp bin/mkt /usr/bin
+        chmod +x /usr/bin/clearTarget
+        chmod +x /usr/bin/setTarget
+        chmod +x /usr/bin/extractPorts
+        chmod +x /usr/bin/mkt
         
         remove_laptop_configuration
         enable_bidirectional_clipboard
@@ -714,8 +717,13 @@ while true; do
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput
         sed -i "s/user_replace/$input_username/g" bin/*
-        chmod +x bin/*
         cp -r bin /usr
+        chmod +x /usr/bin/clearTarget
+        chmod +x /usr/bin/disableTouchpad
+        chmod +x /usr/bin/enableTouchpad
+        chmod +x /usr/bin/extractPorts
+        chmod +x /usr/bin/mkt
+        chmod +x /usr/bin/setTarget
         
         warning
         laptop_and_desktop_configuration
