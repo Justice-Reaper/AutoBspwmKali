@@ -436,8 +436,9 @@ burpsuite_professional_installation(){
     (java -jar loader.jar) &
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
     chmod +x burpsuitepro
-    cp burpsuitepro /bin/burpsuitepro
-    (./burpsuitepro)
+    cp burpsuitepro /usr/bin/burpsuitepro
+    rm burpsuitepro
+    (/usr/bin/burpsuitepro)
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Have you finished configuring burpsuite professional for root (enter YES once you have closed the windows)? (YES/NO): ")" response
@@ -455,7 +456,7 @@ burpsuite_professional_installation(){
 
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username..."
     (java -jar loader.jar) &
-    su $input_username -c "bash ./burpsuitepro"
+    su $input_username -c "bash /usr/bin/burpsuitepro"
     cd "$installation_folder"    
     cp burpsuite-professional.desktop /usr/share/applications
 
