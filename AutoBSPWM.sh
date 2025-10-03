@@ -427,13 +427,12 @@ caido_installation(){
 
 burpsuite_professional_installation(){
     echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario root..."
-    apt install git axel openjdk-21-jre -y
-    rm -rf /opt/*Burpsuite-Professional*  
-    cd /opt
-    git clone https://github.com/xiv3r/Burpsuite-Professional.git 
-    cd Burpsuite-Professional
+    apt install openjdk-21-jre -y
+    rm -rf /opt/Burpsuite-Professional
+    mv Burpsuite-Professional /opt
+    cd /opt/Burpsuite-Professional
     latest_version=$(curl -s https://portswigger.net/burp/releases/community/latest -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
-    axel "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -o "burpsuite_pro_v$latest_version.jar"
+    wget "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -O "burpsuite_pro_v$latest_version.jar"
     (java -jar loader.jar) &
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
     chmod +x burpsuitepro
@@ -458,10 +457,7 @@ burpsuite_professional_installation(){
     (java -jar loader.jar) &
     su $input_username -c "bash ./burpsuitepro"
     cd "$installation_folder"    
-    rm /opt/Burpsuite-Professional/burp_suite.ico
     cp burpsuite-professional.desktop /usr/share/applications
-    cp icon.png /opt/Burpsuite-Professional
-    cp icon.ico /opt/Burpsuite-Professional
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
