@@ -39,6 +39,8 @@ sudo ./AutoBSPWM.sh
 - **imagemagick**: Software suite to create, edit, or convert images from the command line  
 - **rpcEnum**: Tool to enumerate MSRPC services
 - **graphQLConverter**: Tool to convert GraphQL JSON to x-www-form-urlencoded format
+- **payloadSplitter**: Tool to split large files into smaller chunks with customizable sizes
+- **getTopPorts**: Tool that extracts the most common ports from Nmap and saves them to a text file in two different formats
 - **postman**: Collaborative tool for developing, testing, and documenting APIs, with powerful enumeration and debugging features  
 - **pycharm**: Python IDE
 - **kerbrute**: Brute-force tool to enumerate valid users via Kerberos  
