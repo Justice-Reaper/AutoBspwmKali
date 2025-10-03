@@ -493,10 +493,23 @@ rpcenum_installation(){
 
 graphql_converter_installation(){
     echo -e "\e[32m[*]\e[0m Installing graphQLConverter ...\n"
-    wget https://raw.githubusercontent.com/Justice-Reaper/graphQLConverter/refs/heads/main/graphQLConverter.py
-    chmod +x graphQLConverter.py
-    mv graphQLConverter.py graphQLConverter
+    wget https://raw.githubusercontent.com/Justice-Reaper/graphQLConverter/refs/heads/main/graphQLConverter.py -O graphQLConverter
+    chmod +x graphQLConverter
     mv -f graphQLConverter /usr/bin
+}
+
+payloadSplitter_installation(){
+    echo -e "\e[32m[*]\e[0m Installing payloadSplitter ...\n"
+    wget https://raw.githubusercontent.com/Justice-Reaper/payloadSplitter/refs/heads/main/payloadSplitter.sh -O payloadSplitter
+    chmod +x payloadSplitter.sh
+    mv -f payloadSplitter /usr/bin
+}
+
+getTopPorts_installation(){
+    echo -e "\e[32m[*]\e[0m Installing getTopPorts ...\n"
+    wget https://raw.githubusercontent.com/Justice-Reaper/getTopPorts/refs/heads/main/getTopPorts.sh -O getTopPorts
+    chmod +x getTopPorts.sh
+    mv -f getTopPorts /usr/bin
 }
 
 pycharm_community_installation(){
@@ -806,6 +819,38 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m graphQLConverter hasn't been installed.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
+# PAYLOAD SPLITTER
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PAYLOAD SPLITTER? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        payloadSplitter_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m payloadSplitter hasn't been installed.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
+# GET TOP PORTS
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install GET TOP PORTS? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        getTopPorts_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m getTopPorts hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
