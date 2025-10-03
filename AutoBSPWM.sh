@@ -480,29 +480,29 @@ burpsuite_professional_installation(){
 rpcenum_installation(){
     echo -e "\e[32m[*]\e[0m Installing rpcEnum ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh -O rpcEnum
-    chmod +x rpcEnum
     cp -f rpcEnum /usr/bin
+    chmod +x /usr/bin/rpcEnum
 }
 
 graphql_converter_installation(){
     echo -e "\e[32m[*]\e[0m Installing graphQLConverter ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/graphQLConverter/refs/heads/main/graphQLConverter.py -O graphQLConverter
-    chmod +x graphQLConverter
     cp -f graphQLConverter /usr/bin
+    chmod +x /usr/bin/graphQLConverter
 }
 
 payloadSplitter_installation(){
     echo -e "\e[32m[*]\e[0m Installing payloadSplitter ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/payloadSplitter/refs/heads/main/payloadSplitter.sh -O payloadSplitter
-    chmod +x payloadSplitter
     cp -f payloadSplitter /usr/bin
+    chmod +x /usr/bin/payloadSplitter
 }
 
 getTopPorts_installation(){
     echo -e "\e[32m[*]\e[0m Installing getTopPorts ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/getTopPorts/refs/heads/main/getTopPorts.sh -O getTopPorts
-    chmod +x getTopPorts
     cp -f getTopPorts /usr/bin
+    chmod +x /usr/bin/getTopPorts
 }
 
 pycharm_community_installation(){
@@ -528,17 +528,16 @@ kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
     latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
     wget $latest_version -O kerbrute
-    chmod +x kerbrute
     cp -f kerbrute /usr/bin
+    chmod +x /usr/bin/kerbrute
 }
 
 windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
     latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
     wget $latest_version -O windapsearch
-    chmod +x windapsearch
     cp -f windapsearch /usr/bin
-    echo -e "\e[32m[*]\e[0m Windapsearch installed successfully."
+    chmod +x /usr/bin/windapsearch
 }
 
 tor_installation(){
