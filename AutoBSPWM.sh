@@ -99,7 +99,7 @@ done
 
 # INSTALL THE NECESSARY DEPENDENCIES
 echo -e "\e[32m[*]\e[0m Installing the necessary dependencies ...\n"
-apt install xinput imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils seclists bloodhound neo4j x11-utils moreutils -y
+apt install imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils seclists bloodhound neo4j x11-utils moreutils -y
 
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
@@ -173,9 +173,6 @@ cd "$installation_folder"
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
-sed -i "s/user_replace/$input_username/g" bin/*
-chmod +x bin/*
-cp -r bin /usr
 cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
@@ -704,7 +701,13 @@ while true; do
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
-
+        sed -i "s/user_replace/$input_username/g" bin/*
+        chmod +x bin/*
+        cp bin/clearTarget /usr/bin
+        cp bin/setTarget /usr/bin
+        cp bin/extractPorts /usr/bin
+         cp bin/mkt /usr/bin
+        
         remove_laptop_configuration
         enable_bidirectional_clipboard
         break
@@ -716,7 +719,11 @@ while true; do
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
         cp 99-usb-sound.rules /etc/udev/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
-
+        apt install xinput
+        sed -i "s/user_replace/$input_username/g" bin/*
+        chmod +x bin/*
+        cp -r bin /usr
+        
         warning
         laptop_and_desktop_configuration
         nvidia_drivers_installation
