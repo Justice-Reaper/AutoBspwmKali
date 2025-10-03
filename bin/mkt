@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -n "$1" ]; then
+    mkdir -p "$1"/{nmap,content,exploits,scripts}
+else
+    echo "mkt [FOLDER]"
+fi
