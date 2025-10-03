@@ -124,7 +124,7 @@ echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
 latest_version=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip -O Hack.zip 
 unzip -o Hack.zip
-mv -f *.ttf fonts/
+cp -f *.ttf fonts/
 cp -r fonts /usr/local/share 
 
 # CONFIGURING WALLPAPERS
@@ -384,7 +384,7 @@ nvim_installation(){
     wget $latest_version -O nvim-linux-x86_64.tar.gz 
     tar -xf nvim-linux-x86_64.tar.gz
     mv nvim-linux-x86_64 nvim
-    mv -f nvim /opt  
+    cp -f nvim /opt  
     chown -R root:root /opt/nvim
 
     echo -e "\e[32m[*]\e[0m Installing nvchad ..."
@@ -479,31 +479,30 @@ burpsuite_professional_installation(){
 
 rpcenum_installation(){
     echo -e "\e[32m[*]\e[0m Installing rpcEnum ...\n"
-    wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh
-    chmod +x rpcEnum.sh
-    mv rpcEnum.sh rpcEnum
-    mv -f rpcEnum /usr/bin
+    wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh -O rpcEnum
+    chmod +x rpcEnum
+    cp -f rpcEnum /usr/bin
 }
 
 graphql_converter_installation(){
     echo -e "\e[32m[*]\e[0m Installing graphQLConverter ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/graphQLConverter/refs/heads/main/graphQLConverter.py -O graphQLConverter
     chmod +x graphQLConverter
-    mv -f graphQLConverter /usr/bin
+    cp -f graphQLConverter /usr/bin
 }
 
 payloadSplitter_installation(){
     echo -e "\e[32m[*]\e[0m Installing payloadSplitter ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/payloadSplitter/refs/heads/main/payloadSplitter.sh -O payloadSplitter
-    chmod +x payloadSplitter.sh
-    mv -f payloadSplitter /usr/bin
+    chmod +x payloadSplitter
+    cp -f payloadSplitter /usr/bin
 }
 
 getTopPorts_installation(){
     echo -e "\e[32m[*]\e[0m Installing getTopPorts ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/getTopPorts/refs/heads/main/getTopPorts.sh -O getTopPorts
-    chmod +x getTopPorts.sh
-    mv -f getTopPorts /usr/bin
+    chmod +x getTopPorts
+    cp -f getTopPorts /usr/bin
 }
 
 pycharm_community_installation(){
@@ -528,19 +527,17 @@ postman_installation(){
 kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
     latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
-    wget $latest_version -O kerbrute_linux_amd64
-    chmod +x kerbrute_linux_amd64
-    mv kerbrute_linux_amd64 kerbrute
-    mv -f kerbrute /usr/bin
+    wget $latest_version -O kerbrute
+    chmod +x kerbrute
+    cp -f kerbrute /usr/bin
 }
 
 windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
     latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
-    wget $latest_version -O windapsearch_linux_amd64
-    chmod +x windapsearch_linux_amd64
-    mv windapsearch_linux_amd64 windapsearch
-    mv -f windapsearch /usr/bin
+    wget $latest_version -O windapsearch
+    chmod +x windapsearch
+    cp -f windapsearch /usr/bin
     echo -e "\e[32m[*]\e[0m Windapsearch installed successfully."
 }
 
@@ -695,14 +692,11 @@ while true; do
         sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
         sed -i "s/user_replace/$input_username/g" bin/*
-        cp bin/clearTarget /usr/bin
-        cp bin/setTarget /usr/bin
-        cp bin/extractPorts /usr/bin
-        cp bin/mkt /usr/bin
-        chmod +x /usr/bin/clearTarget
-        chmod +x /usr/bin/setTarget
-        chmod +x /usr/bin/extractPorts
-        chmod +x /usr/bin/mkt
+        chmod +x bin/*
+        cp -f bin/clearTarget /usr/bin
+        cp -f bin/setTarget /usr/bin
+        cp -f bin/extractPorts /usr/bin
+        cp -f bin/mkt /usr/bin
         
         remove_laptop_configuration
         enable_bidirectional_clipboard
@@ -717,13 +711,8 @@ while true; do
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput
         sed -i "s/user_replace/$input_username/g" bin/*
-        cp -r bin /usr
-        chmod +x /usr/bin/clearTarget
-        chmod +x /usr/bin/disableTouchpad
-        chmod +x /usr/bin/enableTouchpad
-        chmod +x /usr/bin/extractPorts
-        chmod +x /usr/bin/mkt
-        chmod +x /usr/bin/setTarget
+        chmod +x  bin/*
+        cp -rf bin /usr
         
         warning
         laptop_and_desktop_configuration
