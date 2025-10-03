@@ -674,10 +674,6 @@ remove_laptop_configuration(){
     rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
     rm /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
 
-    echo -e "\e[32m[*]\e[0m Configuring zsh ...\n"
-    sed -i '/function enableTouchpad()/ {x;d}; x' /home/$input_username/.zshrc
-    sed -i '/function enableTouchpad(){/,+12d' /home/$input_username/.zshrc 
-
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
     sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
