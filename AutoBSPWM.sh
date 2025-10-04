@@ -121,7 +121,7 @@ mkdir /home/$input_username/.config
 
 # CONFIGURING FONTS
 echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
-latest_version=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+latest_version=$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | grep "tag_name" | cut -d '"' -f 4)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip -O Hack.zip 
 unzip -o Hack.zip
 cp -f *.ttf fonts/
@@ -399,7 +399,7 @@ nvim_installation(){
 
 vscode_installation(){
     echo -e "\e[32m[*]\e[0m Installing vscode ...\n"
-    latest_version=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+    latest_version=$(curl -s "https://api.github.com/repos/microsoft/vscode/releases/latest" | grep "tag_name" | cut -d '"' -f 4)
     wget "https://update.code.visualstudio.com/$latest_version/linux-deb-x64/stable" -O vscode-latest-version.deb
     apt install ./vscode-latest-version.deb  
 }
@@ -425,13 +425,21 @@ caido_installation(){
     done
 }
 
+jython_installation(){
+    echo -e "\e[32m[*]\e[0m Installing jython..."
+    mkdir /opt/jython
+    latest_version=$(curl -s "https://repo1.maven.org/maven2/org/python/jython-standalone/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+(\.[0-9]+)?(?=/")' | sort -V | tail -n 1)
+    wget https://repo1.maven.org/maven2/org/python/jython-standalone/${latest_version}/jython-standalone-${latest_version}.jar -O jython-standalone-${latest_version}.jar
+    cp -f jython-standalone-${latest_version}.jar /opt/jython
+}
+
 burpsuite_professional_installation(){
-    echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario root..."
+    echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario root ..."
     apt install openjdk-21-jre -y
     rm -rf /opt/Burpsuite-Professional
     mv Burpsuite-Professional /opt
     cd /opt/Burpsuite-Professional
-    latest_version=$(curl -s https://portswigger.net/burp/releases/community/latest -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+    latest_version=$(curl -s "https://portswigger.net/burp/releases/community/latest" -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
     wget "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -O "burpsuite_pro_v$latest_version.jar"
     (java -jar loader.jar) &
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
@@ -454,7 +462,7 @@ burpsuite_professional_installation(){
         fi
     done
 
-    echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username..."
+    echo -e "\e[32m[*]\e[0m Installing burpsuite professional para el usuario $input_username ..."
     (java -jar loader.jar) &
     su $input_username -c "bash /usr/bin/burpsuitepro"
     cd "$installation_folder"    
@@ -526,7 +534,7 @@ postman_installation(){
 
 kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
-    latest_version=$(curl -s https://api.github.com/repos/ropnop/kerbrute/releases/latest | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
+    latest_version=$(curl -s "https://api.github.com/repos/ropnop/kerbrute/releases/latest" | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
     wget $latest_version -O kerbrute
     cp -f kerbrute /usr/bin
     chmod +x /usr/bin/kerbrute
@@ -534,7 +542,7 @@ kerbrute_installation(){
 
 windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
-    latest_version=$(curl -s https://api.github.com/repos/ropnop/go-windapsearch/releases/latest | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
+    latest_version=$(curl -s "https://api.github.com/repos/ropnop/go-windapsearch/releases/latest" | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
     wget $latest_version -O windapsearch
     cp -f windapsearch /usr/bin
     chmod +x /usr/bin/windapsearch
@@ -543,7 +551,7 @@ windapsearch_installation(){
 tor_installation(){
     echo -e "\e[32m[*]\e[0m Installing tor ..."
     rm -rf /home/$input_username/Browser
-    latest_version=$(curl -s 'https://dist.torproject.org/torbrowser/' | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
+    latest_version=$(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
     wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
     tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
     rm /home/$input_username/start-tor-browser.desktop
@@ -962,6 +970,7 @@ while true; do
 
     if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
         burpsuite_professional_installation
+        jython_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Burpsuite professional hasn't been installed.\n"
