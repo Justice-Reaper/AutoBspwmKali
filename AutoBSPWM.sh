@@ -206,8 +206,7 @@ nvidia_drivers_installation(){
       
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Installing the NVIDIA proprietary drivers ...\n"
-            apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit -y
-            apt install $(apt-cache pkgnames | grep -E '^linux-headers-[0-9]+\.[0-9]+\.[0-9]+-amd64$' | sort -V | tail -n 1) -y
+            apt install nvidia-detect nvidia-smi nvidia-driver nvidia-cuda-toolkit linux-headers-amd64 -y
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m The NVIDIA proprietary drivers haven't been installed.\n"
