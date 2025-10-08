@@ -302,11 +302,6 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
 
-# enable zsh-autocomplete plugin
-if [ -f /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]; then
-    . /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-fi
-
 # enable sudo plugin
 if [ -f /usr/share/zsh-sudo/sudo.plugin.zsh ]; then
     . /usr/share/zsh-sudo/sudo.plugin.zsh
