@@ -304,7 +304,7 @@ fi
 
 # enable zsh-autocomplete plugin
 if [ -f /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]; then
-  . /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+    . /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
 
 # enable sudo plugin
@@ -316,6 +316,7 @@ fi
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
+
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
