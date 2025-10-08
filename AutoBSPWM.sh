@@ -150,6 +150,8 @@ cp -r picom /home/$input_username/.config
 
 # CONFIGURING PLUGIN SUDO ZSH
 echo -e "\e[32m[*]\e[0m configuring zsh-sudo plugin ...\n"
+mkdir zsh-sudo
+wget -P zsh-sudo https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh
 cp -r zsh-sudo /usr/share
 
 # CONFIGURING BSPWM
