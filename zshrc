@@ -295,11 +295,16 @@ alias burpsuitepro='burpsuitepro 1>/dev/null'
 source /usr/share/doc/fzf/examples/completion.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
-# enable auto-suggestions based on the history
+# enable zsh-auto-suggestions plugin
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
+fi
+
+# enable zsh-autocomplete plugin
+if [ -f /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]; then
+  . /usr/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 fi
 
 # enable sudo plugin
