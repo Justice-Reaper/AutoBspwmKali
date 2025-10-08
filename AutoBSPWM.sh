@@ -152,13 +152,13 @@ cp -r picom /home/$input_username/.config
 echo -e "\e[32m[*]\e[0m configuring zsh-sudo plugin ...\n"
 mkdir zsh-sudo
 wget -P zsh-sudo https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh
-cp -r zsh-sudo /usr/share
+cp -rf zsh-sudo /usr/share
 
 # CONFIGURING ZSH AUTOCOMPLETE PLUGIN
 echo -e "\e[32m[*]\e[0m configuring zsh-sudo plugin ...\n"
 mkdir zsh-autocomplete
 wget -P zsh-autocomplete https://raw.githubusercontent.com/marlonrichert/zsh-autocomplete/refs/heads/main/zsh-autocomplete.plugin.zsh
-cp -r zsh-autocomplete /usr/share
+cp -rf zsh-autocomplete /usr/share
 
 # CONFIGURING BSPWM
 echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
