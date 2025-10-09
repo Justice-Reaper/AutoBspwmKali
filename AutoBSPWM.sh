@@ -154,6 +154,14 @@ mkdir zsh-sudo
 wget -P zsh-sudo https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh
 cp -rf zsh-sudo /usr/share
 
+# CONFIGURING PLUGIN ZSH COMPLETIONS
+echo -e "\e[32m[*]\e[0m configuring zsh-completions plugin ...\n"
+git clone https://github.com/zsh-users/zsh-completions.git
+rm zsh-completions/LICENSE 
+rm zsh-completions/*.org 
+rm zsh-completions/*.md 
+cp -r zsh-completions /usr/share
+
 # CONFIGURING BSPWM
 echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
 cp -r bspwm /home/$input_username/.config
@@ -182,25 +190,27 @@ mkdir /home/$input_username/.config/bin
 touch /home/$input_username/.config/bin/target  
 cd "$installation_folder"
 
-# CONFIGURING POWERLEVEL10K
-echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
-rm -rf /home/$input_username/powerlevel10k  
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k  
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>/home/$input_username/.zshrc  
-mv zshrc .zshrc  
-mv p10k.zsh .p10k.zsh  
-cp .p10k.zsh /home/$input_username
-cp .zshrc /home/$input_username
-
-# CONFIGURING POWERLEVEL10K FOR ROOT
-echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
-rm -rf /root/powerlevel10k  
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
-sh -c "echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> /root/.zshrc"  
-cp .p10k.zsh /root 
-cp .zshrc /root
-
 # INSTALLATION AND CONFIGURATION FUNCTIONS
+starship_installation(){
+    echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
+}
+
+powerlevel10k_installation(){
+    echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
+    mv powerlevel10k_zshrc .zshrc  
+    mv p10k.zsh .p10k.zsh  
+    rm -rf /home/$input_username/powerlevel10k  
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
+    cp .p10k.zsh /home/$input_username
+    cp .zshrc /home/$input_username
+
+    echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
+    rm -rf /root/powerlevel10k  
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
+    cp .p10k.zsh /root 
+    cp .zshrc /root
+}
+
 nvidia_drivers_installation(){
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install the NVIDIA proprietary drivers? (YES/NO): ")" response
@@ -686,6 +696,22 @@ remove_laptop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
     sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
+
+# POWERLEVEL10K OR STARSHIP
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install powerlevel10k or starship? (POWERLEVEL10K/STARSHIP): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+   if [ "$response" = "powerlevel10k" ]; then
+        powerlevel10_installation
+        break
+   elif [ "$response" = "starship" ]; then
+        starship_installation
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'POWERLEVEL10K' or 'STARSHIP'.\n"
+    fi
+done
 
 # VIRTUAL MACHINE OR BARE METAL CHOICE
 while true; do
