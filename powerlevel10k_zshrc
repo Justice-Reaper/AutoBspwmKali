@@ -45,6 +45,8 @@ bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
 
 # modern completion system
+fpath=(/usr/share/zsh-completions/src $fpath)
+
 autoload -Uz compinit
 compinit
 
