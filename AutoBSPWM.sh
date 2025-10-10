@@ -389,7 +389,7 @@ nvim_installation(){
     wget $latest_version -O nvim-linux-x86_64.tar.gz 
     tar -xf nvim-linux-x86_64.tar.gz
     mv nvim-linux-x86_64 nvim
-    cp -f nvim /opt  
+    cp -rf nvim /opt  
     chown -R root:root /opt/nvim
 
     echo -e "\e[32m[*]\e[0m Installing nvchad ..."
