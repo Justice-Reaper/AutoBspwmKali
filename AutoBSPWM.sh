@@ -1035,6 +1035,7 @@ ln -s -f /home/$input_username/.p10k.zsh /root/.p10k.zsh
 # ASSIGN THE CORRECT OWNER TO THE FILES
 echo -e "\e[32m[*]\e[0m Assigning the correct owner to the configuration files ...\n"
 chown -R $input_username:$input_username /home/$input_username
+chown root:root /usr/local/share/zsh/site-functions/_bspc
 
 # REMOVE UNNECESSARY PACKAGES
 echo -e "\e[32m[*]\e[0m Removing unnecessary apt packages ...\n"
