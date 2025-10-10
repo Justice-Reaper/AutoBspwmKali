@@ -19,8 +19,8 @@ if [ -n "$ip_address_ethernet" ]; then
 fi
 
 if [ -z "$ip_address_ethernet" ] && [ -z "$ip_address_wifi" ]; then
-    ip_address="%{F#DEE1E6}Disconnected"
+    ip_address="Disconnected"
     icon="%{F#70A5EB}󱘖"
 fi
 
-echo "$icon $ip_address"
+echo "$icon %{F#DEE1E6}$ip_address"
