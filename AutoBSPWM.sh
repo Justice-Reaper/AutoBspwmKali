@@ -127,6 +127,21 @@ unzip -o Hack.zip
 cp -f *.ttf fonts/
 cp -r fonts /usr/local/share 
 
+# CONFIGURING POWERLEVEL10K
+echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
+mv powerlevel10k_zshrc .zshrc  
+mv p10k.zsh .p10k.zsh  
+rm -rf /home/$input_username/powerlevel10k  
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
+cp .p10k.zsh /home/$input_username
+cp .zshrc /home/$input_username
+
+echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
+rm -rf /root/powerlevel10k  
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
+cp .p10k.zsh /root 
+cp .zshrc /root
+
 # CONFIGURING WALLPAPERS
 echo -e "\e[32m[*]\e[0m Configuring wallpapers ...\n"
 cp -r Wallpapers /home/$input_username
@@ -189,27 +204,6 @@ chmod +x *
 mkdir /home/$input_username/.config/bin  
 touch /home/$input_username/.config/bin/target  
 cd "$installation_folder"
-
-# INSTALLATION AND CONFIGURATION FUNCTIONS
-starship_installation(){
-    echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
-}
-
-powerlevel10k_installation(){
-    echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
-    mv powerlevel10k_zshrc .zshrc  
-    mv p10k.zsh .p10k.zsh  
-    rm -rf /home/$input_username/powerlevel10k  
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
-    cp .p10k.zsh /home/$input_username
-    cp .zshrc /home/$input_username
-
-    echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
-    rm -rf /root/powerlevel10k  
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
-    cp .p10k.zsh /root 
-    cp .zshrc /root
-}
 
 nvidia_drivers_installation(){
     while true; do
@@ -696,22 +690,6 @@ remove_laptop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
     sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
-
-# POWERLEVEL10K OR STARSHIP
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install powerlevel10k or starship? (POWERLEVEL10K/STARSHIP): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-   if [ "$response" = "powerlevel10k" ]; then
-        powerlevel10_installation
-        break
-   elif [ "$response" = "starship" ]; then
-        starship_installation
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'POWERLEVEL10K' or 'STARSHIP'.\n"
-    fi
-done
 
 # VIRTUAL MACHINE OR BARE METAL CHOICE
 while true; do
