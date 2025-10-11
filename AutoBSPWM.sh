@@ -343,16 +343,16 @@ touchpad_configuration() {
     done
 }
 
-laptop_and_desktop_configuration(){
+computer_type(){
     while true; do
-        read -p "$(echo -e "\e[33m[*]\e[0m Are you using a desktop computer? (YES/NO): ")" response
+        read -p "$(echo -e "\e[33m[*]\e[0m Are you using a desktop computer or a laptop? (DESKTOP/LAPTOP): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        if [ "$response" = "desktop" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the system for a desktop ...\n"
-            remove_laptop_configuration
+            desktop_configuration
             break
-        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        elif [ "$response" = "laptop" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the system for a laptop ...\n"
             shortcuts_configuration
             touchpad_configuration
@@ -690,14 +690,31 @@ warning(){
     done
 }
 
-remove_laptop_configuration(){
+virtual_machine_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
-    sed -i '/\[module\/brightness\]/{x;d;};x' /home/$input_username/.config/polybar/config.ini 
-    sed -i '/\[module\/brightness\]/,$d' /home/$input_username/.config/polybar/config.ini 
-    sed -i 's/battery //' /home/$input_username/.config/polybar/config.ini 
-    sed -i 's/brightness //' /home/$input_username/.config/polybar/config.ini 
-    sed -i 's/battery_notification //' /home/$input_username/.config/polybar/config.ini 
-    sed -i 's/color_temperature //' /home/$input_username/.config/polybar/config.ini 
+    rm /home/$input_username/.config/polybar/laptop_config.ini
+    rm /home/$input_username/.config/polybar/desktop_config.ini
+    mv /home/$input_username/.config/polybar/virtual_machine_config.ini config.ini
+
+    rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
+    rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
+    rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
+    rm /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
+
+    echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
+    sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
+    sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+
+    echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
+    sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
+}
+
+desktop_configuration(){
+    echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
+    rm /home/$input_username/.config/polybar/laptop_config.ini
+    rm /home/$input_username/.config/polybar/virtual_machine_config.ini
+    mv /home/$input_username/.config/polybar/desktop_config.ini config.ini
+    
     rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
@@ -746,7 +763,7 @@ while true; do
         cp bin/extractPorts /usr/bin
         cp bin/mkt /usr/bin
         
-        remove_laptop_configuration
+        virtual_machine_configuration
         enable_bidirectional_clipboard
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
@@ -764,7 +781,7 @@ while true; do
         cp -r bin /usr
         
         warning
-        laptop_and_desktop_configuration
+        computer_type
         nvidia_drivers_installation
         break
     else
