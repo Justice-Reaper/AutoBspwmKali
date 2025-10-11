@@ -9,10 +9,24 @@ if [ $# -eq 1 ] && [[ "$1" == *.jpg ]] && [[ "$file_type" =~ ^image/ ]]; then
         ((count++))
     done
 
-    cp "$1" "$wallpapers_dir/wallpaper-$count.jpg"
-    feh --bg-fill "$wallpapers_dir/wallpaper-$count.jpg" &
-    echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
-    echo "✓ Wallpaper saved in $wallpapers_dir as wallpaper-$count.jpg"
+    image_exists=false
+    for image in "$wallpapers_dir"/wallpaper-*.jpg; do
+        if [ -f "$image" ] && cmp -s "$1" "$image"; then
+            image_exists=true
+            feh --bg-fill "$image" &
+            echo "$(basename "$image")" > /home/user_replace/.config/bin/wallpaper
+            break
+        fi
+    done
+
+    if [ "$image_exists" = false ]; then
+        new_wallpaper="wallpaper-$count.jpg"
+        cp "$1" "$wallpapers_dir/$new_wallpaper"
+        echo "✓ Image saved to $wallpapers_dir as wallpaper-$count.jpg"
+
+        feh --bg-fill "$wallpapers_dir/$new_wallpaper" &
+        echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
+    fi
 
 else
     echo "Error: You must provide a .jpg image"
