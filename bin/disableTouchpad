@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#touchpad=$(xinput list | grep -i touchpad)
+touchpad=$(xinput list | grep -i touchpad)
 touchpad_id=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
 echo 'Disabled' > /home/user_replace/.config/bin/touchpad
 xinput disable "$touchpad_id"
