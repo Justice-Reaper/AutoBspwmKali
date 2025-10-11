@@ -26,7 +26,8 @@ wmname LG3D &
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # wallpaper
-feh --bg-fill /home/user_replace/Wallpapers/wallpaper.jpg &
+wallpaper=$(cat /home/user_replace/.config/bin/wallpaper)
+feh --bg-fill /home/user_replace/Wallpapers/$wallpaper &
 
 # dunst
 dunst &
