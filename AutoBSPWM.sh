@@ -526,6 +526,8 @@ pycharm_community_installation(){
     wget $download_url -O pycharm-community.tar.gz
     mkdir /opt/Pycharm-Community
     tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
+    cp -f pycharm-community.desktop /home/$input_username/.local/share/applications
+    chmod 764 /home/$input_username/.local/share/applications/pycharm-community.desktop
 }
 
 postman_installation(){
@@ -534,7 +536,8 @@ postman_installation(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-    cp postman.desktop /usr/share/applications
+    cp -f postman.desktop /home/$input_username/.local/share/applications
+    chmod 764 /home/$input_username/.local/share/applications/postman.desktop
 }
 
 kerbrute_installation(){
@@ -562,7 +565,7 @@ tor_installation(){
     rm /home/$input_username/start-tor-browser.desktop
     rm /home/$input_username/Browser/start-tor-browser.desktop
     mkdir -p /home/$input_username/.local/share/applications
-    cp tor-browser.desktop /home/$input_username/.local/share/applications
+    cp -f tor-browser.desktop /home/$input_username/.local/share/applications
     chmod 700 /home/$input_username/.local/share/applications/tor-browser.desktop
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.local/share/applications/tor-browser.desktop
 
