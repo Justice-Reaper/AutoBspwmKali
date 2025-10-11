@@ -104,9 +104,7 @@ apt install papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd wmnam
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
 rm -f /home/$input_username/.zshrc 
-rm -f /home/$input_username/.p10k.zsh 
 rm -f /root/.zshrc 
-rm -f /root/.p10k.zsh 
 rm -rf /root/.config/kitty 
 rm -rf /home/$input_username/.config/kitty 
 rm -rf /home/$input_username/.config/polybar 
@@ -125,26 +123,11 @@ latest_version=$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/rele
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip -O Hack.zip 
 unzip -o Hack.zip
 cp -f *.ttf fonts/
-cp -r fonts /usr/local/share 
-
-# CONFIGURING POWERLEVEL10K
-echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
-mv powerlevel10k_zshrc .zshrc  
-mv p10k.zsh .p10k.zsh  
-rm -rf /home/$input_username/powerlevel10k  
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
-cp .p10k.zsh /home/$input_username
-cp .zshrc /home/$input_username
-
-echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
-rm -rf /root/powerlevel10k  
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
-cp .p10k.zsh /root 
-cp .zshrc /root
+cp -rf fonts /usr/local/share
 
 # CONFIGURING WALLPAPERS
 echo -e "\e[32m[*]\e[0m Configuring wallpapers ...\n"
-cp -r Wallpapers /home/$input_username
+cp -rf Wallpapers /home/$input_username
 
 # CONFIGURING BETTERLOCKSCREEN
 echo -e "\e[32m[*]\e[0m Configuring betterlockscreen ...\n"
@@ -152,16 +135,16 @@ su $input_username -c "betterlockscreen -u /home/$input_username/Wallpapers/wall
 
 # CONFIGURING SXHKD
 echo -e "\e[32m[*]\e[0m Configuring sxhkd ...\n"
-cp -r sxhkd /home/$input_username/.config
+cp -rf sxhkd /home/$input_username/.config
 
 # CONFIGURING KITTY
 echo -e "\e[32m[*]\e[0m Configuring kitty ...\n"
-cp -r kitty /home/$input_username/.config
-cp -r kitty /root/.config
+cp -rf kitty /home/$input_username/.config
+cp -rf kitty /root/.config
 
 # CONFIGURING PICOM
 echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
-cp -r picom /home/$input_username/.config
+cp -rf picom /home/$input_username/.config
 
 # CONFIGURING PLUGIN SUDO ZSH
 echo -e "\e[32m[*]\e[0m configuring zsh-sudo plugin ...\n"
@@ -175,11 +158,12 @@ git clone https://github.com/zsh-users/zsh-completions.git
 rm zsh-completions/LICENSE 
 rm zsh-completions/*.org 
 rm zsh-completions/*.md 
-cp -r zsh-completions /usr/share
+cp -rf zsh-completions /usr/share
+chmod root:root usr/local/share/zsh/site-functions/_bspc
 
 # CONFIGURING BSPWM
 echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
-cp -r bspwm /home/$input_username/.config
+cp -rf bspwm /home/$input_username/.config
 cd /home/$input_username/.config/bspwm 
 chmod +x bspwmrc  
 cd /home/$input_username/.config/bspwm/scripts 
@@ -188,7 +172,7 @@ cd "$installation_folder"
 
 # CONFIGURING ROFI
 echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
-cp -r rofi /home/$input_username/.config 
+cp -rf rofi /home/$input_username/.config 
 cd /home/$input_username/.config/rofi  
 cd launcher  
 chmod +x launcher.sh 
@@ -198,12 +182,43 @@ cd "$installation_folder"
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
-cp -r polybar /home/$input_username/.config
+cp -rf polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
 mkdir /home/$input_username/.config/bin  
 touch /home/$input_username/.config/bin/target  
 cd "$installation_folder"
+
+starship_installation(){
+    echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
+    rm -f /home/$input_username/.config/starship.toml
+    mv starship_zshrc .zshrc
+    cp -f .zshrc /home/$input_username
+    cp -f starship.toml /home/$input_username/.config
+    apt install --no-install-recommends starship -y
+
+    echo -e "\e[32m[*]\e[0m Configuring starship for user root ...\n"
+    rm -f /root/.config/starship.toml
+    cp -f .zshrc /root
+}
+
+powerlevel10k_installation(){
+    echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
+    rm -f /home/$input_username/.p10k.zsh 
+    mv powerlevel10k_zshrc .zshrc  
+    mv p10k.zsh .p10k.zsh  
+    rm -rf /home/$input_username/powerlevel10k  
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
+    cp -f .p10k.zsh /home/$input_username
+    cp -f .zshrc /home/$input_username
+
+    echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
+    rm -f /root/.p10k.zsh 
+    rm -rf /root/powerlevel10k  
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
+    cp -f .p10k.zsh /root 
+    cp -f .zshrc /root
+}
 
 nvidia_drivers_installation(){
     while true; do
@@ -371,7 +386,7 @@ dunst_installation(){
     touch /home/$input_username/.config/bin/battery_charging
     touch /home/$input_username/.config/bin/battery_warning
     touch /home/$input_username/.config/bin/target/battery_fully_charged  
-    cp -r dunst /home/$input_username/.config
+    cp -rf dunst /home/$input_username/.config
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/dunstrc
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
     cd /home/$input_username/.config/dunst/scripts 
@@ -406,7 +421,7 @@ vscode_installation(){
     echo -e "\e[32m[*]\e[0m Installing vscode ...\n"
     latest_version=$(curl -s "https://api.github.com/repos/microsoft/vscode/releases/latest" | grep "tag_name" | cut -d '"' -f 4)
     wget "https://update.code.visualstudio.com/$latest_version/linux-deb-x64/stable" -O vscode-latest-version.deb
-    apt install ./vscode-latest-version.deb  
+    apt install ./vscode-latest-version.deb -y
 }
 
 caido_installation(){
@@ -449,7 +464,7 @@ burpsuite_professional_installation(){
     (java -jar loader.jar) &
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
     chmod +x burpsuitepro
-    cp burpsuitepro /usr/bin/burpsuitepro
+    cp -f burpsuitepro /usr/bin/burpsuitepro
     rm burpsuitepro
     (/usr/bin/burpsuitepro)
 
@@ -471,7 +486,7 @@ burpsuite_professional_installation(){
     (java -jar loader.jar) &
     su $input_username -c "bash /usr/bin/burpsuitepro"
     cd "$installation_folder"    
-    cp burpsuite-professional.desktop /usr/share/applications
+    cp -f burpsuite-professional.desktop /usr/share/applications
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
@@ -592,7 +607,7 @@ tor_installation(){
 chrome_installation(){
     echo -e "\e[32m[*]\e[0m Installing google chrome ..."
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O google-chrome-stable_current_amd64.deb 
-    apt install ./google-chrome-stable_current_amd64.deb
+    apt install ./google-chrome-stable_current_amd64.deb -y
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default browser? (YES/NO): ")" response
@@ -694,6 +709,22 @@ remove_laptop_configuration(){
     sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
+# POWERLEVEL10K OR STARSHIP
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install POWERLEVEL10K or STARSHIP? (POWERLEVEL10K/STARSHIP): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+   if [ "$response" = "powerlevel10k" ]; then
+        powerlevel10k_installation
+        break
+   elif [ "$response" = "starship" ]; then
+        starship_installation
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'POWERLEVEL10K' or 'STARSHIP'.\n"
+    fi
+done
+
 # VIRTUAL MACHINE OR BARE METAL CHOICE
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Are you using a virtual machine? (YES/NO): ")" response
@@ -720,11 +751,11 @@ while true; do
         echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
         sed -i '/backend = "xrender"/d' /home/$input_username/.config/picom/picom.conf
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
-        cp -r sound /home/$input_username/.config
+        cp -rf sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
-        cp 99-usb-sound.rules /etc/udev/rules.d
+        cp -f 99-usb-sound.rules /etc/udev/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
-        apt install xinput
+        apt install xinput -y
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x  bin/*
         cp -rf bin /usr
