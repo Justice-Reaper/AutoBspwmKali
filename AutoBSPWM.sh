@@ -122,12 +122,12 @@ echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
 latest_version=$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | grep "tag_name" | cut -d '"' -f 4)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip -O Hack.zip 
 unzip -o Hack.zip
-cp -f *.ttf fonts/
-cp -rf fonts /usr/local/share
+cp *.ttf fonts/
+cp -r fonts /usr/local/share
 
 # CONFIGURING WALLPAPERS
 echo -e "\e[32m[*]\e[0m Configuring wallpapers ...\n"
-cp -rf Wallpapers /home/$input_username
+cp -r Wallpapers /home/$input_username
 
 # CONFIGURING BETTERLOCKSCREEN
 echo -e "\e[32m[*]\e[0m Configuring betterlockscreen ...\n"
@@ -135,22 +135,22 @@ su $input_username -c "betterlockscreen -u /home/$input_username/Wallpapers/wall
 
 # CONFIGURING SXHKD
 echo -e "\e[32m[*]\e[0m Configuring sxhkd ...\n"
-cp -rf sxhkd /home/$input_username/.config
+cp -r sxhkd /home/$input_username/.config
 
 # CONFIGURING KITTY
 echo -e "\e[32m[*]\e[0m Configuring kitty ...\n"
-cp -rf kitty /home/$input_username/.config
-cp -rf kitty /root/.config
+cp -r kitty /home/$input_username/.config
+cp -r kitty /root/.config
 
 # CONFIGURING PICOM
 echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
-cp -rf picom /home/$input_username/.config
+cp -r picom /home/$input_username/.config
 
 # CONFIGURING PLUGIN SUDO ZSH
 echo -e "\e[32m[*]\e[0m configuring zsh-sudo plugin ...\n"
 mkdir zsh-sudo
 wget -P zsh-sudo https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/plugins/sudo/sudo.plugin.zsh
-cp -rf zsh-sudo /usr/share
+cp -r zsh-sudo /usr/share
 
 # CONFIGURING PLUGIN ZSH COMPLETIONS
 echo -e "\e[32m[*]\e[0m configuring zsh-completions plugin ...\n"
@@ -158,12 +158,12 @@ git clone https://github.com/zsh-users/zsh-completions.git
 rm zsh-completions/LICENSE 
 rm zsh-completions/*.org 
 rm zsh-completions/*.md 
-cp -rf zsh-completions /usr/share
+cp -r zsh-completions /usr/share
 chmod root:root usr/local/share/zsh/site-functions/_bspc
 
 # CONFIGURING BSPWM
 echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
-cp -rf bspwm /home/$input_username/.config
+cp -r bspwm /home/$input_username/.config
 cd /home/$input_username/.config/bspwm 
 chmod +x bspwmrc  
 cd /home/$input_username/.config/bspwm/scripts 
@@ -172,7 +172,7 @@ cd "$installation_folder"
 
 # CONFIGURING ROFI
 echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
-cp -rf rofi /home/$input_username/.config 
+cp -r rofi /home/$input_username/.config 
 cd /home/$input_username/.config/rofi  
 cd launcher  
 chmod +x launcher.sh 
@@ -182,7 +182,7 @@ cd "$installation_folder"
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
-cp -rf polybar /home/$input_username/.config
+cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
 mkdir /home/$input_username/.config/bin  
@@ -193,13 +193,13 @@ starship_installation(){
     echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
     rm -f /home/$input_username/.config/starship.toml
     mv starship_zshrc .zshrc
-    cp -f .zshrc /home/$input_username
-    cp -f starship.toml /home/$input_username/.config
+    cp .zshrc /home/$input_username
+    cp starship.toml /home/$input_username/.config
     apt install --no-install-recommends starship -y
 
     echo -e "\e[32m[*]\e[0m Configuring starship for user root ...\n"
     rm -f /root/.config/starship.toml
-    cp -f .zshrc /root
+    cp .zshrc /root
 }
 
 powerlevel10k_installation(){
@@ -209,15 +209,15 @@ powerlevel10k_installation(){
     mv p10k.zsh .p10k.zsh  
     rm -rf /home/$input_username/powerlevel10k  
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
-    cp -f .p10k.zsh /home/$input_username
-    cp -f .zshrc /home/$input_username
+    cp .p10k.zsh /home/$input_username
+    cp .zshrc /home/$input_username
 
     echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
     rm -f /root/.p10k.zsh 
     rm -rf /root/powerlevel10k  
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
-    cp -f .p10k.zsh /root 
-    cp -f .zshrc /root
+    cp .p10k.zsh /root 
+    cp .zshrc /root
 }
 
 nvidia_drivers_installation(){
@@ -386,7 +386,7 @@ dunst_installation(){
     touch /home/$input_username/.config/bin/battery_charging
     touch /home/$input_username/.config/bin/battery_warning
     touch /home/$input_username/.config/bin/target/battery_fully_charged  
-    cp -rf dunst /home/$input_username/.config
+    cp -r dunst /home/$input_username/.config
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/dunstrc
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
     cd /home/$input_username/.config/dunst/scripts 
@@ -404,7 +404,7 @@ nvim_installation(){
     wget $latest_version -O nvim-linux-x86_64.tar.gz 
     tar -xf nvim-linux-x86_64.tar.gz
     mv nvim-linux-x86_64 nvim
-    cp -rf nvim /opt  
+    cp -r nvim /opt  
     chown -R root:root /opt/nvim
 
     echo -e "\e[32m[*]\e[0m Installing nvchad ..."
@@ -450,7 +450,7 @@ jython_installation(){
     mkdir /opt/jython
     latest_version=$(curl -s "https://repo1.maven.org/maven2/org/python/jython-standalone/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+(\.[0-9]+)?(?=/")' | sort -V | tail -n 1)
     wget https://repo1.maven.org/maven2/org/python/jython-standalone/${latest_version}/jython-standalone-${latest_version}.jar -O jython-standalone-${latest_version}.jar
-    cp -f jython-standalone-${latest_version}.jar /opt/jython
+    cp jython-standalone-${latest_version}.jar /opt/jython
 }
 
 burpsuite_professional_installation(){
@@ -464,7 +464,7 @@ burpsuite_professional_installation(){
     (java -jar loader.jar) &
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
     chmod +x burpsuitepro
-    cp -f burpsuitepro /usr/bin/burpsuitepro
+    cp burpsuitepro /usr/bin/burpsuitepro
     rm burpsuitepro
     (/usr/bin/burpsuitepro)
 
@@ -486,7 +486,7 @@ burpsuite_professional_installation(){
     (java -jar loader.jar) &
     su $input_username -c "bash /usr/bin/burpsuitepro"
     cd "$installation_folder"    
-    cp -f burpsuite-professional.desktop /usr/share/applications
+    cp burpsuite-professional.desktop /usr/share/applications
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
@@ -508,28 +508,28 @@ burpsuite_professional_installation(){
 rpcenum_installation(){
     echo -e "\e[32m[*]\e[0m Installing rpcEnum ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/rpcEnum/refs/heads/main/rpcEnum.sh -O rpcEnum
-    cp -f rpcEnum /usr/bin
+    cp rpcEnum /usr/bin
     chmod +x /usr/bin/rpcEnum
 }
 
 graphql_converter_installation(){
     echo -e "\e[32m[*]\e[0m Installing graphQLConverter ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/graphQLConverter/refs/heads/main/graphQLConverter.py -O graphQLConverter
-    cp -f graphQLConverter /usr/bin
+    cp graphQLConverter /usr/bin
     chmod +x /usr/bin/graphQLConverter
 }
 
 payloadSplitter_installation(){
     echo -e "\e[32m[*]\e[0m Installing payloadSplitter ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/payloadSplitter/refs/heads/main/payloadSplitter.sh -O payloadSplitter
-    cp -f payloadSplitter /usr/bin
+    cp payloadSplitter /usr/bin
     chmod +x /usr/bin/payloadSplitter
 }
 
 getTopPorts_installation(){
     echo -e "\e[32m[*]\e[0m Installing getTopPorts ...\n"
     wget https://raw.githubusercontent.com/Justice-Reaper/getTopPorts/refs/heads/main/getTopPorts.sh -O getTopPorts
-    cp -f getTopPorts /usr/bin
+    cp getTopPorts /usr/bin
     chmod +x /usr/bin/getTopPorts
 }
 
@@ -542,7 +542,7 @@ pycharm_community_installation(){
     wget $download_url -O pycharm-community.tar.gz
     mkdir /opt/Pycharm-Community
     tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
-    cp -f pycharm-community.desktop /home/$input_username/.local/share/applications
+    cp pycharm-community.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/pycharm-community.desktop
 }
 
@@ -553,7 +553,7 @@ postman_installation(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-    cp -f postman.desktop /home/$input_username/.local/share/applications
+    cp postman.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/postman.desktop
 }
 
@@ -561,7 +561,7 @@ kerbrute_installation(){
     echo -e "\e[32m[*]\e[0m Installing kerbrute ..."
     latest_version=$(curl -s "https://api.github.com/repos/ropnop/kerbrute/releases/latest" | jq -r '.assets[] | select(.name | contains("linux_amd64")) | .browser_download_url')
     wget $latest_version -O kerbrute
-    cp -f kerbrute /usr/bin
+    cp kerbrute /usr/bin
     chmod +x /usr/bin/kerbrute
 }
 
@@ -569,7 +569,7 @@ windapsearch_installation(){
     echo -e "\e[32m[*]\e[0m Installing windapsearch ..."
     latest_version=$(curl -s "https://api.github.com/repos/ropnop/go-windapsearch/releases/latest" | jq -r '.assets[] | select(.name == "windapsearch-linux-amd64") | .browser_download_url')
     wget $latest_version -O windapsearch
-    cp -f windapsearch /usr/bin
+    cp windapsearch /usr/bin
     chmod +x /usr/bin/windapsearch
 }
 
@@ -582,7 +582,7 @@ tor_installation(){
     tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
     rm /home/$input_username/start-tor-browser.desktop
     rm /home/$input_username/Browser/start-tor-browser.desktop
-    cp -f tor-browser.desktop /home/$input_username/.local/share/applications
+    cp tor-browser.desktop /home/$input_username/.local/share/applications
     chmod 700 /home/$input_username/.local/share/applications/tor-browser.desktop
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.local/share/applications/tor-browser.desktop
 
@@ -741,10 +741,10 @@ while true; do
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
-        cp -f bin/clearTarget /usr/bin
-        cp -f bin/setTarget /usr/bin
-        cp -f bin/extractPorts /usr/bin
-        cp -f bin/mkt /usr/bin
+        cp bin/clearTarget /usr/bin
+        cp bin/setTarget /usr/bin
+        cp bin/extractPorts /usr/bin
+        cp bin/mkt /usr/bin
         
         remove_laptop_configuration
         enable_bidirectional_clipboard
@@ -753,14 +753,15 @@ while true; do
         echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
         sed -i '/backend = "xrender"/d' /home/$input_username/.config/picom/picom.conf
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
-        cp -rf sound /home/$input_username/.config
+        cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
-        cp -f 99-usb-sound.rules /etc/udev/rules.d
+        cp 99-usb-sound.rules /etc/udev/rules.d
+        cp 99-suspend.rules /etc/polkit-1/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x  bin/*
-        cp -rf bin /usr
+        cp -r bin /usr
         
         warning
         laptop_and_desktop_configuration
