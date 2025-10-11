@@ -1,0 +1,21 @@
+#!/bin/bash
+
+wallpapers_dir="/home/user_replace/Wallpapers"
+file_type=$(file -b --mime-type "$1" 2>/dev/null)
+
+if [ $# -eq 1 ] && [[ "$1" == *.jpg ]] && [[ "$file_type" =~ ^image/ ]]; then
+    count=1
+    while [ -f "$wallpapers_dir/wallpaper-$count.jpg" ]; do
+        ((count++))
+    done
+
+    cp "$1" "$wallpapers_dir/wallpaper-$count.jpg"
+    feh --bg-fill "$wallpapers_dir/wallpaper-$count.jpg" &
+    echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
+    echo "✓ Wallpaper saved in $wallpapers_dir as wallpaper-$count.jpg"
+
+else
+    echo "Error: You must provide a .jpg image"
+    echo "Usage: $0 image.jpg"
+    exit 1
+fi
