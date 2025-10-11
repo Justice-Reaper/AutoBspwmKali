@@ -65,6 +65,13 @@ sudo ./AutoBSPWM.sh
 - **nvim**: Extremely configurable and powerful text editor, an enhanced version of classic Vim  
 - **npm**: Package manager that simplifies managing dependencies and modules in projects  
 - **nvchad**: A set of pre-configured settings and plugins for Neovim to enhance the user experience
+- **clearTarget**: Clears the target in the polybar
+- **disableTouchpad**: Disables the touchpad  
+- **enableTouchpad**: Enables the touchpad
+- **extractPorts**: Extracts ports obtained through nmap and copies them to the clipboard
+- **mkt**: Creates the necessary working directories for performing a pentest
+- **setTarget**: Sets the target in the polybar
+- **setWallpaper**: Configures the desktop wallpaper
 
 ## Shortcuts IP's
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F1</kbd> : Copy local machine IP address  
