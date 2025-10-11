@@ -756,7 +756,7 @@ while true; do
         cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
         cp 99-usb-sound.rules /etc/udev/rules.d
-        cp 99-suspend.rules /etc/polkit-1/rules.d
+        cp 99-power-actions.rules /etc/polkit-1/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
         sed -i "s/user_replace/$input_username/g" bin/*
