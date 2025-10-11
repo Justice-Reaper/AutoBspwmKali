@@ -187,6 +187,7 @@ cd /home/$input_username/.config/polybar/scripts
 chmod +x *
 mkdir /home/$input_username/.config/bin  
 touch /home/$input_username/.config/bin/target  
+touch /home/$input_username/.config/bin/wallpaper
 cd "$installation_folder"
 
 starship_installation(){
@@ -768,12 +769,16 @@ while true; do
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
+        
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
         cp bin/clearTarget /usr/bin
         cp bin/setTarget /usr/bin
         cp bin/extractPorts /usr/bin
         cp bin/mkt /usr/bin
+        cp bin/setWallpaper /usr/bin
+
+        cp 99-power-actions.rules /etc/polkit-1/rules.d
         
         virtual_machine_configuration
         enable_bidirectional_clipboard
@@ -781,16 +786,19 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
         sed -i '/backend = "xrender"/d' /home/$input_username/.config/picom/picom.conf
+        
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
         cp 99-usb-sound.rules /etc/udev/rules.d
-        cp 99-power-actions.rules /etc/polkit-1/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
+        
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x  bin/*
         cp -r bin /usr
+
+        cp 99-power-actions.rules /etc/polkit-1/rules.d
         
         warning
         laptop_or_desktop
