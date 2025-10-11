@@ -707,7 +707,11 @@ virtual_machine_configuration(){
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
-    sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
+    sed -i '/# increase brightness/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc  
+    sed -i '/# decrease brightness/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc 
+    sed -i '/# color temperature on\/off/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+    sed -i '/# increase color temperature/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc 
+    sed -i '/# decrease color temperature/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
 desktop_configuration(){
@@ -719,14 +723,14 @@ desktop_configuration(){
     rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
-    rm /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
     sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
-    sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
+    sed -i '/# increase brightness/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc  
+    sed -i '/# decrease brightness/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
 laptop_configuration(){
