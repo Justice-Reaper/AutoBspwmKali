@@ -535,24 +535,24 @@ getTopPorts_installation(){
 
 pycharm_community_installation(){
     echo -e "\e[32m[*]\e[0m Installing pycharm community ..."
+    mkdir -p /home/$input_username/.local/share/applications
     rm -rf /opt/Pycharm-Community
     latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"version":"[^"]*"' | head -1 | cut -d'"' -f4)
     download_url=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"linux":{"link":"[^"]*"' | head -1 | cut -d'"' -f6)    
     wget $download_url -O pycharm-community.tar.gz
     mkdir /opt/Pycharm-Community
     tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
-    mkdir -p /home/$input_username/.local/share/applications
     cp -f pycharm-community.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/pycharm-community.desktop
 }
 
 postman_installation(){
     echo -e "\e[32m[*]\e[0m Installing postman ..."
+    mkdir -p /home/$input_username/.local/share/applications
     rm -rf /opt/*Postman*  
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-    mkdir -p /home/$input_username/.local/share/applications
     cp -f postman.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/postman.desktop
 }
@@ -576,12 +576,12 @@ windapsearch_installation(){
 tor_installation(){
     echo -e "\e[32m[*]\e[0m Installing tor ..."
     rm -rf /home/$input_username/Browser
+    mkdir -p /home/$input_username/.local/share/applications
     latest_version=$(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
     wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
     tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
     rm /home/$input_username/start-tor-browser.desktop
     rm /home/$input_username/Browser/start-tor-browser.desktop
-    mkdir -p /home/$input_username/.local/share/applications
     cp -f tor-browser.desktop /home/$input_username/.local/share/applications
     chmod 700 /home/$input_username/.local/share/applications/tor-browser.desktop
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.local/share/applications/tor-browser.desktop
