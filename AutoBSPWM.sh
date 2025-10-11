@@ -343,7 +343,7 @@ touchpad_configuration() {
     done
 }
 
-computer_type(){
+laptop_or_desktop(){
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Are you using a desktop computer or a laptop? (DESKTOP/LAPTOP): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
@@ -354,6 +354,7 @@ computer_type(){
             break
         elif [ "$response" = "laptop" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the system for a laptop ...\n"
+            laptop_configuration
             shortcuts_configuration
             touchpad_configuration
             dunst_installation
@@ -728,6 +729,13 @@ desktop_configuration(){
     sed -i '/# increase brightness/,+19d' /home/$input_username/.config/sxhkd/sxhkdrc 
 }
 
+laptop_configuration(){
+    echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
+    rm /home/$input_username/.config/polybar/desktop_config.ini
+    rm /home/$input_username/.config/polybar/virtual_machine_config.ini
+    mv /home/$input_username/.config/polybar/laptop_config.ini config.ini
+}
+
 # POWERLEVEL10K OR STARSHIP
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install POWERLEVEL10K or STARSHIP? (POWERLEVEL10K/STARSHIP): ")" response
@@ -781,7 +789,7 @@ while true; do
         cp -r bin /usr
         
         warning
-        computer_type
+        laptop_or_desktop
         nvidia_drivers_installation
         break
     else
