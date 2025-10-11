@@ -186,8 +186,9 @@ cp -r polybar /home/$input_username/.config
 cd /home/$input_username/.config/polybar/scripts 
 chmod +x *
 mkdir /home/$input_username/.config/bin  
-touch /home/$input_username/.config/bin/target  
 touch /home/$input_username/.config/bin/wallpaper
+touch /home/$input_username/.config/bin/target  
+echo 'wallpaper-1.jpg' > /home/$input_username/.config/bin/wallpaper
 cd "$installation_folder"
 
 starship_installation(){
