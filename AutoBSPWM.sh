@@ -696,7 +696,9 @@ virtual_machine_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
     rm /home/$input_username/.config/polybar/laptop_config.ini
     rm /home/$input_username/.config/polybar/desktop_config.ini
-    mv /home/$input_username/.config/polybar/virtual_machine_config.ini /home/$input_username/.config/polybar/config.ini
+    cd /home/$input_username/.config/polybar
+    mv virtual_machine_config.ini config.ini
+    cd "$installation_folder"
 
     rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
@@ -719,7 +721,9 @@ desktop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
     rm /home/$input_username/.config/polybar/laptop_config.ini
     rm /home/$input_username/.config/polybar/virtual_machine_config.ini
-    mv /home/$input_username/.config/polybar/desktop_config.ini /home/$input_username/.config/polybar/config.ini
+    cd /home/$input_username/.config/polybar
+    mv desktop_config.ini config.ini
+    cd "$installation_folder"
     
     rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
@@ -738,7 +742,9 @@ laptop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
     rm /home/$input_username/.config/polybar/desktop_config.ini
     rm /home/$input_username/.config/polybar/virtual_machine_config.ini
-    mv /home/$input_username/.config/polybar/laptop_config.ini /home/$input_username/.config/polybar/config.ini
+    cd /home/$input_username/.config/polybar
+    mv laptop_config.ini config.ini
+    cd "$installation_folder"
 }
 
 # POWERLEVEL10K OR STARSHIP
