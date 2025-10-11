@@ -159,7 +159,7 @@ rm zsh-completions/LICENSE
 rm zsh-completions/*.org 
 rm zsh-completions/*.md 
 cp -r zsh-completions /usr/share
-chmod root:root /usr/local/share/zsh/site-functions/_bspc
+chown root:root /usr/local/share/zsh/site-functions/_bspc
 
 # CONFIGURING BSPWM
 echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
