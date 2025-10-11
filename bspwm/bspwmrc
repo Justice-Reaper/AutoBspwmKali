@@ -30,6 +30,10 @@ wallpaper=$(cat /home/user_replace/.config/bin/wallpaper)
 feh --bg-fill /home/user_replace/Wallpapers/$wallpaper &
 
 # dunst
+if pgrep -x "xfce4-notifyd" > /dev/null
+then
+    killall -q xfce4-notifyd
+fi
 dunst &
 
 # brightness
