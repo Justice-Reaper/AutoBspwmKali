@@ -541,6 +541,7 @@ pycharm_community_installation(){
     wget $download_url -O pycharm-community.tar.gz
     mkdir /opt/Pycharm-Community
     tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
+    mkdir -p /home/$input_username/.local/share/applications
     cp -f pycharm-community.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/pycharm-community.desktop
 }
@@ -551,6 +552,7 @@ postman_installation(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
+    mkdir -p /home/$input_username/.local/share/applications
     cp -f postman.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/postman.desktop
 }
