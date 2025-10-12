@@ -363,14 +363,14 @@
     # Icon for notifications with critical urgency
     default_icon = dialog-warning
 
-[normal_battery]
-    category = "normal-battery"
+[battery_normal]
+    category = "battery-normal"
     foreground = "#76B97F"
     timeout = 10
     override_pause_level = 30
 
-[critical_battery]
-    category = "critical-battery"
+[battery_critical]
+    category = "battery-critical"
     foreground = "#E05F65"
     timeout = 0
     override_pause_level = 60
