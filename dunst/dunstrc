@@ -292,6 +292,9 @@
     # user defined timeout.
     ignore_dbusclose = true
 
+    # Set a universal 10-second timeout for all notifications
+    timeout = 10
+
     ### Wayland ###
     # These settings are Wayland-specific. They have no effect when using X11
 
@@ -333,6 +336,11 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
+    ### fullscreen
+
+    # Controls when notifications are shown in full screen
+    fullscreen = pushback
+
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
 [experimental]
@@ -344,14 +352,10 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    timeout = 10
     # Icon for notifications with low urgency
     default_icon = dialog-information
 
 [urgency_normal]
-    timeout = 10
     override_pause_level = 30
     # Icon for notifications with normal urgency
     default_icon = dialog-information
@@ -366,7 +370,6 @@
 [battery_normal]
     category = "battery-normal"
     foreground = "#76B97F"
-    timeout = 10
     override_pause_level = 30
 
 [battery_critical]
@@ -451,9 +454,10 @@
 #           withdrawn from screen again and will get delayed like a new notification
 #[fullscreen_delay_everything]
 #    fullscreen = delay
-#[fullscreen_show_critical]
-#    msg_urgency = critical
-#    fullscreen = show
+
+[fullscreen_show_critical]
+    msg_urgency = critical
+    fullscreen = show
 
 #[espeak]
 #    summary = "*"
