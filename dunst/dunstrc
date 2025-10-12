@@ -361,7 +361,7 @@
     default_icon = dialog-information
 
 [urgency_critical]
-    foreground = "#E05F65"
+    foreground = "#FFB300"
     timeout = 0
     override_pause_level = 60
     # Icon for notifications with critical urgency
@@ -370,13 +370,10 @@
 [battery_normal]
     category = "battery-normal"
     foreground = "#76B97F"
-    override_pause_level = 30
 
 [battery_critical]
     category = "battery-critical"
     foreground = "#E05F65"
-    timeout = 0
-    override_pause_level = 60
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
