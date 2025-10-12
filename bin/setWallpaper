@@ -3,7 +3,7 @@
 wallpapers_dir="/home/user_replace/Wallpapers"
 
 show_help() {
-    echo "Usage: $0 -i IMAGE_FILE [OPTIONS]"
+    echo "Usage: $(basename $0) -i IMAGE_FILE [OPTIONS]"
     echo ""
     echo "Options:"
     echo "  -i, --image FILE        Set the image as wallpaper"
@@ -11,8 +11,8 @@ show_help() {
     echo "  -h, --help              Show this help message"
     echo ""
     echo "Examples:"
-    echo "  $0 -i photo.jpg"
-    echo "  $0 -i photo.jpg -s"
+    echo "  $(basename $0) -i photo.jpg"
+    echo "  $(basename $0) -i photo.jpg -s"
     echo ""
 }
 
