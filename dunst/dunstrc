@@ -24,8 +24,8 @@
     # The width of the window, excluding the frame.
     # dynamic width from 0 to 300
     # width = (0, 300)
-    # constant width of 300
-    width = 300
+    # constant width of 400
+    width = 400
 
     # The height of a single notification, excluding the frame.
     # dynamic height from 0 to 300
@@ -98,13 +98,13 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 10
+    padding = 20
 
     # Horizontal padding.
-    horizontal_padding = 10
+    horizontal_padding = 20
 
     # Padding between text and icon.
-    text_icon_padding = 10
+    text_icon_padding = 20
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
