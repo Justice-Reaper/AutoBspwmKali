@@ -1,35 +1,60 @@
 #!/bin/bash
 
 wallpapers_dir="/home/user_replace/Wallpapers"
-file_type=$(file -b --mime-type "$1" 2>/dev/null)
 
-if [ $# -eq 1 ] && [[ "$1" == *.jpg ]] && [[ "$file_type" =~ ^image/ ]]; then
-    count=1
-    while [ -f "$wallpapers_dir/wallpaper-$count.jpg" ]; do
-        ((count++))
-    done
+show_help() {
+    echo "Usage: $0 -i IMAGE_FILE [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  -i, --image FILE        Set the image as wallpaper"
+    echo "  -s, --save-wallpaper    Save the image to wallpapers directory and set as permanent wallpaper"
+    echo "  -h, --help              Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $0 -i photo.jpg"
+    echo "  $0 -i photo.jpg -s"
+    echo ""
+}
 
-    image_exists=false
-    for image in "$wallpapers_dir"/wallpaper-*.jpg; do
-        if [ -f "$image" ] && cmp -s "$1" "$image"; then
-            image_exists=true
-            feh --bg-fill "$image" &
-            echo "$(basename "$image")" > /home/user_replace/.config/bin/wallpaper
-            break
-        fi
-    done
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -i|--image)
+            image_file="$2"
+            shift 2
+            ;;
+        -s|--set-wallpaper)
+            set_wallpaper=true
+            shift
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        *)
+            echo "Error: Unknown parameter '$1'"
+            echo "Use '$0 --help' for usage information"
+            exit 1
+            ;;
+    esac
+done
 
-    if [ "$image_exists" = false ]; then
-        new_wallpaper="wallpaper-$count.jpg"
-        cp "$1" "$wallpapers_dir/$new_wallpaper"
-        echo "✓ Image saved to $wallpapers_dir as wallpaper-$count.jpg"
+file_type=$(file -b --mime-type "$image_file" 2>/dev/null)
 
-        feh --bg-fill "$wallpapers_dir/$new_wallpaper" &
-        echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
-    fi
-
-else
-    echo "Error: You must provide a .jpg image"
-    echo "Usage: $0 image.jpg"
+if [ -z "$image_file" ] || [ ! -f "$image_file" ] || [[ ! "$file_type" =~ ^image/ ]]; then
+    echo "Error: You must provide a valid image file"
+    echo ""
+    show_help
     exit 1
 fi
+
+count=1
+while [ -f "$wallpapers_dir/wallpaper-$count.jpg" ]; do
+    ((count++))
+done
+
+if [ "$set_wallpaper" = true ]; then
+    echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
+    cp "$image_file" "$wallpapers_dir/wallpaper-$count.jpg"
+fi
+
+feh --bg-fill "$image_file" &
