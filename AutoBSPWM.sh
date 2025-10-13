@@ -758,6 +758,10 @@ laptop_configuration(){
     cd /home/$input_username/.config/polybar
     mv laptop_config.ini config.ini
     cd "$installation_folder"
+    battery="$(ls -1 /sys/class/power_supply | grep "BA" | cut -d'/' -f8-)"
+    adapter="$(ls -1 /sys/class/power_supply | grep "AC" | cut -d'/' -f8-)"
+    sed -i "s/battery_replace/$battery/g" "/home/$input_username/.config/polybar/config.ini"  
+    sed -i "s/adapter_replace/$adapter/g" "/home/$input_username/.config/polybar/config.ini"  
 }
 
 # POWERLEVEL10K OR STARSHIP
@@ -808,7 +812,7 @@ while true; do
         
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
-        sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
+        sed -i "s/user_replace/$input_username/g" rules/99-usb-sound.rules
         cp rules/99-usb-sound.rules /etc/udev/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
@@ -1106,12 +1110,6 @@ sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/bspwmrc  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/sxhkdrc
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.zshrc  
-
-# REPLACE THE BATTERY AND POWER ADAPTER
-battery="$(ls -1 /sys/class/power_supply | grep "BA" | cut -d'/' -f8-)"
-adapter="$(ls -1 /sys/class/power_supply | grep "AC" | cut -d'/' -f8-)"
-sed -i "s/battery_replace/$battery/g" "/home/$input_username/.config/polybar/config.ini"  
-sed -i "s/adapter_replace/$adapter/g" "/home/$input_username/.config/polybar/config.ini"  
 
 # CREATE A SYMBOLIC LINK BETWEEN THE CONFIGURATION FILES OF THE CHOSEN USER'S KITTY AND THOSE OF ROOT
 echo -e "\e[32m[*]\e[0m Creating symbolic link in kitty.conf and kitty.color ...\n"
