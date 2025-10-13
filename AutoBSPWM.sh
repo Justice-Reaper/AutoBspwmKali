@@ -706,7 +706,12 @@ virtual_machine_configuration(){
     rm -f /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm -f /home/$input_username/.config/polybar/scripts/brightness_control.sh
     rm -f /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
+
+    echo -e "\e[32m[*]\e[0m Configuring dunst ...\n"
     rm -rf /home/$input_username/.config/dunst/scripts
+    rm -rf /home/$input_username/.config/dunst/icons
+    sed -i '/\[battery_normal\]/,+3d' /home/$input_username/.config/dunst/dunstrc
+    sed -i '/\[battery_critical\]/,+3d' /home/$input_username/.config/dunst/dunstrc
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
@@ -730,8 +735,12 @@ desktop_configuration(){
     rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm -f /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm -f /home/$input_username/.config/polybar/scripts/brightness_control.sh
+    
+    echo -e "\e[32m[*]\e[0m Configuring dunst ...\n"
     rm -rf /home/$input_username/.config/dunst/scripts
-
+    rm -rf /home/$input_username/.config/dunst/icons
+    sed -i '/\[battery_normal\]/,+3d' /home/$input_username/.config/dunst/dunstrc
+    sed -i '/\[battery_critical\]/,+3d' /home/$input_username/.config/dunst/dunstrc
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
