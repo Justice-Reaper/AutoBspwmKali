@@ -22,6 +22,7 @@ WORDCHARS='_-' # Don't consider certain characters part of the word
 # hide EOL sign ('%')
 PROMPT_EOL_MARK=""
 
+# export path
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/root/.local/bin:/root/go/bin:$PATH
 
 # configure key keybindings
