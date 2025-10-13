@@ -193,7 +193,9 @@ cd "$installation_folder"
 
 starship_installation(){
     echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
-    apt install --no-install-recommends starship -y
+    latest_version=$(curl -s "https://api.github.com/repos/starship/starship/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+    wget https://github.com/starship/starship/releases/download/$latest_version/starship-x86_64-unknown-linux-gnu.tar.gz -O starship.tar.gz
+    tar -xf starship.tar.gz -C /usr/bin
     cp zshrc/zshrc_starship_user .zshrc
     mkdir /home/$input_username/.config/starship
     rm -f /home/$input_username/.config/starship/starship.toml
