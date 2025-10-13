@@ -201,10 +201,10 @@ starship_installation(){
     cp starship.toml /home/$input_username/.config/starship
 
     echo -e "\e[32m[*]\e[0m Configuring starship for user root ...\n"
-    mkdir /home/root/.config/starship
+    mkdir /root/.config/starship
     rm -f /root/.config/starship.toml
     cp .zshrc /root
-    cp starship.toml /home/$input_username/.config/starship
+    cp starship.toml /root/.config/starship
 }
 
 powerlevel10k_installation(){
