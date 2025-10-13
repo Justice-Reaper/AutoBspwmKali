@@ -65,7 +65,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt sharehistory            # share command history data
-histignorealldups              # remove all duplicate commands from history
+setopt histignorealldups       # remove all duplicate commands from history
 
 # force zsh to show the complete history
 alias history="history 0"
