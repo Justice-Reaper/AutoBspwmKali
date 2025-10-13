@@ -319,6 +319,7 @@ function removeHistory(){
     rm ~/.zsh_history
 }
 
+# load powerlevel10k theme
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
