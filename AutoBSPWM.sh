@@ -99,7 +99,7 @@ done
 
 # INSTALL THE NECESSARY DEPENDENCIES
 echo -e "\e[32m[*]\e[0m Installing the necessary dependencies ...\n"
-apt install papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd suckless-tools fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils payloadsallthethings seclists bloodhound neo4j x11-utils moreutils -y
+apt install dunst papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd suckless-tools fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils payloadsallthethings seclists bloodhound neo4j x11-utils moreutils -y
 
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
@@ -107,6 +107,7 @@ rm -f /home/$input_username/.zshrc
 rm -f /root/.zshrc 
 rm -rf /root/.config/kitty 
 rm -rf /home/$input_username/.config/kitty 
+rm -rf /home/$input_username/.config/dunst
 rm -rf /home/$input_username/.config/polybar 
 rm -rf /home/$input_username/.config/picom 
 rm -rf /home/$input_username/.config/bspwm 
@@ -145,6 +146,11 @@ cp -r kitty /root/.config
 # CONFIGURING PICOM
 echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
 cp -r picom /home/$input_username/.config
+
+# CONFIGURING DUNST
+echo -e "\e[32m[*]\e[0m Configuring dunst ...\n"
+cp -r dunst /home/$input_username/.config
+chmod +x /home/$input_username/.config/dunst/scripts/* 
 
 # CONFIGURING PLUGIN SUDO ZSH
 echo -e "\e[32m[*]\e[0m configuring zsh-sudo plugin ...\n"
@@ -372,7 +378,6 @@ laptop_or_desktop(){
             laptop_configuration
             shortcuts_configuration
             touchpad_configuration
-            dunst_installation
             redshift_installation
             break
         else
@@ -392,22 +397,6 @@ redshift_installation(){
     echo 'Off' > /home/$input_username/.config/bin/redshift_status
     echo '100' > /home/$input_username/.config/bin/color_temperature_percentage
     echo '6500' > /home/$input_username/.config/bin/color_temperature_kelvin
-}
-
-dunst_installation(){
-    echo -e "\e[32m[*]\e[0m Configuring dunst ...\n"
-    apt install acpi dunst -y
-    rm -rf /home/$input_username/.config/dunst
-    touch /home/$input_username/.config/bin/battery_discharging  
-    touch /home/$input_username/.config/bin/battery_charging
-    touch /home/$input_username/.config/bin/battery_warning
-    touch /home/$input_username/.config/bin/target/battery_fully_charged  
-    cp -r dunst /home/$input_username/.config
-    sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/dunstrc
-    sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
-    cd /home/$input_username/.config/dunst/scripts 
-    chmod +x * 
-    cd "$installation_folder"
 }
 
 nvim_installation(){
@@ -717,9 +706,9 @@ virtual_machine_configuration(){
     rm -f /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm -f /home/$input_username/.config/polybar/scripts/brightness_control.sh
     rm -f /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
+    rm -rf /home/$input_username/.config/dunst/scripts
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
-    sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
@@ -741,9 +730,10 @@ desktop_configuration(){
     rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
     rm -f /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
     rm -f /home/$input_username/.config/polybar/scripts/brightness_control.sh
+    rm -rf /home/$input_username/.config/dunst/scripts
+
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
-    sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
     sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
@@ -753,6 +743,7 @@ desktop_configuration(){
 
 laptop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
+    apt install acpi -y
     rm -f /home/$input_username/.config/polybar/desktop_config.ini
     rm -f /home/$input_username/.config/polybar/virtual_machine_config.ini
     cd /home/$input_username/.config/polybar
@@ -762,6 +753,10 @@ laptop_configuration(){
     adapter="$(ls -1 /sys/class/power_supply | grep "AC" | cut -d'/' -f8-)"
     sed -i "s/battery_replace/$battery/g" "/home/$input_username/.config/polybar/config.ini"  
     sed -i "s/adapter_replace/$adapter/g" "/home/$input_username/.config/polybar/config.ini"  
+    touch /home/$input_username/.config/bin/battery_discharging  
+    touch /home/$input_username/.config/bin/battery_charging
+    touch /home/$input_username/.config/bin/battery_warning
+    touch /home/$input_username/.config/bin/battery_fully_charged  
 }
 
 # POWERLEVEL10K OR STARSHIP
@@ -1110,6 +1105,8 @@ sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/bspwmrc  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/sxhkdrc
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.zshrc  
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/dunstrc
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
 
 # CREATE A SYMBOLIC LINK BETWEEN THE CONFIGURATION FILES OF THE CHOSEN USER'S KITTY AND THOSE OF ROOT
 echo -e "\e[32m[*]\e[0m Creating symbolic link in kitty.conf and kitty.color ...\n"
