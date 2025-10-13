@@ -205,6 +205,9 @@ starship_installation(){
     rm -f /root/.config/starship.toml
     cp .zshrc /root
     cp starship.toml /root/.config/starship
+
+    echo -e "\e[32m[*]\e[0m Creating symbolic link in the starship.toml file ...\n"
+    ln -s -f /home/$input_username/.config/starship/starship.toml /root/.config/starship/starship.toml
 }
 
 powerlevel10k_installation(){
@@ -223,6 +226,9 @@ powerlevel10k_installation(){
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
     cp .p10k.zsh /root 
     cp .zshrc /root
+
+    echo -e "\e[32m[*]\e[0m Creating symbolic link in the p10k.zsh file ...\n"
+    ln -s -f /home/$input_username/.p10k.zsh /root/.p10k.zsh
 }
 
 nvidia_drivers_installation(){
@@ -1106,15 +1112,8 @@ sed -i "s/adapter_replace/$adapter/g" "/home/$input_username/.config/polybar/con
 
 # CREATE A SYMBOLIC LINK BETWEEN THE CONFIGURATION FILES OF THE CHOSEN USER'S KITTY AND THOSE OF ROOT
 echo -e "\e[32m[*]\e[0m Creating symbolic link in kitty.conf and kitty.color ...\n"
-ln -s -f /home/$input_username/.config/kitty /root/.config/kitty
-
-# CREATE A SYMBOLIC LINK BETWEEN THE CHOSEN USER'S ZSHRC AND ROOT'S ZSHRC
-echo -e "\e[32m[*]\e[0m Creating symbolic link in the zshrc ...\n"
-ln -s -f /home/$input_username/.zshrc /root/.zshrc
-
-# CREATE A SYMBOLIC LINK BETWEEN THE CHOSEN USER'S P10K AND ROOT'S P10K
-echo -e "\e[32m[*]\e[0m Creating symbolic link in the p10k.zsh file ...\n"
-ln -s -f /home/$input_username/.p10k.zsh /root/.p10k.zsh
+ln -s -f /home/$input_username/.config/kitty/kitty.conf /root/.config/kitty/kitty.conf
+ln -s -f /home/$input_username/.config/kitty/color.ini /root/.config/kitty/color.ini
 
 # ASSIGN THE CORRECT OWNER TO THE FILES
 echo -e "\e[32m[*]\e[0m Assigning the correct owner to the configuration files ...\n"
