@@ -155,9 +155,9 @@ cp -r zsh-sudo /usr/share
 # CONFIGURING PLUGIN ZSH COMPLETIONS
 echo -e "\e[32m[*]\e[0m configuring zsh-completions plugin ...\n"
 git clone https://github.com/zsh-users/zsh-completions.git
-rm zsh-completions/LICENSE 
-rm zsh-completions/*.org 
-rm zsh-completions/*.md 
+rm -f zsh-completions/LICENSE 
+rm -f zsh-completions/*.org 
+rm -f zsh-completions/*.md 
 cp -r zsh-completions /usr/share
 chown root:root /usr/local/share/zsh/site-functions/_bspc
 
@@ -264,7 +264,7 @@ replace_shortcut_sxhkdrc(){
     while IFS= read -r line; do
         sed -i "s/$1/$line/" /home/$input_username/.config/sxhkd/sxhkdrc
     done < /tmp/keys
-    rm /tmp/keys
+    rm -f /tmp/keys
 }
 
 shortcuts_configuration(){
@@ -479,7 +479,7 @@ burpsuite_professional_installation(){
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
     chmod +x burpsuitepro
     cp burpsuitepro /usr/bin/burpsuitepro
-    rm burpsuitepro
+    rm -f burpsuitepro
     (/usr/bin/burpsuitepro)
 
     while true; do
@@ -500,7 +500,7 @@ burpsuite_professional_installation(){
     (java -jar loader.jar) &
     su $input_username -c "bash /usr/bin/burpsuitepro"
     cd "$installation_folder"    
-    cp burpsuite-professional.desktop /usr/share/applications
+    cp desktop-shortcut/burpsuite-professional.desktop /usr/share/applications
 
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want it to be your default proxy? (YES/NO): ")" response
@@ -556,7 +556,7 @@ pycharm_community_installation(){
     wget $download_url -O pycharm-community.tar.gz
     mkdir /opt/Pycharm-Community
     tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
-    cp pycharm-community.desktop /home/$input_username/.local/share/applications
+    cp desktop-shortcut/pycharm-community.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/pycharm-community.desktop
 }
 
@@ -567,7 +567,7 @@ postman_installation(){
     wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
     mkdir /opt/Postman
     tar -xzf postman.tar.gz -C /opt/Postman --strip-components=1
-    cp postman.desktop /home/$input_username/.local/share/applications
+    cp desktop-shortcut/postman.desktop /home/$input_username/.local/share/applications
     chmod 764 /home/$input_username/.local/share/applications/postman.desktop
 }
 
@@ -594,9 +594,9 @@ tor_installation(){
     latest_version=$(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
     wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
     tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
-    rm /home/$input_username/start-tor-browser.desktop
-    rm /home/$input_username/Browser/start-tor-browser.desktop
-    cp tor-browser.desktop /home/$input_username/.local/share/applications
+    rm -f /home/$input_username/start-tor-browser.desktop
+    rm -f /home/$input_username/Browser/start-tor-browser.desktop
+    cp desktop-shortcut/tor-browser.desktop /home/$input_username/.local/share/applications
     chmod 700 /home/$input_username/.local/share/applications/tor-browser.desktop
     sed -i "s/user_replace/$input_username/g" /home/$input_username/.local/share/applications/tor-browser.desktop
 
@@ -705,16 +705,16 @@ warning(){
 
 virtual_machine_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
-    rm /home/$input_username/.config/polybar/laptop_config.ini
-    rm /home/$input_username/.config/polybar/desktop_config.ini
+    rm -f /home/$input_username/.config/polybar/laptop_config.ini
+    rm -f /home/$input_username/.config/polybar/desktop_config.ini
     cd /home/$input_username/.config/polybar
     mv virtual_machine_config.ini config.ini
     cd "$installation_folder"
 
-    rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
-    rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
-    rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
-    rm /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
+    rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
+    rm -f /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
+    rm -f /home/$input_username/.config/polybar/scripts/brightness_control.sh
+    rm -f /home/$input_username/.config/polybar/scripts/color_temperature_control.sh
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
     sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
@@ -730,15 +730,15 @@ virtual_machine_configuration(){
 
 desktop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
-    rm /home/$input_username/.config/polybar/laptop_config.ini
-    rm /home/$input_username/.config/polybar/virtual_machine_config.ini
+    rm -f /home/$input_username/.config/polybar/laptop_config.ini
+    rm -f /home/$input_username/.config/polybar/virtual_machine_config.ini
     cd /home/$input_username/.config/polybar
     mv desktop_config.ini config.ini
     cd "$installation_folder"
     
-    rm /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
-    rm /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
-    rm /home/$input_username/.config/polybar/scripts/brightness_control.sh
+    rm -f /home/$input_username/.config/polybar/scripts/increase_brightness.sh 
+    rm -f /home/$input_username/.config/polybar/scripts/decrease_brightness.sh 
+    rm -f /home/$input_username/.config/polybar/scripts/brightness_control.sh
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
     sed -i '/# dunst/,+2d' /home/$input_username/.config/bspwm/bspwmrc  
@@ -751,8 +751,8 @@ desktop_configuration(){
 
 laptop_configuration(){
     echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
-    rm /home/$input_username/.config/polybar/desktop_config.ini
-    rm /home/$input_username/.config/polybar/virtual_machine_config.ini
+    rm -f /home/$input_username/.config/polybar/desktop_config.ini
+    rm -f /home/$input_username/.config/polybar/virtual_machine_config.ini
     cd /home/$input_username/.config/polybar
     mv laptop_config.ini config.ini
     cd "$installation_folder"
