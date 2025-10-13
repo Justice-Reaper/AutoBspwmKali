@@ -795,7 +795,7 @@ while true; do
         cp bin/mkt /usr/bin
         cp bin/setWallpaper /usr/bin
 
-        cp 99-power-actions.rules /etc/polkit-1/rules.d
+        cp rules/99-power-actions.rules /etc/polkit-1/rules.d
         
         virtual_machine_configuration
         enable_bidirectional_clipboard
@@ -807,7 +807,7 @@ while true; do
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" 99-usb-sound.rules
-        cp 99-usb-sound.rules /etc/udev/rules.d
+        cp rules/99-usb-sound.rules /etc/udev/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
         
@@ -815,7 +815,7 @@ while true; do
         chmod +x  bin/*
         cp -r bin /usr
 
-        cp 99-power-actions.rules /etc/polkit-1/rules.d
+        cp rules/99-power-actions.rules /etc/polkit-1/rules.d
         
         warning
         laptop_or_desktop
