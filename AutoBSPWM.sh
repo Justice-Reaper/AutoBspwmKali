@@ -194,15 +194,16 @@ cd "$installation_folder"
 starship_installation(){
     echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
     apt install --no-install-recommends starship -y
-    mv starship_zshrc .zshrc
+    cp zshrc/zshrc_starship_user .zshrc
     mkdir /home/$input_username/.config/starship
     rm -f /home/$input_username/.config/starship/starship.toml
     cp .zshrc /home/$input_username
     cp starship.toml /home/$input_username/.config/starship
 
     echo -e "\e[32m[*]\e[0m Configuring starship for user root ...\n"
+    cp zshrc/zshrc_starship_root .zshrc
     mkdir /root/.config/starship
-    rm -f /root/.config/starship.toml
+    rm -f /root/.config/starship/starship.toml
     cp .zshrc /root
     cp starship.toml /root/.config/starship
 
@@ -213,7 +214,7 @@ starship_installation(){
 powerlevel10k_installation(){
     echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
     rm -f /home/$input_username/.p10k.zsh 
-    mv powerlevel10k_zshrc .zshrc  
+    cp zshrc/zshrc_powerlevel10k_user .zshrc
     mv p10k.zsh .p10k.zsh  
     rm -rf /home/$input_username/powerlevel10k  
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
@@ -221,6 +222,7 @@ powerlevel10k_installation(){
     cp .zshrc /home/$input_username
 
     echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
+    cp zshrc/zshrc_powerlevel10k_root .zshrc
     rm -f /root/.p10k.zsh 
     rm -rf /root/powerlevel10k  
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
@@ -610,7 +612,6 @@ tor_installation(){
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m Tor won't be your default browser..\n"
             sed -i '/# tor/,+2d' /home/$input_username/.zshrc
-            sed -i '/# tor/,+2d' /root/.zshrc
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -1070,6 +1071,7 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Burpsuite professional hasn't been installed.\n"
         sed -i '/# burpsuitepro/,+2d' /home/$input_username/.zshrc
+        sed -i '/# burpsuitepro/,+2d' /root/.zshrc
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -1101,7 +1103,6 @@ sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/polybar/scripts/*  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/bspwmrc  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/sxhkdrc
-sed -i "s/user_replace/$input_username/g" /home/$input_username/.p10k.zsh  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.zshrc  
 
 # REPLACE THE BATTERY AND POWER ADAPTER
