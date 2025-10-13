@@ -193,16 +193,18 @@ cd "$installation_folder"
 
 starship_installation(){
     echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
+    apt install --no-install-recommends starship -y
+    mv starship_zshrc .zshrc
     mkdir /home/$input_username/.config/starship
     rm -f /home/$input_username/.config/starship/starship.toml
-    mv starship_zshrc .zshrc
     cp .zshrc /home/$input_username
     cp starship.toml /home/$input_username/.config/starship
-    apt install --no-install-recommends starship -y
 
     echo -e "\e[32m[*]\e[0m Configuring starship for user root ...\n"
+    mkdir /home/root/.config/starship
     rm -f /root/.config/starship.toml
     cp .zshrc /root
+    cp starship.toml /home/$input_username/.config/starship
 }
 
 powerlevel10k_installation(){
