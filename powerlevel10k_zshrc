@@ -8,7 +8,6 @@ fi
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
-setopt nullglob            # Prevent errors if a glob doesn't match any files
 setopt autocd              # change directory just by typing its name
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
@@ -18,7 +17,7 @@ setopt numericglobsort     # sort filenames numerically when it makes sense
 setopt promptsubst         # enable command substitution in prompt
 # setopt correct           # auto correct mistakes
 
-WORDCHARS=${WORDCHARS//\/} # Don't consider certain characters part of the word
+WORDCHARS='_-' # Don't consider certain characters part of the word
 
 # hide EOL sign ('%')
 PROMPT_EOL_MARK=""
@@ -48,7 +47,7 @@ bindkey '^[[Z' undo                               # shift + tab undo last action
 fpath=(/usr/share/zsh-completions/src $fpath)
 
 autoload -Uz compinit
-compinit
+compinit -d ~/.cache/zcompdump
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -64,7 +63,6 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
@@ -72,7 +70,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt histignorealldups sharehistory
+setopt sharehistory            # share command history data
 
 # force zsh to show the complete history
 alias history="history 0"
