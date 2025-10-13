@@ -99,7 +99,7 @@ done
 
 # INSTALL THE NECESSARY DEPENDENCIES
 echo -e "\e[32m[*]\e[0m Installing the necessary dependencies ...\n"
-apt install papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd wmname fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils payloadsallthethings seclists bloodhound neo4j x11-utils moreutils -y
+apt install papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd suckless-tools fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils payloadsallthethings seclists bloodhound neo4j x11-utils moreutils -y
 
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
