@@ -158,7 +158,6 @@ element-text {
 
 /*****----- Message -----*****/
 error-message {
-    padding:                     15px;
     border:                      0px solid;
     border-radius:               0px;
     border-color:                transparent;
@@ -166,7 +165,7 @@ error-message {
     text-color:                  @red;
 }
 textbox {
-    padding:                     15px;
+    margin:                      15px;
     background-color:            transparent;
     text-color:                  @red;
     vertical-align:              0.5;
