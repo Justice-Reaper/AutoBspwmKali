@@ -1,6 +1,7 @@
 #!/bin/bash
 
-wallpapers_dir="/home/user_replace/Wallpapers"
+wallpapers_dir="/home/justice-reaper/Wallpapers"
+script_name=$(basename "$0")
 
 show_help() {
     echo "Usage: $(basename $0) -i IMAGE_FILE [OPTIONS]"
@@ -32,7 +33,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         *)
             echo "Error: Unknown parameter '$1'"
-            echo "Use $(basename $0) -h/--help for usage information"
+            echo "Use $(basename $0) -h or --help for usage information"
             exit 1
             ;;
     esac
@@ -41,20 +42,23 @@ done
 file_type=$(file -b --mime-type "$image_file" 2>/dev/null)
 
 if [ -z "$image_file" ] || [ ! -f "$image_file" ] || [[ ! "$file_type" =~ ^image/ ]]; then
-    echo "Error: You must provide a valid image file"
-    echo ""
+    echo "Error: You must provide a valid image file\n"
     show_help
     exit 1
 fi
 
-count=1
-while [ -f "$wallpapers_dir/wallpaper-$count.jpg" ]; do
-    ((count++))
-done
-
 if [ "$set_wallpaper" = true ]; then
-    echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
-    cp "$image_file" "$wallpapers_dir/wallpaper-$count.jpg"
+    image_file_path=$(realpath "$image_file")
+    count=1
+    if [[ ! "$image_file_path" == "$wallpapers_dir"/* ]]; then
+        while [ -f "$wallpapers_dir/wallpaper-$count.jpg" ]; do
+            ((count++))
+        done
+
+        cp "$image_file" "$wallpapers_dir/wallpaper-$count.jpg"
+        echo "wallpaper-$count.jpg" > /home/justice-reaper/.config/bin/wallpaper
+    fi
+    basename "$image_file" > /home/justice-reaper/.config/bin/wallpaper
 fi
 
 feh --bg-fill "$image_file" &
