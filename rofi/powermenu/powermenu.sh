@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Current Theme
 dir="$HOME/.config/rofi/powermenu"
