@@ -181,9 +181,11 @@ echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
 cp -r rofi /home/$input_username/.config 
 cd /home/$input_username/.config/rofi  
 cd launcher  
-chmod +x launcher.sh 
+chmod +x launcher.sh
+sed -i "s/user_replace/$input_username/g" launcher.sh
 cd ../powermenu 
 chmod +x powermenu.sh
+sed -i "s/user_replace/$input_username/g" powermenu.sh
 cd "$installation_folder"
 
 # CONFIGURING POLYBAR
