@@ -76,7 +76,7 @@ prompt {
 }
 textbox-prompt-colon {
     enabled:                     true;
-    expand:                      true;
+    expand:                      false;
     str:                         "::";
     background-color:            inherit;
     text-color:                  inherit;
