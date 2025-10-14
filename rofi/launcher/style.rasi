@@ -28,7 +28,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       350px;
+    width:                       330px;
     x-offset:                    0px;
     y-offset:                    0px;
 
