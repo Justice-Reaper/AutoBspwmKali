@@ -1,10 +1,10 @@
 #!/bin/bash
 
-wallpapers_dir="/home/justice-reaper/Wallpapers"
+wallpapers_dir="/home/user_replace/Wallpapers"
 script_name=$(basename "$0")
 
 show_help() {
-    echo "Usage: $(basename $0) -i IMAGE_FILE [OPTIONS]"
+    echo "Usage: $script_name -i IMAGE_FILE [OPTIONS]"
     echo ""
     echo "Options:"
     echo "  -i, --image FILE        Set the image as wallpaper"
@@ -12,8 +12,8 @@ show_help() {
     echo "  -h, --help              Show this help message"
     echo ""
     echo "Examples:"
-    echo "  $(basename $0) -i photo.jpg"
-    echo "  $(basename $0) -i photo.jpg -s"
+    echo "  $script_name -i photo.jpg"
+    echo "  $script_name -i photo.jpg -s"
     echo ""
 }
 
@@ -33,7 +33,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         *)
             echo "Error: Unknown parameter '$1'"
-            echo "Use $(basename $0) -h or --help for usage information"
+            echo "Use $script_name -h or --help for usage information"
             exit 1
             ;;
     esac
@@ -56,9 +56,9 @@ if [ "$set_wallpaper" = true ]; then
         done
 
         cp "$image_file" "$wallpapers_dir/wallpaper-$count.jpg"
-        echo "wallpaper-$count.jpg" > /home/justice-reaper/.config/bin/wallpaper
+        echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
     fi
-    basename "$image_file" > /home/justice-reaper/.config/bin/wallpaper
+    basename "$image_file" > /home/user_replace/.config/bin/wallpaper
 fi
 
 feh --bg-fill "$image_file" &
