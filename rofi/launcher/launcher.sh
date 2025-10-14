@@ -1,7 +1,7 @@
-dir="$HOME/.config/rofi/launcher"
-theme='style'
+#!/bin/bash
 
-# Run
+dir="/home/user_replace/.config/rofi/launcher"
+
 rofi \
     -show drun \
-    -theme ${dir}/${theme}.rasi
+    -theme ${dir}/style.rasi
