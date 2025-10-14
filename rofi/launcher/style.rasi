@@ -12,7 +12,7 @@ configuration {
     background:     #101419;
     foreground:     #DEE1E6;
     selected:       #70A5EB;
-    active:         #76B97F;
+    active:         #28344a;
     urgent:         #E05F65;
 }
 
@@ -94,10 +94,10 @@ entry {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       8;
+    lines:                       10;
     cycle:                       true;
     dynamic:                     true;
-    scrollbar:                   false;
+    scrollbar:                   true;
     layout:                      vertical;
     reverse:                     false;
     fixed-height:                true;
@@ -117,7 +117,7 @@ scrollbar {
     handle-width:                5px ;
     handle-color:                @selected;
     border-radius:               0px;
-    background-color:            @background;
+    background-color:            @active;
 }
 
 /*****----- Elements -----*****/
@@ -161,13 +161,13 @@ error-message {
     padding:                     15px;
     border:                      2px solid;
     border-radius:               12px;
-    border-color:                @selected;
+    border-color:                @background;
     background-color:            @background;
-    text-color:                  @foreground;
+    text-color:                  @urgent;
 }
 textbox {
     background-color:            @background;
-    text-color:                  @foreground;
+    text-color:                  @urgent;
     vertical-align:              0.5;
     horizontal-align:            0.0;
     highlight:                   none;
