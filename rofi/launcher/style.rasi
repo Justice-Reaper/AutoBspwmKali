@@ -12,8 +12,8 @@ configuration {
     background:     #101419;
     foreground:     #DEE1E6;
     selected:       #70A5EB;
-    active:         #28344a;
-    urgent:         #E05F65;
+    gray:           #28344a;
+    red:            #E05F65;
 }
 
 /*****----- Fonts -----*****/
@@ -37,7 +37,7 @@ window {
     padding:                     0px;
     border:                      2px solid;
     border-radius:               10px;
-    border-color:                @active;
+    border-color:                @gray;
     background-color:            @background;
     cursor:                      "default";
 }
@@ -117,7 +117,7 @@ scrollbar {
     handle-width:                5px ;
     handle-color:                @selected;
     border-radius:               10px;
-    background-color:            @active;
+    background-color:            @gray;
 }
 
 /*****----- Elements -----*****/
@@ -163,11 +163,11 @@ error-message {
     border-radius:               10px;
     border-color:                transparent;
     background-color:            transparent;
-    text-color:                  @urgent;
+    text-color:                  @red;
 }
 textbox {
     background-color:            transparent;
-    text-color:                  @urgent;
+    text-color:                  @red;
     vertical-align:              0.5;
     horizontal-align:            0.0;
     highlight:                   none;
