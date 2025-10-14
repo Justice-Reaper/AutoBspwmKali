@@ -1,32 +1,24 @@
 #!/bin/bash
 
-# Current Theme
-dir="$HOME/.config/rofi/powermenu"
-theme='style'
-
-# CMDs
+dir="/home/user_replace/.config/rofi/powermenu"
 host="Kali Linux"
 
-# Options
 shutdown=' Shutdown'
 reboot=' Reboot'
 lock=' Lock'
 suspend=' Suspend'
 logout=' Logout'
 
-# Rofi CMD
 rofi_cmd() {
 	rofi -dmenu \
 		-p "$host" \
-		-theme ${dir}/${theme}.rasi
+		-theme ${dir}/style.rasi
 }
 
-# Pass variables to rofi dmenu
 run_rofi() {
 	echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi_cmd
 }
 
-# Execute Command
 run_cmd() {
 	if [[ $1 == '--shutdown' ]]; then
 		systemctl poweroff
@@ -41,7 +33,6 @@ run_cmd() {
 	exit 0
 }
 
-# Actions
 chosen="$(run_rofi)"
 case ${chosen} in
     $shutdown)
