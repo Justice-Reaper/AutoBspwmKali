@@ -1,19 +1,44 @@
 /*****----- Configuration -----*****/
 configuration {
-    modi:                       "drun";
-    show-icons:                 true;
-    display-drun:               "";
-      drun-display-format:        "{name}";
+        modi:                       "drun";
+        show-icons:                 true;
+        display-drun:               "";
+        drun-display-format:        "{name}";
+        scroll-method:              0;
+        normalize-match:            true;
+        icon-theme:                 "Papirus";        
+        sort:                       true;
+        sorting-method:             "fzf";
+        tokenize:                   true;
+        
+	/*---------- Drun settings ----------*/
+	drun-match-fields: "name,generic,exec,categories,keywords";
+        drun-display-format: "{name}";
+	drun-use-desktop-cache: true;
+        
+	drun {
+                fallback-icon: "application-x-addon";
+       }
+
+	/*---------- Keybindings ----------*/
+        kb-move-front: "KP_Home";
+        kb-row-first: "";
+        kb-move-end: "KP_End";
+        kb-row-last: "";
+        kb-move-word-back: "Alt+Left";
+        kb-move-word-forward: "Alt+Right";
+        kb-remove-word-back: "Alt+BackSpace";
+        kb-remove-word-forward: "Alt+Delete";
 }
 
 /*****----- Colors -----*****/
 
 * {    
-    selected:       #70A5EB;
-    black:          #101419;
-    white:          #DEE1E6;
-    gray:           #28344a;
-    red:            #E05F65;
+    selected:        #70A5EB;
+    black:           #101419;
+    white:           #DEE1E6;
+    gray:            #28344a;
+    red:             #E05F65;
 }
 
 /*****----- Fonts -----*****/
@@ -74,6 +99,7 @@ prompt {
     background-color:            inherit;
     text-color:                  inherit;
 }
+
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
@@ -81,6 +107,7 @@ textbox-prompt-colon {
     background-color:            inherit;
     text-color:                  inherit;
 }
+
 entry {
     enabled:                     true;
     background-color:            inherit;
@@ -113,6 +140,7 @@ listview {
     text-color:                  @white;
     cursor:                      "default";
 }
+
 scrollbar {
     margin:                      0px 0px 0px 5px;
     handle-width:                5px ;
@@ -134,20 +162,24 @@ element {
     text-color:                  @white;
     cursor:                      pointer;
 }
+
 element normal.normal {
     background-color:            transparent;
     text-color:                  @white;
 }
+
 element selected.normal {
     background-color:            @selected;
     text-color:                  @black;
 }
+
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
     size:                        32px;
     cursor:                      inherit;
 }
+
 element-text {
     background-color:            transparent;
     text-color:                  inherit;
@@ -165,6 +197,7 @@ error-message {
     background-color:            transparent;
     text-color:                  @red;
 }
+
 textbox {
     margin:                      15px;
     background-color:            transparent;
