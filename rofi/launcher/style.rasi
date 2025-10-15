@@ -114,6 +114,7 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
+    margin:                      0px 0px 0px 5px;
     handle-width:                5px ;
     handle-color:                @selected;
     border-radius:               10px;
