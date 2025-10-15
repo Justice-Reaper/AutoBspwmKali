@@ -1,7 +1,7 @@
 #!/bin/bash
 
-wallpapers_dir="/home/user_replace/Wallpapers"
 script_name=$(basename "$0")
+wallpapers_dir="/home/user_replace/Wallpapers"
 
 show_help() {
     echo "Usage: $script_name -i IMAGE_FILE [OPTIONS]"
