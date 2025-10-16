@@ -37,7 +37,7 @@ configuration {
         kb-remove-word-forward: "Alt+Delete";
         kb-remove-to-sol: "Ctrl+u";
         kb-remove-to-eol: "Ctrl+k";
-        kb-clear-line: "Ctrl+w88";
+        kb-clear-line: "Ctrl+w";
 }
 
 /*****----- Colors -----*****/
