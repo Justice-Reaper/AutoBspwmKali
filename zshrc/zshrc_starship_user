@@ -27,6 +27,8 @@ export STARSHIP_CONFIG=/home/user_replace/.config/starship/starship.toml
 bindkey -e                                        # emacs key bindings
 bindkey ' ' magic-space                           # do history expansion on space
 bindkey '^U' backward-kill-line                   # ctrl + U
+bindkey '^K' kill-line                            # ctrl + K
+bindkey '^W' kill-whole-line                      # ctrl + W
 bindkey '^[[3;3~' kill-word                       # alt + Supr
 bindkey '^[[3~' delete-char                       # delete
 bindkey '^[[1;3C' forward-word                    # alt + ->
