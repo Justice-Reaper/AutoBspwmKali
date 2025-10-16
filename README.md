@@ -73,6 +73,16 @@ sudo ./AutoBSPWM.sh
 - **setTarget**: Sets the target in the polybar
 - **setWallpaper**: Configures the desktop wallpaper
 
+## Bspwm Shortcuts
+<kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Switch between workspaces  
+
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reload bspwm configuration  
+
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> : Log out of bspwm  
+
+## Sxhkd Shortcuts
+<kbd>Windows</kbd> + <kbd>Esc</kbd> : Reload sxhkd configuration    
+
 ## Polybar Shortcuts
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F1</kbd> : Copy local machine IP address  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F2</kbd> : Copy VPN IP address  
@@ -91,16 +101,6 @@ sudo ./AutoBSPWM.sh
 
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Open Rofi launcher  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Open Rofi power menu  
-
-## Bspwm Shortcuts
-<kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Switch between workspaces  
-
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reload bspwm configuration  
-
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> : Log out of bspwm  
-
-## Sxhkd Shortcuts
-<kbd>Windows</kbd> + <kbd>Esc</kbd> : Reload sxhkd configuration    
 
 ## Window Shortcuts
 <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resize normal windows  
