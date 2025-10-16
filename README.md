@@ -129,15 +129,15 @@ sudo ./AutoBSPWM.sh
 <kbd>Ctrl</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through subterminals  
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Activate resize mode on a subterminal  
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> : Zoom in on a subterminal  
-<kbd>Resize Kitty activated</kbd> + <kbd>W</kbd> : Increase width on a subterminal   
-<kbd>Resize Kitty activated</kbd> + <kbd>N</kbd> : Decrease width on a subterminal  
-<kbd>Resize Kitty activated</kbd> + <kbd>T</kbd> : Increase height on a subterminal    
-<kbd>Resize Kitty activated</kbd> + <kbd>S</kbd> : Decrease height on a subterminal  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>W</kbd> : Double the width on a subterminal  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>N</kbd> : Halve the width on a subterminal  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>T</kbd> : Double the height on a subterminal  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>S</kbd> : Halve the height on a subterminal  
-<kbd>Resize Kitty activated</kbd> + <kbd>Esc</kbd> : Exit resize mode on a subterminal 
+<kbd>Kitty resize mode activated</kbd> + <kbd>W</kbd> : Increase width on a subterminal   
+<kbd>Kitty resize mode activated</kbd> + <kbd>N</kbd> : Decrease width on a subterminal  
+<kbd>Kitty resize mode activated</kbd> + <kbd>T</kbd> : Increase height on a subterminal    
+<kbd>Kitty resize mode activated</kbd> + <kbd>S</kbd> : Decrease height on a subterminal  
+<kbd>Kitty resize mode activated</kbd> + <kbd>Ctrl</kbd> + <kbd>W</kbd> : Double the width on a subterminal  
+<kbd>Kitty resize mode activated</kbd> + <kbd>Ctrl</kbd> + <kbd>N</kbd> : Halve the width on a subterminal  
+<kbd>Kitty resize mode activated</kbd> + <kbd>Ctrl</kbd> + <kbd>T</kbd> : Double the height on a subterminal  
+<kbd>Kitty resize mode activated</kbd> + <kbd>Ctrl</kbd> + <kbd>S</kbd> : Halve the height on a subterminal  
+<kbd>Kitty resize mode activated</kbd> + <kbd>Esc</kbd> : Exit resize mode on a subterminal 
 
 <kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Activate preselectors   
 <kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Control preselector ratio  
