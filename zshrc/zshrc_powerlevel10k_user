@@ -33,6 +33,8 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lo
 bindkey -e                                        # emacs key bindings
 bindkey ' ' magic-space                           # do history expansion on space
 bindkey '^U' backward-kill-line                   # ctrl + U
+bindkey '^K' kill-line                            # ctrl + K
+bindkey '^W' kill-whole-line                      # ctrl + W
 bindkey '^[[3;3~' kill-word                       # alt + Supr
 bindkey '^[[3~' delete-char                       # delete
 bindkey '^[[1;3C' forward-word                    # alt + ->
