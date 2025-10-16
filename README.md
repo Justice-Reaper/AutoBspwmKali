@@ -89,10 +89,24 @@ sudo ./AutoBSPWM.sh
 
 <kbd>mkt</kbd>: Create a folder and several work directories inside it    
 
-## IP Shortcuts
+## Polybar Shortcuts
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F1</kbd> : Copy local machine IP address  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F2</kbd> : Copy VPN IP address  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F3</kbd> : Copy target IP address    
+
+<kbd>Windows/FN</kbd> + <kbd>F2</kbd> : Turn down the brightness  
+<kbd>Windows/FN</kbd> + <kbd>F3</kbd> : Turn up the brightness  
+
+<kbd>Windows/FN</kbd> + <kbd>F5</kbd> : Mute and unmute the sound  
+<kbd>Windows/FN</kbd> + <kbd>F6</kbd> : Turn down the volume  
+<kbd>Windows/FN</kbd> + <kbd>F7</kbd> : Turn up the volume    
+
+<kbd>Windows/FN</kbd> + <kbd>F8</kbd> : Turn on/off the color temperature    
+<kbd>Windows/FN</kbd> + <kbd>F9</kbd> : Turn down the color temperature  
+<kbd>Windows/FN</kbd> + <kbd>F10</kbd> : Turn up the color temperature    
+
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Open Rofi launcher  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Open Rofi power menu  
 
 ## Window Shortcuts
 <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resize normal windows  
@@ -119,20 +133,6 @@ sudo ./AutoBSPWM.sh
 
 ## Sxhkd Shortcuts
 <kbd>Windows</kbd> + <kbd>Esc</kbd> : Reload sxhkd configuration    
- 
-## Brightness Shortcuts
-<kbd>Windows/FN</kbd> + <kbd>F2</kbd> : Turn down the brightness  
-<kbd>Windows/FN</kbd> + <kbd>F3</kbd> : Turn up the brightness  
-
-## Volume Shortcuts
-<kbd>Windows/FN</kbd> + <kbd>F5</kbd> : Mute and unmute the sound  
-<kbd>Windows/FN</kbd> + <kbd>F6</kbd> : Turn down the volume  
-<kbd>Windows/FN</kbd> + <kbd>F7</kbd> : Turn up the volume    
-
-## Color Temperature
-<kbd>Windows/FN</kbd> + <kbd>F8</kbd> : Turn on/off the color temperature    
-<kbd>Windows/FN</kbd> + <kbd>F9</kbd> : Turn down the color temperature  
-<kbd>Windows/FN</kbd> + <kbd>F10</kbd> : Turn up the color temperature    
 
 ## Application Shortcuts
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Open Postman    
@@ -141,10 +141,8 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Open Browser  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Open Proxy  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> : Open VSCode  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Open Rofi launcher  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Open Rofi power menu  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Open Thunar file manager
-<kbd>PrtSc</kbd> : Take a screenshot  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Open Thunar file manager   
+<kbd>PrtSc</kbd> : Take a screenshot with Flameshot  
   
 ## Kitty Shortcuts
 <kbd>Windows</kbd> + <kbd>Enter</kbd> : Open console (kitty-terminal)
