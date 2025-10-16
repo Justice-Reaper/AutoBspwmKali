@@ -147,30 +147,34 @@ sudo ./AutoBSPWM.sh
 <kbd>PrtSc</kbd> : Take a screenshot  
   
 ## Kitty Shortcuts
-<kbd>Windows</kbd> + <kbd>Enter</kbd> : Open console (kitty-terminal)  
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Preselectors in Kitty  
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Control preselector ratio in Kitty  
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(Space)</kbd> : Cancel preselection (kitty-terminal)  
-<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd> : Open subterminal inside Kitty  
-<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> : Create tab in Kitty  
-<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through tabs in Kitty  
-<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> : Rename tabs in Kitty  
-<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Activate resize mode in Kitty  
-<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> : Zoom in on a subterminal in Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>W</kbd> : Increase width of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>N</kbd> : Decrease width of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>T</kbd> : Increase height of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>S</kbd> : Decrease height of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>W</kbd> : Double the width of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>N</kbd> : Halve the width of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>T</kbd> : Double the height of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>S</kbd> : Halve the height of Kitty  
-<kbd>Resize Kitty activated</kbd> + <kbd>Esc</kbd> : Exit resize mode in Kitty  
-<kbd>Ctrl</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through subterminals in Kitty  
-<kbd>F1</kbd> : Copy content to the first clipboard in Kitty  
-<kbd>F2</kbd> : Paste content from the first clipboard in Kitty  
-<kbd>F3</kbd> : Copy content to the second clipboard in Kitty  
-<kbd>F4</kbd> : Paste content from the second clipboard in Kitty
+<kbd>Windows</kbd> + <kbd>Enter</kbd> : Open console (kitty-terminal)
+
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> : Create tab  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through tabs  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> : Rename tabs
+
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd> : Open subterminal  
+<kbd>Ctrl</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through subterminals  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Activate resize mode on a subterminal  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> : Zoom in on a subterminal  
+<kbd>Resize Kitty activated</kbd> + <kbd>W</kbd> : Increase width on a subterminal   
+<kbd>Resize Kitty activated</kbd> + <kbd>N</kbd> : Decrease width on a subterminal  
+<kbd>Resize Kitty activated</kbd> + <kbd>T</kbd> : Increase height on a subterminal    
+<kbd>Resize Kitty activated</kbd> + <kbd>S</kbd> : Decrease height on a subterminal  
+<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>W</kbd> : Double the width on a subterminal  
+<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>N</kbd> : Halve the width on a subterminal  
+<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>T</kbd> : Double the height on a subterminal  
+<kbd>Resize Kitty activated</kbd> + <kbd>Ctrl</kbd> + <kbd>S</kbd> : Halve the height on a subterminal  
+<kbd>Resize Kitty activated</kbd> + <kbd>Esc</kbd> : Exit resize mode on a subterminal 
+
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Activate preselectors   
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Control preselector ratio  
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(Space)</kbd> : Cancel preselection  
+
+<kbd>F1</kbd> : Copy content to the first clipboard  
+<kbd>F2</kbd> : Paste content from the first clipboard  
+<kbd>F3</kbd> : Copy content to the second clipboard  
+<kbd>F4</kbd> : Paste content from the second clipboard
 
 ## Rofi Shortcuts
 <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Move between words    
@@ -214,7 +218,7 @@ sudo ./AutoBSPWM.sh
 <kbd>Ctrl</kbd> + <kbd>R</kbd>: Use fzf to autocomplete files/directories    
 <kbd>Ctrl</kbd> + <kbd>R</kbd>: Use fzf to run commands from the zsh history    
 
-<kbd>Esc</kbd> + <kbd>Esc</kbd>: Activates the sudo-zsh plugin and adds sudo at the beginning of the command in kitty    
+<kbd>Esc</kbd> + <kbd>Esc</kbd>: Add sudo at the beginning of the line and if there is no text, add sudo followed by the last executed command  
 
 ## Credits
 Author: Justice-Reaper    
