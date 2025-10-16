@@ -10,11 +10,17 @@ configuration {
         sort:                       true;
         sorting-method:             "fzf";
         tokenize:                   true;
-        
+        matching:                   "fuzzy";        
+
+        /*---------- Commands settings ----------*/
+        terminal: "kitty";
+        run-command: "{cmd}";
+        run-list-command: "";
+        run-shell-command: "{terminal} -e {cmd}";
+
 	/*---------- Drun settings ----------*/
 	drun-match-fields: "name,generic,exec,categories,keywords";
         drun-display-format: "{name}";
-	drun-use-desktop-cache: true;
         
 	drun {
                 fallback-icon: "application-x-addon";
@@ -29,6 +35,9 @@ configuration {
         kb-move-word-forward: "Alt+Right";
         kb-remove-word-back: "Alt+BackSpace";
         kb-remove-word-forward: "Alt+Delete";
+        kb-remove-to-sol: "Ctrl+u";
+        kb-remove-to-eol: "Ctrl+k";
+        kb-clear-line: "Ctrl+w88";
 }
 
 /*****----- Colors -----*****/
@@ -147,6 +156,7 @@ scrollbar {
     handle-color:                @selected;
     border-radius:               10px;
     background-color:            @gray;
+    cursor: default;
 }
 
 /*****----- Elements -----*****/
