@@ -73,22 +73,6 @@ sudo ./AutoBSPWM.sh
 - **setTarget**: Sets the target in the polybar
 - **setWallpaper**: Configures the desktop wallpaper
 
-## Commands
-<kbd>setTarget</kbd>: This function in zsh sets the target in the polybar    
-<kbd>clearTarget</kbd>: This function in zsh clears the target from the polybar    
-
-<kbd>clearHistory</kbd>: Clear the zsh history    
-<kbd>removeHistory</kbd>: Remove the zsh history    
-
-<kbd>enableTouchpad</kbd>: Enable the laptop's touchpad    
-<kbd>disableTouchpad</kbd>: Disable the laptop's touchpad  
-
-<kbd>setWallpaper</kbd>: Set a wallpaper    
-
-<kbd>extractPorts</kbd>: Extract ports from a file in nmap -oG format and copy them to the clipboard    
-
-<kbd>mkt</kbd>: Create a folder and several work directories inside it    
-
 ## Polybar Shortcuts
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F1</kbd> : Copy local machine IP address  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F2</kbd> : Copy VPN IP address  
@@ -108,22 +92,6 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> : Open Rofi launcher  
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Open Rofi power menu  
 
-## Window Shortcuts
-<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resize normal windows  
-
-<kbd>Windows</kbd> + <kbd>W</kbd> : Close the current window  
-
-<kbd>Windows</kbd> + <kbd>S</kbd>: Create floating windows    
-<kbd>Windows</kbd> + <kbd>Right click</kbd>: Resize floating windows  
-<kbd>Windows</kbd> + <kbd>Left click</kbd>: Move floating window  
-
-<kbd>Windows</kbd> + <kbd>T</kbd> : Change the current window to "terminal" mode (normal). This is useful when the window is in fullscreen or floating mode    
-<kbd>Windows</kbd> + <kbd>M</kbd> : Change the current window to "full" mode (does not occupy the polybar). Press the same keys to return to "terminal" mode (normal)    
-<kbd>Windows</kbd> + <kbd>F</kbd> : Change the current window to fullscreen mode (occupies the whole screen, including the polybar)  
-
-<kbd>Windows</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through windows in the current workspace
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Move window to another workspace  
-
 ## Bspwm Shortcuts
 <kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Switch between workspaces  
 
@@ -134,16 +102,6 @@ sudo ./AutoBSPWM.sh
 ## Sxhkd Shortcuts
 <kbd>Windows</kbd> + <kbd>Esc</kbd> : Reload sxhkd configuration    
 
-## Application Shortcuts
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Open Postman    
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> : Open Obsidian    
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Open Pycharm    
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Open Browser  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Open Proxy  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> : Open VSCode  
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Open Thunar file manager   
-<kbd>PrtSc</kbd> : Take a screenshot with Flameshot  
-  
 ## Kitty Shortcuts
 <kbd>Windows</kbd> + <kbd>Enter</kbd> : Open console (kitty-terminal)
 
@@ -174,22 +132,21 @@ sudo ./AutoBSPWM.sh
 <kbd>F3</kbd> : Copy content to the second clipboard  
 <kbd>F4</kbd> : Paste content from the second clipboard
 
-## Rofi Shortcuts
-<kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Move between words    
-<kbd>Home</kbd>: Move to the beginning of the line    
-<kbd>End</kbd>: Move to the end of the line   
+## Window Shortcuts
+<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resize normal windows  
 
-<kbd>Ctrl</kbd> + <kbd>U</kbd>: Delete from cursor to beginning  
-<kbd>Ctrl</kbd> + <kbd>K</kbd>: Delete from cursor to end  
-<kbd>Ctrl</kbd> + <kbd>W</kbd>: Delete the entire line  
+<kbd>Windows</kbd> + <kbd>W</kbd> : Close the current window  
 
-<kbd>Alt</kbd> + <kbd>Del</kbd>: Delete the word to the right of the cursor    
-<kbd>Alt</kbd> + <kbd>Backspace</kbd>: Delete the word to the left of the cursor    
+<kbd>Windows</kbd> + <kbd>S</kbd>: Create floating windows    
+<kbd>Windows</kbd> + <kbd>Right click</kbd>: Resize floating windows  
+<kbd>Windows</kbd> + <kbd>Left click</kbd>: Move floating window  
 
-<kbd>Del</kbd>: Delete the character to the right of the cursor
-<kbd>Backspace</kbd>: Delete the character to the left of the cursor    
+<kbd>Windows</kbd> + <kbd>T</kbd> : Change the current window to "terminal" mode (normal). This is useful when the window is in fullscreen or floating mode    
+<kbd>Windows</kbd> + <kbd>M</kbd> : Change the current window to "full" mode (does not occupy the polybar). Press the same keys to return to "terminal" mode (normal)    
+<kbd>Windows</kbd> + <kbd>F</kbd> : Change the current window to fullscreen mode (occupies the whole screen, including the polybar)  
 
-<kbd>Esc</kbd> : Exit Rofi  
+<kbd>Windows</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through windows in the current workspace
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Move window to another workspace  
 
 ## Zsh Shortcuts
 <kbd>Alt</kbd> + <kbd>.</kbd>: Insert the argument from the previous command    
@@ -218,6 +175,49 @@ sudo ./AutoBSPWM.sh
 
 <kbd>Esc</kbd> + <kbd>Esc</kbd>: Add sudo at the beginning of the line and if there is no text, add sudo followed by the last executed command  
 
+## Rofi Shortcuts
+<kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Move between words    
+<kbd>Home</kbd>: Move to the beginning of the line    
+<kbd>End</kbd>: Move to the end of the line   
+
+<kbd>Ctrl</kbd> + <kbd>U</kbd>: Delete from cursor to beginning  
+<kbd>Ctrl</kbd> + <kbd>K</kbd>: Delete from cursor to end  
+<kbd>Ctrl</kbd> + <kbd>W</kbd>: Delete the entire line  
+
+<kbd>Alt</kbd> + <kbd>Del</kbd>: Delete the word to the right of the cursor    
+<kbd>Alt</kbd> + <kbd>Backspace</kbd>: Delete the word to the left of the cursor    
+
+<kbd>Del</kbd>: Delete the character to the right of the cursor
+<kbd>Backspace</kbd>: Delete the character to the left of the cursor    
+
+<kbd>Esc</kbd> : Exit Rofi  
+
+## Application Shortcuts
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> : Open Postman    
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd> : Open Obsidian    
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> : Open Pycharm    
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> : Open Browser  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> : Open Proxy  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> : Open VSCode  
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd> : Open Thunar file manager   
+<kbd>PrtSc</kbd> : Take a screenshot with Flameshot  
+
+## Commands
+<kbd>setTarget</kbd>: This function in zsh sets the target in the polybar    
+<kbd>clearTarget</kbd>: This function in zsh clears the target from the polybar    
+
+<kbd>clearHistory</kbd>: Clear the zsh history    
+<kbd>removeHistory</kbd>: Remove the zsh history    
+
+<kbd>enableTouchpad</kbd>: Enable the laptop's touchpad    
+<kbd>disableTouchpad</kbd>: Disable the laptop's touchpad  
+
+<kbd>setWallpaper</kbd>: Set a wallpaper    
+
+<kbd>extractPorts</kbd>: Extract ports from a file in nmap -oG format and copy them to the clipboard    
+
+<kbd>mkt</kbd>: Create a folder and several work directories inside it    
+  
 ## Credits
 Author: Justice-Reaper    
 Inspiration: Environment shown in the hack4u academy by s4vitar  
