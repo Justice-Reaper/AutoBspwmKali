@@ -102,6 +102,22 @@ sudo ./AutoBSPWM.sh
 ## Sxhkd Shortcuts
 <kbd>Windows</kbd> + <kbd>Esc</kbd> : Reload sxhkd configuration    
 
+## Window Shortcuts
+<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resize normal windows  
+
+<kbd>Windows</kbd> + <kbd>W</kbd> : Close the current window  
+
+<kbd>Windows</kbd> + <kbd>S</kbd>: Create floating windows    
+<kbd>Windows</kbd> + <kbd>Right click</kbd>: Resize floating windows  
+<kbd>Windows</kbd> + <kbd>Left click</kbd>: Move floating window  
+
+<kbd>Windows</kbd> + <kbd>T</kbd> : Change the current window to "terminal" mode (normal). This is useful when the window is in fullscreen or floating mode    
+<kbd>Windows</kbd> + <kbd>M</kbd> : Change the current window to "full" mode (does not occupy the polybar). Press the same keys to return to "terminal" mode (normal)    
+<kbd>Windows</kbd> + <kbd>F</kbd> : Change the current window to fullscreen mode (occupies the whole screen, including the polybar)  
+
+<kbd>Windows</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through windows in the current workspace
+<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Move window to another workspace  
+
 ## Kitty Shortcuts
 <kbd>Windows</kbd> + <kbd>Enter</kbd> : Open console (kitty-terminal)
 
@@ -131,22 +147,6 @@ sudo ./AutoBSPWM.sh
 <kbd>F2</kbd> : Paste content from the first clipboard  
 <kbd>F3</kbd> : Copy content to the second clipboard  
 <kbd>F4</kbd> : Paste content from the second clipboard
-
-## Window Shortcuts
-<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resize normal windows  
-
-<kbd>Windows</kbd> + <kbd>W</kbd> : Close the current window  
-
-<kbd>Windows</kbd> + <kbd>S</kbd>: Create floating windows    
-<kbd>Windows</kbd> + <kbd>Right click</kbd>: Resize floating windows  
-<kbd>Windows</kbd> + <kbd>Left click</kbd>: Move floating window  
-
-<kbd>Windows</kbd> + <kbd>T</kbd> : Change the current window to "terminal" mode (normal). This is useful when the window is in fullscreen or floating mode    
-<kbd>Windows</kbd> + <kbd>M</kbd> : Change the current window to "full" mode (does not occupy the polybar). Press the same keys to return to "terminal" mode (normal)    
-<kbd>Windows</kbd> + <kbd>F</kbd> : Change the current window to fullscreen mode (occupies the whole screen, including the polybar)  
-
-<kbd>Windows</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through windows in the current workspace
-<kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Move window to another workspace  
 
 ## Zsh Shortcuts
 <kbd>Alt</kbd> + <kbd>.</kbd>: Insert the argument from the previous command    
