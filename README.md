@@ -217,7 +217,9 @@ sudo ./AutoBSPWM.sh
 
 <kbd>extractPorts</kbd>: Extract ports from a file in nmap -oG format and copy them to the clipboard    
 
-<kbd>mkt</kbd>: Create a folder and several work directories inside it    
+<kbd>mkt</kbd>: Create a folder and several work directories inside it  
+
+<kbd>showHelpPanel</kbd> : Displays all commands and shortcuts of the desktop environment
   
 ## Credits
 Author: Justice-Reaper    
