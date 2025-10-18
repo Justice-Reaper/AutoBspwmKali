@@ -72,6 +72,7 @@ sudo ./AutoBSPWM.sh
 - **mkt**: Creates the necessary working directories for performing a pentest
 - **setTarget**: Sets the target in the polybar
 - **setWallpaper**: Configures the desktop wallpaper
+- **showHelpPanel**: Displays all commands and shortcuts of the environment
 
 ## Bspwm Shortcuts
 <kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Switch between workspaces  
@@ -79,6 +80,10 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Reload bspwm configuration  
 
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> : Log out of bspwm  
+
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Activate preselectors (Requires an open window)   
+<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Control preselector ratio (Requires an open window)  
+<kbd>Preselectors activated</kbd> + <kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(Space)</kbd> : Cancel preselection  
 
 ## Sxhkd Shortcuts
 <kbd>Windows</kbd> + <kbd>Esc</kbd> : Reload sxhkd configuration    
@@ -138,10 +143,6 @@ sudo ./AutoBSPWM.sh
 <kbd>Kitty resize mode activated</kbd> + <kbd>Ctrl</kbd> + <kbd>T</kbd> : Double the height on a subterminal  
 <kbd>Kitty resize mode activated</kbd> + <kbd>Ctrl</kbd> + <kbd>S</kbd> : Halve the height on a subterminal  
 <kbd>Kitty resize mode activated</kbd> + <kbd>Esc</kbd> : Exit resize mode on a subterminal 
-
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Activate preselectors   
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Control preselector ratio  
-<kbd>Ctrl</kbd> + <kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(Space)</kbd> : Cancel preselection  
 
 <kbd>F1</kbd> : Copy content to the first clipboard  
 <kbd>F2</kbd> : Paste content from the first clipboard  
