@@ -163,7 +163,7 @@ sudo ./AutoBSPWM.sh
 <kbd>Alt</kbd> + <kbd>Del</kbd>: Delete the word to the right of the cursor    
 <kbd>Alt</kbd> + <kbd>Backspace</kbd>: Delete the word to the left of the cursor    
 
-<kbd>Del</kbd>: Delete the character to the right of the cursor
+<kbd>Del</kbd>: Delete the character to the right of the cursor  
 <kbd>Backspace</kbd>: Delete the character to the left of the cursor   
 
 <kbd>Page Up</kbd>: Scroll up in paginate mode    
