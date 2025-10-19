@@ -806,6 +806,7 @@ while true; do
         cp bin/extractPorts /usr/bin
         cp bin/mkt /usr/bin
         cp bin/setWallpaper /usr/bin
+        cp bin/showHelpPanel /usr/bin
 
         cp rules/99-power-actions.rules /etc/polkit-1/rules.d
         
