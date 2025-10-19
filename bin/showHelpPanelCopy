@@ -1,0 +1,169 @@
+#!/bin/bash
+
+blue='\033[1;34m'
+reset='\033[0m'
+
+
+echo -e "\n\n${blue}Bspwm Shortcuts${reset}"
+
+echo -e "\nWindows + Enter + (1,2,3,4,5,6,7,8,9,0)                           → Switch between workspace"
+
+echo -e "\nWindows + Shift + R                                               →  Reload bspwm configuration"
+
+echo -e "\nWindows + Shift + Q                                               →  Log out of bspwm"
+
+echo -e "\nCtrl + Windows + Alt + (⬆⬅⬇➡)                                     →  Activate preselectors (Requires an open window)"
+echo -e "Ctrl + Windows + Alt + (1,2,3,4,5,6,7,8,9,0)                      →  Control preselector ratio (Requires an open window)"
+echo -e "Preselectors activated + Ctrl + Windows + Alt + Spacebar          →  Cancel preselection"
+
+
+echo -e "\n\n${blue}Sxhkd Shortcuts${reset}"
+
+echo -e "\nWindows + Esc          →  Reload sxhkd configuration"
+
+
+echo -e "\n\n${blue}Polybar Shortcuts${reset}"
+
+echo -e "\nWindows + Shift + F1            →  Copy local machine IP addres"
+echo -e "Windows + Shift + F2            →  Copy VPN IP addres"
+echo -e "Windows + Shift + F3            →  Copy target IP addres"
+
+echo -e "\nWindows/FN + F2                 →  Turn down the brightne"
+echo -e "Windows/FN + F3                 →  Turn up the brightne"
+
+echo -e "\nWindows/FN + F5                 →  Mute and unmute the sound"
+echo -e "Windows/FN + F6                 →  Turn down the volume"
+echo -e "Windows/FN + F7                 →  Turn up the volume"
+
+echo -e "\nWindows/FN + F8                 →  Turn on/off the color temperature"
+echo -e "Windows/FN + F9                 →  Turn down the color temperature"
+echo -e "Windows/FN + F10                →  Turn up the color temperature"
+
+echo -e "\nWindows + Shift + D             →  Open Rofi launcher"
+echo -e "Windows + Shift + P             →  Open Rofi power menu"
+
+
+echo -e "\n\n${blue}Window Shortcuts${reset}"
+
+echo -e "\nWindows + Alt + (⬆⬅⬇➡)                           →  Resize normal window"
+
+echo -e "\nWindows + W                                      →  Close the current window"
+
+echo -e "\nWindows + S                                      →  Create floating window"
+echo -e "Windows + Right click                            →  Resize floating window"
+echo -e "Windows + Left click                             →  Move floating window"
+
+echo -e "\nWindows + T                                      →  Change the current window to terminal mode (normal). This is useful when the window is in fullscreen or floating mode"
+echo -e "Windows + M                                      →  Change the current window to full mode (does not occupy the polybar). Press the same keys to return to terminal mode (normal)"
+echo -e "Windows + F                                      →  Change the current window to fullscreen mode (occupies the whole screen, including the polybar)"
+
+echo -e "\nWindows + (⬆⬅⬇➡)                                 →  Navigate through windows in the current workspace"
+echo -e "Windows + Shift + (1,2,3,4,5,6,7,8,9,0)          →  Move window to another workspace"
+
+
+echo -e "\n\n${blue}Kitty Shortcuts${reset}"
+
+echo -e "\nWindows + Enter                                 →  Open terminal"
+
+echo -e "\nCtrl + Shift + T                                →  Create tab"
+echo -e "Ctrl + Shift + (⬆⬅⬇➡)                           →  Navigate through tab"
+echo -e "Ctrl + Shift + Alt + T                          →  Rename tab"
+
+echo -e "\nCtrl + Shift + Enter                            →  Open subterminal"
+echo -e "Ctrl + (⬆⬅⬇➡)                                   →  Navigate through subterminal"
+echo -e "Ctrl + Shift + R                                →  Activate resize mode on a subterminal"
+echo -e "Ctrl + Shift + Z                                →  Zoom in on a subterminal"
+echo -e "Ctrl + Shift + Z                                →  Zoom in on a subterminal"
+echo -e "Kitty resize mode activated + W                 →  Increase width on a subterminal"
+echo -e "Kitty resize mode activated + N                 →  Decrease width on a subterminal"
+echo -e "Kitty resize mode activated + T                 →  Increase height on a subterminal"
+echo -e "Kitty resize mode activated + S                 →  Decrease height on a subterminal"
+echo -e "Kitty resize mode activated + Ctrl + W          →  Double the width on a subterminal"
+echo -e "Kitty resize mode activated + Ctrl + N          →  Halve the width on a subterminal"
+echo -e "Kitty resize mode activated + Ctrl + T          →  Double the height on a subterminal"
+echo -e "Kitty resize mode activated + Ctrl + S          →  Halve the height on a subterminal"
+echo -e "Kitty resize mode activated + Esc               →  Exit resize mode on a subterminal"
+
+echo -e "\nF1                                              →  Copy content to the first clipboard"
+echo -e "F2                                              →  Paste content from the first clipboard"
+echo -e "F3                                              →  Copy content to the second clipboard"
+echo -e "F4                                              →  Paste content from the second clipboard"
+
+
+echo -e "\n\n${blue}Zsh Shortcuts${reset}"
+
+echo -e "\nAlt + .                  →  Insert the argument from the previous command"
+
+echo -e "\nAlt + (⬆⬅⬇➡)             →  Move between word"
+echo -e "Home                     →  Move to the beginning of the line"
+echo -e "End                      →  Move to the end of the line"
+
+echo -e "\nCtrl + U                 →  Delete from cursor to beginning"
+echo -e "Ctrl + K                 →  Delete from cursor to end"
+echo -e "Ctrl + W                 →  Delete the entire line"
+
+echo -e "\nAlt + Del                →  Delete the word to the right of the cursor"
+echo -e "Alt + Backspace          →  Delete the word to the left of the cursor"
+
+echo -e "\nDel                      →  Delete the character to the right of the cursor"
+echo -e "Backspace                →  Delete the character to the left of the cursor"
+
+echo -e "\nPage Up                  →  Scroll up in paginate mode"
+echo -e "Page Down                →  Scroll down in paginate mode"
+
+echo -e "\nShift + Tab              →  Undo the last action"
+
+echo -e "\nCtrl + R                 →  Use fzf to autocomplete files/directorie"
+echo -e "Ctrl + R                 →  Use fzf to run commands from the zsh history"
+
+echo -e "\nEsc + Esc                →  Add sudo at the beginning of the line and if there is no text, add sudo followed by the last executed command"
+
+
+echo -e "\n\n${blue}Rofi Shortcuts${reset}"
+
+echo -e "\nAlt + (⬆⬅⬇➡)             →  Move between word"
+echo -e "Home                     →  Move to the beginning of the line"
+echo -e "End                      →  Move to the end of the line"
+
+echo -e "\nCtrl + U                 →  Delete from cursor to beginning"
+echo -e "Ctrl + K                 →  Delete from cursor to end"
+echo -e "Ctrl + W                 →  Delete the entire line"
+
+echo -e "\nAlt + Del                →  Delete the word to the right of the cursor"
+echo -e "Alt + Backspace          →  Delete the word to the left of the cursor"
+
+echo -e "\nDel                      →  Delete the character to the right of the cursor"
+echo -e "Backspace                →  Delete the character to the left of the cursor"
+
+echo -e "\nEsc                      →  Exit Rofi"
+
+
+echo -e "\n\n${blue}Application Shortcuts${reset}"
+
+echo -e "\nWindows + Shift + A            →  Open Postman"
+echo -e "Windows + Shift + O            →  Open Obsidian"
+echo -e "Windows + Shift + S            →  Open Pycharm"
+echo -e "Windows + Shift + F            →  Open Browser"
+echo -e "Windows + Shift + B            →  Open Proxy"
+echo -e "Windows + Shift + V            →  Open VSCode"
+echo -e "Windows + Shift + G            →  Open Thunar file manager"
+echo -e "PrtSc                          →  Take a screenshot with Flameshot"
+
+
+echo -e "\n\n${blue}Commands${reset}"
+echo -e "\nsetTarget                 →  This function in zsh sets the target in the polybar"
+echo -e "clearTarget               →  This function in zsh clears the target from the polybar"
+
+echo -e "\nclearHistory              →  Clear the zsh history"
+echo -e "removeHistory             →  Remove the zsh history"
+
+echo -e "\nenableTouchpad            →  Enable the laptop's touchpad"
+echo -e "disableTouchpad           →  Disable the laptop's touchpad"
+
+echo -e "\nsetWallpaper              →  Set a wallpaper"
+
+echo -e "\nextractPorts              →  Extract ports from a file in nmap -oG format and copy them to the clipboard"
+
+echo -e "\nmkt                       →  Create a folder and several work directories inside it"
+
+echo -e "\nshowHelpPanel             →  Displays all commands and shortcuts of the desktop environment"
