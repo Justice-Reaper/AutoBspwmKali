@@ -277,7 +277,39 @@ replace_shortcut_sxhkdrc(){
     rm -f /tmp/keys
 }
 
-shortcuts_configuration(){
+desktop_shortcuts_configuration(){
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to use the FN key or the WINDOWS key for keyboard shortcuts (it will be used to INCREASE/DECREASE VOLUME/BRIGHTNESS and to MUTE the SOUND)? (FN/WINDOWS): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+      
+        if [ "$response" = "windows" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring Windows key ...\n"
+            break
+        elif [ "$response" = "fn" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring FN key ...\n"
+            echo -e "\e[33m[*]\e[0m An output like this will appear (keysym 0x1008ff13, XF86AudioRaiseVolume) when you enter a key combination. You need to enter the third parameter, in this case, it is XF86AudioRaiseVolume. If you're using sxhkd, you must reload its configuration. If you installed BSPWM with this script, press WINDOWS + ESC"
+            kitty --detach bash -c "xev | grep 'keysym'; exec bash"
+            fn_key_configuration "turn up the volume"
+            replace_shortcut_sxhkdrc "super + F7"
+            fn_key_configuration "turn down the volume"
+            replace_shortcut_sxhkdrc "super + F6"
+            fn_key_configuration "mute and unmute the sound"
+            replace_shortcut_sxhkdrc "super + F5"
+            fn_key_configuration "turn on/off the color temperature"
+            replace_shortcut_sxhkdrc "super + F8"
+            fn_key_configuration "turn down the color temperature"
+            replace_shortcut_sxhkdrc "super + F9"
+            fn_key_configuration "turn up the color temperature"
+            replace_shortcut_sxhkdrc "super + F10"
+            echo -e "\e[33m[*]\e[0m You can now close the white window and the console where the output is displayed ...\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
+
+laptop_shortcuts_configuration(){
     while true; do
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want to use the FN key or the WINDOWS key for keyboard shortcuts (it will be used to INCREASE/DECREASE VOLUME/BRIGHTNESS and to MUTE the SOUND)? (FN/WINDOWS): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
@@ -374,11 +406,12 @@ laptop_or_desktop(){
         if [ "$response" = "desktop" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the system for a desktop ...\n"
             desktop_configuration
+            desktop_shortcuts_configuration
             break
         elif [ "$response" = "laptop" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the system for a laptop ...\n"
             laptop_configuration
-            shortcuts_configuration
+            laptop_shortcuts_configuration
             touchpad_configuration
             redshift_installation
             break
