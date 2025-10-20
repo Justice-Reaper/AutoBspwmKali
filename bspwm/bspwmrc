@@ -39,16 +39,16 @@ if [ "$brightness" = "12" ]; then
     echo '0' > /sys/class/backlight/*/brightness
 fi
 
-# polybar
-if pgrep -x "polybar" > /dev/null
-then
-    killall -q polybar && sleep 1
-fi
-polybar &
-
 # picom
 if pgrep -x "picom" > /dev/null
 then
     killall -q picom && sleep 1
 fi
 picom --config /home/user_replace/.config/picom/picom.conf --daemon &
+
+# polybar
+if pgrep -x "polybar" > /dev/null
+then
+    killall -q polybar && sleep 1
+fi
+polybar &
