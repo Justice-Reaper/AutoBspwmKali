@@ -50,7 +50,7 @@ fi
 if [ "$set_wallpaper" = true ]; then
     image_file_path=$(realpath "$image_file")
     count=1
-    if [[ ! "$image_file_path" == "$wallpapers_dir"/* ]]; then
+    if [[ ! "$image_file_path" == "$wallpapers_dir"/* ]] || [[ ! "$image_file" =~ ^wallpaper-[0-9]+\.jpg$ ]]; then
         while [ -f "$wallpapers_dir/wallpaper-$count.jpg" ]; do
             ((count++))
         done
