@@ -27,16 +27,16 @@ echo -e "\nWindows + Shift + F1            →  Copy local machine IP addres"
 echo -e "Windows + Shift + F2            →  Copy VPN IP addres"
 echo -e "Windows + Shift + F3            →  Copy target IP addres"
 
-echo -e "\nWindows/Fn + F2                 →  Turn down the brightness"
-echo -e "Windows/Fn + F3                 →  Turn up the brightness"
+echo -e "\nWindows + F2                    →  Turn down the brightness"
+echo -e "Windows + F3                    →  Turn up the brightness"
 
-echo -e "\nWindows/Fn + F5                 →  Mute and unmute the sound"
-echo -e "Windows/Fn + F6                 →  Turn down the volume"
-echo -e "Windows/Fn + F7                 →  Turn up the volume"
+echo -e "\nWindows + F5                    →  Mute and unmute the sound"
+echo -e "Windows + F6                    →  Turn down the volume"
+echo -e "Windows + F7                    →  Turn up the volume"
 
-echo -e "\nWindows/Fn + F8                 →  Turn on/off the color temperature"
+echo -e "\nWindows + F8                    →  Turn on/off the color temperature"
 echo -e "Windows/FN + F9                 →  Turn down the color temperature"
-echo -e "Windows/Fn + F10                →  Turn up the color temperature"
+echo -e "Windows + F10                   →  Turn up the color temperature"
 
 echo -e "\nWindows + Shift + D             →  Open Rofi launcher"
 echo -e "Windows + Shift + P             →  Open Rofi power menu"
