@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 # bspwm
 bspc monitor -d I II III IV V VI VII VIII IX X
