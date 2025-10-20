@@ -30,7 +30,6 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 # brightness
 brightness=$(cat /sys/class/backlight/*/brightness)
-
 if [ "$brightness" = "12" ]; then
     echo '0' > /sys/class/backlight/*/brightness
 fi
