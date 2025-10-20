@@ -99,7 +99,7 @@ done
 
 # INSTALL THE NECESSARY DEPENDENCIES
 echo -e "\e[32m[*]\e[0m Installing the necessary dependencies ...\n"
-apt install dunst papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd suckless-tools fastfetch polybar betterlockscreen bat lsd fzf flameshot picom rofi kitty zsh jq pulseaudio-utils payloadsallthethings seclists bloodhound neo4j x11-utils moreutils -y
+apt install dunst papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd suckless-tools fastfetch polybar betterlockscreen bat lsd fzf flameshot rofi kitty zsh jq pulseaudio-utils payloadsallthethings seclists bloodhound neo4j x11-utils moreutils -y
 
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
@@ -142,10 +142,6 @@ cp -r sxhkd /home/$input_username/.config
 echo -e "\e[32m[*]\e[0m Configuring kitty ...\n"
 cp -r kitty /home/$input_username/.config
 cp -r kitty /root/.config
-
-# CONFIGURING PICOM
-echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
-cp -r picom /home/$input_username/.config
 
 # CONFIGURING DUNST
 echo -e "\e[32m[*]\e[0m Configuring dunst ...\n"
@@ -818,14 +814,35 @@ while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install POWERLEVEL10K or STARSHIP? (POWERLEVEL10K/STARSHIP): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
 
-   if [ "$response" = "powerlevel10k" ]; then
+    if [ "$response" = "powerlevel10k" ]; then
         powerlevel10k_installation
         break
-   elif [ "$response" = "starship" ]; then
+    elif [ "$response" = "starship" ]; then
         starship_installation
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'POWERLEVEL10K' or 'STARSHIP'.\n"
+    fi
+done
+
+# PICOM
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PICOM? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
+        apt install picom -y
+        cp -r picom /home/$input_username/.config
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Picom hasn't been installed.\n"
+        sed -i '/# picom/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+        sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/launcher/style.rasi
+        sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/powermenu/style.rasi
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
     fi
 done
 
