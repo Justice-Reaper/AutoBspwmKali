@@ -215,7 +215,7 @@ picom_installation(){
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             rm -rf /home/$input_username/.config/picom
             echo -e "\e[31m[*]\e[0m Picom hasn't been installed.\n"
-            sed -i '/# picom/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+            sed -i '/# picom/,+2d' /home/$input_username/.config/bspwm/bspwmrc
             sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/launcher/style.rasi
             sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/powermenu/style.rasi
             sed -i '/background_opacity 0.85/,+1d' /home/$input_username/.config/kitty/kitty.conf
@@ -786,7 +786,7 @@ virtual_machine_configuration(){
     sed -i '/\[battery_critical\]/,+3d' /home/$input_username/.config/dunst/dunstrc
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
-    sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+    sed -i '/# brightness/,+5d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
     sed -i '/# increase brightness/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc  
@@ -815,7 +815,7 @@ desktop_configuration(){
     sed -i '/\[battery_critical\]/,+3d' /home/$input_username/.config/dunst/dunstrc
 
     echo -e "\e[32m[*]\e[0m Configuring BSPWM ...\n"
-    sed -i '/# brightness/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+    sed -i '/# brightness/,+5d' /home/$input_username/.config/bspwm/bspwmrc
 
     echo -e "\e[32m[*]\e[0m Configuring sxhkdrc ...\n"
     sed -i '/# increase brightness/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc  
