@@ -23,10 +23,6 @@ wallpaper=$(cat /home/user_replace/.config/bin/wallpaper)
 feh --bg-fill /home/user_replace/Wallpapers/$wallpaper &
 
 # dunst
-if pgrep -x "xfce4-notifyd" > /dev/null
-then
-    killall -q xfce4-notifyd
-fi
 pgrep -x dunst > /dev/null || dunst &
 
 # sxhkd
@@ -40,11 +36,7 @@ if [ "$brightness" = "12" ]; then
 fi
 
 # picom
-if pgrep -x "picom" > /dev/null
-then
-    killall -q picom && sleep 1
-fi
-picom --config /home/user_replace/.config/picom/picom.conf --daemon &
+pgrep -x picom > /dev/null || picom --config /home/user_replace/.config/picom/picom.conf --daemon &
 
 # polybar
 if pgrep -x "polybar" > /dev/null
