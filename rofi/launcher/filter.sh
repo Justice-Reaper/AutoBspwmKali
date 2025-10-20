@@ -2,9 +2,14 @@
 
 {
 find /usr/share/applications -name "*.desktop"
-find /home/user_replace/.local/share/applications -name "*.desktop" 2>/dev/null
+find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/null
 } | while read -r file; do
     if grep -qi "terminal=false" "$file"; then
+        # Ignorar archivos que contengan exec-in-shell
+        if grep -qi "exec-in-shell" "$file"; then
+            continue
+        fi
+        
         if grep -q "^Exec=" "$file"; then
             exec_line=$(grep "^Exec=" "$file" | head -1)
             original_command=$(echo "$exec_line" | sed 's/^Exec=//')
