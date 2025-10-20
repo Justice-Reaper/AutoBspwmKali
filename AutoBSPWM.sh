@@ -195,6 +195,37 @@ touch /home/$input_username/.config/bin/target
 echo 'wallpaper-1.jpg' > /home/$input_username/.config/bin/wallpaper
 cd "$installation_folder"
 
+picom_installation(){
+    installation_type="$1"
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PICOM? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
+            cp -r picom /home/$input_username/.config
+            apt install picom -y
+            if [ "$installation_type" = "bare metal" ]; then
+                sed -i '/backend = "xrender"/d' /home/$input_username/.config/picom/picom.conf
+            elif [ "$installation_type" = "virtual machine" ]; then
+                sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
+                sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf
+            fi    
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            rm -rf /home/$input_username/.config/picom
+            echo -e "\e[31m[*]\e[0m Picom hasn't been installed.\n"
+            sed -i '/# picom/,+6d' /home/$input_username/.config/bspwm/bspwmrc
+            sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/launcher/style.rasi
+            sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/powermenu/style.rasi
+            sed -i '/background_opacity 0.85/,+1d' /home/$input_username/.config/kitty/kitty.conf
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
+
 starship_installation(){
     echo -e "\e[32m[*]\e[0m Configuring starship for user $input_username ...\n"
     latest_version=$(curl -s "https://api.github.com/repos/starship/starship/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -825,27 +856,6 @@ while true; do
     fi
 done
 
-# PICOM
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PICOM? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
-        apt install picom -y
-        cp -r picom /home/$input_username/.config
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Picom hasn't been installed.\n"
-        sed -i '/# picom/,+6d' /home/$input_username/.config/bspwm/bspwmrc
-        sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/launcher/style.rasi
-        sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/powermenu/style.rasi
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
 # VIRTUAL MACHINE OR BARE METAL CHOICE
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Are you using a virtual machine? (YES/NO): ")" response
@@ -853,11 +863,6 @@ while true; do
 
     if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
         echo -e "\e[32m[*]\e[0m Configuring the system for a virtual machine...\n"
-        echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
-        sed -i 's/^\(round-borders = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
-        sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
-        sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
-        sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
         cp bin/clearTarget /usr/bin
@@ -869,13 +874,12 @@ while true; do
 
         cp rules/99-power-actions.rules /etc/polkit-1/rules.d
         
+        picom_installation "virtual machine"
         virtual_machine_configuration
         enable_bidirectional_clipboard
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
-        sed -i '/backend = "xrender"/d' /home/$input_username/.config/picom/picom.conf
-
         sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
@@ -889,7 +893,8 @@ while true; do
         cp -r bin /usr
 
         cp rules/99-power-actions.rules /etc/polkit-1/rules.d
-        
+
+        picom_installation "bare metal"
         warning
         laptop_or_desktop
         nvidia_drivers_installation
