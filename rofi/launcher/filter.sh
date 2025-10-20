@@ -2,7 +2,7 @@
 
 {
 find /usr/share/applications -name "*.desktop"
-find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/null
+find /home/user_replace/.local/share/applications -name "*.desktop" 2>/dev/null
 } | while read -r file; do
     if grep -qi "terminal=false" "$file"; then
         if grep -qi "^Categories=" "$file"; then
