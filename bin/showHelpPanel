@@ -3,7 +3,6 @@
 blue='\033[1;34m'
 reset='\033[0m'
 
-
 echo -e "\n\n${blue}Bspwm Shortcuts${reset}"
 
 echo -e "\nWindows + Enter + (1,2,3,4,5,6,7,8,9,0)                           → Switch between workspace"
@@ -12,8 +11,8 @@ echo -e "\nWindows + Shift + R                                               →
 
 echo -e "\nWindows + Shift + Q                                               →  Log out of bspwm"
 
-echo -e "\nCtrl + Windows + Alt + (⬆⬅⬇➡)                                     →  Activate preselectors (Requires an open window)"
-echo -e "Ctrl + Windows + Alt + (1,2,3,4,5,6,7,8,9,0)                      →  Control preselector ratio (Requires an open window)"
+echo -e "\nCtrl + Windows + Alt + (⬆⬅⬇➡)                                     →  Activate preselectors (requires an open window)"
+echo -e "Ctrl + Windows + Alt + (1,2,3,4,5,6,7,8,9,0)                      →  Control preselector ratio (requires an open window)"
 echo -e "Preselectors activated + Ctrl + Windows + Alt + Spacebar          →  Cancel preselection"
 
 
@@ -28,16 +27,16 @@ echo -e "\nWindows + Shift + F1            →  Copy local machine IP addres"
 echo -e "Windows + Shift + F2            →  Copy VPN IP addres"
 echo -e "Windows + Shift + F3            →  Copy target IP addres"
 
-echo -e "\nWindows/FN + F2                 →  Turn down the brightne"
-echo -e "Windows/FN + F3                 →  Turn up the brightne"
+echo -e "\nWindows/Fn + F2                 →  Turn down the brightness"
+echo -e "Windows/Fn + F3                 →  Turn up the brightness"
 
-echo -e "\nWindows/FN + F5                 →  Mute and unmute the sound"
-echo -e "Windows/FN + F6                 →  Turn down the volume"
-echo -e "Windows/FN + F7                 →  Turn up the volume"
+echo -e "\nWindows/Fn + F5                 →  Mute and unmute the sound"
+echo -e "Windows/Fn + F6                 →  Turn down the volume"
+echo -e "Windows/Fn + F7                 →  Turn up the volume"
 
-echo -e "\nWindows/FN + F8                 →  Turn on/off the color temperature"
+echo -e "\nWindows/Fn + F8                 →  Turn on/off the color temperature"
 echo -e "Windows/FN + F9                 →  Turn down the color temperature"
-echo -e "Windows/FN + F10                →  Turn up the color temperature"
+echo -e "Windows/Fn + F10                →  Turn up the color temperature"
 
 echo -e "\nWindows + Shift + D             →  Open Rofi launcher"
 echo -e "Windows + Shift + P             →  Open Rofi power menu"
@@ -113,7 +112,7 @@ echo -e "Page Down                →  Scroll down in paginate mode"
 
 echo -e "\nShift + Tab              →  Undo the last action"
 
-echo -e "\nCtrl + R                 →  Use fzf to autocomplete files/directorie"
+echo -e "\nCtrl + R                 →  Use fzf to autocomplete files/directories"
 echo -e "Ctrl + R                 →  Use fzf to run commands from the zsh history"
 
 echo -e "\nEsc + Esc                →  Add sudo at the beginning of the line and if there is no text, add sudo followed by the last executed command"
