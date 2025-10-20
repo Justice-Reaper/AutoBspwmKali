@@ -12,14 +12,8 @@ configuration {
     tokenize:                   true;
     matching:                   "fuzzy";        
 
-    /*---------- Run settings ----------*/
-    terminal: "kitty";
-    run-command: "{cmd}";
-    run-list-command: "";
-    run-shell-command: "{terminal} -e {cmd}";
-
 	/*---------- Drun settings ----------*/
-	drun-match-fields: "name,generic,exec,categories,keywords";
+    drun-categories: "Rofi";
     drun-display-format: "{name}";
         
 	drun {
