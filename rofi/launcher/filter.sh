@@ -5,7 +5,6 @@ find /usr/share/applications -name "*.desktop"
 find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/null
 } | while read -r file; do
     if grep -qi "terminal=false" "$file"; then
-        # Ignorar archivos que contengan exec-in-shell
         if grep -qi "exec-in-shell" "$file"; then
             continue
         fi
