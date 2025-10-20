@@ -1,3 +1,6 @@
+[battery]
+disabled = true
+
 [aws]
 symbol = "  "
 
