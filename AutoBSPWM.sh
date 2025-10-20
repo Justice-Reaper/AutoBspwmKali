@@ -880,6 +880,8 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
+        sed -i '/# polybar/,+5d' /home/$input_username/.config/bspwm/bspwmrc
+        echo -e "# polybar\npgrep -x polybar > /dev/null || polybar &" >> /home/$input_username/.config/bspwm/bspwmrc
         sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
