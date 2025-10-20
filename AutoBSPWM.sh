@@ -622,8 +622,13 @@ tor_installation(){
     echo -e "\e[32m[*]\e[0m Installing tor ..."
     rm -rf /home/$input_username/Browser
     mkdir -p /home/$input_username/.local/share/applications
-    latest_version=$(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n1)
-    wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz
+    readarray -t versions < <(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n2)
+    latest_version="${versions[1]}"
+    previous_version="${versions[0]}"
+    if ! wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz; then
+        echo "Descargando versión anterior: $previous_version"
+        wget "https://dist.torproject.org/torbrowser/${previous_version}/tor-browser-linux-x86_64-${previous_version}.tar.xz" -O tor-browser.tar.xz
+    fi
     tar -xf tor-browser.tar.xz -C /home/$input_username --strip-components=1
     rm -f /home/$input_username/start-tor-browser.desktop
     rm -f /home/$input_username/Browser/start-tor-browser.desktop
@@ -836,7 +841,6 @@ while true; do
         sed -i 's/^\(corner-radius = 15;\)/# \1/' /home/$input_username/.config/picom/picom.conf
         sed -i '/backend = "glx"/d' /home/$input_username/.config/picom/picom.conf
         sed -i '/^vsync = true$/d' /home/$input_username/.config/picom/picom.conf   
-        
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
         cp bin/clearTarget /usr/bin
@@ -854,7 +858,8 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[32m[*]\e[0m The system is being configured for a bare metal system...\n"
         sed -i '/backend = "xrender"/d' /home/$input_username/.config/picom/picom.conf
-        
+
+        sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
         sed -i "s/user_replace/$input_username/g" rules/99-usb-sound.rules
@@ -1156,7 +1161,6 @@ sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/bspwm/bs
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/sxhkd/sxhkdrc
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.zshrc  
 sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/dunstrc
-sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
 
 # CREATE A SYMBOLIC LINK BETWEEN THE CONFIGURATION FILES OF THE CHOSEN USER'S KITTY AND THOSE OF ROOT
 echo -e "\e[32m[*]\e[0m Creating symbolic link in kitty.conf and kitty.color ...\n"
