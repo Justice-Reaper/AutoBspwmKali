@@ -182,26 +182,20 @@ cp services/package-events.path /etc/systemd/system
 cp services/package-events.service /etc/systemd/system
 systemctl enable --now /etc/systemd/system/package-events.path
 cp -r rofi /home/$input_username/.config 
-cd /home/$input_username/.config/rofi  
-cd launcher  
-chmod +x launcher.sh
-chmod +x filter.sh
-sed -i "s/user_replace/$input_username/g" *
-cd ../powermenu 
-chmod +x powermenu.sh
-sed -i "s/user_replace/$input_username/g" powermenu.sh
-cd "$installation_folder"
+chmod +x /home/$input_username/.config/rofi/launcher/launcher.sh
+chmod +x /home/$input_username/.config/rofi/launcher/filter.sh
+chmod +x /home/$input_username/.config/rofi/powermenu/powermenu.sh
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/rofi/powermenu/*
+sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/rofi/launcher/*
 
 # CONFIGURING POLYBAR
 echo -e "\e[32m[*]\e[0m Configuring polybar ...\n"
 cp -r polybar /home/$input_username/.config
-cd /home/$input_username/.config/polybar/scripts 
-chmod +x *
+chmod +x /home/$input_username/.config/polybar/scripts/*
 mkdir /home/$input_username/.config/bin  
 touch /home/$input_username/.config/bin/wallpaper
 touch /home/$input_username/.config/bin/target  
 echo 'wallpaper-1.jpg' > /home/$input_username/.config/bin/wallpaper
-cd "$installation_folder"
 
 picom_installation(){
     installation_type="$1"
@@ -1204,7 +1198,7 @@ echo -e "\e[32m[*]\e[0m Assigning the correct owner to the configuration files .
 chown -R $input_username:$input_username /home/$input_username
 
 # ACTIVATE ROFI FILTER
-bash /home/$input_username/.config/rofi/filter.sh
+bash /home/$input_username/.config/rofi/launcher/filter.sh
 
 # REMOVE UNNECESSARY PACKAGES
 echo -e "\e[32m[*]\e[0m Removing unnecessary apt packages ...\n"
