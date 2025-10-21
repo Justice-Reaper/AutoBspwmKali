@@ -188,7 +188,6 @@ sed -i "s/user_replace/$input_username/g" *
 cd ../powermenu 
 chmod +x powermenu.sh
 sed -i "s/user_replace/$input_username/g" powermenu.sh
-bash /home/$input_username/.config/rofi/filter.sh
 cd "$installation_folder"
 
 # CONFIGURING POLYBAR
@@ -1201,6 +1200,9 @@ ln -s -f /home/$input_username/.config/kitty/color.ini /root/.config/kitty/color
 # ASSIGN THE CORRECT OWNER TO THE FILES
 echo -e "\e[32m[*]\e[0m Assigning the correct owner to the configuration files ...\n"
 chown -R $input_username:$input_username /home/$input_username
+
+# ACTIVATE ROFI FILTER
+bash /home/$input_username/.config/rofi/filter.sh
 
 # REMOVE UNNECESSARY PACKAGES
 echo -e "\e[32m[*]\e[0m Removing unnecessary apt packages ...\n"
