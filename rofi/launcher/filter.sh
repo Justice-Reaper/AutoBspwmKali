@@ -8,7 +8,7 @@ find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/nul
         if grep -qi "exec-in-shell" "$file"; then
             continue
         fi
-        
+
         if grep -qi "^Name=.*\(picom\|terminal\|rofi\|flameshot\)" "$file"; then
             continue
         fi
