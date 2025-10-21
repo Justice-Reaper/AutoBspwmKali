@@ -22,16 +22,6 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
-# DISABLE KEYBOARD
-stty -echo -icanon time 0 min 0
-
-# OVERRIDE READ SO IT TEMPORARILY ENABLES INPUT ONLY WHEN CALLED
-read() {
-    stty sane
-    builtin read "$@"
-    stty -echo -icanon time 0 min 0
-}
-
 # OBTAIN THE INSTALLATION FOLDER
 installation_folder=$(pwd)
 
@@ -1211,6 +1201,3 @@ apt clean -y
 # BSPWM ENVIRONMENT CONFIGURED SUCCESSFULLY
 echo -e "\e[32m[*]\e[0m the BSPWM environment has been successfully installed!\n"
 echo -e "\e[32m[*]\e[0m it is recommended to restart/log in again for the configuration to load correctly\n"
-
-# ENALBE KEYBOARD
-stty sane
