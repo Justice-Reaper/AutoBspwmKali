@@ -111,7 +111,9 @@ rm -rf /home/$input_username/.config/dunst
 rm -rf /home/$input_username/.config/polybar 
 rm -rf /home/$input_username/.config/picom 
 rm -rf /home/$input_username/.config/bspwm 
-rm -rf /home/$input_username/.config/sxhkd 
+rm -rf /home/$input_username/.config/sxhkd
+rm /etc/systemd/system/package-events.path
+rm /etc/systemd/system/package-events.service
 
 # CREATE NEW CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Creating new configurations ...\n"
