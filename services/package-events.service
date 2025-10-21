@@ -5,6 +5,3 @@ Description=Update desktop icons
 ExecStart=/home/user_replace/.config/rofi/launcher/filter.sh
 Type=oneshot
 User=root
-
-[Install]
-WantedBy=multi-user.target
