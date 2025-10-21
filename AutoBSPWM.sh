@@ -175,6 +175,7 @@ cd "$installation_folder"
 # CONFIGURING ROFI
 echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
 chmod 644 services/*
+sed -i "s/user_replace/$input_username/g" services/*
 cp services/package-events.path /etc/systemd/system
 cp services/package-events.service /etc/systemd/system
 systemctl enable --now /etc/systemd/system/package-events.path
