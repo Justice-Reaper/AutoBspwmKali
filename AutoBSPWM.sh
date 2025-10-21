@@ -311,14 +311,14 @@ desktop_shortcuts_configuration(){
         read -p "$(echo -e "\e[33m[*]\e[0m Do you want to use the FN key or the WINDOWS key for keyboard shortcuts (it will be used to INCREASE/DECREASE VOLUME/BRIGHTNESS and to MUTE the SOUND)? (FN/WINDOWS): ")" response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
         sed -i '/Windows\/Fn + F2.*→.*Turn down the brightness/d' /usr/bin/showHelpPanel
-        sed -i '/Windows\/Fn + F3.*→.*Turn up the brightness/,+1d' showHelpPanelCopy
+        sed -i '/Windows\/Fn + F3.*→.*Turn up the brightness/,+1d' /usr/bin/showHelpPanel
         if [ "$response" = "windows" ]; then
             echo -e "\e[32m[*]\e[0m Configuring Windows key ...\n"
             sed -i 's|/Fn||g' /usr/bin/showHelpPanel
             break
         elif [ "$response" = "fn" ]; then
             echo -e "\e[32m[*]\e[0m Configuring FN key ...\n"
-            sed 's|Windows/||g' /usr/bin/showHelpPanel
+            sed -i 's|Windows/||g' /usr/bin/showHelpPanel
             echo -e "\e[33m[*]\e[0m An output like this will appear (keysym 0x1008ff13, XF86AudioRaiseVolume) when you enter a key combination. You need to enter the third parameter, in this case, it is XF86AudioRaiseVolume. If you're using sxhkd, you must reload its configuration. If you installed BSPWM with this script, press WINDOWS + ESC"
             kitty --detach bash -c "xev | grep 'keysym'; exec bash"
             fn_key_configuration "turn up the volume"
@@ -352,7 +352,7 @@ laptop_shortcuts_configuration(){
             break
         elif [ "$response" = "fn" ]; then
             echo -e "\e[32m[*]\e[0m Configuring FN key ...\n"
-            sed 's|Windows/||g' /usr/bin/showHelpPanel
+            sed -i 's|Windows/||g' /usr/bin/showHelpPanel
             echo -e "\e[33m[*]\e[0m An output like this will appear (keysym 0x1008ff13, XF86AudioRaiseVolume) when you enter a key combination. You need to enter the third parameter, in this case, it is XF86AudioRaiseVolume. If you're using sxhkd, you must reload its configuration. If you installed BSPWM with this script, press WINDOWS + ESC"
             kitty --detach bash -c "xev | grep 'keysym'; exec bash"
             fn_key_configuration "turn up the volume"
