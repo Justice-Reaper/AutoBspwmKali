@@ -188,6 +188,7 @@ sed -i "s/user_replace/$input_username/g" *
 cd ../powermenu 
 chmod +x powermenu.sh
 sed -i "s/user_replace/$input_username/g" powermenu.sh
+bash /home/$input_username/.config/rofi/filter.sh
 cd "$installation_folder"
 
 # CONFIGURING POLYBAR
