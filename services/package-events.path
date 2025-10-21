@@ -1,0 +1,8 @@
+[Unit]
+Description=Monitor package changes
+
+[Path]
+PathChanged=/var/lib/dpkg/info/
+PathChanged=/var/lib/dpkg/status
+PathChanged=/var/log/apt/history.log
+Unit=package-events.service
