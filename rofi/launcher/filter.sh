@@ -15,7 +15,7 @@ find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/nul
 
         if grep -qi "^Categories=" "$file"; then
             if ! grep -qi "Rofi;" "$file"; then
-                sed -i '/^Categories=/s/$/Rofi;/' "$file"
+                sed -i 's/^Categories=/&Rofi;/' "$file"
             fi
         else
             echo "Categories=Rofi;" >> "$file"
