@@ -174,11 +174,16 @@ cd "$installation_folder"
 
 # CONFIGURING ROFI
 echo -e "\e[32m[*]\e[0m Configuring rofi ...\n"
+chmod 644 services/*
+cp services/package-events.path /etc/systemd/system
+cp services/package-events.service /etc/systemd/system
+systemctl enable --now /etc/systemd/system/package-events.path
 cp -r rofi /home/$input_username/.config 
 cd /home/$input_username/.config/rofi  
 cd launcher  
 chmod +x launcher.sh
-sed -i "s/user_replace/$input_username/g" launcher.sh
+chmod +x filter.sh
+sed -i "s/user_replace/$input_username/g" *
 cd ../powermenu 
 chmod +x powermenu.sh
 sed -i "s/user_replace/$input_username/g" powermenu.sh
