@@ -864,7 +864,7 @@ while true; do
         cp bin/setWallpaper /usr/bin
         cp bin/showHelpPanel /usr/bin
 
-        cp rules/99-power-actions.rules /etc/polkit-1/rules.d
+        cp rules/99-no-password.rules /etc/polkit-1/rules.d
         
         picom_installation "virtual machine"
         virtual_machine_configuration
@@ -886,7 +886,7 @@ while true; do
         chmod +x  bin/*
         cp -r bin /usr
 
-        cp rules/99-power-actions.rules /etc/polkit-1/rules.d
+        cp rules/99-no-password.rules /etc/polkit-1/rules.d
 
         picom_installation "bare metal"
         warning
