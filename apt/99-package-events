@@ -1,7 +1,7 @@
 DPkg::Post-Invoke-Success { 
-    "case $DPKG_HOOK_ACTION in install|upgrade) /home/justice-reaper/.config/rofi/launcher/filter.sh ;; esac"; 
+    "case $DPKG_HOOK_ACTION in install|upgrade) /home/user_replace/.config/rofi/launcher/filter.sh ;; esac"; 
 }; 
 
-APT::Install::Post-Invoke-Success { "/home/justice-reaper/.config/rofi/launcher/filter.sh"; };
-APT::Upgrade::Post-Invoke-Success { "/home/justice-reaper/.config/rofi/launcher/filter.sh"; };
-APT::Update::Post-Invoke-Success { "/home/justice-reaper/.config/rofi/launcher/filter.sh"; };
+APT::Install::Post-Invoke-Success { "/home/user_replace/.config/rofi/launcher/filter.sh"; };
+APT::Upgrade::Post-Invoke-Success { "/home/user_replace/.config/rofi/launcher/filter.sh"; };
+APT::Update::Post-Invoke-Success { "/home/user_replace/.config/rofi/launcher/filter.sh"; };
