@@ -861,6 +861,7 @@ while true; do
         cp bin/setWallpaper /usr/bin
         cp bin/showHelpPanel /usr/bin
 
+        chmod 644 rules/*
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
         
         picom_installation "virtual machine"
