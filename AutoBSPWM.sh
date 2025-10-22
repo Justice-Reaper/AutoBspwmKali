@@ -927,6 +927,7 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m obsidian hasn't been installed.\n"
         sed -i '/# obsidian/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/Windows + Shift + O\s*→\s*Open Obsidian/d' /usr/bin/showHelpPanel
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -1074,6 +1075,7 @@ while true; do
         sed -i '/# postman/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         sed -i '/# postman/,+2d' /home/$input_username/.zshrc
         sed -i '/# postman/,+2d' /root/.zshrc
+        sed -i '/Windows + Shift + A\s*→\s*Open Postman/d' /usr/bin/showHelpPanel
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -1109,6 +1111,7 @@ while true; do
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Vscode hasn't been installed.\n"
         sed -i '/# vscode/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/Windows + Shift + V\s*→\s*Open VSCode/d' /usr/bin/showHelpPanel
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
@@ -1162,6 +1165,7 @@ while true; do
         sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
         sed -i '/# pycharm/,+2d' /root/.zshrc
         sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/Windows + Shift + S\s*→\s*Open Pycharm/d' /usr/bin/showHelpPanel
         echo -e "\e[31m[*]\e[0m Pycharm community hasn't been installed.\n"
         break
     else
@@ -1187,9 +1191,6 @@ ln -s -f /home/$input_username/.config/kitty/color.ini /root/.config/kitty/color
 echo -e "\e[32m[*]\e[0m Assigning the correct owner to the configuration files ...\n"
 chown -R $input_username:$input_username /home/$input_username
 
-# ACTIVATE ROFI FILTER
-bash /home/$input_username/.config/rofi/launcher/filter.sh
-
 # REMOVE UNNECESSARY PACKAGES
 echo -e "\e[32m[*]\e[0m Removing unnecessary apt packages ...\n"
 apt autoremove -y  
@@ -1197,6 +1198,9 @@ apt autoremove -y
 # REMOVE CACHE FILES
 echo -e "\e[32m[*]\e[0m Limpiando caché de paquetes apt ...\n"
 apt clean -y
+
+# ROFI FILTER
+bash /home/$input_username/.config/rofi/launcher/filter.sh
 
 # BSPWM ENVIRONMENT CONFIGURED SUCCESSFULLY
 echo -e "\e[32m[*]\e[0m the BSPWM environment has been successfully installed!\n"
