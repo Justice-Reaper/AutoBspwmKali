@@ -13,6 +13,13 @@ find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/nul
             continue
         fi
 
+        if grep -qi "^Exec=.*pkexec" "$file"; then
+            if ! grep -qi "^Exec=sh -c \".*pkexec" "$file"; then
+                sed -i 's/^Exec=\(.*pkexec.*\)/Exec=sh -c "\1"/' "$file"
+                echo "Modificado: $file"
+            fi
+        fi
+
         if grep -qi "^Categories=" "$file"; then
             if ! grep -qi "Rofi;" "$file"; then
                 sed -i 's/^Categories=/&Rofi;/' "$file"
