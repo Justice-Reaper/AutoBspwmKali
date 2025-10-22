@@ -9,6 +9,10 @@ find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/nul
             continue
         fi
 
+        if grep -qi "x-www-browser" "$file"; then
+            continue
+        fi
+
         if grep -qi "^Name=.*\(picom\|terminal\|rofi\|flameshot\)" "$file"; then
             continue
         fi
@@ -16,7 +20,6 @@ find /home/justice-reaper/.local/share/applications -name "*.desktop" 2>/dev/nul
         if grep -qi "^Exec=.*pkexec" "$file"; then
             if ! grep -qi "^Exec=sh -c \".*pkexec" "$file"; then
                 sed -i 's/^Exec=\(.*pkexec.*\)/Exec=sh -c "\1"/' "$file"
-                echo "Modificado: $file"
             fi
         fi
 
