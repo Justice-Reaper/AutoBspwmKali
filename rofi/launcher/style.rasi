@@ -16,7 +16,7 @@ configuration {
     drun-categories: "Rofi";
     drun-display-format: "{name}";
         
-	drun {
+    drun {
         fallback-icon: "application-x-addon";
     }
 
