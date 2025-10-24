@@ -13,7 +13,7 @@ find /home/user_replace/.local/share/applications -name "*.desktop" 2>/dev/null
             continue
         fi
 
-        if grep -qi "^Name=.*\(picom\|terminal\|rofi\|flameshot\)" "$file"; then
+        if grep -qi "^Name=.*\(picom\|rofi\|flameshot\)" "$file"; then
             continue
         fi
 
