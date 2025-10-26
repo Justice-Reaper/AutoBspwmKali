@@ -594,6 +594,13 @@ getTopPorts_installation(){
     chmod +x /usr/bin/getTopPorts
 }
 
+ipRangeGenerator_installation(){
+    echo -e "\e[32m[*]\e[0m Installing ipRangeGenerator ...\n"
+    wget https://raw.githubusercontent.com/Justice-Reaper/ipRangeGenerator/refs/heads/main/ipRangeGenerator.py -O ipRangeGenerator
+    cp ipRangeGenerator /usr/bin
+    chmod +x /usr/bin/ipRangeGenerator
+}
+
 pycharm_community_installation(){
     echo -e "\e[32m[*]\e[0m Installing pycharm community ..."
     mkdir -p /home/$input_username/.local/share/applications
@@ -1022,6 +1029,22 @@ while true; do
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m getTopPorts hasn't been installed.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
+# IP RANGE GENERATOR
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install IP RANGE GENERATOR? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        ipRangeGenerator_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m ipRangeGenerator hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
