@@ -865,6 +865,7 @@ while true; do
         cp bin/setTarget /usr/bin
         cp bin/extractPorts /usr/bin
         cp bin/mkt /usr/bin
+        cp bin/xcopy /usr/bin
         cp bin/setWallpaper /usr/bin
         cp bin/showHelpPanel /usr/bin
 
