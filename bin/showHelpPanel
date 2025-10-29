@@ -139,10 +139,10 @@ echo -e "\nEsc                      →  Exit Rofi"
 
 echo -e "\n\n${blue}Application Shortcuts${reset}"
 
-echo -e "\nWindows + Shift + A            →  Open Postman"
+echo -e "\nWindows + Shift + F            →  Open Browser"
+echo -e "Windows + Shift + A            →  Open Postman"
 echo -e "Windows + Shift + O            →  Open Obsidian"
 echo -e "Windows + Shift + S            →  Open Pycharm"
-echo -e "Windows + Shift + F            →  Open Browser"
 echo -e "Windows + Shift + B            →  Open Proxy"
 echo -e "Windows + Shift + V            →  Open VSCode"
 echo -e "Windows + Shift + G            →  Open Thunar file manager"
