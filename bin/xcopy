@@ -1,0 +1,13 @@
+#!/bin/bash
+
+script_name=$(basename "$0")
+
+if [ $# -eq 0 ] || [ ! -f "$1" ]; then
+    echo "Error: You must specify a file"
+    echo "Usage: $script_name <file>"
+    exit 1
+fi
+
+xclip -selection clipboard "$1"
+
+echo "Content of '$1' copied to clipboard"
