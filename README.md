@@ -80,7 +80,8 @@ sudo ./AutoBSPWM.sh
 - **mkt**: Creates the necessary working directories for performing a pentest
 - **setTarget**: Sets the target in the polybar
 - **setWallpaper**: Configures the desktop wallpaper
-- **ipRangeGenerator**: Generates IP address ranges  
+- **ipRangeGenerator**: Generates IP address ranges
+- **xcopy**: Copies file content directly to system clipboard  
 - **showHelpPanel**: Displays all commands and shortcuts of the environment
 
 ## Bspwm Shortcuts
