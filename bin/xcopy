@@ -10,4 +10,4 @@ fi
 
 xclip -selection clipboard "$1"
 
-echo "Content of '$1' copied to clipboard"
+echo "[*] Content of '$1' copied to clipboard"
