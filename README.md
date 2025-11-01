@@ -5,7 +5,7 @@
 
 - On a bare metal system, you'll have sound notifications when connecting or disconnecting USB devices, as well as brightness and volume controls. For battery management, you’ll receive custom notifications for full charge, low battery, and charging status  
 
-- This bspwm environment is designed to work with the XFCE desktop environment  
+- This BSPWM environment is designed to work with the XFCE desktop environment  
 
 - Installation options: bare metal desktop PC, bare metal laptop, and virtual machine  
 
