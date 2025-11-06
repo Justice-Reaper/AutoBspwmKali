@@ -645,7 +645,7 @@ tor_installation(){
     echo -e "\e[32m[*]\e[0m Installing tor ..."
     rm -rf /home/$input_username/Browser
     mkdir -p /home/$input_username/.local/share/applications
-    readarray -t versions < <(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+\.[0-9]+(?=/)' | sort -V | tail -n2)
+    readarray -t versions < <(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+[^/]*(?=/)' | sort -V | tail -n2)
     latest_version="${versions[1]}"
     previous_version="${versions[0]}"
     if ! wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz; then
