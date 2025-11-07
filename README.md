@@ -118,13 +118,13 @@ sudo ./AutoBSPWM.sh
 <kbd>Windows</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> : Open Rofi power menu  
 
 ## Window Shortcuts
-<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Resize normal windows  
+<kbd>Windows</kbd> + <kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Resize normal windows  
 
 <kbd>Windows</kbd> + <kbd>W</kbd> : Close the current window  
 
-<kbd>Windows</kbd> + <kbd>S</kbd>: Create floating windows    
-<kbd>Windows</kbd> + <kbd>Right click</kbd>: Resize floating windows  
-<kbd>Windows</kbd> + <kbd>Left click</kbd>: Move floating window  
+<kbd>Windows</kbd> + <kbd>S</kbd> : Create floating windows    
+<kbd>Windows</kbd> + <kbd>Right click</kbd> : Resize floating windows  
+<kbd>Windows</kbd> + <kbd>Left click</kbd> : Move floating window  
 
 <kbd>Windows</kbd> + <kbd>T</kbd> : Change the current window to "terminal" mode (normal). This is useful when the window is in fullscreen or floating mode    
 <kbd>Windows</kbd> + <kbd>M</kbd> : Change the current window to "full" mode (does not occupy the polybar). Press the same keys to return to "terminal" mode (normal)    
@@ -160,46 +160,46 @@ sudo ./AutoBSPWM.sh
 <kbd>F4</kbd> : Paste content from the second clipboard
 
 ## Zsh Shortcuts
-<kbd>Alt</kbd> + <kbd>.</kbd>: Insert the argument from the previous command    
+<kbd>Alt</kbd> + <kbd>.</kbd> : Insert the argument from the previous command    
 
-<kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Move between words    
-<kbd>Home</kbd>: Move to the beginning of the line    
-<kbd>End</kbd>: Move to the end of the line   
+<kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Move between words    
+<kbd>Home</kbd> : Move to the beginning of the line    
+<kbd>End</kbd> : Move to the end of the line   
 
-<kbd>Ctrl</kbd> + <kbd>U</kbd>: Delete from cursor to beginning  
-<kbd>Ctrl</kbd> + <kbd>K</kbd>: Delete from cursor to end  
-<kbd>Ctrl</kbd> + <kbd>W</kbd>: Delete the entire line  
+<kbd>Ctrl</kbd> + <kbd>U</kbd> : Delete from cursor to beginning  
+<kbd>Ctrl</kbd> + <kbd>K</kbd> : Delete from cursor to end  
+<kbd>Ctrl</kbd> + <kbd>W</kbd> : Delete the entire line  
 
-<kbd>Alt</kbd> + <kbd>Del</kbd>: Delete the word to the right of the cursor    
-<kbd>Alt</kbd> + <kbd>Backspace</kbd>: Delete the word to the left of the cursor    
+<kbd>Alt</kbd> + <kbd>Del</kbd> : Delete the word to the right of the cursor    
+<kbd>Alt</kbd> + <kbd>Backspace</kbd> : Delete the word to the left of the cursor    
 
-<kbd>Del</kbd>: Delete the character to the right of the cursor  
-<kbd>Backspace</kbd>: Delete the character to the left of the cursor   
+<kbd>Del</kbd> : Delete the character to the right of the cursor  
+<kbd>Backspace</kbd> : Delete the character to the left of the cursor   
 
-<kbd>Page Up</kbd>: Scroll up in paginate mode    
-<kbd>Page Down</kbd>: Scroll down in paginate mode   
+<kbd>Page Up</kbd> : Scroll up in paginate mode    
+<kbd>Page Down</kbd> : Scroll down in paginate mode   
 
-<kbd>Shift</kbd> + <kbd>Tab</kbd>: Undo the last action    
+<kbd>Shift</kbd> + <kbd>Tab</kbd> : Undo the last action    
  
-<kbd>Ctrl</kbd> + <kbd>R</kbd>: Use fzf to autocomplete files/directories    
-<kbd>Ctrl</kbd> + <kbd>R</kbd>: Use fzf to run commands from the zsh history    
+<kbd>Ctrl</kbd> + <kbd>R</kbd> : Use fzf to autocomplete files/directories    
+<kbd>Ctrl</kbd> + <kbd>R</kbd> : Use fzf to run commands from the zsh history    
 
-<kbd>Esc</kbd> + <kbd>Esc</kbd>: Add sudo at the beginning of the line and if there is no text, add sudo followed by the last executed command  
+<kbd>Esc</kbd> + <kbd>Esc</kbd> : Add sudo at the beginning of the line and if there is no text, add sudo followed by the last executed command  
 
 ## Rofi Shortcuts
-<kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd>: Move between words    
-<kbd>Home</kbd>: Move to the beginning of the line    
-<kbd>End</kbd>: Move to the end of the line   
+<kbd>Alt</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Move between words    
+<kbd>Home</kbd> : Move to the beginning of the line    
+<kbd>End</kbd> : Move to the end of the line   
 
-<kbd>Ctrl</kbd> + <kbd>U</kbd>: Delete from cursor to beginning  
-<kbd>Ctrl</kbd> + <kbd>K</kbd>: Delete from cursor to end  
-<kbd>Ctrl</kbd> + <kbd>W</kbd>: Delete the entire line  
+<kbd>Ctrl</kbd> + <kbd>U</kbd> : Delete from cursor to beginning  
+<kbd>Ctrl</kbd> + <kbd>K</kbd> : Delete from cursor to end  
+<kbd>Ctrl</kbd> + <kbd>W</kbd> : Delete the entire line  
 
-<kbd>Alt</kbd> + <kbd>Del</kbd>: Delete the word to the right of the cursor    
-<kbd>Alt</kbd> + <kbd>Backspace</kbd>: Delete the word to the left of the cursor    
+<kbd>Alt</kbd> + <kbd>Del</kbd> : Delete the word to the right of the cursor    
+<kbd>Alt</kbd> + <kbd>Backspace</kbd> : Delete the word to the left of the cursor    
 
-<kbd>Del</kbd>: Delete the character to the right of the cursor
-<kbd>Backspace</kbd>: Delete the character to the left of the cursor    
+<kbd>Del</kbd> : Delete the character to the right of the cursor
+<kbd>Backspace</kbd> : Delete the character to the left of the cursor    
 
 <kbd>Esc</kbd> : Exit Rofi  
 
@@ -214,20 +214,20 @@ sudo ./AutoBSPWM.sh
 <kbd>PrtSc</kbd> : Take a screenshot with Flameshot  
 
 ## Commands
-<kbd>setTarget</kbd>: This function in zsh sets the target in the polybar    
-<kbd>clearTarget</kbd>: This function in zsh clears the target from the polybar    
+<kbd>setTarget</kbd> : This function in zsh sets the target in the polybar    
+<kbd>clearTarget</kbd> : This function in zsh clears the target from the polybar    
 
-<kbd>clearHistory</kbd>: Clear the zsh history    
-<kbd>removeHistory</kbd>: Remove the zsh history    
+<kbd>clearHistory</kbd> : Clear the zsh history    
+<kbd>removeHistory</kbd> : Remove the zsh history    
 
-<kbd>enableTouchpad</kbd>: Enable the laptop's touchpad    
-<kbd>disableTouchpad</kbd>: Disable the laptop's touchpad  
+<kbd>enableTouchpad</kbd> : Enable the laptop's touchpad    
+<kbd>disableTouchpad</kbd> : Disable the laptop's touchpad  
 
-<kbd>setWallpaper</kbd>: Set a wallpaper    
+<kbd>setWallpaper</kbd> : Set a wallpaper    
 
-<kbd>extractPorts</kbd>: Extract ports from a file in nmap -oG format and copy them to the clipboard    
+<kbd>extractPorts</kbd> : Extract ports from a file in nmap -oG format and copy them to the clipboard    
 
-<kbd>mkt</kbd>: Create a folder and several work directories inside it  
+<kbd>mkt</kbd> : Create a folder and several work directories inside it  
 
 <kbd>showHelpPanel</kbd> : Displays all commands and shortcuts of the desktop environment
   
