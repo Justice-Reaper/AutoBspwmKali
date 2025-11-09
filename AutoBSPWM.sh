@@ -509,9 +509,17 @@ caido_installation(){
 jython_installation(){
     echo -e "\e[32m[*]\e[0m Installing jython..."
     mkdir /opt/jython
-    latest_version=$(curl -s "https://repo1.maven.org/maven2/org/python/jython-standalone/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+(\.[0-9]+)?(?=/")' | sort -V | tail -n 1)
+    latest_version=$(curl -s "https://repo1.maven.org/maven2/org/python/jython-standalone/" | grep -oP '(?<=href=")[^/]+(?=/")' | grep -E '^[0-9.]+$' | sort -V | tail -n 1)
     wget https://repo1.maven.org/maven2/org/python/jython-standalone/${latest_version}/jython-standalone-${latest_version}.jar -O jython-standalone-${latest_version}.jar
     cp jython-standalone-${latest_version}.jar /opt/jython
+}
+
+jruby_installation(){
+    echo -e "\e[32m[*]\e[0m Installing JRuby..."
+    mkdir /opt/jruby
+    latest_version=$(curl -s "https://repo1.maven.org/maven2/org/jruby/jruby-complete/" | grep -oP '(?<=href=")[^/]+(?=/")' | grep -E '^[0-9.]+$' | sort -V | tail -n 1)
+    wget "https://repo1.maven.org/maven2/org/jruby/jruby-complete/${latest_version}/jruby-complete-${latest_version}.jar" -O "jruby-complete-${latest_version}.jar"
+    cp "jruby-complete-${latest_version}.jar" /opt/jruby
 }
 
 burpsuite_professional_installation(){
@@ -520,7 +528,7 @@ burpsuite_professional_installation(){
     rm -rf /opt/Burpsuite-Professional
     mv Burpsuite-Professional /opt
     cd /opt/Burpsuite-Professional
-    latest_version=$(curl -s "https://portswigger.net/burp/releases/community/latest" -L | grep -oP 'version=\K[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+    latest_version=$(curl -s "https://portswigger.net/burp/releases/community/latest" -L | grep -oP 'version=\K[^&"'\''<>]+' | sort -u)
     wget "https://portswigger-cdn.net/burp/releases/download?product=pro&type=Jar" -O "burpsuite_pro_v$latest_version.jar"
     (java -jar loader.jar) &
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$latest_version.jar &" > burpsuitepro
@@ -605,8 +613,8 @@ pycharm_community_installation(){
     echo -e "\e[32m[*]\e[0m Installing pycharm community ..."
     mkdir -p /home/$input_username/.local/share/applications
     rm -rf /opt/Pycharm-Community
-    latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"version":"[^"]*"' | head -1 | cut -d'"' -f4)
-    download_url=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"linux":{"link":"[^"]*"' | head -1 | cut -d'"' -f6)    
+    latest_version=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"version":"[^"]*"' | cut -d '"' -f4)
+    download_url=$(curl -s "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true" | grep -o '"linux":{"link":"[^"]*"' | cut -d '"' -f6)    
     wget $download_url -O pycharm-community.tar.gz
     mkdir /opt/Pycharm-Community
     tar -xzf pycharm-community.tar.gz -C /opt/Pycharm-Community --strip-components=1
@@ -645,7 +653,7 @@ tor_installation(){
     echo -e "\e[32m[*]\e[0m Installing tor ..."
     rm -rf /home/$input_username/Browser
     mkdir -p /home/$input_username/.local/share/applications
-    readarray -t versions < <(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[0-9]+\.[0-9]+[^/]*(?=/)' | sort -V | tail -n2)
+    readarray -t versions < <(curl -s "https://dist.torproject.org/torbrowser/" | grep -oP '(?<=href=")[^/]+(?=/")' | grep -E '^[0-9.]+$' | sort -V | tail -n2)
     latest_version="${versions[1]}"
     previous_version="${versions[0]}"
     if ! wget "https://dist.torproject.org/torbrowser/${latest_version}/tor-browser-linux-x86_64-${latest_version}.tar.xz" -O tor-browser.tar.xz; then
@@ -1164,6 +1172,7 @@ while true; do
     if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
         burpsuite_professional_installation
         jython_installation
+        jruby_installation
         break
     elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
         echo -e "\e[31m[*]\e[0m Burpsuite professional hasn't been installed.\n"
