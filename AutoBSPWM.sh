@@ -510,7 +510,7 @@ jython_installation(){
     echo -e "\e[32m[*]\e[0m Installing jython..."
     mkdir /opt/jython
     latest_version=$(curl -s "https://repo1.maven.org/maven2/org/python/jython-standalone/" | grep -oP '(?<=href=")[^/]+(?=/")' | grep -E '^[0-9.]+$' | sort -V | tail -n 1)
-    wget https://repo1.maven.org/maven2/org/python/jython-standalone/${latest_version}/jython-standalone-${latest_version}.jar -O jython-standalone-${latest_version}.jar
+    wget "https://repo1.maven.org/maven2/org/python/jython-standalone/${latest_version}/jython-standalone-${latest_version}.jar" -O jython-standalone-${latest_version}.jar
     cp jython-standalone-${latest_version}.jar /opt/jython
 }
 
