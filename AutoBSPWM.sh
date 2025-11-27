@@ -235,18 +235,14 @@ starship_installation(){
 
 powerlevel10k_installation(){
     echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user $input_username ...\n"
-    rm -f /home/$input_username/.p10k.zsh 
     cp zshrc/zshrc_powerlevel10k_user .zshrc
-    mv p10k.zsh .p10k.zsh  
-    rm -rf /home/$input_username/powerlevel10k  
+    mv p10k.zsh .p10k.zsh
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/$input_username/powerlevel10k
     cp .p10k.zsh /home/$input_username
     cp .zshrc /home/$input_username
 
     echo -e "\e[32m[*]\e[0m Configuring powerlevel10k for user root ...\n"
     cp zshrc/zshrc_powerlevel10k_root .zshrc
-    rm -f /root/.p10k.zsh 
-    rm -rf /root/powerlevel10k  
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k  
     cp .p10k.zsh /root 
     cp .zshrc /root
@@ -847,6 +843,12 @@ while true; do
 
     rm -rf /home/$input_username/starship
     rm -rf /root/starship
+    rm /usr/bin/starship
+
+    rm -f /home/$input_username/.p10k.zsh
+    rm -rf /home/$input_username/powerlevel10k  
+    rm -f /root/.p10k.zsh 
+    rm -rf /root/powerlevel10k
 
     if [ "$response" = "powerlevel10k" ]; then
         powerlevel10k_installation
