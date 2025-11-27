@@ -81,7 +81,8 @@ sudo ./AutoBSPWM.sh
 - **setTarget**: Sets the target in the polybar
 - **setWallpaper**: Configures the desktop wallpaper
 - **ipRangeGenerator**: Generates IP address ranges
-- **xcopy**: Copies file content directly to system clipboard  
+- **xcopy**: Copies file content directly to system clipboard
+- **switchJavaVersion**: Switches the active Java version in the environment    
 - **showHelpPanel**: Displays all commands and shortcuts of the environment
 
 ## Bspwm Shortcuts
