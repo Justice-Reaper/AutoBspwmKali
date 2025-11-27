@@ -102,6 +102,13 @@ rm -rf /home/$input_username/.config/polybar
 rm -rf /home/$input_username/.config/picom 
 rm -rf /home/$input_username/.config/bspwm 
 rm -rf /home/$input_username/.config/sxhkd
+rm -rf /home/$input_username/starship
+rm -rf /root/starship
+rm /usr/bin/starship
+rm -f /home/$input_username/.p10k.zsh
+rm -rf /home/$input_username/powerlevel10k  
+rm -f /root/.p10k.zsh 
+rm -rf /root/powerlevel10k
 rm /etc/apt/apt.conf.d/99-package-events
 
 # CREATE NEW CONFIGURATIONS
@@ -840,15 +847,6 @@ laptop_configuration(){
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install POWERLEVEL10K or STARSHIP? (POWERLEVEL10K/STARSHIP): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    rm -rf /home/$input_username/starship
-    rm -rf /root/starship
-    rm /usr/bin/starship
-
-    rm -f /home/$input_username/.p10k.zsh
-    rm -rf /home/$input_username/powerlevel10k  
-    rm -f /root/.p10k.zsh 
-    rm -rf /root/powerlevel10k
 
     if [ "$response" = "powerlevel10k" ]; then
         powerlevel10k_installation
