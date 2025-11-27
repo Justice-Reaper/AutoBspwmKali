@@ -870,6 +870,7 @@ while true; do
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
         cp bin/clearTarget /usr/bin
+        cp bin/changeJavaVersion /usr/bin
         cp bin/setTarget /usr/bin
         cp bin/extractPorts /usr/bin
         cp bin/mkt /usr/bin
