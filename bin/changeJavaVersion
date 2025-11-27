@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pkexec update-alternatives --config java
