@@ -221,20 +221,16 @@ starship_installation(){
     wget https://github.com/starship/starship/releases/download/$latest_version/starship-x86_64-unknown-linux-gnu.tar.gz -O starship.tar.gz
     tar -xf starship.tar.gz -C /usr/bin
     cp zshrc/zshrc_starship_user .zshrc
-    mkdir /home/$input_username/.config/starship
-    rm -f /home/$input_username/.config/starship/starship.toml
     cp .zshrc /home/$input_username
-    cp starship.toml /home/$input_username/.config/starship
+    cp -r starship /home/$input_username
 
     echo -e "\e[32m[*]\e[0m Configuring starship for user root ...\n"
     cp zshrc/zshrc_starship_root .zshrc
-    mkdir /root/.config/starship
-    rm -f /root/.config/starship/starship.toml
     cp .zshrc /root
-    cp starship.toml /root/.config/starship
+    cp -r starship /root
 
     echo -e "\e[32m[*]\e[0m Creating symbolic link in the starship.toml file ...\n"
-    ln -s -f /home/$input_username/.config/starship/starship.toml /root/.config/starship/starship.toml
+    ln -s -f /home/$input_username/starship/starship.toml /root/starship/starship.toml
 }
 
 powerlevel10k_installation(){
@@ -848,6 +844,9 @@ laptop_configuration(){
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install POWERLEVEL10K or STARSHIP? (POWERLEVEL10K/STARSHIP): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    rm -rf /home/$input_username/starship
+    rm -rf /root/starship
 
     if [ "$response" = "powerlevel10k" ]; then
         powerlevel10k_installation
