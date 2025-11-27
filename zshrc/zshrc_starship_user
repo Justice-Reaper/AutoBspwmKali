@@ -21,7 +21,7 @@ for version in /home/user_replace/.local/share/gem/ruby/*/bin; do
 done
 
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/home/user_replace/.local/bin:/home/user_replace/go/bin:$PATH
-export STARSHIP_CONFIG=/home/user_replace/.config/starship/starship.toml
+export STARSHIP_CONFIG=/home/user_replace/starship/starship.toml
 
 # configure key keybindings
 bindkey -e                                        # emacs key bindings
