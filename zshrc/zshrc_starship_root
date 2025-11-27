@@ -17,7 +17,7 @@ PROMPT_EOL_MARK=""
 
 # export path
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games:/snap/bin:/root/.local/bin:/root/go/bin:$PATH
-export STARSHIP_CONFIG=/root/.config/starship/starship.toml
+export STARSHIP_CONFIG=/root/starship/starship.toml
 
 # configure key keybindings
 bindkey -e                                        # emacs key bindings
