@@ -199,6 +199,7 @@ picom_installation(){
 
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring picom ...\n"
+            sed -i 's/corner_radius_replace/5/g' /home/$input_username/.config/dunst/dunstrc 
             cp -r picom /home/$input_username/.config
             apt install picom -y
             if [ "$installation_type" = "bare metal" ]; then
@@ -211,6 +212,7 @@ picom_installation(){
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             rm -rf /home/$input_username/.config/picom
             echo -e "\e[31m[*]\e[0m Picom hasn't been installed.\n"
+            sed -i 's/corner_radius_replace/0/g' /home/$input_username/.config/dunst/dunstrc 
             sed -i '/# picom/,+2d' /home/$input_username/.config/bspwm/bspwmrc
             sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/launcher/style.rasi
             sed -i '0,/border-radius:               10px;/s/border-radius:               10px;/border-radius:               0px;/' /home/$input_username/.config/rofi/powermenu/style.rasi
