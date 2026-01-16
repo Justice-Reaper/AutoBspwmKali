@@ -277,7 +277,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 5
+    corner_radius = corner_radius_replace
 
     # Define which corners to round when drawing the window. If the corner radius
     # is set to 0 this option will be ignored.
