@@ -37,7 +37,7 @@ sudo ./AutoBSPWM.sh
 
 ![Preview 5](/preview/preview-5.png)
 
-## Environment
+## Desktop Environment
 - **Tiling window manager**: Bspwm  
 - **Keyboard daemon**: Sxhkd  
 - **Status bar**: Polybar  
@@ -51,6 +51,7 @@ sudo ./AutoBSPWM.sh
 - **Brightness control**: Brightnessctl  
 - **Lockscreen wallpaper manager**: Feh  
 - **Notification daemon**: Dunst
+- **Audio server**: PulseAudio
 
 ## Bspwm Shortcuts
 <kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Switch between workspaces  
