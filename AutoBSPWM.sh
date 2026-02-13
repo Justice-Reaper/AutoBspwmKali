@@ -1104,6 +1104,7 @@ while true; do
     fi
 done
 
+# INSTALL PENTESTING TOOLS
 echo -e "\e[32m[*]\e[0m Installing pentesting tools ...\n"
 apt install python3-pwntools golang-go jq payloadsallthethings seclists bloodhound neo4j -y
 kerbrute_installation
