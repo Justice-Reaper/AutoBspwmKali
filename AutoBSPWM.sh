@@ -878,16 +878,16 @@ while true; do
         
         cd bin
         wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
-        sed -i "s/user_replace/$input_username/g" bin/*
-        chmod +x bin/*
-        cp bin/clearTarget /usr/bin
-        cp bin/switchJavaVersion /usr/bin
-        cp bin/setTarget /usr/bin
-        cp bin/extractPorts /usr/bin
-        cp bin/mkt /usr/bin
-        cp bin/xcopy /usr/bin
-        cp bin/setWallpaper /usr/bin
-        cp bin/showHelpPanel /usr/bin
+        sed -i "s/user_replace/$input_username/g" *
+        chmod 755 *
+        cp clearTarget /usr/bin
+        cp switchJavaVersion /usr/bin
+        cp setTarget /usr/bin
+        cp extractPorts /usr/bin
+        cp mkt /usr/bin
+        cp xcopy /usr/bin
+        cp setWallpaper /usr/bin
+        cp showHelpPanel /usr/bin
         cd $installation_folder
 
         chmod 644 rules/*
@@ -904,12 +904,12 @@ while true; do
         sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
+        chmod 644 rules/*
         sed -i "s/user_replace/$input_username/g" rules/99-usb-sound.rules
         cp rules/99-usb-sound.rules /etc/udev/rules.d
+        cp rules/99-no-password.rules /etc/polkit-1/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
-
-        cp rules/99-no-password.rules /etc/polkit-1/rules.d
 
         cd bin
         wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
