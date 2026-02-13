@@ -93,6 +93,8 @@ apt install python3-pwntools dunst papirus-icon-theme golang-go imagemagick feh 
 
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
+rm -f /home/$input_username/.config/Thunar/uca.xml
+rm -f /rot/.config/Thunar/uca.xml
 rm -f /home/$input_username/.zshrc 
 rm -f /root/.zshrc 
 rm -rf /root/.config/kitty 
@@ -104,17 +106,22 @@ rm -rf /home/$input_username/.config/bspwm
 rm -rf /home/$input_username/.config/sxhkd
 rm -rf /home/$input_username/starship
 rm -rf /root/starship
-rm /usr/bin/starship
+rm -f /usr/bin/starship
 rm -f /home/$input_username/.p10k.zsh
 rm -rf /home/$input_username/powerlevel10k  
 rm -f /root/.p10k.zsh 
 rm -rf /root/powerlevel10k
-rm /etc/apt/apt.conf.d/99-package-events
+rm -f /etc/apt/apt.conf.d/99-package-events
 
 # CREATE NEW CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Creating new configurations ...\n"
 mkdir /root/.config 
 mkdir /home/$input_username/.config 
+
+# CONFIGURING THUNAR
+echo -e "\e[32m[*]\e[0m Configuring thunar ...\n"
+cp -r Thunar /home/$input_username/.config
+cp -r Thunar /root/.config
 
 # CONFIGURING FONTS
 echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
