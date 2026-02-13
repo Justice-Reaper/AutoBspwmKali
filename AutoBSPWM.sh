@@ -875,6 +875,9 @@ while true; do
 
     if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
         echo -e "\e[32m[*]\e[0m Configuring the system for a virtual machine...\n"
+        
+        cd bin
+        wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
         cp bin/clearTarget /usr/bin
@@ -885,6 +888,7 @@ while true; do
         cp bin/xcopy /usr/bin
         cp bin/setWallpaper /usr/bin
         cp bin/showHelpPanel /usr/bin
+        cd $installation_folder
 
         chmod 644 rules/*
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
@@ -908,9 +912,9 @@ while true; do
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
 
         cd bin
-        sed -i "s/user_replace/$input_username/g" *
         wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
-        chmod +x *
+        sed -i "s/user_replace/$input_username/g" *
+        chmod 755 *
         cp * /usr/bin
         cd $installation_folder
         
