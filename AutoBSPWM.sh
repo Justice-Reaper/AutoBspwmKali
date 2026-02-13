@@ -908,8 +908,8 @@ while true; do
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
 
         cd bin
-        wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
         sed -i "s/user_replace/$input_username/g" *
+        wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
         chmod +x *
         cp * /usr/bin
         cd $installation_folder
