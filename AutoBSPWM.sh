@@ -904,7 +904,8 @@ while true; do
         cp rules/99-usb-sound.rules /etc/udev/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
-        
+
+        wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O bin/kaliOptimus
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x  bin/*
         cp -r bin /usr
