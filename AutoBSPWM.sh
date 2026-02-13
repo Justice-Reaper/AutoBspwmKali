@@ -888,6 +888,7 @@ while true; do
         cp bin/setWallpaper /usr/bin
         cp bin/showHelpPanel /usr/bin
 
+        sed -i "s/user_replace/$input_username/g" rules/*
         chmod 644 rules/*
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
         
@@ -902,8 +903,8 @@ while true; do
         sed -i "s/user_replace/$input_username/g" /home/$input_username/.config/dunst/scripts/*
         sed -i "s/user_replace/$input_username/g" sound/scripts/*   
         cp -r sound /home/$input_username/.config
+        sed -i "s/user_replace/$input_username/g" rules/*
         chmod 644 rules/*
-        sed -i "s/user_replace/$input_username/g" rules/99-usb-sound.rules
         cp rules/99-usb-sound.rules /etc/udev/rules.d
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
         chmod +x /home/$input_username/.config/sound/scripts/*
