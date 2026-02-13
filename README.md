@@ -49,7 +49,7 @@ sudo ./AutoBSPWM.sh
 - **File manager**: Thunar
 - **Screen color temperature**: Redshift  
 - **Brightness control**: Brightnessctl  
-- **Lockscreen wallpaper manager**: Feh  
+- **Wallpaper manager**: Feh  
 - **Notification daemon**: Dunst
 - **Audio server**: PulseAudio
 
