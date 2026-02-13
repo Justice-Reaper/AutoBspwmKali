@@ -89,7 +89,7 @@ done
 
 # INSTALL THE NECESSARY DEPENDENCIES
 echo -e "\e[32m[*]\e[0m Installing the necessary dependencies ...\n"
-apt install python3-pwntools dunst papirus-icon-theme golang-go imagemagick feh xclip bspwm sxhkd suckless-tools fastfetch polybar betterlockscreen bat lsd fzf flameshot rofi kitty zsh jq pulseaudio-utils payloadsallthethings seclists bloodhound neo4j x11-utils moreutils -y
+apt install dunst papirus-icon-theme imagemagick feh xclip bspwm sxhkd suckless-tools fastfetch polybar betterlockscreen bat lsd fzf flameshot rofi kitty zsh pulseaudio-utils x11-utils moreutils -y
 
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
@@ -960,118 +960,6 @@ while true; do
     fi
 done
 
-# KERBRUTE
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install KERBRUTE? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        kerbrute_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m kerbrute hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
-# WINDAPSEARCH
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install WINDAPSEARCH? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        windapsearch_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m Windapsearch hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
-# RPCENUM
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install RPCENUM? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        rpcenum_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m rpcEnum hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
-# GRAPHQL CONVERTER
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install GRAPHQL CONVERTER? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        graphql_converter_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m graphQLConverter hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
-# PAYLOAD SPLITTER
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PAYLOAD SPLITTER? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        payloadSplitter_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m payloadSplitter hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
-# GET TOP PORTS
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install GET TOP PORTS? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        getTopPorts_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m getTopPorts hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
-# IP RANGE GENERATOR
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install IP RANGE GENERATOR? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        ipRangeGenerator_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m ipRangeGenerator hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
-
 # TOR
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install TOR? (YES/NO): ")" response
@@ -1160,6 +1048,26 @@ while true; do
     fi
 done
 
+# PYCHARM COMMUNITY
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PYCHARM COMMUNITY? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        pycharm_community_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
+        sed -i '/# pycharm/,+2d' /root/.zshrc
+        sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
+        sed -i '/Windows + Shift + S\s*→\s*Open Pycharm/d' /usr/bin/showHelpPanel
+        echo -e "\e[31m[*]\e[0m Pycharm community hasn't been installed.\n"
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
 # CAIDO
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install CAIDO? (YES/NO): ")" response
@@ -1196,25 +1104,15 @@ while true; do
     fi
 done
 
-# PYCHARM COMMUNITY
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install PYCHARM COMMUNITY? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        pycharm_community_installation
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        sed -i '/# pycharm/,+2d' /home/$input_username/.zshrc
-        sed -i '/# pycharm/,+2d' /root/.zshrc
-        sed -i '/# pycharm/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
-        sed -i '/Windows + Shift + S\s*→\s*Open Pycharm/d' /usr/bin/showHelpPanel
-        echo -e "\e[31m[*]\e[0m Pycharm community hasn't been installed.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
+echo -e "\e[32m[*]\e[0m Installing pentesting tools ...\n"
+apt install python3-pwntools golang-go jq payloadsallthethings seclists bloodhound neo4j -y
+kerbrute_installation
+windapsearch_installation
+rpcenum_installation
+graphql_converter_installation
+payloadSplitter_installation
+getTopPorts_installation
+ipRangeGenerator_installation
 
 # REPLACE USER_REPLACE WITH THE SELECTED USER
 echo -e "\e[32m[*]\e[0m Configuring files...\n"
