@@ -37,8 +37,7 @@ sudo ./AutoBSPWM.sh
 
 ![Preview 5](/preview/preview-5.png)
 
-## Componentes:
-
+## Environment
 - **Tiling window manager**: Bspwm  
 - **Keyboard daemon**: Sxhkd  
 - **Status bar**: Polybar  
