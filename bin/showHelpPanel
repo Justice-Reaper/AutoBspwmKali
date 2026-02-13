@@ -68,6 +68,10 @@ echo -e "\nCtrl + Shift + T                                →  Create tab"
 echo -e "Ctrl + Shift + (⬆⬅⬇➡)                           →  Navigate through tab"
 echo -e "Ctrl + Shift + Alt + T                          →  Rename tab"
 
+echo -e "\nCtrl + Shift + +                                →  Increase font size"
+echo -e "Ctrl + Shift + -                                →  Decrease font size"
+echo -e "Ctrl + Shift + Backspace                        →  Reset font size to default"
+
 echo -e "\nCtrl + Shift + Enter                            →  Open subterminal"
 echo -e "Ctrl + (⬆⬅⬇➡)                                   →  Navigate through subterminal"
 echo -e "Ctrl + Shift + R                                →  Activate resize mode on a subterminal"
