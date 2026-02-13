@@ -905,15 +905,15 @@ while true; do
         chmod +x /home/$input_username/.config/sound/scripts/*
         apt install xinput -y
 
-        wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
-        sed -i "s/user_replace/$input_username/g" bin/*
-        chmod +x  bin/*
-        chmod 755 kaliOptimus
-        cp kaliOptimus /usr/bin
-        cp -r bin /usr
-        
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
 
+        cd bin
+        wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
+        sed -i "s/user_replace/$input_username/g" *
+        chmod 755 *
+        cp -r * /usr/bin
+        cd $installation_folder
+        
         picom_installation "bare metal"
         warning
         laptop_or_desktop
