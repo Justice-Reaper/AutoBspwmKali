@@ -38,53 +38,20 @@ sudo ./AutoBSPWM.sh
 ![Preview 5](/preview/preview-5.png)
 
 ## Componentes:
-- **redshift**: Tool to adjust the screen’s color temperature  
-- **dunst**: Notification daemon that reports battery status (charging, full charge, and low battery)  
-- **bloodhound**: Tool for mapping relationships and privileges in Active Directory  
-- **neo4j**: Graph database that stores and queries data using nodes, relationships, and properties  
-- **obsidian**: Lightweight Markdown-based note-taking tool  
-- **seclists**: Collection of wordlists for pentesting  
-- **imagemagick**: Software suite to create, edit, or convert images from the command line  
-- **rpcEnum**: Tool to enumerate MSRPC services
-- **graphQLConverter**: Tool to convert GraphQL JSON to x-www-form-urlencoded format
-- **payloadSplitter**: Tool to split large files into smaller chunks with customizable sizes
-- **getTopPorts**: Tool that extracts the most common ports from Nmap and saves them to a text file in two different formats
-- **postman**: Collaborative tool for developing, testing, and documenting APIs, with powerful enumeration and debugging features  
-- **pycharm**: Python IDE
-- **kerbrute**: Brute-force tool to enumerate valid users via Kerberos  
-- **windapsearch**: Lightweight tool to enumerate data on LDAP servers  
-- **brightnessctl**: Tool to control screen brightness from the command line  
-- **feh**: Lightweight, configurable, and versatile image viewer  
-- **xclip**: Utility for clipboard management in command-line environments  
-- **bspwm**: Tiling window manager  
-- **sxhkd**: Daemon that listens for keyboard events and executes commands  
-- **wmname**: Utility to change the window manager's window name  
-- **polybar**: Tool to create customizable status bars  
-- **betterlockscreen**: Lets you lock and customize your screen with wallpapers and visual effects  
-- **bat**: Enhanced cat clone with syntax highlighting and other features  
-- **lsd**: Modern replacement for ls with improved visuals and usability  
-- **fzf**: General-purpose command-line fuzzy finder  
-- **flameshot**: Screenshot tool with annotation and editing capabilities  
-- **picom**: X11 compositor with visual effects and window transparency  
-- **rofi**: Window switcher and application launcher  
-- **kitty**: Highly configurable and high-performance terminal emulator  
-- **zsh**: Powerful and interactive Unix shell  
-- **vscode**: Highly customizable source code editor developed by Microsoft  
-- **nvim**: Extremely configurable and powerful text editor, an enhanced version of classic Vim  
-- **npm**: Package manager that simplifies managing dependencies and modules in projects  
-- **nvchad**: A set of pre-configured settings and plugins for Neovim to enhance the user experience
-- **clearTarget**: Clears the target in the polybar
-- **disableTouchpad**: Disables the touchpad  
-- **enableTouchpad**: Enables the touchpad
-- **extractPorts**: Extracts ports obtained through nmap and copies them to the clipboard
-- **mkt**: Creates the necessary working directories for performing a pentest
-- **setTarget**: Sets the target in the polybar
-- **setWallpaper**: Configures the desktop wallpaper
-- **ipRangeGenerator**: Generates IP address ranges
-- **xcopy**: Copies file content directly to system clipboard
-- **switchJavaVersion**: Switches the active Java version in the environment
-- **kaliOptimus**: Automates repository repair, GPG fixes, full system upgrade and cleanup  
-- **showHelpPanel**: Displays all commands and shortcuts of the environment
+
+- **Tiling window manager**: Bspwm  
+- **Keyboard daemon**: Sxhkd  
+- **Status bar**: Polybar  
+- **Screen locker**: Betterlockscreen  
+- **Compositor**: Picom  
+- **Application launcher**: Rofi  
+- **Terminal emulator**: Kitty  
+- **Shell**: Zsh  
+- **File manager**: Thunar
+- **Screen color temperature**: Redshift  
+- **Brightness control**: Brightnessctl  
+- **Lockscreen wallpaper manager**: Feh  
+- **Notification daemon**: Dunst
 
 ## Bspwm Shortcuts
 <kbd>Windows</kbd> + <kbd>(1,2,3,4,5,6,7,8,9,0)</kbd> : Switch between workspaces  
