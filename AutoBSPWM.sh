@@ -94,7 +94,7 @@ apt install dunst papirus-icon-theme imagemagick feh xclip bspwm sxhkd suckless-
 # REMOVE OLD CONFIGURATIONS
 echo -e "\e[32m[*]\e[0m Removing old configurations ...\n"
 rm -f /home/$input_username/.config/Thunar/uca.xml
-rm -f /rot/.config/Thunar/uca.xml
+rm -f /root/.config/Thunar/uca.xml
 rm -f /home/$input_username/.zshrc 
 rm -f /root/.zshrc 
 rm -rf /root/.config/kitty 
