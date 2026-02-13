@@ -169,4 +169,10 @@ echo -e "\nextractPorts              →  Extract ports from a file in nmap -oG 
 
 echo -e "\nmkt                       →  Create a folder and several work directories inside it"
 
+echo -e "\nxcopy                     →  Copies file content directly to system clipboard"
+
+echo -e "\nkaliOptimus               →  Automates repository repair, GPG fixes, full system upgrade and cleanup"
+
+echo -e "\nswitchJavaVersion         →  Switches the active Java version in the environment"
+
 echo -e "\nshowHelpPanel             →  Displays all commands and shortcuts of the desktop environment"
