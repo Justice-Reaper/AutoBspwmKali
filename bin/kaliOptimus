@@ -1,0 +1,120 @@
+#!/bin/bash
+
+RESET='\033[0m'
+BOLD='\033[1m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+BOLD_RED='\033[1;31m'
+BOLD_GREEN='\033[1;32m'
+BOLD_YELLOW='\033[1;33m'
+
+KALI_BRANCH="kali-rolling"
+KALI_REPO_LINE="deb https://kali.download/kali ${KALI_BRANCH} main non-free contrib"
+KEYRING_POOL_URL="https://http.kali.org/kali/pool/main/k/kali-archive-keyring/"
+KEYRING_DEB_TEMP_PATH="/tmp/kali-archive-keyring_latest.deb"
+
+print_banner() {
+    clear
+    echo -e "${BLUE}"
+    echo "██╗  ██╗ █████╗ ██╗     ██╗"
+    echo "██║ ██╔╝██╔══██╗██║     ██║"
+    echo "█████╔╝ ███████║██║     ██║"
+    echo "██╔═██╗ ██╔══██║██║     ██║"
+    echo "██║  ██╗██║  ██║███████╗██║"
+    echo "╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝"
+    echo -e "${RESET}"
+    echo -e "${BOLD}  🐉 KALI OPTIMIZER & REPAIR v2.0${RESET}"
+    echo -e "${CYAN}  by Gustaafvito (github.com/Gustaafvito)${RESET}"
+    echo ""
+}
+
+print_step() {
+    echo -e "\n${BLUE}[*] STEP $1: $2${RESET}"
+    echo -e "${BLUE}---------------------------------------------------${RESET}"
+}
+
+print_banner
+
+script_name=$(basename "$0")
+if [ "$(id -u)" -ne 0 ]; then
+   echo -e "${BOLD_RED}[!] ERROR: You need to be ROOT.${RESET}"
+   echo -e "${YELLOW}Run: sudo $script_name${RESET}"
+   exit 1
+fi
+
+echo -e "Checking internet connection..."
+if ! curl --silent --head --fail "https://kali.download/kali/" &> /dev/null; then
+    echo -e "${BOLD_RED}[!] ERROR: No internet connection or DNS failing.${RESET}"; exit 1
+fi
+echo -e "${GREEN}[✔] Connection is stable.${RESET}"
+
+print_step 1 "Restoring Official Repositories"
+SOURCES_FILE="/etc/apt/sources.list"
+
+if [ -f "${SOURCES_FILE}" ]; then
+    cp -a "${SOURCES_FILE}" "${SOURCES_FILE}.backup_$(date +%F)"
+fi
+
+echo -e "Writing official sources to ${SOURCES_FILE}..."
+echo "${KALI_REPO_LINE}" | tee "${SOURCES_FILE}" > /dev/null
+echo -e "${GREEN}[✔] Sources.list repaired.${RESET}"
+
+print_step 2 "Purging corrupt GPG Keys"
+rm -f /etc/apt/trusted.gpg.d/kali-archive-keyring.gpg
+rm -f /etc/apt/trusted.gpg
+echo -e "${GREEN}[✔] Old keys removed.${RESET}"
+
+print_step 3 "Fetching latest Kali signatures"
+echo -e "Searching for latest version on servers..."
+
+LATEST_KEYRING_DEB=$(curl -s "${KEYRING_POOL_URL}" | grep -oE 'href="kali-archive-keyring_[0-9._-]+_all\.deb"' | cut -d'"' -f2 | sort -V | tail -n 1)
+
+if [ -z "$LATEST_KEYRING_DEB" ]; then
+    echo -e "${RED}[!] Could not find the keyring online. Skipping manual repair.${RESET}"
+    SKIP_KEYRING=true
+else
+    FULL_URL="${KEYRING_POOL_URL}${LATEST_KEYRING_DEB}"
+    echo -e "Downloading: ${BOLD}${LATEST_KEYRING_DEB}${RESET}"
+    curl --silent --location --output "${KEYRING_DEB_TEMP_PATH}" "${FULL_URL}"
+    
+    if [ $? -eq 0 ]; then
+        dpkg -i "${KEYRING_DEB_TEMP_PATH}" > /dev/null 2>&1
+        rm -f "${KEYRING_DEB_TEMP_PATH}"
+        echo -e "${GREEN}[✔] Keyring installed successfully.${RESET}"
+    else
+        echo -e "${RED}[!] Download failed.${RESET}"
+    fi
+fi
+
+print_step 4 "System Update (Full Upgrade)"
+echo -e "${YELLOW}[*] Refreshing package list...${RESET}"
+apt-get update
+
+echo -e "${YELLOW}[*] Fixing previous broken installations...${RESET}"
+apt-get install -f -y > /dev/null 2>&1
+
+echo -e "${BOLD_YELLOW}[!] Starting Full Upgrade (This may take a while)...${RESET}"
+apt-get full-upgrade -y
+
+if [ $? -eq 0 ]; then
+    UPGRADE_STATUS="${GREEN}SUCCESSFUL${RESET}"
+else
+    UPGRADE_STATUS="${RED}WITH ERRORS${RESET}"
+fi
+
+print_step 5 "Cleaning system junk"
+apt-get autoremove -y
+apt-get autoclean -y
+apt-get clean
+
+echo -e "\n${BLUE}===================================================${RESET}"
+echo -e "   FINAL STATUS: ${UPGRADE_STATUS}"
+echo -e "${BLUE}===================================================${RESET}"
+echo -e "A system reboot is recommended if there were Kernel updates."
+echo -e "${BOLD}Suggested command: reboot${RESET}"
+echo ""
+
+exit 0
