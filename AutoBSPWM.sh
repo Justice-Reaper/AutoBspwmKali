@@ -909,9 +909,9 @@ while true; do
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x  bin/*
         chmod 755 kaliOptimus
+        cp kaliOptimus /usr/bin
         cp -r bin /usr
-        cp -r kaliOptimus /usr/bin
-
+        
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
 
         picom_installation "bare metal"
