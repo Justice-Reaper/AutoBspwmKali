@@ -17,6 +17,10 @@ find /home/user_replace/.local/share/applications -name "*.desktop" 2>/dev/null
             continue
         fi
 
+        if grep -qi "^Categories=.*TerminalEmulator" "$file"; then
+            continue
+        fi
+
         if grep -qi "^Exec=.*pkexec" "$file"; then
             if ! grep -qi "^Exec=sh -c \".*pkexec" "$file"; then
                 sed -i 's/^Exec=\(.*pkexec.*\)/Exec=sh -c "\1"/' "$file"
