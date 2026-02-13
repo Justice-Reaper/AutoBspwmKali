@@ -910,8 +910,8 @@ while true; do
         cd bin
         wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
         sed -i "s/user_replace/$input_username/g" *
-        chmod 755 *
-        cp -r * /usr/bin
+        chmod +x *
+        cp * /usr/bin
         cd $installation_folder
         
         picom_installation "bare metal"
