@@ -82,7 +82,8 @@ sudo ./AutoBSPWM.sh
 - **setWallpaper**: Configures the desktop wallpaper
 - **ipRangeGenerator**: Generates IP address ranges
 - **xcopy**: Copies file content directly to system clipboard
-- **switchJavaVersion**: Switches the active Java version in the environment    
+- **switchJavaVersion**: Switches the active Java version in the environment
+- **kaliOptimus**: Automates repository repair, GPG fixes, full system upgrade and cleanup  
 - **showHelpPanel**: Displays all commands and shortcuts of the environment
 
 ## Bspwm Shortcuts
@@ -233,6 +234,12 @@ sudo ./AutoBSPWM.sh
 <kbd>extractPorts</kbd> : Extract ports from a file in nmap -oG format and copy them to the clipboard    
 
 <kbd>mkt</kbd> : Create a folder and several work directories inside it  
+
+<kbd>xcopy</kbd> : Copies file content directly to system clipboard  
+
+<kbd>kaliOptimus</kbd> : Automates repository repair, GPG fixes, full system upgrade and cleanup  
+
+<kbd>switchJavaVersion</kbd> : Switches the active Java version in the environment  
 
 <kbd>showHelpPanel</kbd> : Displays all commands and shortcuts of the desktop environment
   
