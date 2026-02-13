@@ -141,6 +141,10 @@ sudo ./AutoBSPWM.sh
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through tabs  
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> : Rename tabs
 
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>+</kbd> : Increase font size  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>-</kbd> : Decrease font size  
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Backspace</kbd> : Reset font size to default  
+
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd> : Open subterminal  
 <kbd>Ctrl</kbd> + <kbd>(⬆⬅⬇➡)</kbd> : Navigate through subterminals  
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> : Activate resize mode on a subterminal  
