@@ -908,7 +908,7 @@ while true; do
         wget https://raw.githubusercontent.com/Gustaafvito/Kali-Optimizer/refs/heads/main/KaliOptimus.sh -O kaliOptimus
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x  bin/*
-        chmod +x  kaliOptimus
+        chmod 755 kaliOptimus
         cp -r bin /usr
         cp -r kaliOptimus /usr/bin
 
