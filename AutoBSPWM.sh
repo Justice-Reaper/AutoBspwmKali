@@ -17,7 +17,7 @@ echo '
 '
 
 # WARNING
-echo -e "\e[31m[!]\e[0m WARNING: Do NOT restart any services during the installation process.\n"
+echo -e "\e[33m[!]\e[0m WARNING: Do NOT restart any services during the installation process.\n"
 
 # USER VERIFICATION
 if [ "$(id -u)" != "0" ]; then
