@@ -27,7 +27,6 @@ installation_folder=$(pwd)
 
 # OBTAIN THE USER
 echo -e "\e[33m[*]\e[0m This script will configure the system based on the provided user and the root user.\n"
-
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Please enter the name of the user to which the changes will be applied: ")" input_username
     if id "$input_username" &>/dev/null; then
@@ -53,7 +52,6 @@ while true; do
     fi
 done
 
-# SYSTEM UPDATE
 while true; do
     read -p "$(echo -e "\e[33m[*]\e[0m Do you want to run 'apt update' on the system? (YES/NO): ")" response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
@@ -70,22 +68,61 @@ while true; do
     fi
 done
 
-# SYSTEM UPGRADE
-while true; do
-    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to perform a 'full-upgrade' on the system? (YES/NO): ")" response
-    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+# SYSTEM UPDATE AND UPGRADE
+if [ -x "/usr/bin/kaliOptimus" ]; then
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to run 'kaliOptimus' on the system? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Running 'kaliOptimus' ...\n"
+            kaliOptimus
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m 'kaliOptimus' canceled.\n"
+            apt_update
+            apt_full_upgrade
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
 
-    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
-        echo -e "\e[32m[*]\e[0m Running 'apt full-upgrade' ...\n"
-        apt full-upgrade -y 
-        break
-    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
-        echo -e "\e[31m[*]\e[0m 'apt full-upgrade' canceled.\n"
-        break
-    else
-        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
-    fi
-done
+# SYSTEM UPDATE
+apt_update() {
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to run 'apt update' on the system? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Running 'apt update' ...\n"
+            apt update
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m 'apt update' canceled.\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
+
+# SYSTEM UPGRADE
+apt_full_upgrade() {
+    while true; do
+        read -p "$(echo -e "\e[33m[*]\e[0m Do you want to perform a 'full-upgrade' on the system? (YES/NO): ")" response
+        response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+        if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+            echo -e "\e[32m[*]\e[0m Running 'apt full-upgrade' ...\n"
+            apt full-upgrade -y
+            break
+        elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+            echo -e "\e[31m[*]\e[0m 'apt full-upgrade' canceled.\n"
+            break
+        else
+            echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+        fi
+    done
+}
 
 # INSTALL THE NECESSARY DEPENDENCIES
 echo -e "\e[32m[*]\e[0m Installing the necessary dependencies ...\n"
