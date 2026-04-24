@@ -425,7 +425,7 @@ touchpad_configuration() {
 
         if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
             echo -e "\e[32m[*]\e[0m Configuring the touchpad ...\n"
-            apt install xinput -y
+            apt install xinput libinput-tools xserver-xorg-input-libinput -y
             touchpad=$(xinput list | grep -i touchpad)
             if [[ -n "$touchpad" ]]; then
                 id_touchpad=$(echo "$touchpad" | awk -F'id=' '{print $2}' | awk '{print $1}')
@@ -437,8 +437,10 @@ touchpad_configuration() {
                 sed -i '/# fix java error/i\    xinput disable $touchpad_id' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i fi' /home/$input_username/.config/bspwm/bspwmrc
                 sed -i '/# fix java error/i\\' /home/$input_username/.config/bspwm/bspwmrc
+                cp touchpad/99-touchpad.conf /etc/X11/xorg.conf.d
                 touch /home/$input_username/.config/bin/touchpad
                 echo 'Disabled' > /home/$input_username/.config/bin/touchpad
+                chmod 644 /etc/X11/xorg.conf.d/99-touchpad.conf
             else
                 echo -e "\e[31m[*]\e[0m No touchpad was found.\n"
             fi
@@ -933,9 +935,7 @@ while true; do
         chmod 644 rules/*
         cp rules/99-usb-sound.rules /etc/udev/rules.d
         cp rules/99-no-password.rules /etc/polkit-1/rules.d
-        cp rules/99-touchpad.conf /etc/X11/xorg.conf.d
         chmod +x /home/$input_username/.config/sound/scripts/*
-        apt install xinput -y
 
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
