@@ -145,8 +145,8 @@ mkdir /home/$input_username/.config
 
 # APPLYING GTK CONFIGURATION
 echo -e "\e[32m[*]\e[0m Applying GTK configuration ...\n"
-cp -r gtk-3 /home/$input_username/.config
-chmod 644 /home/$input_username/.config/gtk-3/settings.ini
+cp -r gtk-3.0 /home/$input_username/.config
+chmod 644 /home/$input_username/.config/gtk-3.0/settings.ini
 
 # CONFIGURING THUNAR
 echo -e "\e[32m[*]\e[0m Configuring thunar ...\n"
