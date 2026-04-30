@@ -645,6 +645,14 @@ ipRangeGenerator_installation(){
     chmod +x /usr/bin/ipRangeGenerator
 }
 
+miniconda_installation(){
+    echo -e "\e[32m[*]\e[0m Installing miniconda for $input_username ..."
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    su $input_username -c "bash Miniconda3-latest-Linux-x86_64.sh -b"
+    echo -e "\e[32m[*]\e[0m Installing miniconda for user root ..."
+    bash Miniconda3-latest-Linux-x86_64.sh -b
+}
+
 pycharm_community_installation(){
     echo -e "\e[32m[*]\e[0m Installing pycharm community ..."
     mkdir -p /home/$input_username/.local/share/applications
@@ -1069,6 +1077,22 @@ while true; do
         echo -e "\e[31m[*]\e[0m Vscode hasn't been installed.\n"
         sed -i '/# vscode/,+3d' /home/$input_username/.config/sxhkd/sxhkdrc
         sed -i '/Windows + Shift + V\s*→\s*Open VSCode/d' /usr/bin/showHelpPanel
+        break
+    else
+        echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
+    fi
+done
+
+# MINICONDA
+while true; do
+    read -p "$(echo -e "\e[33m[*]\e[0m Do you want to install MINICONDA? (YES/NO): ")" response
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    if [ "$response" = "yes" ] || [ "$response" = "y" ]; then
+        miniconda_installation
+        break
+    elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
+        echo -e "\e[31m[*]\e[0m Miniconda hasn't been installed.\n"
         break
     else
         echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
