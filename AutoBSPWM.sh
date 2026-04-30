@@ -651,6 +651,8 @@ miniconda_installation(){
     su $input_username -c "bash Miniconda3-latest-Linux-x86_64.sh -u -b"
     echo -e "\e[32m[*]\e[0m Installing miniconda for user root ..."
     bash Miniconda3-latest-Linux-x86_64.sh -u -b
+    /home/$input_username/miniconda3/bin/conda init zsh
+    /root/miniconda3/bin/conda init zsh
 }
 
 pycharm_community_installation(){
