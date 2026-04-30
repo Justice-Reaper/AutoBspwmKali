@@ -648,9 +648,9 @@ ipRangeGenerator_installation(){
 miniconda_installation(){
     echo -e "\e[32m[*]\e[0m Installing miniconda for $input_username ..."
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-    su $input_username -c "bash Miniconda3-latest-Linux-x86_64.sh -b"
+    su $input_username -c "bash Miniconda3-latest-Linux-x86_64.sh -u -b"
     echo -e "\e[32m[*]\e[0m Installing miniconda for user root ..."
-    bash Miniconda3-latest-Linux-x86_64.sh -b
+    bash Miniconda3-latest-Linux-x86_64.sh -u -b
 }
 
 pycharm_community_installation(){
