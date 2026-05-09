@@ -1,0 +1,46 @@
+#!/bin/bash
+
+file="/home/user_replace/.config/bin/scope"
+
+usage() {
+    echo "Usage:"
+    echo "  remove-from-scope -a asset1 asset2 ..."
+    echo "  remove-from-scope -f file.txt"
+    echo "  remove-from-scope -c"
+    exit 1
+}
+
+[[ "$#" -eq 0 ]] && usage
+
+remove_asset() {
+    local asset="$1"
+    if grep -qxF "$asset" "$file"; then
+        sed -i "/^${asset}$/d" "$file"
+    else
+        echo "WARNING: '$asset' not found in scope, skipping"
+    fi
+}
+
+case "$1" in
+    -a)
+        shift
+        [[ "$#" -eq 0 ]] && usage
+        for asset in "$@"; do
+            remove_asset "$asset"
+        done
+        ;;
+    -f)
+        [[ -z "$2" ]] && usage
+        [[ ! -f "$2" ]] && echo "ERROR: file not found: $2" >&2 && exit 1
+        while IFS= read -r asset; do
+            [[ -z "$asset" ]] && continue
+            remove_asset "$asset"
+        done < "$2"
+        ;;
+    -c)
+        > "$file"
+        ;;
+    *)
+        usage
+        ;;
+esac

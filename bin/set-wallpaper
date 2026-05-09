@@ -1,0 +1,64 @@
+#!/bin/bash
+
+script_name="set-wallpaper"
+wallpapers_dir="/home/user_replace/Wallpapers"
+
+show_help() {
+    echo "Usage: $script_name -i IMAGE_FILE [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  -i, --image FILE        Set the image as wallpaper"
+    echo "  -s, --save-wallpaper    Save the image to wallpapers directory and set as permanent wallpaper"
+    echo "  -h, --help              Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $script_name -i photo.jpg"
+    echo "  $script_name -i photo.jpg -s"
+    echo ""
+}
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -i|--image)
+            image_file="$2"
+            shift 2
+            ;;
+        -s|--set-wallpaper)
+            set_wallpaper=true
+            shift
+            ;;
+        -h|--help)
+            show_help
+            exit 0
+            ;;
+        *)
+            echo "Error: Unknown parameter '$1'"
+            echo "Use $script_name -h or --help for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+file_type=$(file -b --mime-type "$image_file" 2>/dev/null)
+
+if [ -z "$image_file" ] || [ ! -f "$image_file" ] || [[ ! "$file_type" =~ ^image/ ]]; then
+    echo "Error: You must provide a valid image file\n"
+    show_help
+    exit 1
+fi
+
+if [ "$set_wallpaper" = true ]; then
+    image_file_path=$(realpath "$image_file")
+    count=1
+    if [[ ! "$image_file_path" == "$wallpapers_dir"/* ]] || [[ ! "$image_file" =~ ^wallpaper-[0-9]+\.jpg$ ]]; then
+        while [ -f "$wallpapers_dir/wallpaper-$count.jpg" ]; do
+            ((count++))
+        done
+
+        cp "$image_file" "$wallpapers_dir/wallpaper-$count.jpg"
+        echo "wallpaper-$count.jpg" > /home/user_replace/.config/bin/wallpaper
+    fi
+    basename "$image_file" > /home/user_replace/.config/bin/wallpaper
+fi
+
+feh --bg-fill "$image_file" &
