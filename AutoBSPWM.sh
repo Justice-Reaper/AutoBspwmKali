@@ -933,7 +933,6 @@ while true; do
         sed -i "s/user_replace/$input_username/g" bin/*
         chmod +x bin/*
         cp bin/kali-optimus /usr/bin
-        cp bin/clear-target /usr/bin
         cp bin/switch-java-version /usr/bin
         cp bin/add-asset-to-scope /usr/bin
         cp bin/remove-asset-from-scope /usr/bin
