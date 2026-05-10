@@ -3,10 +3,12 @@
 FILE="/home/user_replace/.config/bin/scope"
 DIR="/home/user_replace/.config/rofi/scope-manager"
 MIN_WIDTH=250
+MAX_WIDTH=350
 
 focused_border=$(bspc config focused_border_color)
 active_border=$(bspc config active_border_color)
 normal_border=$(bspc config normal_border_color)
+
 bspc config focused_border_color "$normal_border"
 bspc config active_border_color "$normal_border"
 
@@ -17,7 +19,9 @@ assets="${#domains[@]}"
 
 max=$(printf '%s\n' "${domains[@]}" | awk 'length > max { max = length } END { print max }')
 width=$(( max * 14 ))
+
 [[ "$width" -lt "$MIN_WIDTH" ]] && width="$MIN_WIDTH"
+[[ "$width" -gt "$MAX_WIDTH" ]] && width="$MAX_WIDTH"
 
 selection=$(printf '%s\n' "${domains[@]}" | rofi \
   -dmenu \
