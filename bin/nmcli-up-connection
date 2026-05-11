@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+    echo "Usage: nmcli-up-connection <name/uuid/dbus-path>"
+    exit 1
+fi
+
+nmcli connection up "$1"

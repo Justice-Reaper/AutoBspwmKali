@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+    echo "Usage: nmcli-connect-device <interface> [ssid] [password] [--hidden]"
+    exit 1
+fi
+
+TYPE=$(nmcli -g GENERAL.TYPE dev show "$1" 2>/dev/null)
+
+if [[ "$TYPE" != "wifi" ]]; then
+    nmcli device connect "$1"
+    exit
+fi
+
+args=(dev wifi connect "$2" ifname "$1")
+
+if [[ -n "$3" ]]; then
+    args+=(password "$3")
+fi
+
+if [[ "$4" == "--hidden" ]]; then
+    args+=(hidden yes)
+fi
+
+nmcli "${args[@]}"

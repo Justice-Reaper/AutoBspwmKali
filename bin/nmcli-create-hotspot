@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -z "$3" ]]; then
+    echo "Usage: nmcli-create-hotspot <interface> <ssid> <password>"
+    exit 1
+fi
+
+nmcli device wifi hotspot ifname "$1" con-name "hotspot $2" ssid "$2" password "$3"
