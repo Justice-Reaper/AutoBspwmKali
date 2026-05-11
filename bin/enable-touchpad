@@ -4,4 +4,4 @@ TOUCHPAD=$(xinput list | grep -i touchpad)
 TOUCHPAD_ID=$(echo "$TOUCHPAD" | awk -F'id=' '{print $2}' | awk '{print $1}')
 
 echo 'Enabled' > /home/user_replace/.config/bin/touchpad
-xinput enable "$touchpad_id"
+xinput enable "$TOUCHPAD_ID"
