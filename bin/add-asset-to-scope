@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE="/home/user_replace/.config/bin/scope"
+SCOPE_FILE="/home/user_replace/.config/bin/scope"
 
 usage() {
     echo "Usage:"
@@ -13,10 +13,10 @@ usage() {
 
 add_asset() {
     local asset="$1"
-    if grep -qxF "$asset" "$FILE"; then
+    if grep -qxF "$asset" "$SCOPE_FILE"; then
         echo "WARNING: '$asset' already in scope, skipping"
     else
-        echo "$asset" >> "$FILE"
+        echo "$asset" >> "$SCOPE_FILE"
     fi
 }
 
