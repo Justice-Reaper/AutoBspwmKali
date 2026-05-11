@@ -1,7 +1,9 @@
 #!/bin/bash
 
+SCRIPT_NAME="nmcli-create-hotspot"
+
 if [[ -z "$3" ]]; then
-    echo "Usage: nmcli-create-hotspot <interface> <ssid> <password>"
+    echo "Usage: $SCRIPT_NAME <interface> <ssid> <password>"
     exit 1
 fi
 
