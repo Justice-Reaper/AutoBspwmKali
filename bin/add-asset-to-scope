@@ -1,11 +1,12 @@
 #!/bin/bash
 
 SCOPE_FILE="/home/user_replace/.config/bin/scope"
+SCRIPT_NAME="add-to-scope"
 
 usage() {
     echo "Usage:"
-    echo "  add-to-scope -a asset1 asset2 ..."
-    echo "  add-to-scope -f file.txt"
+    echo "  $SCRIPT_NAME -a asset1 asset2 ..."
+    echo "  $SCRIPT_NAME -f file.txt"
     exit 1
 }
 
