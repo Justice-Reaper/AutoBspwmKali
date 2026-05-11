@@ -1,9 +1,9 @@
 #!/bin/bash
 
-script_name="mkt"
+SCRIPT_NAME="mkt"
 
 if [ -n "$1" ]; then
     mkdir -p "$1"/{nmap,content,exploits,scripts}
 else
-    echo "$script_name [FOLDER]"
+    echo "$SCRIPT_NAME [FOLDER]"
 fi
