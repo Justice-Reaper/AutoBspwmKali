@@ -1,108 +1,108 @@
 #!/bin/bash
 
-RESET='\033[0m'
-BOLD='\033[1m'
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-BOLD_RED='\033[1;31m'
-BOLD_GREEN='\033[1;32m'
-BOLD_YELLOW='\033[1;33m'
+reset='\033[0m'
+bold='\033[1m'
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+blue='\033[0;34m'
+cyan='\033[0;36m'
+bold_red='\033[1;31m'
+bold_green='\033[1;32m'
+bold_yellow='\033[1;33m'
 
-KALI_BRANCH="kali-rolling"
-KALI_REPO_LINE="deb https://kali.download/kali ${KALI_BRANCH} main non-free contrib"
-KEYRING_POOL_URL="https://http.kali.org/kali/pool/main/k/kali-archive-keyring/"
-KEYRING_DEB_TEMP_PATH="/tmp/kali-archive-keyring_latest.deb"
+kali_branch="kali-rolling"
+kali_repo_line="deb https://kali.download/kali ${kali_branch} main non-free contrib"
+keyring_pool_url="https://http.kali.org/kali/pool/main/k/kali-archive-keyring/"
+keyring_deb_temp_path="/tmp/kali-archive-keyring_latest.deb"
 
 print_banner() {
     clear
-    echo -e "${BLUE}"
+    echo -e "${blue}"
     echo "██╗  ██╗ █████╗ ██╗     ██╗"
     echo "██║ ██╔╝██╔══██╗██║     ██║"
     echo "█████╔╝ ███████║██║     ██║"
     echo "██╔═██╗ ██╔══██║██║     ██║"
     echo "██║  ██╗██║  ██║███████╗██║"
     echo "╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝"
-    echo -e "${RESET}"
-    echo -e "${BOLD}  🐉 KALI OPTIMIZER & REPAIR v2.0${RESET}"
-    echo -e "${CYAN}  by Gustaafvito (github.com/Gustaafvito)${RESET}"
+    echo -e "${reset}"
+    echo -e "${bold}  🐉 KALI OPTIMIZER & REPAIR v2.0${reset}"
+    echo -e "${cyan}  by Gustaafvito (github.com/Gustaafvito)${reset}"
     echo ""
 }
 
 print_step() {
-    echo -e "\n${BLUE}[*] STEP $1: $2${RESET}"
-    echo -e "${BLUE}---------------------------------------------------${RESET}"
+    echo -e "\n${blue}[*] STEP $1: $2${reset}"
+    echo -e "${blue}---------------------------------------------------${reset}"
 }
 
 print_banner
 
 script_name=$(basename "$0")
 if [ "$(id -u)" -ne 0 ]; then
-   echo -e "${BOLD_RED}[!] ERROR: You need to be ROOT.${RESET}"
-   echo -e "${YELLOW}Run: sudo $script_name${RESET}"
+   echo -e "${bold_red}[!] ERROR: You need to be ROOT.${reset}"
+   echo -e "${yellow}Run: sudo $script_name${reset}"
    exit 1
 fi
 
 echo -e "Checking internet connection..."
 if ! curl --silent --head --fail "https://kali.download/kali/" &> /dev/null; then
-    echo -e "${BOLD_RED}[!] ERROR: No internet connection or DNS failing.${RESET}"; exit 1
+    echo -e "${bold_red}[!] ERROR: No internet connection or DNS failing.${reset}"; exit 1
 fi
-echo -e "${GREEN}[✔] Connection is stable.${RESET}"
+echo -e "${green}[✔] Connection is stable.${reset}"
 
 print_step 1 "Restoring Official Repositories"
-SOURCES_FILE="/etc/apt/sources.list"
+sources_file="/etc/apt/sources.list"
 
-if [ -f "${SOURCES_FILE}" ]; then
-    cp -a "${SOURCES_FILE}" "${SOURCES_FILE}.backup_$(date +%F)"
+if [ -f "${sources_file}" ]; then
+    cp -a "${sources_file}" "${sources_file}.backup_$(date +%F)"
 fi
 
-echo -e "Writing official sources to ${SOURCES_FILE}..."
-echo "${KALI_REPO_LINE}" | tee "${SOURCES_FILE}" > /dev/null
-echo -e "${GREEN}[✔] Sources.list repaired.${RESET}"
+echo -e "Writing official sources to ${sources_file}..."
+echo "${kali_repo_line}" | tee "${sources_file}" > /dev/null
+echo -e "${green}[✔] Sources.list repaired.${reset}"
 
 print_step 2 "Purging corrupt GPG Keys"
 rm -f /etc/apt/trusted.gpg.d/kali-archive-keyring.gpg
 rm -f /etc/apt/trusted.gpg
-echo -e "${GREEN}[✔] Old keys removed.${RESET}"
+echo -e "${green}[✔] Old keys removed.${reset}"
 
 print_step 3 "Fetching latest Kali signatures"
 echo -e "Searching for latest version on servers..."
 
-LATEST_KEYRING_DEB=$(curl -s "${KEYRING_POOL_URL}" | grep -oE 'href="kali-archive-keyring_[0-9._-]+_all\.deb"' | cut -d'"' -f2 | sort -V | tail -n 1)
+latest_keyring_deb=$(curl -s "${keyring_pool_url}" | grep -oE 'href="kali-archive-keyring_[0-9._-]+_all\.deb"' | cut -d'"' -f2 | sort -V | tail -n 1)
 
-if [ -z "$LATEST_KEYRING_DEB" ]; then
-    echo -e "${RED}[!] Could not find the keyring online. Skipping manual repair.${RESET}"
-    SKIP_KEYRING=true
+if [ -z "$latest_keyring_deb" ]; then
+    echo -e "${red}[!] Could not find the keyring online. Skipping manual repair.${reset}"
+    skip_keyring=true
 else
-    FULL_URL="${KEYRING_POOL_URL}${LATEST_KEYRING_DEB}"
-    echo -e "Downloading: ${BOLD}${LATEST_KEYRING_DEB}${RESET}"
-    curl --silent --location --output "${KEYRING_DEB_TEMP_PATH}" "${FULL_URL}"
+    full_url="${keyring_pool_url}${latest_keyring_deb}"
+    echo -e "Downloading: ${bold}${latest_keyring_deb}${reset}"
+    curl --silent --location --output "${keyring_deb_temp_path}" "${full_url}"
     
     if [ $? -eq 0 ]; then
-        dpkg -i "${KEYRING_DEB_TEMP_PATH}" > /dev/null 2>&1
-        rm -f "${KEYRING_DEB_TEMP_PATH}"
-        echo -e "${GREEN}[✔] Keyring installed successfully.${RESET}"
+        dpkg -i "${keyring_deb_temp_path}" > /dev/null 2>&1
+        rm -f "${keyring_deb_temp_path}"
+        echo -e "${green}[✔] Keyring installed successfully.${reset}"
     else
-        echo -e "${RED}[!] Download failed.${RESET}"
+        echo -e "${red}[!] Download failed.${reset}"
     fi
 fi
 
 print_step 4 "System Update (Full Upgrade)"
-echo -e "${YELLOW}[*] Refreshing package list...${RESET}"
+echo -e "${yellow}[*] Refreshing package list...${reset}"
 apt-get update
 
-echo -e "${YELLOW}[*] Fixing previous broken installations...${RESET}"
+echo -e "${yellow}[*] Fixing previous broken installations...${reset}"
 apt-get install -f -y > /dev/null 2>&1
 
-echo -e "${BOLD_YELLOW}[!] Starting Full Upgrade (This may take a while)...${RESET}"
+echo -e "${bold_yellow}[!] Starting Full Upgrade (This may take a while)...${reset}"
 apt-get full-upgrade -y
 
 if [ $? -eq 0 ]; then
-    UPGRADE_STATUS="${GREEN}SUCCESSFUL${RESET}"
+    upgrade_status="${green}SUCCESSFUL${reset}"
 else
-    UPGRADE_STATUS="${RED}WITH ERRORS${RESET}"
+    upgrade_status="${red}WITH ERRORS${reset}"
 fi
 
 print_step 5 "Cleaning system junk"
@@ -110,11 +110,11 @@ apt-get autoremove -y
 apt-get autoclean -y
 apt-get clean
 
-echo -e "\n${BLUE}===================================================${RESET}"
-echo -e "   FINAL STATUS: ${UPGRADE_STATUS}"
-echo -e "${BLUE}===================================================${RESET}"
+echo -e "\n${blue}===================================================${reset}"
+echo -e "   FINAL STATUS: ${upgrade_status}"
+echo -e "${blue}===================================================${reset}"
 echo -e "A system reboot is recommended if there were Kernel updates."
-echo -e "${BOLD}Suggested command: reboot${RESET}"
+echo -e "${bold}Suggested command: reboot${reset}"
 echo ""
 
 exit 0
