@@ -941,6 +941,22 @@ while true; do
         cp bin/xcopy /usr/bin
         cp bin/set-wallpaper /usr/bin
         cp bin/show-help-panel /usr/bin
+        cp bin/nmcli-connect-device /usr/bin
+        cp bin/nmcli-create-hotspot /usr/bin
+        cp bin/nmcli-delete-connection /usr/bin
+        cp bin/nmcli-disconnect-device /usr/bin
+        cp bin/nmcli-down-connection /usr/bin
+        cp bin/nmcli-list-active-connections /usr/bin
+        cp bin/nmcli-list-all-connections /usr/bin
+        cp bin/nmcli-list-devices /usr/bin
+        cp bin/nmcli-restart-networking /usr/bin
+        cp bin/nmcli-scan-wifi /usr/bin
+        cp bin/nmcli-up-connection /usr/bin
+        cp bin/nmcli-wifi-info /usr/bin
+        cp bin/nmcli-wifi-off /usr/bin
+        cp bin/nmcli-wifi-on /usr/bin
+        cp bin/nmcli-wwan-off /usr/bin
+        cp bin/nmcli-wwan-on /usr/bin
 
         sed -i "s/user_replace/$input_username/g" rules/*
         chmod 644 rules/*
