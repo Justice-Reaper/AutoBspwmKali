@@ -1,12 +1,12 @@
 #!/bin/bash
 
-SCOPE_FILE="/home/user_replace/.config/bin/scope"
-SCRIPT_NAME="add-to-scope"
+scope_file="/home/user_replace/.config/bin/scope"
+script_name="add-to-scope"
 
 usage() {
     echo "Usage:"
-    echo "  $SCRIPT_NAME -a asset1 asset2 ..."
-    echo "  $SCRIPT_NAME -f file.txt"
+    echo "  $script_name -a asset1 asset2 ..."
+    echo "  $script_name -f file.txt"
     exit 1
 }
 
@@ -14,10 +14,10 @@ usage() {
 
 add_asset() {
     local asset="$1"
-    if grep -qxF "$asset" "$SCOPE_FILE"; then
+    if grep -qxF "$asset" "$scope_file"; then
         echo "WARNING: '$asset' already in scope, skipping"
     else
-        echo "$asset" >> "$SCOPE_FILE"
+        echo "$asset" >> "$scope_file"
     fi
 }
 
