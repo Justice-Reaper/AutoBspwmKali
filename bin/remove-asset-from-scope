@@ -1,12 +1,22 @@
 #!/bin/bash
 
+script_name="remove-asset-from-scope"
 file="/home/user_replace/.config/bin/scope"
 
 usage() {
-    echo "Usage:"
-    echo "  remove-from-scope -a asset1 asset2 ..."
-    echo "  remove-from-scope -f file.txt"
-    echo "  remove-from-scope -c"
+    echo "Usage: $script_name [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  -a, --assets ASSET1 ASSET2 ...    Remove one or more assets directly"
+    echo "  -f, --file FILE                   Remove assets from a file (one per line)"
+    echo "  -c, --clear                       Clear all assets from scope"
+    echo "  -h, --help                        Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $script_name -a 10.10.10.1 example.com"
+    echo "  $script_name -f targets.txt"
+    echo "  $script_name -c"
+    echo ""
     exit 1
 }
 
@@ -22,14 +32,14 @@ remove_asset() {
 }
 
 case "$1" in
-    -a)
+    -a|--assets)
         shift
         [[ "$#" -eq 0 ]] && usage
         for asset in "$@"; do
             remove_asset "$asset"
         done
         ;;
-    -f)
+    -f|--file)
         [[ -z "$2" ]] && usage
         [[ ! -f "$2" ]] && echo "ERROR: file not found: $2" >&2 && exit 1
         while IFS= read -r asset; do
@@ -37,8 +47,11 @@ case "$1" in
             remove_asset "$asset"
         done < "$2"
         ;;
-    -c)
+    -c|--clear)
         > "$file"
+        ;;
+    -h|--help)
+        usage
         ;;
     *)
         usage

@@ -5,5 +5,6 @@ script_name="mkt"
 if [ -n "$1" ]; then
     mkdir -p "$1"/{nmap,content,exploits,scripts}
 else
-    echo "$script_name [FOLDER]"
+    echo "Usage: $script_name <folder>"
+    echo "  Creates a folder with nmap, content, exploits and scripts subdirectories"
 fi

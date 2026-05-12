@@ -1,12 +1,20 @@
 #!/bin/bash
 
 scope_file="/home/user_replace/.config/bin/scope"
-script_name="add-to-scope"
+script_name="add-asset-to-scope"
 
 usage() {
-    echo "Usage:"
-    echo "  $script_name -a asset1 asset2 ..."
-    echo "  $script_name -f file.txt"
+    echo "Usage: $script_name [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  -a, --assets ASSET1 ASSET2 ...    Add one or more assets directly"
+    echo "  -f, --file FILE                   Add assets from a file (one per line)"
+    echo "  -h, --help                        Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  $script_name -a 10.10.10.1 example.com"
+    echo "  $script_name -f targets.txt"
+    echo ""
     exit 1
 }
 
@@ -22,20 +30,23 @@ add_asset() {
 }
 
 case "$1" in
-    -a)
+    -a|--assets)
         shift
         [[ "$#" -eq 0 ]] && usage
         for asset in "$@"; do
             add_asset "$asset"
         done
         ;;
-    -f)
+    -f|--file)
         [[ -z "$2" ]] && usage
         [[ ! -f "$2" ]] && echo "ERROR: file not found: $2" >&2 && exit 1
         while IFS= read -r asset; do
             [[ -z "$asset" ]] && continue
             add_asset "$asset"
         done < "$2"
+        ;;
+    -h|--help)
+        usage
         ;;
     *)
         usage

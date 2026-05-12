@@ -1,15 +1,15 @@
 #!/bin/bash
 
-SCRIPT_NAME="nmcli-connect-device"
+script_name="nmcli-connect-device"
 
 if [[ -z "$1" ]]; then
-    echo "Usage: $SCRIPT_NAME <interface> [ssid] [password] [--hidden]"
+    echo "Usage: $script_name <interface> [ssid] [password] [--hidden]"
     exit 1
 fi
 
-TYPE=$(nmcli -g GENERAL.TYPE dev show "$1" 2>/dev/null)
+type=$(nmcli -g GENERAL.TYPE dev show "$1" 2>/dev/null)
 
-if [[ "$TYPE" != "wifi" ]]; then
+if [[ "$type" != "wifi" ]]; then
     nmcli device connect "$1"
     exit
 fi

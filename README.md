@@ -190,8 +190,8 @@ sudo ./AutoBSPWM.sh
 <kbd>PrtSc</kbd> : Take a screenshot with Flameshot  
 
 ## Commands
-<kbd>set-target</kbd> : This function in zsh sets the target in the polybar    
-<kbd>clear-target</kbd> : This function in zsh clears the target from the polybar    
+<kbd>add-asset-to-scope</kbd> : Adds assets to the scope    
+<kbd>remove-asset-from-scope</kbd> : Removes assets from the scope    
 
 <kbd>clearHistory</kbd> : Clear the zsh history    
 <kbd>removeHistory</kbd> : Remove the zsh history    
@@ -212,6 +212,23 @@ sudo ./AutoBSPWM.sh
 <kbd>switch-java-version</kbd> : Switches the active Java version in the environment  
 
 <kbd>show-help-panel</kbd> : Displays all commands and shortcuts of the desktop environment
+
+<kbd>nmcli-connect-device</kbd> : Connects a network device (supports wifi with SSID, password and hidden networks)    
+<kbd>nmcli-disconnect-device</kbd> : Disconnects a network device    
+<kbd>nmcli-create-hotspot</kbd> : Creates a wifi hotspot    
+<kbd>nmcli-delete-connection</kbd> : Deletes a saved connection    
+<kbd>nmcli-up-connection</kbd> : Activates an existing connection    
+<kbd>nmcli-down-connection</kbd> : Deactivates an active connection    
+<kbd>nmcli-list-active-connections</kbd> : Lists all active connections    
+<kbd>nmcli-list-all-connections</kbd> : Lists all saved connections    
+<kbd>nmcli-list-devices</kbd> : Lists all network devices    
+<kbd>nmcli-scan-wifi</kbd> : Scans for available wifi networks    
+<kbd>nmcli-wifi-info</kbd> : Shows current wifi password and QR code    
+<kbd>nmcli-wifi-on</kbd> : Enables wifi radio    
+<kbd>nmcli-wifi-off</kbd> : Disables wifi radio    
+<kbd>nmcli-wwan-on</kbd> : Enables mobile broadband radio    
+<kbd>nmcli-wwan-off</kbd> : Disables mobile broadband radio    
+<kbd>nmcli-restart-networking</kbd> : Restarts networking  
   
 ## Credits
 Author: Justice-Reaper    

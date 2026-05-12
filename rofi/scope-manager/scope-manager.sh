@@ -1,9 +1,9 @@
 #!/bin/bash
 
-FILE="/home/user_replace/.config/bin/scope"
-DIR="/home/user_replace/.config/rofi/scope-manager"
-MIN_WIDTH=250
-MAX_WIDTH=350
+file="/home/user_replace/.config/bin/scope"
+dir="/home/user_replace/.config/rofi/scope-manager"
+min_width=250
+max_width=350
 
 focused_border=$(bspc config focused_border_color)
 active_border=$(bspc config active_border_color)
@@ -12,7 +12,7 @@ normal_border=$(bspc config normal_border_color)
 bspc config focused_border_color "$normal_border"
 bspc config active_border_color "$normal_border"
 
-mapfile -t domains < <(grep '[^[:space:]]' "$FILE" 2>/dev/null | sort -u)
+mapfile -t domains < <(grep '[^[:space:]]' "$file" 2>/dev/null | sort -u)
 assets="${#domains[@]}"
 
 [[ "$assets" -eq 0 ]] && exit 0
@@ -20,13 +20,13 @@ assets="${#domains[@]}"
 max=$(printf '%s\n' "${domains[@]}" | awk 'length > max { max = length } END { print max }')
 width=$(( max * 14 ))
 
-[[ "$width" -lt "$MIN_WIDTH" ]] && width="$MIN_WIDTH"
-[[ "$width" -gt "$MAX_WIDTH" ]] && width="$MAX_WIDTH"
+[[ "$width" -lt "$min_width" ]] && width="$min_width"
+[[ "$width" -gt "$max_width" ]] && width="$max_width"
 
 selection=$(printf '%s\n' "${domains[@]}" | rofi \
   -dmenu \
   -p "" \
-  -theme "${DIR}/style.rasi" \
+  -theme "${dir}/style.rasi" \
   -theme-str "window { width: ${width}px; }"
 )
 

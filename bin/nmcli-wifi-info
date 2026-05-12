@@ -1,9 +1,9 @@
 #!/bin/bash
 
-WIFI_INFO=$(nmcli dev wifi show-password)
+wifi_info=$(nmcli dev wifi show-password)
 
-if [[ -n "$WIFI_INFO" ]]; then
-    echo -e "$WIFI_INFO\n"
-    mapfile -t VALUES < <(echo "$WIFI_INFO" | cut -d' ' -f2-)
-    echo "WIFI:T:${VALUES[1]};S:${VALUES[0]};P:${VALUES[2]};;" | qrencode -t ANSI256UTF8
+if [[ -n "$wifi_info" ]]; then
+    echo -e "$wifi_info\n"
+    mapfile -t values < <(echo "$wifi_info" | cut -d' ' -f2-)
+    echo "WIFI:T:${values[1]};S:${values[0]};P:${values[2]};;" | qrencode -t ANSI256UTF8
 fi
