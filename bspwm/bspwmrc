@@ -29,7 +29,7 @@ vmware-user-suid-wrapper &
 
 # polkit agent
 if [ "$(pidof cmd-polkit-agent | wc -w)" -lt 1 ]; then
-    /usr/bin/rofi-polkit-agent -theme /home/user_replace/.config/rofi/polkit-agent/style.rasi &
+    rofi-polkit-agent -theme /home/user_replace/.config/rofi/polkit-agent/style.rasi &
 fi
 
 # dunst
