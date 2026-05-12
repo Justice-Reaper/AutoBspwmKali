@@ -102,13 +102,14 @@ if [ -x "/usr/bin/kali-optimus" ]; then
             break
         elif [ "$response" = "no" ] || [ "$response" = "n" ]; then
             echo -e "\e[31m[*]\e[0m 'kali-optimus' canceled.\n"
-            apt_update
-            apt_full_upgrade
             break
         else
             echo -e "\e[31m[*]\e[0m Invalid response. Please reply 'YES' or 'NO'.\n"
         fi
     done
+else
+    apt_update
+    apt_full_upgrade
 fi
 
 # INSTALL THE NECESSARY DEPENDENCIES
