@@ -10,7 +10,7 @@
 
 /*****----- Fonts -----*****/
 * {
-    font: "JetBrains Mono Nerd Font 10";
+    font: "Hack Nerd Font 10";
 }
 
 /*****----- Global Settings -----*****/
