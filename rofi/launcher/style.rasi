@@ -9,7 +9,7 @@
 
 /*****----- Fonts -----*****/
 * {
-    font:                       "JetBrains Mono Nerd Font 10";
+    font:                       "Hack Nerd Font Mono 10";
 }
 
 
