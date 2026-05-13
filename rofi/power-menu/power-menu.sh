@@ -2,11 +2,11 @@
 
 dir="/home/user_replace/.config/rofi/power-menu"
 host="Kali Linux"
-shutdown=' Shutdown'
-reboot=' Reboot'
-lock=' Lock'
-suspend=' Suspend'
-logout=' Logout'
+shutdown='Shutdown'
+reboot='Reboot'
+lock='Lock'
+suspend='Suspend'
+logout='Logout'
 
 focused_border=$(bspc config focused_border_color)
 active_border=$(bspc config active_border_color)
