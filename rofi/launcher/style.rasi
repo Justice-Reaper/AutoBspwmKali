@@ -27,7 +27,7 @@
 configuration {
     modi:                       "drun";
     show-icons:                 true;
-    display-drun:               "";
+    display-drun:               " ";
     normalize-match:            true;
     icon-theme:                 "Papirus";        
     sort:                       true;
