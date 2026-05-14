@@ -25,7 +25,7 @@ width=$(( max * 14 ))
 
 selection=$(printf '%s\n' "${domains[@]}" | rofi \
   -dmenu \
-  -p "" \
+  -p " " \
   -theme "${dir}/style.rasi" \
   -theme-str "window { width: ${width}px; }"
 )
