@@ -39,9 +39,10 @@ pidof dunst > /dev/null || dunst &
 pidof sxhkd > /dev/null || sxhkd &
 
 # brightness
-brightness=$(cat /sys/class/backlight/*/brightness)
-if [ "$brightness" = "12" ]; then
-    echo '0' > /sys/class/backlight/*/brightness
+backlight=/sys/class/backlight/$(ls /sys/class/backlight/ | grep -v kbd | head -n 1)
+current_brightness=$(cat $backlight/brightness)
+if [ "$current_brightness" -eq 12 ]; then
+    echo 0 > $backlight/brightness
 fi
 
 # picom
