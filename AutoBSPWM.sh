@@ -491,7 +491,6 @@ laptop_or_desktop(){
         fi
       done
     sed -i '/# bidirectional clipboard/,+2d' /home/$input_username/.config/bspwm/bspwmrc
-    apt install brightnessctl -y
 }
 
 redshift_installation(){
