@@ -164,13 +164,7 @@ cd ..
 
 # CONFIGURING FONTS
 echo -e "\e[32m[*]\e[0m Configuring fonts ...\n"
-mkdir /usr/local/share/fonts
-latest_version=$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | grep "tag_name" | cut -d '"' -f 4)
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/Hack.zip -O Hack.zip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/$latest_version/jetBrainsMono.zip -O jetBrainsMono.zip
-unzip -o Hack.zip
-unzip -o jetBrainsMono.zip
-cp *.ttf /usr/local/share/fonts
+cp -r fonts /usr/local/share
 fc-cache -fv
 
 # CONFIGURING WALLPAPERS
