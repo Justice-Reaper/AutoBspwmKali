@@ -1,3 +1,10 @@
+> ⚠️ **This repository is no longer maintained**
+>
+> I've switched to [Artix Linux](https://artixlinux.org/) and Wayland, so this repository is now archived and won't receive any further updates.
+>
+> If you're looking for my current setup, check out my new dotfiles repository:
+> 👉 [Hyprland-Dotfiles](https://github.com/Justice-Reaper/Hyprland-Dotfiles)
+
 # AutoBSPWM  
 - This AutoBSPWM script was created through independent research, based on the Linux customization course from the Hack4u academy: https://hack4u.io/cursos/personalizacion-de-entorno-en-linux/  
 
